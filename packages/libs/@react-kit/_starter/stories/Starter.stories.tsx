@@ -1,5 +1,5 @@
 import React from 'react';
-import Starter from '../src';
+import { Starter } from '../src';
 
 export default {
   title: '@react-kit/_starter',
