@@ -9,7 +9,8 @@
     "lint": "lerna run lint",
     "build": "lerna run build",
     "storybook:dev": "yarn workspace storybook run dev",
-    "storybook:build": "yarn workspace storybook run build"
+    "storybook:build": "yarn workspace storybook run build",
+    "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
     "lerna": "^3.22.1",

@@ -3,6 +3,5 @@ module.exports = {
     '@babel/preset-env',
     '@babel/preset-react',
     '@babel/preset-typescript',
-    'linaria/babel',
   ],
 };
