@@ -7,6 +7,9 @@ const HeadingStyled = styled.h1<{ skin: any }>`
 `;
 
 export const Heading = ({ children, tag, skin }: HeadingProps) => {
-  const Component = tag ? HeadingStyled.withComponent(tag) : HeadingStyled;
-  return <Component skin={skin}>{children}</Component>;
+  return (
+    <HeadingStyled skin={skin} as={tag}>
+      {children}
+    </HeadingStyled>
+  );
 };

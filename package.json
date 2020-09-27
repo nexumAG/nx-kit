@@ -3,6 +3,9 @@
   "workspaces": [
     "packages/**"
   ],
+  "resolutions": {
+    "styled-components": "^5"
+  },
   "scripts": {
     "changed": "lerna changed",
     "test": "lerna run test",
