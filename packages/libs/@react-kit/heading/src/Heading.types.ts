@@ -16,5 +16,5 @@ export type HeadingProps = {
   className?: string;
   children: ReactNode;
   tag?: HeadingTag;
-  skin: string;
+  skin?: string;
 };

@@ -11,7 +11,7 @@
     "test": "lerna run test",
     "lint": "lerna run lint",
     "build": "lerna run build",
-    "storybook:dev": "yarn workspace storybook run storybook:dev",
+    "storybook": "yarn workspace storybook run storybook:dev",
     "storybook:build": "yarn workspace storybook run storybook:build",
     "bootstrap": "lerna bootstrap"
   },

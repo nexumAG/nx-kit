@@ -2,8 +2,8 @@ import React from 'react';
 import { styled } from '@react-kit/styling';
 import { HeadingProps } from './Heading.types';
 
-const HeadingStyled = styled.h2<{ skin: string }>`
-  ${({ theme, skin }) => theme.component.heading.skin[skin]};
+const HeadingStyled = styled.h2<{ skin?: string }>`
+  ${({ theme, skin }) => skin && theme.component.heading.skin[skin]};
 `;
 
 export const Heading = ({ className, children, tag, skin }: HeadingProps) => {

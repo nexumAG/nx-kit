@@ -2,24 +2,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as types from 'styled-components/cssprop';
 import * as styledComponents from 'styled-components';
-
-type Theme = {
-  global: {
-    color: {
-      [key: string]: string;
-    };
-    breakpoint: {
-      [key: string]: string;
-    };
-  };
-  component: {
-    heading: {
-      skin: {
-        [key: string]: string;
-      };
-    };
-  };
-};
+import { Theme, media } from './theme';
+import resetCSS from './global/resetCSS';
 
 const {
   default: styled,
@@ -28,6 +12,7 @@ const {
   createGlobalStyle,
   keyframes,
   ThemeProvider,
+  StyleSheetManager,
 } = styledComponents as styledComponents.ThemedStyledComponentsModule<Theme>;
 
 export {
@@ -37,5 +22,8 @@ export {
   createGlobalStyle,
   keyframes,
   ThemeProvider,
+  StyleSheetManager,
   Theme,
+  resetCSS,
+  media,
 };

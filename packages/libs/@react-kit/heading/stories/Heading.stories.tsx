@@ -25,3 +25,4 @@ export const H3 = () => (
     Heading Test
   </Heading>
 );
+export const H4 = () => <Heading tag="h4">Heading Test</Heading>;

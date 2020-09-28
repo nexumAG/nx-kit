@@ -19,7 +19,8 @@
     "react-is": "^16.13.1"
   },
   "dependencies": {
-    "@react-kit/styling": "0.1.0"
+    "@react-kit/styling": "0.1.0",
+    "@react-kit/styling-default-theme": "0.1.0"
   },
   "scripts": {
     "storybook:dev": "start-storybook -p 6006",

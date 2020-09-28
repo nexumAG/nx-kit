@@ -1,1 +1,1 @@
-# @react-kit/_starter
+# @react-kit/heading
