@@ -1,5 +1,4 @@
 import React from 'react';
-import { styled } from '@react-kit/styling';
 import { Heading } from '../src';
 
 export default {
@@ -7,19 +6,22 @@ export default {
   component: Heading,
 };
 
-const HeadingStyled = styled(Heading)`
-  font-size: 100px;
-`;
-
-export const Default = () => <Heading>Heading Test</Heading>;
+export const Default = () => <Heading skin="100">Heading Test</Heading>;
 export const H2 = () => (
   <Heading
     tag="h2"
+    skin="100"
     css={`
-      font-size: 100px;
+      &&& {
+        font-size: 100px;
+      }
     `}
   >
     Heading Test
   </Heading>
 );
-export const H3 = () => <HeadingStyled tag="h3">Heading Test</HeadingStyled>;
+export const H3 = () => (
+  <Heading tag="h3" skin="200">
+    Heading Test
+  </Heading>
+);

@@ -1,7 +1,3 @@
-module.exports = {
-  presets: [
-    '@babel/preset-env',
-    '@babel/preset-react',
-    '@babel/preset-typescript',
-  ],
-};
+const babelConfigBase = require('../../../../babel.config');
+
+module.exports = babelConfigBase;
