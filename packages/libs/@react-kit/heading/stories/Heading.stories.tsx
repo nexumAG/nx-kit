@@ -6,8 +6,12 @@ export default {
   component: Heading,
 };
 
-export const Default = () => <Heading skin="100">Heading Test</Heading>;
-export const H2 = () => (
+export const H1Skin100 = () => (
+  <Heading skin="100" tag="h1">
+    Heading Test
+  </Heading>
+);
+export const H2Skin100FontSizeOverride = () => (
   <Heading
     tag="h2"
     skin="100"
@@ -20,7 +24,7 @@ export const H2 = () => (
     Heading Test
   </Heading>
 );
-export const H3 = () => (
+export const H3Skin200 = () => (
   <Heading tag="h3" skin="200">
     Heading Test
   </Heading>

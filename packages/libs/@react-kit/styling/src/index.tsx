@@ -2,7 +2,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as types from 'styled-components/cssprop';
 import * as styledComponents from 'styled-components';
-import { Theme, media } from './theme';
+import { media } from './theme';
+import type { Theme } from './theme';
 import resetCSS from './global/resetCSS';
 
 const {
@@ -23,7 +24,8 @@ export {
   keyframes,
   ThemeProvider,
   StyleSheetManager,
-  Theme,
   resetCSS,
   media,
 };
+
+export type { Theme };
