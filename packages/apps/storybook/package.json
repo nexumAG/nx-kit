@@ -16,12 +16,14 @@
     "@storybook/react": "^6.0.21",
     "babel-loader": "^8.1.0",
     "fork-ts-checker-webpack-plugin": "^5.2.0",
-    "react-is": "^16.13.1",
-    "ts-loader": "^8.0.4"
+    "react-is": "^16.13.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@react-kit/styling": "0.1.0",
+    "@react-kit/styling-default-theme": "0.1.0"
+  },
   "scripts": {
-    "dev": "start-storybook -p 6006",
-    "build": "build-storybook -o dist"
+    "storybook:dev": "start-storybook -p 6006",
+    "storybook:build": "build-storybook -o dist"
   }
 }
