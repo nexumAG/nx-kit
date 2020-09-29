@@ -11,8 +11,10 @@ export const H1Skin100 = () => (
     skin="100"
     tag="h1"
     styles={{
-      marginBottom: '40',
-      paddingTop: '20',
+      marginBottom: {
+        xs: '20',
+        md: '40',
+      },
       flexGrow: 1,
       flexShrink: 1,
     }}
