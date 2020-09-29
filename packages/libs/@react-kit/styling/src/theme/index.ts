@@ -8,6 +8,21 @@ export type Theme = {
     breakpoint: {
       [key: string]: { min: number; max: number | null };
     };
+    spacing: {
+      [key: string]: string;
+    };
+    font: {
+      [key: string]: string;
+    };
+    fontSize: {
+      [key: string]: string;
+    };
+    lineHeight: {
+      [key: string]: string | number;
+    };
+    zIndex: {
+      [key: string]: number;
+    };
   };
   component: {
     heading: {
@@ -15,20 +30,5 @@ export type Theme = {
         [key: string]: string | FlattenInterpolation<ThemeProps<Theme>>;
       };
     };
-  };
-};
-
-export const media = (
-  min: keyof Theme['global']['breakpoint'],
-  max?: keyof Theme['global']['breakpoint']
-) => {
-  return ({ theme }: ThemeProps<Theme>) => {
-    const { breakpoint } = theme.global;
-    const minValue = `${breakpoint[min]?.min ?? 0}px`;
-    const maxValue =
-      !max || !breakpoint[max]?.max ? false : `${breakpoint[max].max}px`;
-    return `@media (min-width: ${minValue})${
-      maxValue ? ` and (max-width: ${maxValue})` : ''
-    }`;
   };
 };

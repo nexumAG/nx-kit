@@ -23,6 +23,10 @@
     // error out if import and file system have a casing mismatch. Recommended by TS
     "forceConsistentCasingInFileNames": true,
     "types": ["jest", "node"],
+//    "typeRoots": [
+//      "node_modules/@types",
+//      "@types"
+//    ],
     "allowSyntheticDefaultImports": true
   }
 }

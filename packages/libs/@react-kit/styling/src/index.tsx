@@ -2,10 +2,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as types from 'styled-components/cssprop';
 import * as styledComponents from 'styled-components';
-import { media } from './theme';
+import { media } from './utils';
 import type { Theme } from './theme';
 import resetCSS from './global/resetCSS';
-import { getSpacing, getFlexItem } from './styles';
+import { getSpacing, getFlexItem, getFlexContainer } from './styles';
 import type { Spacing, FlexItem } from './styles';
 
 const {
@@ -30,6 +30,7 @@ export {
   media,
   getSpacing,
   getFlexItem,
+  getFlexContainer,
 };
 
 export type { Theme, Spacing, FlexItem };
