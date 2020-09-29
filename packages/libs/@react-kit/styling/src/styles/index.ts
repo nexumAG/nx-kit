@@ -84,16 +84,28 @@ export const getFlexItem = () => {
 };
 
 export const getFlexContainer = () => {
-  return ({
-    styles,
-  }: ThemedStyledProps<{ styles?: FlexContainer }, Theme>) => ({
-    ...(styles?.alignContent ? { alignContent: styles.alignContent } : {}),
-    ...(styles?.alignItems ? { alignItems: styles.alignItems } : {}),
-    ...(styles?.flexDirection ? { flexDirection: styles.flexDirection } : {}),
-    ...(styles?.flexFlow ? { flexFlow: styles.flexFlow } : {}),
-    ...(styles?.flexWrap ? { flexWrap: styles.flexWrap } : {}),
-    ...(styles?.justifyContent
-      ? { justifyContent: styles.justifyContent }
+  return (
+    props: ThemedStyledProps<FlexContainer & { styles?: FlexContainer }, Theme>
+  ) => ({
+    ...(props.styles?.alignContent
+      ? { alignContent: props.styles.alignContent }
       : {}),
+    ...(props.styles?.alignItems
+      ? { alignItems: props.styles.alignItems }
+      : {}),
+    ...(props.styles?.flexDirection
+      ? { flexDirection: props.styles.flexDirection }
+      : {}),
+    ...(props.styles?.flexFlow ? { flexFlow: props.styles.flexFlow } : {}),
+    ...(props.styles?.flexWrap ? { flexWrap: props.styles.flexWrap } : {}),
+    ...(props.styles?.justifyContent
+      ? { justifyContent: props.styles.justifyContent }
+      : {}),
+    ...(props.alignContent ? { alignContent: props.alignContent } : {}),
+    ...(props.alignItems ? { alignItems: props.alignItems } : {}),
+    ...(props.flexDirection ? { flexDirection: props.flexDirection } : {}),
+    ...(props.flexFlow ? { flexFlow: props.flexFlow } : {}),
+    ...(props.flexWrap ? { flexWrap: props.flexWrap } : {}),
+    ...(props.justifyContent ? { justifyContent: props.justifyContent } : {}),
   });
 };

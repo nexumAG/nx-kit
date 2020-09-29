@@ -6,7 +6,7 @@ import { media } from './utils';
 import type { Theme } from './theme';
 import resetCSS from './global/resetCSS';
 import { getSpacing, getFlexItem, getFlexContainer } from './styles';
-import type { Spacing, FlexItem } from './styles';
+import type { Spacing, FlexItem, FlexContainer } from './styles';
 
 const {
   default: styled,
@@ -33,4 +33,4 @@ export {
   getFlexContainer,
 };
 
-export type { Theme, Spacing, FlexItem };
+export type { Theme, Spacing, FlexItem, FlexContainer };
