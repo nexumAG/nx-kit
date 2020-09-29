@@ -7,6 +7,8 @@ type ZIndexKey = keyof Theme['global']['zIndex'];
 type BreakpointKey = keyof Theme['global']['breakpoint'];
 type ColorKey = keyof Theme['global']['color'];
 type FontKey = keyof Theme['global']['font'];
+type FontSizeKey = keyof Theme['global']['fontSize'];
+type LineHeightKey = keyof Theme['global']['lineHeight'];
 
 type LiteralOrBreakpoints<T> =
   | T
@@ -76,6 +78,17 @@ export type Layout = {
 
 export type Font = {
   font?: LiteralOrBreakpoints<FontKey>;
+};
+
+export type Typo = {
+  fontSize?: LiteralOrBreakpoints<FontSizeKey | CSSProperties['fontSize']>;
+  lineHeight?: LiteralOrBreakpoints<LineHeightKey | CSSProperties['lineHeight']>;
+  letterSpacing?: LiteralOrBreakpoints<CSSProperties['letterSpacing']>;
+  textAlign?: LiteralOrBreakpoints<CSSProperties['textAlign']>;
+  fontStyle?: LiteralOrBreakpoints<CSSProperties['fontStyle']>;
+  textTransform?: LiteralOrBreakpoints<CSSProperties['textTransform']>;
+  textDecoration?: LiteralOrBreakpoints<CSSProperties['textDecoration']>;
+  textOverflow?: LiteralOrBreakpoints<CSSProperties['textOverflow']>;
 };
 
 type DirectOrStylesProp<T> = T | { styles?: T };
@@ -213,4 +226,17 @@ export const getLayout = () => {
 export const getFont = () => {
   return (props: ThemedStyledProps<DirectOrStylesProp<Font>, Theme>) =>
     getLiteralOrBreakpointString('font', props, props.theme.global.font);
+};
+
+export const getTypo = () => {
+  return (props: ThemedStyledProps<DirectOrStylesProp<Typo>, Theme>) => ({
+    ...getLiteralOrBreakpointValue('fontSize', props, props.theme.global.fontSize),
+    ...getLiteralOrBreakpointValue('lineHeight', props, props.theme.global.lineHeight),
+    ...getLiteralOrBreakpointValue('letterSpacing', props),
+    ...getLiteralOrBreakpointValue('textAlign', props),
+    ...getLiteralOrBreakpointValue('fontStyle', props),
+    ...getLiteralOrBreakpointValue('textTransform', props),
+    ...getLiteralOrBreakpointValue('textDecoration', props),
+    ...getLiteralOrBreakpointValue('textOverflow', props),
+  });
 };

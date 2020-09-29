@@ -44,5 +44,7 @@ export const H4 = () => (
   </Heading>
 );
 export const PositionRelative = () => (
-  <Heading styles={{ position: 'relative', left: '80px' }}>Heading Test</Heading>
+  <Heading styles={{ position: 'relative', left: '80px', textTransform: 'uppercase' }}>
+    Heading Test
+  </Heading>
 );

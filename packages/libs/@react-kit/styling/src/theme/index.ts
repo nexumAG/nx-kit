@@ -30,5 +30,10 @@ export type Theme = {
         [key: string]: string | FlattenInterpolation<ThemeProps<Theme>>;
       };
     };
+    button: {
+      skin: {
+        [key: string]: string | FlattenInterpolation<ThemeProps<Theme>>;
+      };
+    };
   };
 };

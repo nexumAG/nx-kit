@@ -13,8 +13,18 @@ import {
   getColor,
   getLayout,
   getFont,
+  getTypo,
 } from './styles';
-import type { Spacing, FlexItem, FlexContainer, Position, Color, Layout, Font } from './styles';
+import type {
+  Spacing,
+  FlexItem,
+  FlexContainer,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+} from './styles';
 
 const {
   default: styled,
@@ -43,6 +53,7 @@ export {
   getColor,
   getLayout,
   getFont,
+  getTypo,
 };
 
-export type { Theme, Spacing, FlexItem, FlexContainer, Position, Color, Layout, Font };
+export type { Theme, Spacing, FlexItem, FlexContainer, Position, Color, Layout, Font, Typo };
