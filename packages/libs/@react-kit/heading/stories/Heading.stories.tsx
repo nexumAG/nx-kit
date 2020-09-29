@@ -38,7 +38,11 @@ export const H3Skin200 = () => (
     Heading Test
   </Heading>
 );
-export const H4 = () => <Heading tag="h4">Heading Test</Heading>;
+export const H4 = () => (
+  <Heading tag="h4" styles={{ font: { xs: 'trebuchetNormal', md: 'trebuchetBold' } }}>
+    Heading Test
+  </Heading>
+);
 export const PositionRelative = () => (
   <Heading styles={{ position: 'relative', left: '80px' }}>Heading Test</Heading>
 );

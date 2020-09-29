@@ -7,7 +7,7 @@ export default {
 };
 
 export const Default = () => (
-  <Flex justifyContent="space-between">
+  <Flex justifyContent="space-between" styles={{ display: { xs: 'block', md: 'flex' } }}>
     <div>Col1</div>
     <div>Col2</div>
     <div>Col3</div>

@@ -6,6 +6,7 @@ import {
   getPosition,
   getColor,
   getLayout,
+  getFont,
 } from '@react-kit/styling';
 import { HeadingProps, HeadingStyledProps } from './Heading.types';
 
@@ -16,6 +17,7 @@ const HeadingStyled = styled.h2<HeadingStyledProps>`
   ${getPosition()}
   ${getColor()}
   ${getLayout()}
+  ${getFont()}
 `;
 
 export const Heading = ({ className, children, tag, skin, styles }: HeadingProps) => {

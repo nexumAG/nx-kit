@@ -6,6 +6,7 @@ type SpacingKey = keyof Theme['global']['spacing'];
 type ZIndexKey = keyof Theme['global']['zIndex'];
 type BreakpointKey = keyof Theme['global']['breakpoint'];
 type ColorKey = keyof Theme['global']['color'];
+type FontKey = keyof Theme['global']['font'];
 
 type LiteralOrBreakpoints<T> =
   | T
@@ -73,11 +74,19 @@ export type Layout = {
   overflowY?: LiteralOrBreakpoints<CSSProperties['overflowY']>;
 };
 
+export type Font = {
+  font?: LiteralOrBreakpoints<FontKey>;
+};
+
 type DirectOrStylesProp<T> = T | { styles?: T };
 
 const getValue = (key: string, value: any, themeLookup?: any) => {
   // eslint-disable-next-line no-nested-ternary
   return value ? (themeLookup ? { [key]: themeLookup[value] ?? value } : { [key]: value }) : {};
+};
+
+const getString = (value: any, themeLookup: any) => {
+  return value ? themeLookup[value] ?? '' : '';
 };
 
 const getLiteralOrBreakpointValue = (
@@ -100,6 +109,30 @@ const getLiteralOrBreakpointValue = (
     }, {});
   }
   return getValue(key, value, themeLookup);
+};
+
+const getLiteralOrBreakpointString = (
+  key: string,
+  { theme, ...props }: { theme: Theme } & DirectOrStylesProp<LiteralOrBreakpoints<any> | null>,
+  themeLookup: any
+): string => {
+  const value = props[key] ?? props.styles?.[key];
+
+  if (!value) {
+    return '';
+  }
+  if (typeof value === 'object') {
+    return Object.keys(value).reduce((acc, breakpoint) => {
+      const mediaQuery = media(breakpoint)({ theme });
+      return `
+        ${acc}
+        ${mediaQuery} {
+          ${getString(value[breakpoint], themeLookup)}
+        }
+      `;
+    }, '');
+  }
+  return getString(value, themeLookup);
 };
 
 export const getSpacing = () => {
@@ -175,4 +208,9 @@ export const getLayout = () => {
     ...getLiteralOrBreakpointValue('overflowX', props),
     ...getLiteralOrBreakpointValue('overflowY', props),
   });
+};
+
+export const getFont = () => {
+  return (props: ThemedStyledProps<DirectOrStylesProp<Font>, Theme>) =>
+    getLiteralOrBreakpointString('font', props, props.theme.global.font);
 };
