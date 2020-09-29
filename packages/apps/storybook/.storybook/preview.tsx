@@ -8,6 +8,10 @@ export const parameters = {
 
 const GlobalStyle = createGlobalStyle`
   ${resetCSS}
+  body {
+    font-size: 16px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+  }
 `;
 
 export const decorators = [

@@ -7,7 +7,11 @@ export default {
 };
 
 export const H1Skin100 = () => (
-  <Heading skin="100" tag="h1">
+  <Heading
+    skin="100"
+    tag="h1"
+    styles={{ mb: '50px', paddingTop: '25px', flexGrow: 1, flexShrink: 1 }}
+  >
     Heading Test
   </Heading>
 );
@@ -17,7 +21,7 @@ export const H2Skin100FontSizeOverride = () => (
     skin="100"
     css={`
       &&& {
-        font-size: 100px;
+        font-size: 56px;
       }
     `}
   >

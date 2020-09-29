@@ -1,14 +1,22 @@
 import React from 'react';
-import { styled } from '@react-kit/styling';
-import { HeadingProps } from './Heading.types';
+import { styled, getSpacing, getFlexItem } from '@react-kit/styling';
+import { HeadingProps, HeadingStyledProps } from './Heading.types';
 
-const HeadingStyled = styled.h2<{ skin?: string }>`
+const HeadingStyled = styled.h2<HeadingStyledProps>`
   ${({ theme, skin }) => skin && theme.component.heading.skin[skin]};
+  ${getSpacing()}
+  ${getFlexItem()}
 `;
 
-export const Heading = ({ className, children, tag, skin }: HeadingProps) => {
+export const Heading = ({
+  className,
+  children,
+  tag,
+  skin,
+  styles,
+}: HeadingProps) => {
   return (
-    <HeadingStyled className={className} skin={skin} as={tag}>
+    <HeadingStyled className={className} skin={skin} as={tag} styles={styles}>
       {children}
     </HeadingStyled>
   );

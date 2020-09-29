@@ -5,6 +5,8 @@ import * as styledComponents from 'styled-components';
 import { media } from './theme';
 import type { Theme } from './theme';
 import resetCSS from './global/resetCSS';
+import { getSpacing, getFlexItem } from './styles';
+import type { Spacing, FlexItem } from './styles';
 
 const {
   default: styled,
@@ -26,6 +28,8 @@ export {
   StyleSheetManager,
   resetCSS,
   media,
+  getSpacing,
+  getFlexItem,
 };
 
-export type { Theme };
+export type { Theme, Spacing, FlexItem };

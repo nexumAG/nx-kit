@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Theme, Spacing, FlexItem } from '@react-kit/styling';
 
 export type HeadingTag =
   | 'h1'
@@ -12,9 +13,19 @@ export type HeadingTag =
   | 'p'
   | 'th';
 
+export type HeadingSkin = keyof Theme['component']['heading']['skin'];
+
+type Styles = Spacing & FlexItem;
+
 export type HeadingProps = {
   className?: string;
   children: ReactNode;
   tag?: HeadingTag;
-  skin?: string;
+  skin?: HeadingSkin;
+  styles?: Styles;
+};
+
+export type HeadingStyledProps = {
+  skin?: HeadingSkin;
+  styles?: Styles;
 };

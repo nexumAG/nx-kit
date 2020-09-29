@@ -3,7 +3,8 @@ import { Theme, css, media } from '@react-kit/styling';
 export const defaultTheme: Theme = {
   global: {
     color: {
-      primary: 'purple',
+      primary: '#4f8495',
+      secondary: '#5fa990',
     },
     breakpoint: {
       xs: { min: 0, max: 575 },
@@ -18,19 +19,19 @@ export const defaultTheme: Theme = {
       skin: {
         100: css`
           color: ${({ theme }) => theme.global.color.primary};
-          font-size: 22px;
-          font-family: sans-serif;
+          font-size: 32px;
+          font-family: 'Trebuchet MS', Helvetica, sans-serif;
           font-weight: bold;
           ${media('md')} {
-            font-size: 32px;
+            font-size: 48px;
           }
         `,
         200: css`
-          color: red;
-          font-size: 16px;
-          font-family: serif;
+          color: ${({ theme }) => theme.global.color.secondary};
+          font-size: 28px;
+          font-family: Georgia, serif;
           ${media('md')} {
-            font-size: 32px;
+            font-size: 36px;
           }
         `,
       },
