@@ -5,8 +5,13 @@ import * as styledComponents from 'styled-components';
 import { media } from './utils';
 import type { Theme } from './theme';
 import resetCSS from './global/resetCSS';
-import { getSpacing, getFlexItem, getFlexContainer } from './styles';
-import type { Spacing, FlexItem, FlexContainer } from './styles';
+import {
+  getSpacing,
+  getFlexItem,
+  getFlexContainer,
+  getPosition,
+} from './styles';
+import type { Spacing, FlexItem, FlexContainer, Position } from './styles';
 
 const {
   default: styled,
@@ -31,6 +36,7 @@ export {
   getSpacing,
   getFlexItem,
   getFlexContainer,
+  getPosition,
 };
 
-export type { Theme, Spacing, FlexItem, FlexContainer };
+export type { Theme, Spacing, FlexItem, FlexContainer, Position };

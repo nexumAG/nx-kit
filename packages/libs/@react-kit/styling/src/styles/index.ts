@@ -4,36 +4,73 @@ import { Theme } from '../theme';
 // https://github.com/frenic/csstype
 
 type SpacingKey = keyof Theme['global']['spacing'];
+type ZIndexKey = keyof Theme['global']['zIndex'];
+type BreakpointKey = keyof Theme['global']['breakpoint'];
+
+type LiteralOrBreakpoints<T> =
+  | T
+  | {
+      [key in BreakpointKey]: T;
+    };
 
 export type Spacing = {
-  marginTop?: SpacingKey;
-  marginBottom?: SpacingKey;
-  marginLeft?: SpacingKey;
-  marginRight?: SpacingKey;
-  margin?: SpacingKey;
-  paddingTop?: SpacingKey;
-  paddingBottom?: SpacingKey;
-  paddingLeft?: SpacingKey;
-  paddingRight?: SpacingKey;
-  padding?: SpacingKey;
+  marginTop?: LiteralOrBreakpoints<SpacingKey>;
+  marginBottom?: LiteralOrBreakpoints<SpacingKey>;
+  marginLeft?: LiteralOrBreakpoints<SpacingKey>;
+  marginRight?: LiteralOrBreakpoints<SpacingKey>;
+  margin?: LiteralOrBreakpoints<SpacingKey>;
+  paddingTop?: LiteralOrBreakpoints<SpacingKey>;
+  paddingBottom?: LiteralOrBreakpoints<SpacingKey>;
+  paddingLeft?: LiteralOrBreakpoints<SpacingKey>;
+  paddingRight?: LiteralOrBreakpoints<SpacingKey>;
+  padding?: LiteralOrBreakpoints<SpacingKey>;
 };
 
 export type FlexItem = {
-  flexGrow?: CSSProperties['flexGrow'];
-  flexShrink?: CSSProperties['flexShrink'];
-  flexBasis?: CSSProperties['flexBasis'];
-  flex?: CSSProperties['flex'];
-  alignSelf?: CSSProperties['alignSelf'];
-  order?: CSSProperties['order'];
+  flexGrow?: LiteralOrBreakpoints<CSSProperties['flexGrow']>;
+  flexShrink?: LiteralOrBreakpoints<CSSProperties['flexShrink']>;
+  flexBasis?: LiteralOrBreakpoints<CSSProperties['flexBasis']>;
+  flex?: LiteralOrBreakpoints<CSSProperties['flex']>;
+  alignSelf?: LiteralOrBreakpoints<CSSProperties['alignSelf']>;
+  order?: LiteralOrBreakpoints<CSSProperties['order']>;
 };
 
 export type FlexContainer = {
-  alignContent?: CSSProperties['alignContent'];
-  alignItems?: CSSProperties['alignItems'];
-  flexDirection?: CSSProperties['flexDirection'];
-  flexFlow?: CSSProperties['flexFlow'];
-  flexWrap?: CSSProperties['flexWrap'];
-  justifyContent?: CSSProperties['justifyContent'];
+  alignContent?: LiteralOrBreakpoints<CSSProperties['alignContent']>;
+  alignItems?: LiteralOrBreakpoints<CSSProperties['alignItems']>;
+  flexDirection?: LiteralOrBreakpoints<CSSProperties['flexDirection']>;
+  flexFlow?: LiteralOrBreakpoints<CSSProperties['flexFlow']>;
+  flexWrap?: LiteralOrBreakpoints<CSSProperties['flexWrap']>;
+  justifyContent?: LiteralOrBreakpoints<CSSProperties['justifyContent']>;
+};
+
+export type Position = {
+  position?: LiteralOrBreakpoints<CSSProperties['position']>;
+  top?: LiteralOrBreakpoints<CSSProperties['top']>;
+  right?: LiteralOrBreakpoints<CSSProperties['right']>;
+  bottom?: LiteralOrBreakpoints<CSSProperties['bottom']>;
+  left?: LiteralOrBreakpoints<CSSProperties['left']>;
+  zIndex?: LiteralOrBreakpoints<ZIndexKey>;
+};
+
+const getValue = (key: string, value: any, themeLookup?: any) => {
+  // eslint-disable-next-line no-nested-ternary
+  return value
+    ? themeLookup
+      ? { [key]: themeLookup[value] }
+      : { [key]: value }
+    : {};
+};
+
+const getLiteralOrBreakpointValue = (
+  key: string,
+  value: LiteralOrBreakpoints<any>,
+  themeLookup?: any
+): any => {
+  if (typeof value === 'object') {
+    return {};
+  }
+  return getValue(key, value, themeLookup);
 };
 
 export const getSpacing = () => {
@@ -107,5 +144,19 @@ export const getFlexContainer = () => {
     ...(props.flexFlow ? { flexFlow: props.flexFlow } : {}),
     ...(props.flexWrap ? { flexWrap: props.flexWrap } : {}),
     ...(props.justifyContent ? { justifyContent: props.justifyContent } : {}),
+  });
+};
+
+export const getPosition = () => {
+  return ({
+    styles,
+    theme,
+  }: ThemedStyledProps<{ styles?: Position }, Theme>) => ({
+    ...(styles?.position ? { position: styles.position } : {}),
+    ...(styles?.top ? { top: styles.top } : {}),
+    ...(styles?.right ? { right: styles.right } : {}),
+    ...(styles?.bottom ? { bottom: styles.bottom } : {}),
+    ...(styles?.left ? { left: styles.left } : {}),
+    ...(styles?.zIndex ? { zIndex: theme.global.zIndex[styles.zIndex] } : {}),
   });
 };

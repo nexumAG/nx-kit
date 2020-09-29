@@ -6,6 +6,13 @@ export default {
   component: Heading,
 };
 
+// const styles = {
+//   marginBottom: {
+//     xs: '40',
+//     md: '60',
+//   }
+// }
+
 export const H1Skin100 = () => (
   <Heading
     skin="100"
