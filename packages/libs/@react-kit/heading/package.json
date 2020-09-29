@@ -1,5 +1,5 @@
 {
-  "name": "@react-kit/_starter",
+  "name": "@react-kit/heading",
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -24,5 +24,8 @@
   },
   "devDependencies": {
     "@react-kit/dependencies-dev": "0.1.0"
+  },
+  "dependencies": {
+    "@react-kit/styling": "0.1.0"
   }
 }

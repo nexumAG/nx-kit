@@ -6,5 +6,3 @@ export const Starter = ({ className }: StarterProps) => {
     <div className={className}>the snozzberries taste like snozzberries</div>
   );
 };
-
-export default Starter;

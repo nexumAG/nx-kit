@@ -3,16 +3,22 @@
   "workspaces": [
     "packages/**"
   ],
+  "resolutions": {
+    "styled-components": "^5"
+  },
   "scripts": {
     "changed": "lerna changed",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "build": "lerna run build",
-    "storybook:dev": "yarn workspace storybook run dev",
-    "storybook:build": "yarn workspace storybook run build"
+    "storybook": "yarn workspace storybook run storybook:dev",
+    "storybook:build": "yarn workspace storybook run storybook:build",
+    "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^6.0.0",
     "lerna": "^3.22.1",
-    "prettier": "2.1.2"
+    "prettier": "2.1.2",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }
