@@ -1,7 +1,6 @@
 import { ThemedStyledProps, CSSProperties } from 'styled-components';
 import { Theme } from '../theme';
-
-// https://github.com/frenic/csstype
+import { media } from '../utils';
 
 type SpacingKey = keyof Theme['global']['spacing'];
 type ZIndexKey = keyof Theme['global']['zIndex'];
@@ -53,110 +52,91 @@ export type Position = {
   zIndex?: LiteralOrBreakpoints<ZIndexKey>;
 };
 
+type DirectOrStylesProp<T> = T & { styles?: T };
+
 const getValue = (key: string, value: any, themeLookup?: any) => {
   // eslint-disable-next-line no-nested-ternary
   return value
     ? themeLookup
-      ? { [key]: themeLookup[value] }
+      ? { [key]: themeLookup[value] ?? value }
       : { [key]: value }
     : {};
 };
 
 const getLiteralOrBreakpointValue = (
   key: string,
-  value: LiteralOrBreakpoints<any>,
+  {
+    theme,
+    ...props
+  }: { theme: Theme } & DirectOrStylesProp<LiteralOrBreakpoints<any> | null>,
   themeLookup?: any
 ): any => {
-  if (typeof value === 'object') {
+  const value = props[key] ?? props.styles?.[key];
+
+  if (!value) {
     return {};
+  }
+  if (typeof value === 'object') {
+    return Object.keys(value).reduce((acc, breakpoint) => {
+      const mediaQuery = media(breakpoint)({ theme });
+      return {
+        ...acc,
+        [mediaQuery]: getValue(key, value[breakpoint], themeLookup),
+      };
+    }, {});
   }
   return getValue(key, value, themeLookup);
 };
 
 export const getSpacing = () => {
-  return ({
-    styles,
-    theme,
-  }: ThemedStyledProps<{ styles?: Spacing }, Theme>) => ({
-    ...(styles?.marginTop
-      ? { marginTop: theme.global.spacing[styles.marginTop] }
-      : {}),
-    ...(styles?.marginBottom
-      ? { marginBottom: theme.global.spacing[styles.marginBottom] }
-      : {}),
-    ...(styles?.marginLeft
-      ? { marginLeft: theme.global.spacing[styles.marginLeft] }
-      : {}),
-    ...(styles?.marginRight
-      ? { marginRight: theme.global.spacing[styles.marginRight] }
-      : {}),
-    ...(styles?.margin ? { margin: theme.global.spacing[styles.margin] } : {}),
-    ...(styles?.paddingTop
-      ? { paddingTop: theme.global.spacing[styles.paddingTop] }
-      : {}),
-    ...(styles?.paddingBottom
-      ? { paddingBottom: theme.global.spacing[styles.paddingBottom] }
-      : {}),
-    ...(styles?.paddingLeft
-      ? { paddingLeft: theme.global.spacing[styles.paddingLeft] }
-      : {}),
-    ...(styles?.paddingRight
-      ? { paddingRight: theme.global.spacing[styles.paddingRight] }
-      : {}),
-    ...(styles?.padding
-      ? { padding: theme.global.spacing[styles.padding] }
-      : {}),
-  });
+  return (props: ThemedStyledProps<DirectOrStylesProp<Spacing>, Theme>) => {
+    const themeLookup = props.theme.global.spacing;
+    return {
+      ...getLiteralOrBreakpointValue('marginTop', props, themeLookup),
+      ...getLiteralOrBreakpointValue('marginBottom', props, themeLookup),
+      ...getLiteralOrBreakpointValue('marginLeft', props, themeLookup),
+      ...getLiteralOrBreakpointValue('marginRight', props, themeLookup),
+      ...getLiteralOrBreakpointValue('margin', props, themeLookup),
+      ...getLiteralOrBreakpointValue('paddingTop', props, themeLookup),
+      ...getLiteralOrBreakpointValue('paddingBottom', props, themeLookup),
+      ...getLiteralOrBreakpointValue('paddingLeft', props, themeLookup),
+      ...getLiteralOrBreakpointValue('paddingRight', props, themeLookup),
+      ...getLiteralOrBreakpointValue('padding', props, themeLookup),
+    };
+  };
 };
 
 export const getFlexItem = () => {
-  return ({ styles }: ThemedStyledProps<{ styles?: FlexItem }, Theme>) => ({
-    ...(styles?.flexGrow ? { flexGrow: styles.flexGrow } : {}),
-    ...(styles?.flexShrink ? { flexShrink: styles.flexShrink } : {}),
-    ...(styles?.flexBasis ? { flexBasis: styles.flexBasis } : {}),
-    ...(styles?.flex ? { flex: styles.flex } : {}),
-    ...(styles?.alignSelf ? { alignSelf: styles.alignSelf } : {}),
-    ...(styles?.order ? { order: styles.order } : {}),
+  return (props: ThemedStyledProps<DirectOrStylesProp<FlexItem>, Theme>) => ({
+    ...getLiteralOrBreakpointValue('flexGrow', props),
+    ...getLiteralOrBreakpointValue('flexShrink', props),
+    ...getLiteralOrBreakpointValue('flexBasis', props),
+    ...getLiteralOrBreakpointValue('flex', props),
+    ...getLiteralOrBreakpointValue('alignSelf', props),
+    ...getLiteralOrBreakpointValue('order', props),
   });
 };
 
 export const getFlexContainer = () => {
   return (
-    props: ThemedStyledProps<FlexContainer & { styles?: FlexContainer }, Theme>
+    props: ThemedStyledProps<DirectOrStylesProp<FlexContainer>, Theme>
   ) => ({
-    ...(props.styles?.alignContent
-      ? { alignContent: props.styles.alignContent }
-      : {}),
-    ...(props.styles?.alignItems
-      ? { alignItems: props.styles.alignItems }
-      : {}),
-    ...(props.styles?.flexDirection
-      ? { flexDirection: props.styles.flexDirection }
-      : {}),
-    ...(props.styles?.flexFlow ? { flexFlow: props.styles.flexFlow } : {}),
-    ...(props.styles?.flexWrap ? { flexWrap: props.styles.flexWrap } : {}),
-    ...(props.styles?.justifyContent
-      ? { justifyContent: props.styles.justifyContent }
-      : {}),
-    ...(props.alignContent ? { alignContent: props.alignContent } : {}),
-    ...(props.alignItems ? { alignItems: props.alignItems } : {}),
-    ...(props.flexDirection ? { flexDirection: props.flexDirection } : {}),
-    ...(props.flexFlow ? { flexFlow: props.flexFlow } : {}),
-    ...(props.flexWrap ? { flexWrap: props.flexWrap } : {}),
-    ...(props.justifyContent ? { justifyContent: props.justifyContent } : {}),
+    ...getLiteralOrBreakpointValue('alignContent', props),
+    ...getLiteralOrBreakpointValue('alignItems', props),
+    ...getLiteralOrBreakpointValue('flexDirection', props),
+    ...getLiteralOrBreakpointValue('flexFlow', props),
+    ...getLiteralOrBreakpointValue('flexWrap', props),
+    ...getLiteralOrBreakpointValue('justifyContent', props),
   });
 };
 
 export const getPosition = () => {
-  return ({
-    styles,
-    theme,
-  }: ThemedStyledProps<{ styles?: Position }, Theme>) => ({
-    ...(styles?.position ? { position: styles.position } : {}),
-    ...(styles?.top ? { top: styles.top } : {}),
-    ...(styles?.right ? { right: styles.right } : {}),
-    ...(styles?.bottom ? { bottom: styles.bottom } : {}),
-    ...(styles?.left ? { left: styles.left } : {}),
-    ...(styles?.zIndex ? { zIndex: theme.global.zIndex[styles.zIndex] } : {}),
+  return (props: ThemedStyledProps<DirectOrStylesProp<Position>, Theme>) => ({
+    ...getLiteralOrBreakpointValue('position', props),
+    ...getLiteralOrBreakpointValue('top', props),
+    ...getLiteralOrBreakpointValue('right', props),
+    ...getLiteralOrBreakpointValue('bottom', props),
+    ...getLiteralOrBreakpointValue('left', props),
+    ...getLiteralOrBreakpointValue('zIndex', props, props.theme.global.zIndex),
   });
 };

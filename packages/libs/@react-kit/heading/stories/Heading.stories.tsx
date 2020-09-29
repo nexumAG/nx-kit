@@ -6,20 +6,15 @@ export default {
   component: Heading,
 };
 
-// const styles = {
-//   marginBottom: {
-//     xs: '40',
-//     md: '60',
-//   }
-// }
-
 export const H1Skin100 = () => (
   <Heading
     skin="100"
     tag="h1"
     styles={{
-      marginBottom: '40',
-      paddingTop: '20',
+      marginBottom: {
+        xs: '20',
+        md: '40',
+      },
       flexGrow: 1,
       flexShrink: 1,
     }}
