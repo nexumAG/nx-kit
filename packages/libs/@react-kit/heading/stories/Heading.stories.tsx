@@ -15,8 +15,6 @@ export const H1Skin100 = () => (
         xs: '20',
         md: '40',
       },
-      flexGrow: 1,
-      flexShrink: 1,
     }}
   >
     Heading Test
@@ -41,3 +39,6 @@ export const H3Skin200 = () => (
   </Heading>
 );
 export const H4 = () => <Heading tag="h4">Heading Test</Heading>;
+export const PositionRelative = () => (
+  <Heading styles={{ position: 'relative', left: '80px' }}>Heading Test</Heading>
+);

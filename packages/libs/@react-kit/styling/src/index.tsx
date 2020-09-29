@@ -10,8 +10,10 @@ import {
   getFlexItem,
   getFlexContainer,
   getPosition,
+  getColor,
+  getLayout,
 } from './styles';
-import type { Spacing, FlexItem, FlexContainer, Position } from './styles';
+import type { Spacing, FlexItem, FlexContainer, Position, Color, Layout } from './styles';
 
 const {
   default: styled,
@@ -37,6 +39,8 @@ export {
   getFlexItem,
   getFlexContainer,
   getPosition,
+  getColor,
+  getLayout,
 };
 
-export type { Theme, Spacing, FlexItem, FlexContainer, Position };
+export type { Theme, Spacing, FlexItem, FlexContainer, Position, Color, Layout };
