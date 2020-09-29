@@ -54,8 +54,8 @@ export const getSpacing = () => {
 export const getFlexItem = () => {
   return ({ styles }: StyledProps<{ styles?: FlexItem }>) => ({
     ...(styles?.flexGrow ? { flexGrow: styles.flexGrow } : {}),
-    ...(styles?.flexShrink ? { marginBottom: styles.flexShrink } : {}),
-    ...(styles?.flexBasis ? { marginLeft: styles.flexBasis } : {}),
-    ...(styles?.flex ? { marginRight: styles.flex } : {}),
+    ...(styles?.flexShrink ? { flexShrink: styles.flexShrink } : {}),
+    ...(styles?.flexBasis ? { flexBasis: styles.flexBasis } : {}),
+    ...(styles?.flex ? { flex: styles.flex } : {}),
   });
 };
