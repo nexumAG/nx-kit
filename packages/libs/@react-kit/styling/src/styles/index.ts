@@ -10,11 +10,11 @@ type FontKey = keyof Theme['global']['font'];
 type FontSizeKey = keyof Theme['global']['fontSize'];
 type LineHeightKey = keyof Theme['global']['lineHeight'];
 
-type LiteralOrBreakpoints<T> =
-  | T
-  | {
-      [key in BreakpointKey]: T;
-    };
+export type Breakpoints<T> = {
+  [key in BreakpointKey]: T;
+};
+
+export type LiteralOrBreakpoints<T> = T | Breakpoints<T>;
 
 export type Spacing = {
   marginTop?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginTop']>;
@@ -45,6 +45,7 @@ export type FlexContainer = {
   flexFlow?: LiteralOrBreakpoints<CSSProperties['flexFlow']>;
   flexWrap?: LiteralOrBreakpoints<CSSProperties['flexWrap']>;
   justifyContent?: LiteralOrBreakpoints<CSSProperties['justifyContent']>;
+  gap?: LiteralOrBreakpoints<SpacingKey | string>;
 };
 
 export type Position = {
@@ -102,10 +103,12 @@ const getString = (value: any, themeLookup: any) => {
   return value ? themeLookup[value] ?? '' : '';
 };
 
-const getLiteralOrBreakpointValue = (
+export const getLiteralOrBreakpointValue = (
   key: string,
   { theme, ...props }: { theme: Theme } & DirectOrStylesProp<LiteralOrBreakpoints<any> | null>,
-  themeLookup?: any
+  themeLookup?: any,
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  customFunction?: (key: string, value: any, breakpoint?: string | number) => any
 ): any => {
   const value = props[key] ?? props.styles?.[key];
 
@@ -117,11 +120,13 @@ const getLiteralOrBreakpointValue = (
       const mediaQuery = media(breakpoint)({ theme });
       return {
         ...acc,
-        [mediaQuery]: getValue(key, value[breakpoint], themeLookup),
+        [mediaQuery]: customFunction
+          ? customFunction(key, value[breakpoint], breakpoint)
+          : getValue(key, value[breakpoint], themeLookup),
       };
     }, {});
   }
-  return getValue(key, value, themeLookup);
+  return customFunction ? customFunction(key, value) : getValue(key, value, themeLookup);
 };
 
 const getLiteralOrBreakpointString = (
@@ -177,6 +182,17 @@ export const getFlexItem = () => {
   });
 };
 
+export const parseGap = (gap: string | number, theme: Theme) => {
+  const [rowGapTmp, columnGapTmp] = gap.toString().split(' ');
+  const themeLookup = theme.global.spacing;
+  const rowGap = themeLookup[rowGapTmp] ?? (rowGapTmp === '0' ? '0px' : rowGapTmp);
+  const columnGap =
+    typeof columnGapTmp !== 'undefined'
+      ? themeLookup[columnGapTmp] ?? (columnGapTmp === '0' ? '0px' : columnGapTmp)
+      : rowGap;
+  return { rowGap, columnGap };
+};
+
 export const getFlexContainer = () => {
   return (props: ThemedStyledProps<DirectOrStylesProp<FlexContainer>, Theme>) => ({
     ...getLiteralOrBreakpointValue('alignContent', props),
@@ -185,6 +201,15 @@ export const getFlexContainer = () => {
     ...getLiteralOrBreakpointValue('flexFlow', props),
     ...getLiteralOrBreakpointValue('flexWrap', props),
     ...getLiteralOrBreakpointValue('justifyContent', props),
+    ...getLiteralOrBreakpointValue('gap', props, null, (_: string, value: string) => {
+      const { rowGap, columnGap } = parseGap(value, props.theme);
+      return {
+        margin: `calc(${rowGap} / -2) calc(${columnGap} / -2)`,
+        '& > *': {
+          margin: `calc(${rowGap} / 2) calc(${columnGap} / 2)`,
+        },
+      };
+    }),
   });
 };
 

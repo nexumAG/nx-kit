@@ -9,7 +9,7 @@ export default {
 export const H1Skin100 = () => (
   <Heading
     skin="100"
-    tag="h1"
+    as="h1"
     styles={{
       marginBottom: {
         xs: '20',
@@ -22,7 +22,7 @@ export const H1Skin100 = () => (
 );
 export const H2Skin100FontSizeOverride = () => (
   <Heading
-    tag="h2"
+    as="h2"
     skin="100"
     css={`
       &&& {
@@ -34,12 +34,12 @@ export const H2Skin100FontSizeOverride = () => (
   </Heading>
 );
 export const H3Skin200 = () => (
-  <Heading tag="h3" skin="200">
+  <Heading as="h3" skin="200">
     Heading Test
   </Heading>
 );
 export const H4 = () => (
-  <Heading tag="h4" styles={{ font: { xs: 'trebuchetNormal', md: 'trebuchetBold' } }}>
+  <Heading as="h4" styles={{ font: { xs: 'trebuchetNormal', md: 'trebuchetBold' } }}>
     Heading Test
   </Heading>
 );

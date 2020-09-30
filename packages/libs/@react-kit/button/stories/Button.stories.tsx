@@ -33,7 +33,12 @@ export const Link = () => (
 );
 
 export const Styles = () => (
-  <Button onPress={(e: any) => console.log(e)} skin="primary" styles={{ padding: '40px' }}>
+  <Button
+    onPress={(e: any) => console.log(e)}
+    skin="primary"
+    as="span"
+    styles={{ padding: '40px' }}
+  >
     Press me
   </Button>
 );

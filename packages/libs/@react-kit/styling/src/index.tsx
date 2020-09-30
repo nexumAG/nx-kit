@@ -1,3 +1,4 @@
+import { ComponentType } from 'react';
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as types from 'styled-components/cssprop';
@@ -6,6 +7,8 @@ import { media } from './utils';
 import type { Theme } from './theme';
 import resetCSS from './global/resetCSS';
 import {
+  parseGap,
+  getLiteralOrBreakpointValue,
   getSpacing,
   getFlexItem,
   getFlexContainer,
@@ -16,6 +19,8 @@ import {
   getTypo,
 } from './styles';
 import type {
+  Breakpoints,
+  LiteralOrBreakpoints,
   Spacing,
   FlexItem,
   FlexContainer,
@@ -46,6 +51,8 @@ export {
   StyleSheetManager,
   resetCSS,
   media,
+  parseGap,
+  getLiteralOrBreakpointValue,
   getSpacing,
   getFlexItem,
   getFlexContainer,
@@ -56,4 +63,19 @@ export {
   getTypo,
 };
 
-export type { Theme, Spacing, FlexItem, FlexContainer, Position, Color, Layout, Font, Typo };
+// eslint-disable-next-line no-undef
+export type As = keyof JSX.IntrinsicElements | ComponentType<any>;
+
+export type {
+  Theme,
+  Breakpoints,
+  LiteralOrBreakpoints,
+  Spacing,
+  FlexItem,
+  FlexContainer,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+};

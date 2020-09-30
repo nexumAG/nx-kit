@@ -1,14 +1,12 @@
 import { ReactNode } from 'react';
-import { FlexContainer, Position, Color, Spacing, Layout } from '@react-kit/styling';
-
-export type FlexTag = 'div' | 'span' | 'p';
+import { As, FlexContainer, Position, Color, Spacing, Layout } from '@react-kit/styling';
 
 type Styles = Spacing & Position & Color & Layout;
 
 export type FlexProps = {
   className?: string;
   children: ReactNode;
-  tag?: FlexTag;
+  as?: As;
   styles?: Styles;
   inline?: boolean;
 } & FlexContainer;

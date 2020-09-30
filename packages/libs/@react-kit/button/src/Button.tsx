@@ -68,25 +68,19 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
 `;
 
 export const Button = (props: ButtonProps) => {
-  const {
-    className,
-    children,
-    isDisabled,
-    autoFocus,
-    skin,
-    styles,
-    elementType = 'button',
-  } = props;
+  const { className, children, isDisabled, autoFocus, skin, styles, as, elementType } = props;
   const ref = useRef(null);
 
-  const { buttonProps, isPressed } = useButton(props, ref);
+  const asElement = as ?? elementType ?? 'button';
+
+  const { buttonProps, isPressed } = useButton({ ...props, elementType: asElement }, ref);
   const { hoverProps, isHovered } = useHover({ isDisabled });
   const { focusProps, isFocusVisible } = useFocusRing({ autoFocus });
 
   return (
     <ButtonStyled
       ref={ref}
-      as={elementType as any}
+      as={asElement as any}
       className={className}
       skin={skin}
       styles={styles}

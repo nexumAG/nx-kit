@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex } from '../src';
+import { Flex, Item } from '../src';
 
 export default {
   title: '@react-kit/flex',
@@ -53,5 +53,58 @@ export const Inline = () => (
       <div>Col3</div>
     </Flex>
     {' Post'}
+  </>
+);
+
+export const Gap = () => (
+  <>
+    <Flex
+      gap={{ xs: '15px 15px', md: '30px 30px' }}
+      flexWrap="wrap"
+      flexDirection={{ xs: 'column', md: 'row' }}
+    >
+      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+        Col1
+      </Item>
+      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+        Col2
+      </Item>
+      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+        Col3
+      </Item>
+      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+        Col1
+      </Item>
+      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+        Col2
+      </Item>
+      <Item width={{ xs: 1 / 2, md: 1 / 3 }}>
+        <Flex gap="15px 15px" flexWrap="wrap">
+          <Item width={1 / 3} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+            Col1
+          </Item>
+          <Item width={1 / 3} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+            Col2
+          </Item>
+          <Item width={1 / 3} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+            Col3
+          </Item>
+        </Flex>
+      </Item>
+
+      <Item
+        width={{ xs: 1 / 2, md: 1 / 3 }}
+        offsetLeft={{ xs: 1 / 2, md: 1 / 3 }}
+        styles={{
+          backgroundColor: '#ccc',
+          padding: '20px',
+        }}
+      >
+        Col1
+      </Item>
+      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+        Col2
+      </Item>
+    </Flex>
   </>
 );

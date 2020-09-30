@@ -12,7 +12,7 @@ type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 export type HeadingProps = {
   className?: string;
   children: ReactNode;
-  tag?: HeadingTag;
+  as?: HeadingTag;
   skin?: HeadingSkin;
   styles?: Styles;
 };
