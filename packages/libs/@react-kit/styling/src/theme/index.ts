@@ -1,4 +1,4 @@
-import { FlattenInterpolation, ThemeProps } from 'styled-components';
+import { FlattenInterpolation, ThemedStyledProps } from 'styled-components';
 
 export type Theme = {
   global: {
@@ -27,12 +27,17 @@ export type Theme = {
   component: {
     heading: {
       skin: {
-        [key: string]: string | FlattenInterpolation<ThemeProps<Theme>>;
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
     button: {
       skin: {
-        [key: string]: string | FlattenInterpolation<ThemeProps<Theme>>;
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      };
+    };
+    link: {
+      skin: {
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
   };

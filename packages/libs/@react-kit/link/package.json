@@ -1,5 +1,5 @@
 {
-  "name": "@react-kit/button",
+  "name": "@react-kit/link",
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -26,11 +26,11 @@
     "@react-kit/dependencies-dev": "0.1.0"
   },
   "dependencies": {
-    "@react-aria/button": "^3.2.1",
     "@react-aria/focus": "^3.2.1",
     "@react-aria/interactions": "^3.2.0",
+    "@react-aria/link": "^3.1.1",
     "@react-aria/utils": "^3.2.1",
     "@react-kit/styling": "0.1.0",
-    "@react-types/button": "^3.2.0"
+    "@react-spectrum/link": "^3.1.0"
   }
 }

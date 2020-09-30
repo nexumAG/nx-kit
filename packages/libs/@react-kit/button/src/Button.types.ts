@@ -1,9 +1,20 @@
-import { ReactNode } from 'react';
+import { AriaButtonProps } from '@react-types/button';
+import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@react-kit/styling';
 
-export type ButtonProps = {
+type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
+type ButtonSkin = keyof Theme['component']['button']['skin'];
+
+export interface ButtonProps extends AriaButtonProps {
   className?: string;
-  isDisabled?: boolean;
-  children?: ReactNode;
-  as?: any;
-  [key: string]: any;
+  skin?: ButtonSkin;
+  styles?: Styles;
+}
+
+export type ButtonStyledProps = {
+  skin?: ButtonSkin;
+  styles?: Styles;
+  isDisabled: boolean;
+  isActive: boolean;
+  isHovered: boolean;
+  isFocus: boolean;
 };
