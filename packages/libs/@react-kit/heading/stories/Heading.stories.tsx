@@ -1,4 +1,5 @@
 import React from 'react';
+import { styled } from '@react-kit/styling';
 import { Heading } from '../src';
 
 export default {
@@ -7,30 +8,27 @@ export default {
 };
 
 export const H1Skin100 = () => (
-  <Heading skin="100" as="h1">
+  <Heading skin="100" elementType="h1">
     Heading Test
   </Heading>
 );
+
+const Styled = styled(Heading)`
+  font-size: 56px;
+`;
+
 export const H2Skin100FontSizeOverride = () => (
-  <Heading
-    as="h2"
-    skin="100"
-    css={`
-      &&& {
-        font-size: 56px;
-      }
-    `}
-  >
+  <Styled elementType="h2" skin="100">
     Heading Test
-  </Heading>
+  </Styled>
 );
 export const H3Skin200 = () => (
-  <Heading as="h3" skin="200">
+  <Heading elementType="h3" skin="200">
     Heading Test
   </Heading>
 );
 export const H4 = () => (
-  <Heading as="h4" styles={{ font: { xs: 'trebuchetNormal', md: 'trebuchetBold' } }}>
+  <Heading elementType="h4" styles={{ font: { xs: 'trebuchetNormal', md: 'trebuchetBold' } }}>
     Heading Test
   </Heading>
 );
@@ -43,7 +41,7 @@ export const PositionRelative = () => (
 export const StylesTest = () => (
   <Heading
     skin="100"
-    as="h1"
+    elementType="h1"
     styles={{
       marginBottom: {
         xs: '20',

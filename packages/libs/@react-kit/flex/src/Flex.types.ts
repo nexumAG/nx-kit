@@ -19,7 +19,7 @@ type FlexType = 'flex' | 'inline-flex' | 'none';
 export type FlexProps = {
   className?: string;
   children: ReactNode;
-  as?: As;
+  elementType?: As;
   styles?: Styles;
   flexType?: FlexType;
   col?: LiteralOrBreakpoints<number>;

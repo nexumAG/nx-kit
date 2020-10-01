@@ -1,5 +1,15 @@
 import { ReactNode } from 'react';
-import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@react-kit/styling';
+import {
+  As,
+  Theme,
+  Spacing,
+  FlexItem,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+} from '@react-kit/styling';
 
 export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'span' | 'p' | 'th';
 
@@ -12,7 +22,7 @@ type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 export type HeadingProps = {
   className?: string;
   children: ReactNode;
-  as?: HeadingTag;
+  elementType?: As;
   skin?: HeadingSkin;
   styles?: Styles;
 };
