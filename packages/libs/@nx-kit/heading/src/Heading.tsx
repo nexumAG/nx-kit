@@ -12,7 +12,7 @@ import {
 import { HeadingProps, HeadingStyledProps } from './Heading.types';
 
 const HeadingStyled = styled.h2<HeadingStyledProps>`
-  ${({ theme, skin }) => skin && theme.component.heading.skin[skin]};
+  ${({ theme, skin }) => skin && theme?.component?.heading?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}
   ${getPosition()}

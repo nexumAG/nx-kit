@@ -16,7 +16,7 @@ import {
 import { LinkProps, LinkStyledProps } from './Link.types';
 
 const LinkStyled = styled.a<LinkStyledProps>`
-  ${({ theme, skin }) => skin && theme.component.link.skin[skin]};
+  ${({ theme, skin }) => skin && theme?.component?.link?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}
   ${getPosition()}
