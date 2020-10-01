@@ -14,7 +14,9 @@
     "storybook": "yarn workspace storybook run storybook:dev",
     "storybook:build": "yarn workspace storybook run storybook:build",
     "bootstrap": "lerna bootstrap",
-    "diff": "lerna diff"
+    "diff": "lerna diff",
+    "new-version": "lerna version --conventional-commits",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^6.0.0",
