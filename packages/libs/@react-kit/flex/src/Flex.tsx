@@ -7,6 +7,8 @@ import {
   getColor,
   getLayout,
   getFlexItem,
+  getFont,
+  getTypo,
   LiteralOrBreakpoints,
   FlexContainer,
   parseGap,
@@ -36,6 +38,8 @@ const FlexStyled = styled.div<FlexStyledProps>`
   ${getColor()}
   ${getLayout()}
   ${getFlexItem()}
+  ${getFont()}
+  ${getTypo()}
 `;
 
 const getGapContextValue = (theme: Theme, gap?: FlexContainer['gap']): FlexContextGap => {
