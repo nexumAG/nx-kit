@@ -16,7 +16,7 @@
     "bootstrap": "lerna bootstrap",
     "diff": "lerna diff",
     "new-version": "lerna version --conventional-commits",
-    "publish": "lerna publish"
+    "publish:all": "lerna publish"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^6.0.0",
