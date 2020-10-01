@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Item } from '../src';
+import { Flex } from '../src';
 
 export default {
   title: '@react-kit/flex',
@@ -43,7 +43,7 @@ export const Inline = () => (
     {'Pre '}
     <Flex
       justifyContent="space-between"
-      inline
+      flexType="inline-flex"
       styles={{
         width: { xs: 'auto', md: '200px' },
       }}
@@ -63,57 +63,56 @@ export const Gap = () => (
       flexWrap="wrap"
       flexDirection={{ xs: 'column', sm: 'row' }}
     >
-      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      <Flex col={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col1
-      </Item>
-      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      </Flex>
+      <Flex col={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col2
-      </Item>
-      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      </Flex>
+      <Flex col={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col3
-      </Item>
-      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      </Flex>
+      <Flex col={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col1
-      </Item>
-      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      </Flex>
+      <Flex col={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col2
-      </Item>
-      <Item width={{ sm: 1 / 2, md: 1 / 3 }}>
+      </Flex>
+      <Flex col={{ sm: 1 / 2, md: 1 / 3 }} flexType="none">
         <Flex gap={{ xs: '5px', sm: '15px' }} flexWrap="wrap">
-          <Item
-            width={{ xs: 1 / 3, sm: 1 / 3 }}
+          <Flex
+            col={{ xs: 1 / 3, sm: 1 / 3 }}
             styles={{ backgroundColor: '#ccc', padding: '20px' }}
           >
             Col1
-          </Item>
-          <Item
-            width={{ xs: 1 / 3, sm: 1 / 3 }}
+          </Flex>
+          <Flex
+            col={{ xs: 1 / 3, sm: 1 / 3 }}
             styles={{ backgroundColor: '#ccc', padding: '20px' }}
           >
             Col2
-          </Item>
-          <Item
-            width={{ xs: 1 / 3, sm: 1 / 3 }}
+          </Flex>
+          <Flex
+            col={{ xs: 1 / 3, sm: 1 / 3 }}
             styles={{ backgroundColor: '#ccc', padding: '20px' }}
           >
             Col3
-          </Item>
+          </Flex>
         </Flex>
-      </Item>
-
-      <Item
-        width={{ sm: 1 / 2, md: 1 / 3 }}
-        offsetLeft={{ md: 1 / 3 }}
+      </Flex>
+      <Flex
+        col={{ sm: 1 / 2, md: 1 / 3 }}
+        colOffset={{ md: 1 / 3 }}
         styles={{
           backgroundColor: '#ccc',
           padding: '20px',
         }}
       >
         Col1
-      </Item>
-      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      </Flex>
+      <Flex col={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col2
-      </Item>
+      </Flex>
     </Flex>
   </>
 );
@@ -124,20 +123,67 @@ export const NoGap = () => (
     flexWrap="wrap"
     flexDirection={{ xs: 'column', md: 'row' }}
   >
-    <Item width={{ md: 1 / 5 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
+    <Flex col={{ md: 1 / 5 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
       Col1
-    </Item>
-    <Item width={{ md: 1 / 5 }} styles={{ backgroundColor: '#bbb', padding: '20px' }}>
+    </Flex>
+    <Flex col={{ md: 1 / 5 }} styles={{ backgroundColor: '#bbb', padding: '20px' }}>
       Col1
-    </Item>
-    <Item width={{ md: 3 / 5 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+    </Flex>
+    <Flex col={{ md: 3 / 5 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
       Col2
-    </Item>
-    <Item width={{ md: 3 / 5 }} styles={{ backgroundColor: '#ddd', padding: '20px' }}>
+    </Flex>
+    <Flex col={{ md: 3 / 5 }} styles={{ backgroundColor: '#ddd', padding: '20px' }}>
       Col1
-    </Item>
-    <Item width={{ md: 2 / 5 }} styles={{ backgroundColor: '#eee', padding: '20px' }}>
+    </Flex>
+    <Flex col={{ md: 2 / 5 }} styles={{ backgroundColor: '#eee', padding: '20px' }}>
       Col2
-    </Item>
+    </Flex>
+  </Flex>
+);
+
+export const Height = () => (
+  <Flex
+    gap={{ xs: '15px', md: '30px' }}
+    flexWrap="wrap"
+    flexDirection={{ xs: 'column', md: 'row' }}
+    styles={{ height: { md: '600px' } }}
+  >
+    <Flex
+      col={{ md: 1 / 5 }}
+      row={{ md: 1 / 3 }}
+      styles={{ backgroundColor: '#aaa', padding: '20px' }}
+    >
+      Col1
+    </Flex>
+    <Flex
+      col={{ md: 1 / 5 }}
+      row={{ md: 1 / 3 }}
+      styles={{ backgroundColor: '#bbb', padding: '20px' }}
+    >
+      Col1
+    </Flex>
+    <Flex
+      col={{ md: 3 / 5 }}
+      row={{ md: 1 / 3 }}
+      styles={{ backgroundColor: '#ccc', padding: '20px' }}
+    >
+      Col2
+    </Flex>
+    <Flex col={{ md: 3 / 5 }} row={{ md: 2 / 3 }} flexDirection="column" justifyContent="flex-end">
+      <Flex
+        flexType="none"
+        row={{ md: 1 / 3 }}
+        styles={{ backgroundColor: '#ddd', padding: '20px', height: '100%', width: '100%' }}
+      >
+        Col1
+      </Flex>
+    </Flex>
+    <Flex
+      col={{ md: 2 / 5 }}
+      row={{ md: 2 / 3 }}
+      styles={{ backgroundColor: '#eee', padding: '20px' }}
+    >
+      Col2
+    </Flex>
   </Flex>
 );
