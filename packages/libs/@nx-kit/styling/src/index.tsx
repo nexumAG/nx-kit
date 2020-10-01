@@ -1,7 +1,6 @@
+/// <reference types="styled-components/cssprop" />
 import { ComponentType } from 'react';
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as types from 'styled-components/cssprop';
+import type {} from 'styled-components/cssprop';
 import * as styledComponents from 'styled-components';
 import { media } from './utils';
 import type { Theme } from './theme';
