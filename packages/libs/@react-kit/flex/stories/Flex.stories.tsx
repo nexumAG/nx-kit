@@ -59,41 +59,50 @@ export const Inline = () => (
 export const Gap = () => (
   <>
     <Flex
-      gap={{ xs: '15px 15px', md: '30px 30px' }}
+      gap={{ xs: '5px', sm: '15px', md: '15px 30px' }}
       flexWrap="wrap"
-      flexDirection={{ xs: 'column', md: 'row' }}
+      flexDirection={{ xs: 'column', sm: 'row' }}
     >
-      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col1
       </Item>
-      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col2
       </Item>
-      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col3
       </Item>
-      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col1
       </Item>
-      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col2
       </Item>
-      <Item width={{ xs: 1 / 2, md: 1 / 3 }}>
-        <Flex gap="15px 15px" flexWrap="wrap">
-          <Item width={1 / 3} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      <Item width={{ sm: 1 / 2, md: 1 / 3 }}>
+        <Flex gap={{ xs: '5px', sm: '15px' }} flexWrap="wrap">
+          <Item
+            width={{ xs: 1 / 3, sm: 1 / 3 }}
+            styles={{ backgroundColor: '#ccc', padding: '20px' }}
+          >
             Col1
           </Item>
-          <Item width={1 / 3} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+          <Item
+            width={{ xs: 1 / 3, sm: 1 / 3 }}
+            styles={{ backgroundColor: '#ccc', padding: '20px' }}
+          >
             Col2
           </Item>
-          <Item width={1 / 3} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+          <Item
+            width={{ xs: 1 / 3, sm: 1 / 3 }}
+            styles={{ backgroundColor: '#ccc', padding: '20px' }}
+          >
             Col3
           </Item>
         </Flex>
       </Item>
 
       <Item
-        width={{ xs: 1 / 2, md: 1 / 3 }}
+        width={{ sm: 1 / 2, md: 1 / 3 }}
         offsetLeft={{ md: 1 / 3 }}
         styles={{
           backgroundColor: '#ccc',
@@ -102,7 +111,7 @@ export const Gap = () => (
       >
         Col1
       </Item>
-      <Item width={{ xs: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      <Item width={{ sm: 1 / 2, md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
         Col2
       </Item>
     </Flex>
@@ -111,18 +120,24 @@ export const Gap = () => (
 
 export const NoGap = () => (
   <Flex
-    gap={{ xs: '15px 15px', md: '30px 30px' }}
+    // gap={{ xs: '15px', md: '30px' }}
     flexWrap="wrap"
     flexDirection={{ xs: 'column', md: 'row' }}
   >
-    <Item width={{ md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+    <Item width={{ md: 1 / 5 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
       Col1
     </Item>
-    <Item width={{ md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+    <Item width={{ md: 1 / 5 }} styles={{ backgroundColor: '#bbb', padding: '20px' }}>
+      Col1
+    </Item>
+    <Item width={{ md: 3 / 5 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
       Col2
     </Item>
-    <Item width={{ md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
-      Col3
+    <Item width={{ md: 3 / 5 }} styles={{ backgroundColor: '#ddd', padding: '20px' }}>
+      Col1
+    </Item>
+    <Item width={{ md: 2 / 5 }} styles={{ backgroundColor: '#eee', padding: '20px' }}>
+      Col2
     </Item>
   </Flex>
 );

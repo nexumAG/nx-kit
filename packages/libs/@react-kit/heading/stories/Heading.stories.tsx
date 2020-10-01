@@ -7,25 +7,7 @@ export default {
 };
 
 export const H1Skin100 = () => (
-  <Heading
-    skin="100"
-    as="h1"
-    styles={{
-      marginBottom: {
-        xs: '20',
-        md: '40',
-      },
-      paddingBottom: {
-        xs: '20',
-        md: '40',
-      },
-      paddingTop: '20',
-      font: {
-        xs: 'trebuchetNormal',
-        md: 'trebuchetBold',
-      },
-    }}
-  >
+  <Heading skin="100" as="h1">
     Heading Test
   </Heading>
 );
@@ -54,6 +36,30 @@ export const H4 = () => (
 );
 export const PositionRelative = () => (
   <Heading styles={{ position: 'relative', left: '80px', textTransform: 'uppercase' }}>
+    Heading Test
+  </Heading>
+);
+
+export const StylesTest = () => (
+  <Heading
+    skin="100"
+    as="h1"
+    styles={{
+      marginBottom: {
+        xs: '20',
+        md: '40',
+      },
+      paddingBottom: {
+        xs: '20',
+        md: '40',
+      },
+      paddingTop: '20',
+      font: {
+        xs: 'trebuchetNormal',
+        md: 'trebuchetBold',
+      },
+    }}
+  >
     Heading Test
   </Heading>
 );
