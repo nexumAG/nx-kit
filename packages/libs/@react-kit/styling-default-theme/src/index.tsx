@@ -8,6 +8,7 @@ export const defaultTheme: Theme = {
     color: {
       primary: '#4f8495',
       secondary: '#5fa990',
+      black: '#000',
     },
     breakpoint: {
       xs: { min: 0, max: 575 },
@@ -37,6 +38,7 @@ export const defaultTheme: Theme = {
       `,
     },
     fontSize: {
+      16: '16px',
       28: '28px',
       32: '32px',
       36: '36px',
@@ -70,6 +72,48 @@ export const defaultTheme: Theme = {
           ${media('md')} {
             font-size: ${({ theme }) => theme.global.fontSize['36']};
           }
+        `,
+      },
+    },
+    button: {
+      skin: {
+        primary: css<any>`
+          border: 0;
+          border-radius: 5px;
+          padding: 3px 10px;
+
+          ${({ theme }) => theme.global.font.trebuchetNormal};
+          font-size: ${({ theme }) => theme.global.fontSize['16']};
+          line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
+          color: ${({ theme }) => theme.global.color.black};
+          background-color: #ccc;
+          ${({ isHovered }) => isHovered && 'background-color: yellow'};
+          ${({ isActive }) => isActive && 'background-color: green'};
+          ${({ isDisabled }) => isDisabled && 'background-color: red'};
+          ${({ isFocus }) => isFocus && 'border: 1px solid blue'};
+        `,
+      },
+    },
+    link: {
+      skin: {
+        primary: css<any>`
+          ${({ theme }) => theme.global.font.trebuchetNormal};
+          font-size: ${({ theme }) => theme.global.fontSize['16']};
+          line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
+          color: ${({ theme }) => theme.global.color.black};
+
+          text-decoration: underline;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          ${({ isHovered }) => isHovered && 'color: #999'};
+          ${({ isFocus }) => isFocus && 'border: 1px solid blue'};
         `,
       },
     },
