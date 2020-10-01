@@ -1,6 +1,6 @@
 {
   "name": "@nx-kit/flex",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -26,9 +26,9 @@
     "react-dom": ">=16.8"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "0.1.0"
+    "@nx-kit/dependencies-dev": "^0.1.1"
   },
   "dependencies": {
-    "@nx-kit/styling": "0.1.0"
+    "@nx-kit/styling": "^0.1.1"
   }
 }
