@@ -8,12 +8,13 @@
   },
   "scripts": {
     "changed": "lerna changed",
-    "test": "lerna run test",
-    "lint": "lerna run lint",
-    "build": "lerna run build",
+    "test": "lerna run test --parallel",
+    "lint": "lerna run lint --parallel",
+    "build": "lerna run build --parallel",
     "storybook": "yarn workspace storybook run storybook:dev",
     "storybook:build": "yarn workspace storybook run storybook:build",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "diff": "lerna diff"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^6.0.0",
