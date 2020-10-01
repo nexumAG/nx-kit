@@ -15,6 +15,15 @@ export const H1Skin100 = () => (
         xs: '20',
         md: '40',
       },
+      paddingBottom: {
+        xs: '20',
+        md: '40',
+      },
+      paddingTop: '20',
+      font: {
+        xs: 'trebuchetNormal',
+        md: 'trebuchetBold',
+      },
     }}
   >
     Heading Test

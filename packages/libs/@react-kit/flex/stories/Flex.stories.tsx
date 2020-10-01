@@ -94,7 +94,7 @@ export const Gap = () => (
 
       <Item
         width={{ xs: 1 / 2, md: 1 / 3 }}
-        offsetLeft={{ xs: 1 / 2, md: 1 / 3 }}
+        offsetLeft={{ md: 1 / 3 }}
         styles={{
           backgroundColor: '#ccc',
           padding: '20px',
@@ -107,4 +107,22 @@ export const Gap = () => (
       </Item>
     </Flex>
   </>
+);
+
+export const NoGap = () => (
+  <Flex
+    gap={{ xs: '15px 15px', md: '30px 30px' }}
+    flexWrap="wrap"
+    flexDirection={{ xs: 'column', md: 'row' }}
+  >
+    <Item width={{ md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      Col1
+    </Item>
+    <Item width={{ md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      Col2
+    </Item>
+    <Item width={{ md: 1 / 3 }} styles={{ backgroundColor: '#ccc', padding: '20px' }}>
+      Col3
+    </Item>
+  </Flex>
 );
