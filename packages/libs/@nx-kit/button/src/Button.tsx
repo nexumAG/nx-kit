@@ -58,7 +58,7 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
     margin-block-end: -2px;
   }
 
-  ${({ theme, skin }) => skin && theme.component.button.skin[skin]};
+  ${({ theme, skin }) => skin && theme?.component?.button?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}
   ${getPosition()}

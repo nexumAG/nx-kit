@@ -42,7 +42,7 @@ const FlexStyled = styled.div<FlexStyledProps>`
   ${getTypo()}
 `;
 
-const getGapContextValue = (theme: Theme, gap?: FlexContainer['gap']): FlexContextGap => {
+const getGapContextValue = (theme?: Theme, gap?: FlexContainer['gap']): FlexContextGap => {
   if (!gap) {
     return {
       rowGap: '0px',
