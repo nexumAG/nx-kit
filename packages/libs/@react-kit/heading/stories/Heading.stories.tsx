@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heading } from '../src';
+import { styled } from '@react-kit/styling';
 
 export default {
   title: '@react-kit/heading',
@@ -11,18 +12,15 @@ export const H1Skin100 = () => (
     Heading Test
   </Heading>
 );
+
+const Styled = styled(Heading)`
+  font-size: 56px;
+`;
+
 export const H2Skin100FontSizeOverride = () => (
-  <Heading
-    as="h2"
-    skin="100"
-    css={`
-      &&& {
-        font-size: 56px;
-      }
-    `}
-  >
+  <Styled as="h2" skin="100">
     Heading Test
-  </Heading>
+  </Styled>
 );
 export const H3Skin200 = () => (
   <Heading as="h3" skin="200">

@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Theme, css, media } from '@react-kit/styling';
 
-export const defaultTheme: Theme = {
-  // export const defaultTheme = {
+export const theme: Theme = {
+  // export const theme = {
   global: {
     color: {
       primary: '#4f8495',

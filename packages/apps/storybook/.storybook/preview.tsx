@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider, createGlobalStyle, resetCSS } from '@react-kit/styling';
-import { defaultTheme } from '@react-kit/styling-default-theme';
+import { theme } from '@react-kit/theme-default';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
 export const decorators = [
   (Story: any) => (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Story />
     </ThemeProvider>
