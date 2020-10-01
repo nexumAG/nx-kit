@@ -1,4 +1,5 @@
 import React from 'react';
+import { styled } from '@react-kit/styling';
 import { Button } from '../src';
 
 export default {
@@ -32,13 +33,17 @@ export const Link = () => (
   </Button>
 );
 
-export const Styles = () => (
-  <Button
+const ButtonStyled = styled(Button)`
+  margin-bottom: 50px;
+`;
+
+export const Styled = () => (
+  <ButtonStyled
     onPress={(e: any) => console.log(e)}
     skin="primary"
-    as="span"
+    as={ButtonStyled}
     styles={{ padding: '40px' }}
   >
     Press me
-  </Button>
+  </ButtonStyled>
 );
