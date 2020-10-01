@@ -7,5 +7,5 @@ export default {
 };
 
 export const Default = () => (
-  <View width="200px" height="200px" backgroundColor="primary" opacity={0.5} />
+  <View elementType="main" width="200px" height="200px" backgroundColor="primary" opacity={0.5} />
 );

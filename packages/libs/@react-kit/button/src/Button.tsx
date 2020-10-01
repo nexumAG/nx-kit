@@ -4,6 +4,7 @@ import { useHover } from '@react-aria/interactions';
 import { mergeProps } from '@react-aria/utils';
 import { useFocusRing } from '@react-aria/focus';
 import {
+  As,
   styled,
   getSpacing,
   getFlexItem,
@@ -68,19 +69,25 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
 `;
 
 export const Button = (props: ButtonProps) => {
-  const { className, children, isDisabled, autoFocus, skin, styles, as, elementType } = props;
+  const {
+    className,
+    children,
+    isDisabled,
+    autoFocus,
+    skin,
+    styles,
+    elementType = 'button',
+  } = props;
   const ref = useRef(null);
 
-  const asElement = as ?? elementType ?? 'button';
-
-  const { buttonProps, isPressed } = useButton({ ...props, elementType: asElement }, ref);
+  const { buttonProps, isPressed } = useButton({ ...props, elementType }, ref);
   const { hoverProps, isHovered } = useHover({ isDisabled });
   const { focusProps, isFocusVisible } = useFocusRing({ autoFocus });
 
   return (
     <ButtonStyled
       ref={ref}
-      as={asElement as any}
+      as={elementType as As}
       className={className}
       skin={skin}
       styles={styles}
