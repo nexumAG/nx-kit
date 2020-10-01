@@ -8,9 +8,11 @@ import {
   Layout,
   FlexItem,
   LiteralOrBreakpoints,
+  Font,
+  Typo,
 } from '@react-kit/styling';
 
-type Styles = Spacing & Position & Color & Layout;
+type Styles = Spacing & Position & Color & Layout & Font & Typo;
 
 type FlexType = 'flex' | 'inline-flex' | 'none';
 
