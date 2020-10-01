@@ -21,9 +21,9 @@ const ViewStyled = styled.div<ViewStyledProps>`
   ${getTypo()}
 `;
 
-export const View = ({ className, children, as, ...rest }: ViewProps) => {
+export const View = ({ className, children, elementType, ...rest }: ViewProps) => {
   return (
-    <ViewStyled className={className} as={as} {...rest}>
+    <ViewStyled className={className} as={elementType} {...rest}>
       {children}
     </ViewStyled>
   );

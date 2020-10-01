@@ -122,7 +122,7 @@ const customFunctionOffset = (key: 'columnGap' | 'rowGap', prop: string, gap?: F
 export const Flex = ({
   className,
   children,
-  as,
+  elementType,
   styles,
   flexType = 'flex',
   col,
@@ -160,7 +160,7 @@ export const Flex = ({
     <FlexContext.Provider value={{ gap: getGapContextValue(theme, gap) }}>
       <FlexStyled
         className={className}
-        as={as}
+        as={elementType}
         styles={styles}
         flexType={flexType}
         col={colWidth}

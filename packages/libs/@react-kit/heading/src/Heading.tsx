@@ -22,9 +22,9 @@ const HeadingStyled = styled.h2<HeadingStyledProps>`
   ${getTypo()}
 `;
 
-export const Heading = ({ className, children, as, skin, styles }: HeadingProps) => {
+export const Heading = ({ className, children, elementType, skin, styles }: HeadingProps) => {
   return (
-    <HeadingStyled className={className} skin={skin} as={as} styles={styles}>
+    <HeadingStyled className={className} skin={skin} as={elementType} styles={styles}>
       {children}
     </HeadingStyled>
   );
