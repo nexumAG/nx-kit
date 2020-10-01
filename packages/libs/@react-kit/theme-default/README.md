@@ -1,1 +1,0 @@
-# @react-kit/theme-default

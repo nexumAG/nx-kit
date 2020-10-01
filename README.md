@@ -1,3 +1,3 @@
-# react-kit
+# @nx-kit
 
-Example architecture for a component library.
+React component library and design system

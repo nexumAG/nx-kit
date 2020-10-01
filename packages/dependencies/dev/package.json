@@ -1,5 +1,5 @@
 {
-  "name": "@react-kit/dependencies-dev",
+  "name": "@nx-kit/dependencies-dev",
   "private": true,
   "version": "0.1.0",
   "devDependencies": {
