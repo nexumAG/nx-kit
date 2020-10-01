@@ -1,6 +1,6 @@
 import React from 'react';
-import { ThemeProvider, createGlobalStyle, resetCSS } from '@react-kit/styling';
-import { theme } from '@react-kit/theme-default';
+import { ThemeProvider, createGlobalStyle, resetCSS } from '@nx-kit/styling';
+import { theme } from '@nx-kit/theme-default';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
