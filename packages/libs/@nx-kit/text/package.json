@@ -1,7 +1,6 @@
 {
   "name": "@nx-kit/text",
   "repository": "github:nexumAG/nx-kit",
-  "private": true,
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
