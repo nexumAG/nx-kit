@@ -1,0 +1,33 @@
+{
+  "name": "@nx-kit/{{dashCase name}}",
+  "repository": "github:nexumAG/nx-kit",
+  "private": true,
+  "version": "0.1.2",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/es/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint . --ext .ts,.tsx",
+    "build": "rollup -c rollup.config.js"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.test.json"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
+  },
+  "devDependencies": {
+    "@nx-kit/dependencies-dev": "^0.1.1"
+  }
+}
