@@ -192,15 +192,46 @@ export const theme: Theme = {
             `};
           ${({ isFocus }) => isFocus && theme.global.focusRing};
         `,
+        secondary: css<any>`
+          color: ${({ theme }) => theme.global.color.black500};
+          background-color: ${({ theme }) => theme.global.color.white500};
+          padding: 12px 30px;
+          margin: 10px;
+          border: 2px solid ${({ theme }) => theme.global.color.black500};
+
+          ${({ isHovered }) =>
+            isHovered &&
+            css`
+              color: ${({ theme }) => theme.global.color.tertiary500};
+              background-color: ${({ theme }) => theme.global.color.white500};
+              border: 2px solid ${({ theme }) => theme.global.color.tertiary500};
+            `};
+          ${({ isActive }) =>
+            isActive &&
+            css`
+              color: ${({ theme }) => theme.global.color.tertiary500};
+              background-color: ${({ theme }) => theme.global.color.white500};
+              border: 2px solid ${({ theme }) => theme.global.color.tertiary500};
+            `};
+          ${({ isDisabled }) =>
+            isDisabled &&
+            css`
+              color: #b7b7b7;
+              background-color: ${({ theme }) => theme.global.color.white500};
+              border: 2px solid #b7b7b7;
+            `};
+          ${({ isFocus }) => isFocus && theme.global.focusRing};
+        `,
       },
     },
     link: {
       skin: {
         primary: css<any>`
+          position: relative;
           ${({ theme }) => theme.global.font.trebuchetNormal};
           font-size: ${({ theme }) => theme.global.fontSize['16']};
           line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
-          color: ${({ theme }) => theme.global.color.black};
+          color: ${({ theme }) => theme.global.color.gray700};
 
           text-decoration: underline;
 
@@ -213,7 +244,7 @@ export const theme: Theme = {
           }
 
           ${({ isHovered }) => isHovered && 'color: #999'};
-          ${({ isFocus }) => isFocus && 'border: 1px solid blue'};
+          ${({ isFocus }) => isFocus && theme.global.focusRing};
         `,
       },
     },
