@@ -11,7 +11,7 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'addMany',
-        destination: 'packages/libs/@nx-kit/{{name}}',
+        destination: 'packages/libs/@nx-kit/{{dashCase name}}',
         base: 'plop-templates/nx-component',
         templateFiles: 'plop-templates/nx-component/**',
         globOptions: {
