@@ -4,10 +4,15 @@ import { ThemeProvider } from '../../styling';
 import { theme } from '../../theme-default';
 import { Flex } from '../src';
 
-describe('it', () => {
+describe('Flex component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<ThemeProvider theme={theme}><Flex>Test</Flex></ThemeProvider>, div);
+    ReactDOM.render(
+      <ThemeProvider theme={theme}>
+        <Flex>Test</Flex>
+      </ThemeProvider>,
+      div
+    );
     ReactDOM.unmountComponentAtNode(div);
   });
 });
