@@ -1,5 +1,5 @@
 {
-  "name": "@nx-kit/{{dashCase name}}",
+  "name": "@nx-kit/text",
   "repository": "github:nexumAG/nx-kit",
   "private": true,
   "version": "0.1.0",
@@ -29,5 +29,8 @@
   },
   "devDependencies": {
     "@nx-kit/dependencies-dev": "^0.1.1"
+  },
+  "dependencies": {
+    "@nx-kit/styling": "^0.1.2"
   }
 }

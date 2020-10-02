@@ -3,19 +3,19 @@ import { As, Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } fro
 
 // TODO: if heading is optional, maybe a conditional type can help
 // https://mariusschulz.com/blog/conditional-types-in-typescript
-export type HeadingSkin = keyof Theme['component']['heading']['skin'];
+export type TextSkin = keyof Theme['component']['text']['skin'];
 
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
-export type HeadingProps = {
+export type TextProps = {
   className?: string;
   children: ReactNode;
   elementType?: As;
-  skin?: HeadingSkin;
+  skin?: TextSkin;
   styles?: Styles;
 };
 
-export type HeadingStyledProps = {
-  skin?: HeadingSkin;
+export type TextStyledProps = {
+  skin?: TextSkin;
   styles?: Styles;
 };

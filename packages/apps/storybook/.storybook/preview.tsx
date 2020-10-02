@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider, createGlobalStyle, resetCSS } from '@nx-kit/styling';
-import { theme } from '@nx-kit/theme-default';
+import { theme, globalCSS } from '@nx-kit/theme-default';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -8,10 +8,7 @@ export const parameters = {
 
 const GlobalStyle = createGlobalStyle`
   ${resetCSS}
-  body {
-    font-size: 16px;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-  }
+  ${globalCSS}
 `;
 
 export const decorators = [

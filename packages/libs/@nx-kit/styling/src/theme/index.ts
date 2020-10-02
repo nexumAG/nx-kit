@@ -23,9 +23,15 @@ export type Theme = {
     zIndex: {
       [key: string]: number;
     };
+    focusRing: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
   };
   component: {
     heading: {
+      skin: {
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      };
+    };
+    text: {
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };

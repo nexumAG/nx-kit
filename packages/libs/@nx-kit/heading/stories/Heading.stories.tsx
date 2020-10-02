@@ -6,62 +6,22 @@ export default {
   component: Heading,
 };
 
-export const H1Skin100 = () => (
-  <Heading skin="100" elementType="h1">
+export const Skin700 = () => (
+  <Heading skin="700" elementType="h1" styles={{ color: 'primary500' }}>
     Heading Test
   </Heading>
 );
 
-export const H2Skin100FontSizeOverride = () => (
-  <Heading
-    elementType="h2"
-    skin="100"
-    css={`
-      &&& {
-        font-size: 80px;
-      }
-    `}
-  >
+export const Skin600 = () => <Heading skin="600">Heading Test</Heading>;
+
+export const Skin500 = () => <Heading skin="500">Heading Test</Heading>;
+
+export const Skin400 = () => <Heading skin="400">Heading Test</Heading>;
+
+export const Skin700FontOverride = () => (
+  <Heading skin="700" styles={{ font: 'georgiaNormal' }}>
     Heading Test
   </Heading>
 );
 
-export const H3Skin200 = () => (
-  <Heading elementType="h3" skin="200">
-    Heading Test
-  </Heading>
-);
-export const H4 = () => (
-  <Heading elementType="h4" styles={{ font: { xs: 'trebuchetNormal', md: 'trebuchetBold' } }}>
-    Heading Test
-  </Heading>
-);
-export const PositionRelative = () => (
-  <Heading styles={{ position: 'relative', left: '80px', textTransform: 'uppercase' }}>
-    Heading Test
-  </Heading>
-);
-
-export const StylesTest = () => (
-  <Heading
-    skin="100"
-    elementType="h1"
-    styles={{
-      marginBottom: {
-        xs: '20',
-        md: '40',
-      },
-      paddingBottom: {
-        xs: '20',
-        md: '40',
-      },
-      paddingTop: '20',
-      font: {
-        xs: 'trebuchetNormal',
-        md: 'trebuchetBold',
-      },
-    }}
-  >
-    Heading Test
-  </Heading>
-);
+export const NoSkin = () => <Heading>Heading Test</Heading>;

@@ -26,5 +26,6 @@ module.exports = {
     'import/prefer-default-export': [0],
     'react/jsx-props-no-spreading': [0],
     'jsx-a11y/anchor-is-valid': [0],
+    'react/jsx-one-expression-per-line': [0],
   },
 };
