@@ -5,6 +5,8 @@ import { Theme, css, media } from '@nx-kit/styling';
 
 export const globalCSS = css`
   body {
+    font-size: ${({ theme }) => theme?.global?.fontSize?.['16']};
+    ${({ theme }) => theme?.global?.font?.trebuchetNormal};
     color: ${({ theme }) => theme?.global?.color?.gray700};
   }
 `;
@@ -65,6 +67,7 @@ export const theme: Theme = {
       `,
     },
     fontSize: {
+      14: '14px',
       16: '16px',
       18: '18px',
       22: '22px',
@@ -156,6 +159,38 @@ export const theme: Theme = {
           }
           ${media('xl')} {
             font-size: ${({ theme }) => theme.global.fontSize['72']};
+          }
+        `,
+      },
+    },
+    text: {
+      skin: {
+        300: css`
+          font-size: ${({ theme }) => theme.global.fontSize['14']};
+          margin-bottom: 14px;
+        `,
+        400: css`
+          font-size: ${({ theme }) => theme.global.fontSize['16']};
+          margin-bottom: 16px;
+        `,
+        500: css`
+          font-size: ${({ theme }) => theme.global.fontSize['18']};
+          margin-bottom: 18px;
+        `,
+        600: css`
+          font-size: ${({ theme }) => theme.global.fontSize['18']};
+          margin-bottom: 18px;
+          ${media('lg')} {
+            font-size: ${({ theme }) => theme.global.fontSize['22']};
+            margin-bottom: 22px;
+          }
+        `,
+        700: css`
+          font-size: ${({ theme }) => theme.global.fontSize['22']};
+          margin-bottom: 22px;
+          ${media('lg')} {
+            font-size: ${({ theme }) => theme.global.fontSize['26']};
+            margin-bottom: 26px;
           }
         `,
       },

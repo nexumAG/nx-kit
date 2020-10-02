@@ -9,10 +9,6 @@ export const parameters = {
 const GlobalStyle = createGlobalStyle`
   ${resetCSS}
   ${globalCSS}
-  body {
-    font-size: ${({ theme }) => theme?.global?.fontSize?.['16']};
-    ${({ theme }) => theme?.global?.font?.trebuchetNormal};
-  }
 `;
 
 export const decorators = [

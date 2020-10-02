@@ -31,6 +31,11 @@ export type Theme = {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
+    text: {
+      skin: {
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      };
+    };
     button: {
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
