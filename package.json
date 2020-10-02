@@ -16,11 +16,13 @@
     "bootstrap": "lerna bootstrap",
     "diff": "lerna diff",
     "new-version": "lerna version --conventional-commits",
-    "publish:all": "lerna publish"
+    "publish:all": "lerna publish",
+    "plop": "plop"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^6.0.0",
     "lerna": "^3.22.1",
+    "plop": "^2.7.4",
     "prettier": "2.1.2",
     "rollup-plugin-terser": "^7.0.2"
   }
