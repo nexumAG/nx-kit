@@ -1,4 +1,5 @@
 import { FlattenInterpolation, ThemedStyledProps } from 'styled-components';
+import * as styledComponents from 'styled-components';
 
 export type Theme = {
   global: {
@@ -48,3 +49,15 @@ export type Theme = {
     };
   };
 };
+
+const {
+  default: styled,
+  css,
+  useTheme,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  StyleSheetManager,
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<Theme>;
+
+export { styled, css, useTheme, createGlobalStyle, keyframes, ThemeProvider, StyleSheetManager };

@@ -25,6 +25,7 @@ export type FlexProps = {
   col?: LiteralOrBreakpoints<number>;
   row?: LiteralOrBreakpoints<number>;
   colOffset?: LiteralOrBreakpoints<number>;
+  name?: string;
 } & FlexContainer &
   FlexItem;
 

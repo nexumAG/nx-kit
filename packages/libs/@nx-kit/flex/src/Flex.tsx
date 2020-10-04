@@ -15,6 +15,7 @@ import {
   Theme,
   useTheme,
   getLiteralOrBreakpointValue,
+  useBreakpointsSorted,
 } from '@nx-kit/styling';
 import { FlexProps, FlexStyledProps } from './Flex.types';
 
@@ -41,6 +42,13 @@ const FlexStyled = styled.div<FlexStyledProps>`
   ${getFont()}
   ${getTypo()}
 `;
+
+const hasGapBreakpoints = (gap?: FlexContextGap): boolean => {
+  if (!gap) {
+    return false;
+  }
+  return !(gap.columnGap && gap.rowGap);
+};
 
 const getGapContextValue = (theme?: Theme, gap?: FlexContainer['gap']): FlexContextGap => {
   if (!gap) {
@@ -70,7 +78,7 @@ const getGapValue = (
     return null;
   }
   // no gap breakpoints
-  if (gap.columnGap && gap.rowGap) {
+  if (!hasGapBreakpoints(gap)) {
     return gap[key];
   }
   // same breakpoint exists in gap
@@ -119,6 +127,42 @@ const customFunctionOffset = (key: 'columnGap' | 'rowGap', prop: string, gap?: F
   };
 };
 
+const getGapContextAllBreakpoints = (
+  breakpointsSorted: (string | number)[],
+  gap?: FlexContextGap
+): FlexContextGap => {
+  if (!gap) {
+    return {
+      rowGap: '0px',
+      columnGap: '0px',
+    };
+  }
+  // no gap breakpoints
+  if (!hasGapBreakpoints(gap)) {
+    return gap;
+  }
+
+  let lastGap: FlexContextGap = {
+    rowGap: '0px',
+    columnGap: '0px',
+  };
+  const gapContext: FlexContextGap = {};
+  // eslint-disable-next-line no-restricted-syntax
+  for (const breakpoint of breakpointsSorted) {
+    const gapBreakpoint = (gap as any)[breakpoint] as FlexContextGap;
+    if (gapBreakpoint) {
+      // @ts-ignore
+      gapContext[breakpoint] = gapBreakpoint;
+      lastGap = gapBreakpoint;
+    } else {
+      // @ts-ignore
+      gapContext[breakpoint] = lastGap;
+    }
+  }
+
+  return gapContext;
+};
+
 export const Flex = ({
   className,
   children,
@@ -130,10 +174,21 @@ export const Flex = ({
   colOffset,
   ...rest
 }: FlexProps) => {
-  const { gap } = rest;
+  const { gap, name } = rest;
   const theme = useTheme();
+  const breakpointsSorted = useBreakpointsSorted();
 
   const { gap: gapContext } = useContext(FlexContext);
+  const gapContextAllBreakpoints = getGapContextAllBreakpoints(breakpointsSorted, gapContext);
+
+  console.log('gapContextAllBreakpoints', gapContextAllBreakpoints);
+  console.log(name, 'gapContext', gapContext);
+  console.log(name, 'gap', gap);
+  console.log(name, 'col', col);
+
+  if (hasGapBreakpoints(gapContext)) {
+    // TODO: get all breakpoints for col, row and colOffset
+  }
 
   const colWidth = getLiteralOrBreakpointValue(
     'col',
