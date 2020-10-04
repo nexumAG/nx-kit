@@ -149,7 +149,7 @@ const getGapContextAllBreakpoints = (
   const gapContext: FlexContextGap = {};
   // eslint-disable-next-line no-restricted-syntax
   for (const breakpoint of breakpointsSorted) {
-    const gapBreakpoint = (gap as any)[breakpoint] as FlexContextGap;
+    const gapBreakpoint = (gap as any)[breakpoint];
     if (gapBreakpoint) {
       // @ts-ignore
       gapContext[breakpoint] = gapBreakpoint;
@@ -163,32 +163,59 @@ const getGapContextAllBreakpoints = (
   return gapContext;
 };
 
+const getAllBreakpoints = (
+  breakpointsSorted: (string | number)[],
+  defaultValue: number,
+  valueInput?: LiteralOrBreakpoints<number>
+): LiteralOrBreakpoints<number> => {
+  const value =
+    typeof valueInput === 'object'
+      ? valueInput
+      : { [breakpointsSorted[0]]: valueInput ?? defaultValue };
+
+  let lastValue = defaultValue;
+  const valueBreakpoints: LiteralOrBreakpoints<number> = {};
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const breakpoint of breakpointsSorted) {
+    const valueBreakpoint = (value as any)[breakpoint];
+    if (valueBreakpoint) {
+      // @ts-ignore
+      valueBreakpoints[breakpoint] = valueBreakpoint;
+      lastValue = valueBreakpoint;
+    } else {
+      // @ts-ignore
+      valueBreakpoints[breakpoint] = lastValue;
+    }
+  }
+
+  return valueBreakpoints;
+};
+
 export const Flex = ({
   className,
   children,
   elementType,
   styles,
   flexType = 'flex',
-  col,
-  row,
-  colOffset,
+  col: colTmp,
+  row: rowTmp,
+  colOffset: colOffsetTmp,
   ...rest
 }: FlexProps) => {
-  const { gap, name } = rest;
+  const { gap } = rest;
   const theme = useTheme();
   const breakpointsSorted = useBreakpointsSorted();
 
-  const { gap: gapContext } = useContext(FlexContext);
-  const gapContextAllBreakpoints = getGapContextAllBreakpoints(breakpointsSorted, gapContext);
+  const { gap: gapContextTmp } = useContext(FlexContext);
+  const gapContext = getGapContextAllBreakpoints(breakpointsSorted, gapContextTmp);
+  const gapHasBreakpoints = hasGapBreakpoints(gapContext);
 
-  console.log('gapContextAllBreakpoints', gapContextAllBreakpoints);
-  console.log(name, 'gapContext', gapContext);
-  console.log(name, 'gap', gap);
-  console.log(name, 'col', col);
-
-  if (hasGapBreakpoints(gapContext)) {
-    // TODO: get all breakpoints for col, row and colOffset
-  }
+  const col = gapHasBreakpoints ? getAllBreakpoints(breakpointsSorted, 1, colTmp) : colTmp;
+  const row = gapHasBreakpoints ? getAllBreakpoints(breakpointsSorted, 1, rowTmp) : rowTmp;
+  const colOffset = gapHasBreakpoints
+    ? getAllBreakpoints(breakpointsSorted, 0, colOffsetTmp)
+    : colOffsetTmp;
 
   const colWidth = getLiteralOrBreakpointValue(
     'col',

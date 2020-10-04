@@ -190,13 +190,28 @@ export const Height = () => (
 
 export const Test = () => (
   <Flex
-    gap={{ xs: '15px', md: '30px' }}
+    gap={{ xs: '15px', md: '30px', lg: '50px' }}
     flexWrap="wrap"
     flexDirection={{ xs: 'column', md: 'row' }}
-    name="outer"
   >
-    <Flex col={{ md: 1 / 5 }} styles={{ backgroundColor: '#aaa', padding: '20px' }} name="inner">
-      Col1
+    <Flex
+      col={{ md: 1 / 3, lg: 1 / 2 }}
+      colOffset={{ md: 1 / 3, lg: 1 / 6 }}
+      styles={{ backgroundColor: '#aaa', padding: '20px' }}
+    >
+      Col
+    </Flex>
+    <Flex col={{ md: 1 / 3 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
+      Col
+    </Flex>
+    <Flex col={{ md: 1 / 3 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
+      Col
+    </Flex>
+    <Flex col={{ md: 1 / 3 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
+      Col
+    </Flex>
+    <Flex col={{ md: 1 / 3 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
+      Col
     </Flex>
   </Flex>
 );
