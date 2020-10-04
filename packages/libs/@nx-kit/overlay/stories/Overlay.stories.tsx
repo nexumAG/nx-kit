@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Heading } from '@nx-kit/heading';
-import { Modal } from '../src';
+import { Overlay } from '../src';
 
 export default {
   title: '@nx-kit/overlay',
-  component: Modal,
+  component: Overlay,
 };
 
-export const Default = () => (
-  <Modal>
-    <Heading skin="400" elementType="h3">
-      Test Modal
-    </Heading>
-  </Modal>
-);
+export const Default = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const open = () => {
+    setIsOpen(true);
+  };
+
+  const close = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <button onClick={open} type="button">
+        Open Overlay
+      </button>
+      {isOpen && (
+        <Overlay isOpen onClose={close} isDismissable>
+          <Heading skin="400" elementType="h3">
+            Test Overlay
+          </Heading>
+        </Overlay>
+      )}
+    </>
+  );
+};

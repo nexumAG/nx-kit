@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   useOverlay,
   usePreventScroll,
@@ -10,8 +10,20 @@ import { useDialog } from '@react-aria/dialog';
 import { FocusScope } from '@react-aria/focus';
 import { styled } from '@nx-kit/styling';
 import { SlotProvider } from '@nx-kit/slot';
-import { Underlay } from './Underlay';
 import { OverlayProps } from './Overlay.types';
+
+export const Underlay = styled.div`
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const OverlayStyled = styled.div`
   background: white;
@@ -35,43 +47,15 @@ export const Overlay = (props: OverlayProps) => {
   };
 
   return (
-    <Underlay>
-      <FocusScope contain restoreFocus autoFocus>
-        <OverlayStyled {...overlayProps} {...dialogProps} {...modalProps} ref={ref}>
-          {/*<h3 {...titleProps} style={{ marginTop: 0 }}>
-              {title}
-            </h3>*/}
-          <SlotProvider slots={slots}>{children}</SlotProvider>
-        </OverlayStyled>
-      </FocusScope>
-    </Underlay>
-  );
-};
-
-export const Modal = ({ children }: any) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const open = () => {
-    setIsOpen(true);
-  };
-
-  const close = () => {
-    setIsOpen(false);
-  };
-
-  return (
-    <>
-      <button onClick={open} type="button">
-        Open Dialog
-      </button>
-      {isOpen && (
-        <OverlayContainer>
-          <Overlay isOpen onClose={close} isDismissable>
-            {children}
-          </Overlay>
-        </OverlayContainer>
-      )}
-    </>
+    <OverlayContainer>
+      <Underlay>
+        <FocusScope contain restoreFocus autoFocus>
+          <OverlayStyled {...overlayProps} {...dialogProps} {...modalProps} ref={ref}>
+            <SlotProvider slots={slots}>{children}</SlotProvider>
+          </OverlayStyled>
+        </FocusScope>
+      </Underlay>
+    </OverlayContainer>
   );
 };
 
