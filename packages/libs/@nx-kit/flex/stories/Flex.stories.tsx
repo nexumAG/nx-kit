@@ -190,7 +190,7 @@ export const Height = () => (
 
 export const Test = () => (
   <Flex
-    gap={{ xs: '15px', md: '30px', lg: '50px' }}
+    gap={{ md: '30px', lg: '50px' }}
     flexWrap="wrap"
     flexDirection={{ xs: 'column', md: 'row' }}
   >

@@ -29,6 +29,9 @@ export const Default = () => {
           <Heading skin="400" elementType="h3">
             Test Overlay
           </Heading>
+          <button onClick={close} type="button">
+            Close Overlay
+          </button>
         </Overlay>
       )}
     </>

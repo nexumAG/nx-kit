@@ -36,3 +36,8 @@ export type FlexStyledProps = {
   colOffset?: any;
 } & FlexContainer &
   FlexItem;
+
+export type FlexContextGap = LiteralOrBreakpoints<{
+  rowGap: string;
+  columnGap: string;
+}>;
