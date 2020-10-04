@@ -9,6 +9,7 @@ import {
 import { useDialog } from '@react-aria/dialog';
 import { FocusScope } from '@react-aria/focus';
 import { styled } from '@nx-kit/styling';
+import { SlotProvider } from '@nx-kit/slot';
 import { Underlay } from './Underlay';
 import { OverlayProps } from './Overlay.types';
 
@@ -19,7 +20,7 @@ export const OverlayStyled = styled.div`
 `;
 
 export const Overlay = (props: OverlayProps) => {
-  const { title, children } = props;
+  const { children } = props;
 
   const ref = React.useRef(null);
   const { overlayProps } = useOverlay(props, ref);
@@ -29,21 +30,25 @@ export const Overlay = (props: OverlayProps) => {
 
   const { dialogProps, titleProps } = useDialog(props, ref);
 
+  const slots = {
+    heading: titleProps,
+  };
+
   return (
     <Underlay>
       <FocusScope contain restoreFocus autoFocus>
         <OverlayStyled {...overlayProps} {...dialogProps} {...modalProps} ref={ref}>
-          <h3 {...titleProps} style={{ marginTop: 0 }}>
-            {title}
-          </h3>
-          {children}
+          {/*<h3 {...titleProps} style={{ marginTop: 0 }}>
+              {title}
+            </h3>*/}
+          <SlotProvider slots={slots}>{children}</SlotProvider>
         </OverlayStyled>
       </FocusScope>
     </Underlay>
   );
 };
 
-export const Modal = () => {
+export const Modal = ({ children }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const open = () => {
@@ -61,18 +66,8 @@ export const Modal = () => {
       </button>
       {isOpen && (
         <OverlayContainer>
-          <Overlay title="Enter your name" isOpen onClose={close} isDismissable>
-            <form style={{ display: 'flex', flexDirection: 'column' }}>
-              <label>
-                First Name: <input placeholder="John" />
-              </label>
-              <label>
-                Last Name: <input placeholder="Smith" />
-              </label>
-              <button onClick={close} type="button" style={{ marginTop: 10 }}>
-                Submit
-              </button>
-            </form>
+          <Overlay isOpen onClose={close} isDismissable>
+            {children}
           </Overlay>
         </OverlayContainer>
       )}
