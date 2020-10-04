@@ -1,9 +1,18 @@
 /// <reference types="styled-components/cssprop" />
 import { ComponentType } from 'react';
 import type {} from 'styled-components/cssprop';
-import * as styledComponents from 'styled-components';
-import { media } from './utils';
+import { media, useBreakpointsSorted } from './utils';
 import type { Theme } from './theme';
+import {
+  styled,
+  css,
+  useTheme,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  StyleSheetManager,
+} from './theme';
+
 import resetCSS from './global/resetCSS';
 import {
   parseGap,
@@ -30,16 +39,6 @@ import type {
   Typo,
 } from './styles';
 
-const {
-  default: styled,
-  css,
-  useTheme,
-  createGlobalStyle,
-  keyframes,
-  ThemeProvider,
-  StyleSheetManager,
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<Theme>;
-
 export {
   styled,
   css,
@@ -50,6 +49,7 @@ export {
   StyleSheetManager,
   resetCSS,
   media,
+  useBreakpointsSorted,
   parseGap,
   getLiteralOrBreakpointValue,
   getSpacing,

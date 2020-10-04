@@ -24,4 +24,15 @@ export const Skin700FontOverride = () => (
   </Heading>
 );
 
+export const CustomStyled = () => (
+  <Heading
+    skin="700"
+    css={`
+      text-shadow: 3px 3px 4px #777;
+    `}
+  >
+    Heading Test
+  </Heading>
+);
+
 export const NoSkin = () => <Heading>Heading Test</Heading>;
