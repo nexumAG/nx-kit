@@ -4,12 +4,7 @@ import { styled, getSpacing, getFlexItem, getPosition, getColor } from '@nx-kit/
 import { DividerProps, DividerStyledProps } from './Divider.types';
 
 const DividerStyled = styled.hr<DividerStyledProps>`
-  overflow: visible;
-  border: none;
-  margin: 0px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  align-self: stretch;
+  ${({ theme }) => theme?.component?.divider?.global};
   ${({ theme, skin }) => skin && theme?.component?.divider?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}

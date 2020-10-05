@@ -30,7 +30,8 @@
     "@nx-kit/button": "^0.1.4",
     "@nx-kit/dependencies-dev": "^0.1.1",
     "@nx-kit/heading": "^0.1.4",
-    "@nx-kit/link": "^0.1.4"
+    "@nx-kit/link": "^0.1.4",
+    "@types/react-transition-group": "^4.4.0"
   },
   "dependencies": {
     "@nx-kit/slot": "^0.1.1",
@@ -38,6 +39,7 @@
     "@react-aria/dialog": "^3.1.2",
     "@react-aria/focus": "^3.2.2",
     "@react-aria/overlays": "^3.4.0",
-    "@react-types/dialog": "^3.3.0"
+    "@react-types/dialog": "^3.3.0",
+    "react-transition-group": "^4.4.1"
   }
 }

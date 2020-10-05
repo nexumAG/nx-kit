@@ -18,47 +18,7 @@ import { useSlotProps } from '@nx-kit/slot';
 import { ButtonProps, ButtonStyledProps } from './Button.types';
 
 const ButtonStyled = styled.button<ButtonStyledProps>`
-  // reset
-  position: relative;
-  display: inline-flex;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  margin: 0;
-  border-style: solid;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-appearance: button;
-  vertical-align: top;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: none;
-  isolation: isolate;
-
-  &:hover,
-  &:active {
-    box-shadow: none;
-  }
-
-  &:disabled {
-    cursor: default;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-    border-style: none;
-    padding: 0;
-    margin-block-start: -2px;
-    margin-block-end: -2px;
-  }
-
+  ${({ theme }) => theme?.component?.button?.global};
   ${({ theme, skin }) => skin && theme?.component?.button?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}
