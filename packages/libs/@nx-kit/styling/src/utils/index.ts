@@ -1,5 +1,6 @@
 import { ThemeProps } from 'styled-components';
-import { Theme, useTheme } from '../theme';
+import { useTheme } from '../external';
+import { Theme } from '../theme';
 
 const defaultBreakpoints = {
   xs: { min: 0, max: 575 },

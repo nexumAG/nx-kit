@@ -11,8 +11,7 @@ import {
   keyframes,
   ThemeProvider,
   StyleSheetManager,
-} from './theme';
-
+} from './external';
 import resetCSS from './global/resetCSS';
 import {
   parseGap,
@@ -39,14 +38,10 @@ import type {
   Typo,
 } from './styles';
 
+// external export
+export { styled, css, useTheme, createGlobalStyle, keyframes, ThemeProvider, StyleSheetManager };
+
 export {
-  styled,
-  css,
-  useTheme,
-  createGlobalStyle,
-  keyframes,
-  ThemeProvider,
-  StyleSheetManager,
   resetCSS,
   media,
   useBreakpointsSorted,

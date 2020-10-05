@@ -11,7 +11,7 @@ import {
 } from '@nx-kit/styling';
 import { TextProps, TextStyledProps } from './Text.types';
 
-const TextStyled = styled.p<TextStyledProps>`
+const TextStyled = styled.span<TextStyledProps>`
   ${({ theme, skin }) => skin && theme?.component?.text?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}

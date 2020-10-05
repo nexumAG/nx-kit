@@ -1,19 +1,15 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Theme, css, media } from '@nx-kit/styling';
 
-export const globalCSS = css`
-  body {
-    font-size: ${({ theme }) => theme?.global?.fontSize?.['16']};
-    ${({ theme }) => theme?.global?.font?.trebuchetNormal};
-    color: ${({ theme }) => theme?.global?.color?.gray700};
-  }
-`;
-
 export const theme: Theme = {
-  // export const theme = {
   global: {
+    styles: css`
+      body {
+        font-size: ${({ theme }) => theme?.global?.fontSize?.['16']};
+        ${({ theme }) => theme?.global?.font?.trebuchetNormal};
+        color: ${({ theme }) => theme?.global?.color?.gray700};
+      }
+    `,
     color: {
       primary500: '#6880A5',
       primary600: '#4176C7',
