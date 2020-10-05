@@ -29,7 +29,7 @@ export const Default = () => {
         Open Overlay
       </Button>
       {isOpen && (
-        <Overlay isOpen onClose={close} isDismissable>
+        <Overlay skin="default" isOpen onClose={close} isDismissable>
           <Heading skin="400" elementType="h3">
             Test Overlay
           </Heading>
@@ -49,7 +49,7 @@ export const OverlayTriggerNotDismissable = () => {
         <>
           <Button skin="primary">Open Overlay</Button>
           {isOpen && (
-            <Overlay>
+            <Overlay skin="default">
               <Heading skin="400" elementType="h3">
                 Test Overlay
               </Heading>
@@ -73,7 +73,56 @@ export const OverlayTriggerLink = () => {
             Open Overlay
           </Link>
           {isOpen && (
-            <Overlay isDismissable>
+            <Overlay skin="default" isDismissable>
+              <Heading skin="400" elementType="h3">
+                Test Overlay
+              </Heading>
+              <Button onPress={close} skin="secondary">
+                Close Overlay
+              </Button>
+            </Overlay>
+          )}
+        </>
+      )}
+    </OverlayTrigger>
+  );
+};
+
+export const OverlayTriggerTopRight = () => {
+  return (
+    <OverlayTrigger>
+      {({ isOpen, close }) => (
+        <>
+          <Button skin="primary">Open Overlay</Button>
+          {isOpen && (
+            <Overlay
+              skin="default"
+              verticalAlignment="top"
+              horizontalAlignment="right"
+              isDismissable
+            >
+              <Heading skin="400" elementType="h3">
+                Test Overlay
+              </Heading>
+              <Button onPress={close} skin="secondary">
+                Close Overlay
+              </Button>
+            </Overlay>
+          )}
+        </>
+      )}
+    </OverlayTrigger>
+  );
+};
+
+export const OverlayTriggerFullscreen = () => {
+  return (
+    <OverlayTrigger>
+      {({ isOpen, close }) => (
+        <>
+          <Button skin="primary">Open Overlay</Button>
+          {isOpen && (
+            <Overlay skin="fullscreen" isDismissable>
               <Heading skin="400" elementType="h3">
                 Test Overlay
               </Heading>

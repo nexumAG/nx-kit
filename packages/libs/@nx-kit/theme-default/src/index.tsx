@@ -98,6 +98,9 @@ export const theme: Theme = {
         margin: -5px;
       }
     `,
+    underlay: css`
+      background: rgba(0, 0, 0, 0.5);
+    `,
   },
   component: {
     heading: {
@@ -283,6 +286,24 @@ export const theme: Theme = {
           width: ${({ orientation }) => (orientation === 'vertical' ? '1px' : '100%')};
           height: ${({ orientation }) => (orientation === 'vertical' ? '20px' : '1px')};
           margin: ${({ orientation }) => (orientation === 'vertical' ? '0 5px' : '5px 0')};
+        `,
+      },
+    },
+    overlay: {
+      skin: {
+        default: css<any>`
+          background: white;
+          padding: 30px;
+          margin: 30px;
+          border-radius: 10px;
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
+        `,
+        fullscreen: css<any>`
+          background: white;
+          padding: 30px;
+          width: 100vw;
+          height: 100vh;
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
       },
     },

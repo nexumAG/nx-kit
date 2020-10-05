@@ -25,6 +25,7 @@ export type Theme = {
       [key: string]: number;
     };
     focusRing: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+    underlay: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
   };
   component: {
     heading: {
@@ -48,6 +49,11 @@ export type Theme = {
       };
     };
     divider: {
+      skin: {
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      };
+    };
+    overlay: {
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
