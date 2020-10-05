@@ -26,6 +26,7 @@ export type Theme = {
     };
     focusRing: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
     underlay: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+    overlayWrapper: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
   };
   component: {
     heading: {

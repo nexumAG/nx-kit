@@ -28,16 +28,14 @@ export const Default = () => {
       <Button onPress={open} skin="primary">
         Open Overlay
       </Button>
-      {isOpen && (
-        <Overlay skin="default" isOpen onClose={close} isDismissable>
-          <Heading skin="400" elementType="h3">
-            Test Overlay
-          </Heading>
-          <Button onPress={close} skin="secondary">
-            Close Overlay
-          </Button>
-        </Overlay>
-      )}
+      <Overlay skin="default" isOpen={isOpen} onClose={close} isDismissable>
+        <Heading skin="400" elementType="h3">
+          Test Overlay
+        </Heading>
+        <Button onPress={close} skin="secondary">
+          Close Overlay
+        </Button>
+      </Overlay>
     </>
   );
 };
@@ -45,19 +43,18 @@ export const Default = () => {
 export const OverlayTriggerNotDismissable = () => {
   return (
     <OverlayTrigger>
-      {({ isOpen, close }) => (
+      {({ close }) => (
         <>
           <Button skin="primary">Open Overlay</Button>
-          {isOpen && (
-            <Overlay skin="default">
-              <Heading skin="400" elementType="h3">
-                Test Overlay
-              </Heading>
-              <Button onPress={close} skin="secondary">
-                Close Overlay
-              </Button>
-            </Overlay>
-          )}
+
+          <Overlay skin="default">
+            <Heading skin="400" elementType="h3">
+              Test Overlay
+            </Heading>
+            <Button onPress={close} skin="secondary">
+              Close Overlay
+            </Button>
+          </Overlay>
         </>
       )}
     </OverlayTrigger>
@@ -67,21 +64,20 @@ export const OverlayTriggerNotDismissable = () => {
 export const OverlayTriggerLink = () => {
   return (
     <OverlayTrigger>
-      {({ isOpen, close }) => (
+      {({ close }) => (
         <>
           <Link skin="primary" slot="button">
             Open Overlay
           </Link>
-          {isOpen && (
-            <Overlay skin="default" isDismissable>
-              <Heading skin="400" elementType="h3">
-                Test Overlay
-              </Heading>
-              <Button onPress={close} skin="secondary">
-                Close Overlay
-              </Button>
-            </Overlay>
-          )}
+
+          <Overlay skin="default" isDismissable>
+            <Heading skin="400" elementType="h3">
+              Test Overlay
+            </Heading>
+            <Button onPress={close} skin="secondary">
+              Close Overlay
+            </Button>
+          </Overlay>
         </>
       )}
     </OverlayTrigger>
@@ -91,24 +87,18 @@ export const OverlayTriggerLink = () => {
 export const OverlayTriggerTopRight = () => {
   return (
     <OverlayTrigger>
-      {({ isOpen, close }) => (
+      {({ close }) => (
         <>
           <Button skin="primary">Open Overlay</Button>
-          {isOpen && (
-            <Overlay
-              skin="default"
-              verticalAlignment="top"
-              horizontalAlignment="right"
-              isDismissable
-            >
-              <Heading skin="400" elementType="h3">
-                Test Overlay
-              </Heading>
-              <Button onPress={close} skin="secondary">
-                Close Overlay
-              </Button>
-            </Overlay>
-          )}
+
+          <Overlay skin="default" verticalAlignment="top" horizontalAlignment="right" isDismissable>
+            <Heading skin="400" elementType="h3">
+              Test Overlay
+            </Heading>
+            <Button onPress={close} skin="secondary">
+              Close Overlay
+            </Button>
+          </Overlay>
         </>
       )}
     </OverlayTrigger>
@@ -118,19 +108,18 @@ export const OverlayTriggerTopRight = () => {
 export const OverlayTriggerFullscreen = () => {
   return (
     <OverlayTrigger>
-      {({ isOpen, close }) => (
+      {({ close }) => (
         <>
           <Button skin="primary">Open Overlay</Button>
-          {isOpen && (
-            <Overlay skin="fullscreen" isDismissable>
-              <Heading skin="400" elementType="h3">
-                Test Overlay
-              </Heading>
-              <Button onPress={close} skin="secondary">
-                Close Overlay
-              </Button>
-            </Overlay>
-          )}
+
+          <Overlay skin="fullscreen" isDismissable animationDisabled>
+            <Heading skin="400" elementType="h3">
+              Test Overlay
+            </Heading>
+            <Button onPress={close} skin="secondary">
+              Close Overlay
+            </Button>
+          </Overlay>
         </>
       )}
     </OverlayTrigger>

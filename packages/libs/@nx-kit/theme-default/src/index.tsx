@@ -106,6 +106,17 @@ export const theme: Theme = {
       bottom: 0;
       right: 0;
       background: rgba(0, 0, 0, 0.5);
+
+      transition: opacity 350ms ease-in-out;
+      opacity: ${({ state }) => (state === 'entering' || state === 'entered' ? 1 : 0)};
+    `,
+    overlayWrapper: css<any>`
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
       display: flex;
       align-items: ${({ alignItems }) => alignItems};
       justify-content: ${({ justifyContent }) => justifyContent};
@@ -365,8 +376,17 @@ export const theme: Theme = {
           background: white;
           padding: 30px;
           margin: 30px;
-          border-radius: 10px;
+          border-radius: 5px;
           ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
+
+          transition: opacity 350ms ease-in-out;
+          opacity: 0;
+          opacity: ${({ state }) => state === 'entered' && 1};
+          opacity: ${({ state }) => state === 'exiting' && 0};
+
+          transition: transform 0.5s;
+          transform: translateY(20px);
+          ${({ state }) => state === 'entered' && `transform: translateY(0)`};
         `,
         fullscreen: css<any>`
           background: white;

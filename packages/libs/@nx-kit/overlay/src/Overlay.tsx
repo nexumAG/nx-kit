@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Transition } from 'react-transition-group';
 import {
   useOverlay,
   usePreventScroll,
@@ -14,7 +15,10 @@ import {
   OverlayProps,
   OverlayStyledProps,
   OverlayTriggerProps,
+  OverlayWrapperStyledProps,
   UnderlayStyledProps,
+  TransitionStates,
+  OverlayInnerProps,
 } from './Overlay.types';
 
 export const Underlay = styled.div<UnderlayStyledProps>`
@@ -26,25 +30,26 @@ export const OverlayStyled = styled.div<OverlayStyledProps>`
   ${({ theme, skin }) => skin && theme?.component?.overlay?.skin?.[skin]};
 `;
 
-export const Overlay = (overlayProps: OverlayProps) => {
-  const props = useSlotProps<OverlayProps>('overlay', overlayProps);
+export const OverlayWrapper = styled.div<OverlayWrapperStyledProps>`
+  ${({ theme }) => theme?.global?.overlayWrapper};
+`;
+
+const OverlayInner = (props: OverlayInnerProps) => {
   const {
     children,
     className,
     skin,
     verticalAlignment = 'center',
     horizontalAlignment = 'center',
+    state,
   } = props;
 
   const ref = React.useRef(null);
   const { overlayProps: useOverlayProps } = useOverlay(props, ref);
-
-  usePreventScroll();
   const { modalProps } = useModal();
-
   const { dialogProps, titleProps } = useDialog(props, ref);
-
   const { isFocusVisible, focusProps } = useFocusRing();
+  usePreventScroll();
 
   const slots = {
     heading: titleProps,
@@ -68,8 +73,9 @@ export const Overlay = (overlayProps: OverlayProps) => {
   };
 
   return (
-    <OverlayContainer>
-      <Underlay {...alignment}>
+    <>
+      <Underlay state={state as TransitionStates} />
+      <OverlayWrapper {...alignment}>
         <FocusScope contain restoreFocus autoFocus>
           <OverlayStyled
             className={className}
@@ -80,12 +86,32 @@ export const Overlay = (overlayProps: OverlayProps) => {
             {...focusProps}
             isFocused={isFocusVisible}
             ref={ref}
+            state={state as TransitionStates}
           >
             <SlotProvider slots={slots}>{children}</SlotProvider>
           </OverlayStyled>
         </FocusScope>
-      </Underlay>
-    </OverlayContainer>
+      </OverlayWrapper>
+    </>
+  );
+};
+
+export const Overlay = (overlayProps: OverlayProps) => {
+  const props = useSlotProps<OverlayProps>('overlay', overlayProps);
+  const { isOpen, animationDisabled } = props;
+
+  if (animationDisabled && !isOpen) {
+    return null;
+  }
+
+  return (
+    <Transition in={isOpen} timeout={{ enter: 0, exit: 350 }} unmountOnExit mountOnEnter>
+      {(state) => (
+        <OverlayContainer>
+          <OverlayInner {...props} state={state as TransitionStates} />
+        </OverlayContainer>
+      )}
+    </Transition>
   );
 };
 
