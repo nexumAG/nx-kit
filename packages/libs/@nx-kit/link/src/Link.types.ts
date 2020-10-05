@@ -8,11 +8,12 @@ export interface LinkProps extends AriaLinkProps {
   className?: string;
   skin?: LinkSkin;
   styles?: Styles;
+  slot?: string;
 }
 
 export type LinkStyledProps = {
   skin?: LinkSkin;
   styles?: Styles;
   isHovered: boolean;
-  isFocus: boolean;
+  isFocused: boolean;
 };

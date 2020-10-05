@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   useOverlay,
   usePreventScroll,
@@ -7,10 +7,10 @@ import {
   OverlayContainer,
 } from '@react-aria/overlays';
 import { useDialog } from '@react-aria/dialog';
-import { FocusScope } from '@react-aria/focus';
+import { FocusScope, useFocusRing } from '@react-aria/focus';
 import { styled } from '@nx-kit/styling';
-import { SlotProvider } from '@nx-kit/slot';
-import { OverlayProps } from './Overlay.types';
+import { SlotProvider, useSlotProps } from '@nx-kit/slot';
+import { OverlayProps, OverlayStyledProps, OverlayTriggerProps } from './Overlay.types';
 
 export const Underlay = styled.div`
   position: fixed;
@@ -25,22 +25,31 @@ export const Underlay = styled.div`
   justify-content: center;
 `;
 
-export const OverlayStyled = styled.div`
+export const OverlayStyled = styled.div<OverlayStyledProps>`
+  &:focus {
+    outline: none;
+  }
+  position: relative;
   background: white;
   color: black;
   padding: 30px;
+
+  ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
 `;
 
-export const Overlay = (props: OverlayProps) => {
+export const Overlay = (overlayProps: OverlayProps) => {
+  const props = useSlotProps<OverlayProps>('overlay', overlayProps);
   const { children } = props;
 
   const ref = React.useRef(null);
-  const { overlayProps } = useOverlay(props, ref);
+  const { overlayProps: useOverlayProps } = useOverlay(props, ref);
 
   usePreventScroll();
   const { modalProps } = useModal();
 
   const { dialogProps, titleProps } = useDialog(props, ref);
+
+  const { isFocusVisible, focusProps } = useFocusRing();
 
   const slots = {
     heading: titleProps,
@@ -50,13 +59,39 @@ export const Overlay = (props: OverlayProps) => {
     <OverlayContainer>
       <Underlay>
         <FocusScope contain restoreFocus autoFocus>
-          <OverlayStyled {...overlayProps} {...dialogProps} {...modalProps} ref={ref}>
+          <OverlayStyled
+            {...useOverlayProps}
+            {...dialogProps}
+            {...modalProps}
+            {...focusProps}
+            isFocused={isFocusVisible}
+            ref={ref}
+          >
             <SlotProvider slots={slots}>{children}</SlotProvider>
           </OverlayStyled>
         </FocusScope>
       </Underlay>
     </OverlayContainer>
   );
+};
+
+export const OverlayTrigger = ({ children }: OverlayTriggerProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const open = () => {
+    setIsOpen(true);
+  };
+
+  const close = () => {
+    setIsOpen(false);
+  };
+
+  const slots = {
+    button: { onPress: open },
+    overlay: { isOpen, onClose: close },
+  };
+
+  return <SlotProvider slots={slots}>{children({ isOpen, close })}</SlotProvider>;
 };
 
 export { OverlayProvider };

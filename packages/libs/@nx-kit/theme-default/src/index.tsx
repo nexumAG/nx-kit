@@ -221,7 +221,7 @@ export const theme: Theme = {
               background-color: ${({ theme }) => theme.global.color.gray50};
               border: 4px solid ${({ theme }) => theme.global.color.gray50};
             `};
-          ${({ isFocus }) => isFocus && theme.global.focusRing};
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
         secondary: css<any>`
           color: ${({ theme }) => theme.global.color.black500};
@@ -251,7 +251,7 @@ export const theme: Theme = {
               background-color: ${({ theme }) => theme.global.color.white500};
               border: 2px solid #b7b7b7;
             `};
-          ${({ isFocus }) => isFocus && theme.global.focusRing};
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
       },
     },
@@ -270,12 +270,8 @@ export const theme: Theme = {
             cursor: pointer;
           }
 
-          &:focus {
-            outline: none;
-          }
-
           ${({ isHovered }) => isHovered && 'color: #999'};
-          ${({ isFocus }) => isFocus && theme.global.focusRing};
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
       },
     },

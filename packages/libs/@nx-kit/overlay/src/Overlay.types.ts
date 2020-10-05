@@ -8,3 +8,11 @@ export type OverlayProps = {
   children?: React.ReactNode;
 } & AriaOverlayProps &
   AriaDialogProps;
+
+export type OverlayStyledProps = {
+  isFocused: boolean;
+};
+
+export type OverlayTriggerProps = {
+  children: (props: { isOpen: boolean; close: () => void }) => React.ReactNode;
+};

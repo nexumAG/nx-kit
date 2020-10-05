@@ -24,7 +24,7 @@ const HeadingStyled = styled.h2<HeadingStyledProps>`
 `;
 
 export const Heading = (headingProps: HeadingProps) => {
-  const props = useSlotProps<HeadingProps>('heading', headingProps);
+  const props = useSlotProps<HeadingProps>(headingProps.slot ?? 'heading', headingProps);
   const { className, children, elementType, skin, styles, ...rest } = props;
 
   return (
