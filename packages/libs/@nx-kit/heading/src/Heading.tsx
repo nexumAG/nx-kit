@@ -13,6 +13,7 @@ import { useSlotProps } from '@nx-kit/slot';
 import { HeadingProps, HeadingStyledProps } from './Heading.types';
 
 const HeadingStyled = styled.h2<HeadingStyledProps>`
+  ${({ theme }) => theme?.component?.heading?.global};
   ${({ theme, skin }) => skin && theme?.component?.heading?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}

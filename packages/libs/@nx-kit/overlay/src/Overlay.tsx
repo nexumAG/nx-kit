@@ -18,26 +18,11 @@ import {
 } from './Overlay.types';
 
 export const Underlay = styled.div<UnderlayStyledProps>`
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  align-items: ${({ alignItems }) => alignItems};
-  justify-content: ${({ justifyContent }) => justifyContent};
   ${({ theme }) => theme?.global?.underlay};
 `;
 
 export const OverlayStyled = styled.div<OverlayStyledProps>`
-  &:focus {
-    outline: none;
-  }
-  position: relative;
-  background-color: #fff;
-  padding: 30px;
-
+  ${({ theme }) => theme?.component?.overlay?.global};
   ${({ theme, skin }) => skin && theme?.component?.overlay?.skin?.[skin]};
 `;
 

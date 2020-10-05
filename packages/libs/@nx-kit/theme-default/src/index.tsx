@@ -98,8 +98,17 @@ export const theme: Theme = {
         margin: -5px;
       }
     `,
-    underlay: css`
+    underlay: css<any>`
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
       background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: ${({ alignItems }) => alignItems};
+      justify-content: ${({ justifyContent }) => justifyContent};
     `,
   },
   component: {
@@ -195,6 +204,48 @@ export const theme: Theme = {
       },
     },
     button: {
+      global: css<any>`
+        // reset
+        position: relative;
+        display: inline-flex;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+        margin: 0;
+        border-style: solid;
+        text-transform: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-appearance: button;
+        vertical-align: top;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: none;
+        isolation: isolate;
+
+        &:hover,
+        &:active {
+          box-shadow: none;
+        }
+
+        &:disabled {
+          cursor: default;
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &::-moz-focus-inner {
+          border: 0;
+          border-style: none;
+          padding: 0;
+          margin-block-start: -2px;
+          margin-block-end: -2px;
+        }
+      `,
       skin: {
         primary: css<any>`
           color: ${({ theme }) => theme.global.color.white500};
@@ -259,6 +310,11 @@ export const theme: Theme = {
       },
     },
     link: {
+      global: css<any>`
+        &:focus {
+          outline: none;
+        }
+      `,
       skin: {
         primary: css<any>`
           position: relative;
@@ -279,6 +335,14 @@ export const theme: Theme = {
       },
     },
     divider: {
+      global: css<any>`
+        overflow: visible;
+        border: none;
+        margin: 0px;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        align-self: stretch;
+      `,
       skin: {
         100: css<any>`
           background-color: #000;
@@ -290,6 +354,12 @@ export const theme: Theme = {
       },
     },
     overlay: {
+      global: css<any>`
+        &:focus {
+          outline: none;
+        }
+        position: relative;
+      `,
       skin: {
         default: css<any>`
           background: white;

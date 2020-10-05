@@ -29,31 +29,37 @@ export type Theme = {
   };
   component: {
     heading: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
     text: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
     button: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
     link: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
     divider: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
     overlay: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };

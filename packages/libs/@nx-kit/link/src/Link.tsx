@@ -17,9 +17,7 @@ import { useSlotProps } from '@nx-kit/slot';
 import { LinkProps, LinkStyledProps } from './Link.types';
 
 const LinkStyled = styled.a<LinkStyledProps>`
-  &:focus {
-    outline: none;
-  }
+  ${({ theme }) => theme?.component?.link?.global};
   ${({ theme, skin }) => skin && theme?.component?.link?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}
