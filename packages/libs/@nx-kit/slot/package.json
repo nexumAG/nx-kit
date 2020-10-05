@@ -10,7 +10,6 @@
     "dist"
   ],
   "scripts": {
-    "test": "jest",
     "lint": "eslint . --ext .ts,.tsx",
     "build": "rollup -c rollup.config.js"
   },

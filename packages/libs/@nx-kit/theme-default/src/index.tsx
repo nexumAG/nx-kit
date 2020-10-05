@@ -1,19 +1,15 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Theme, css, media } from '@nx-kit/styling';
 
-export const globalCSS = css`
-  body {
-    font-size: ${({ theme }) => theme?.global?.fontSize?.['16']};
-    ${({ theme }) => theme?.global?.font?.trebuchetNormal};
-    color: ${({ theme }) => theme?.global?.color?.gray700};
-  }
-`;
-
 export const theme: Theme = {
-  // export const theme = {
   global: {
+    styles: css`
+      body {
+        font-size: ${({ theme }) => theme?.global?.fontSize?.['16']};
+        ${({ theme }) => theme?.global?.font?.trebuchetNormal};
+        color: ${({ theme }) => theme?.global?.color?.gray700};
+      }
+    `,
     color: {
       primary500: '#6880A5',
       primary600: '#4176C7',
@@ -101,6 +97,9 @@ export const theme: Theme = {
         box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.focus};
         margin: -5px;
       }
+    `,
+    underlay: css`
+      background: rgba(0, 0, 0, 0.5);
     `,
   },
   component: {
@@ -225,7 +224,7 @@ export const theme: Theme = {
               background-color: ${({ theme }) => theme.global.color.gray50};
               border: 4px solid ${({ theme }) => theme.global.color.gray50};
             `};
-          ${({ isFocus }) => isFocus && theme.global.focusRing};
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
         secondary: css<any>`
           color: ${({ theme }) => theme.global.color.black500};
@@ -255,7 +254,7 @@ export const theme: Theme = {
               background-color: ${({ theme }) => theme.global.color.white500};
               border: 2px solid #b7b7b7;
             `};
-          ${({ isFocus }) => isFocus && theme.global.focusRing};
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
       },
     },
@@ -274,12 +273,8 @@ export const theme: Theme = {
             cursor: pointer;
           }
 
-          &:focus {
-            outline: none;
-          }
-
           ${({ isHovered }) => isHovered && 'color: #999'};
-          ${({ isFocus }) => isFocus && theme.global.focusRing};
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
       },
     },
@@ -291,6 +286,24 @@ export const theme: Theme = {
           width: ${({ orientation }) => (orientation === 'vertical' ? '1px' : '100%')};
           height: ${({ orientation }) => (orientation === 'vertical' ? '20px' : '1px')};
           margin: ${({ orientation }) => (orientation === 'vertical' ? '0 5px' : '5px 0')};
+        `,
+      },
+    },
+    overlay: {
+      skin: {
+        default: css<any>`
+          background: white;
+          padding: 30px;
+          margin: 30px;
+          border-radius: 10px;
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
+        `,
+        fullscreen: css<any>`
+          background: white;
+          padding: 30px;
+          width: 100vw;
+          height: 100vh;
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
       },
     },

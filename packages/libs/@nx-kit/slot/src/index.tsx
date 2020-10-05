@@ -4,7 +4,7 @@ const SlotContext = React.createContext<{ [key: string]: any }>({});
 
 export function useSlotProps<T>(slot: string, props: any = {}): T {
   const { [slot]: slotProps = {} } = useContext(SlotContext);
-  return { ...props, ...slotProps };
+  return { ...slotProps, ...props };
 }
 
 type SlotProviderProps = {

@@ -8,6 +8,7 @@ export interface ButtonProps extends AriaButtonProps {
   className?: string;
   skin?: ButtonSkin;
   styles?: Styles;
+  slot?: string;
 }
 
 export type ButtonStyledProps = {
@@ -16,5 +17,5 @@ export type ButtonStyledProps = {
   isDisabled: boolean;
   isActive: boolean;
   isHovered: boolean;
-  isFocus: boolean;
+  isFocused: boolean;
 };

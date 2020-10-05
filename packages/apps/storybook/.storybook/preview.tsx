@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider, createGlobalStyle, resetCSS } from '@nx-kit/styling';
-import { theme, globalCSS } from '@nx-kit/theme-default';
+import { theme } from '@nx-kit/theme-default';
 import { OverlayProvider } from '@nx-kit/overlay';
 
 export const parameters = {
@@ -9,7 +9,7 @@ export const parameters = {
 
 const GlobalStyle = createGlobalStyle`
   ${resetCSS}
-  ${globalCSS}
+  ${({ theme }) => theme?.global?.styles};
 `;
 
 export const decorators = [

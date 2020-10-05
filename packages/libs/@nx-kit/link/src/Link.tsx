@@ -13,9 +13,13 @@ import {
   getFont,
   getTypo,
 } from '@nx-kit/styling';
+import { useSlotProps } from '@nx-kit/slot';
 import { LinkProps, LinkStyledProps } from './Link.types';
 
 const LinkStyled = styled.a<LinkStyledProps>`
+  &:focus {
+    outline: none;
+  }
   ${({ theme, skin }) => skin && theme?.component?.link?.skin?.[skin]};
   ${getSpacing()}
   ${getFlexItem()}
@@ -26,7 +30,8 @@ const LinkStyled = styled.a<LinkStyledProps>`
   ${getTypo()}
 `;
 
-export const Link = (props: LinkProps) => {
+export const Link = (linkProps: LinkProps) => {
+  const props = useSlotProps<LinkProps>(linkProps.slot ?? 'link', linkProps);
   const { className, children, skin, styles } = props;
   const ref = useRef(null);
 
@@ -34,7 +39,7 @@ export const Link = (props: LinkProps) => {
   const { children: linkText, ...childProps } =
     typeof children === 'string' ? { children } : React.Children.only<any>(children).props;
 
-  const { linkProps } = useLink(
+  const { linkProps: useLinkProps } = useLink(
     {
       ...props,
       elementType,
@@ -51,9 +56,9 @@ export const Link = (props: LinkProps) => {
       as={elementType}
       skin={skin}
       styles={styles}
-      {...mergeProps(linkProps, hoverProps)}
+      {...mergeProps(useLinkProps, hoverProps)}
       {...focusProps}
-      isFocus={isFocusVisible}
+      isFocused={isFocusVisible}
       isHovered={isHovered}
       {...childProps}
     >

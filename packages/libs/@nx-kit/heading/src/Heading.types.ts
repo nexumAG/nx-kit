@@ -13,6 +13,7 @@ export type HeadingProps = {
   elementType?: As;
   skin?: HeadingSkin;
   styles?: Styles;
+  slot?: string;
 };
 
 export type HeadingStyledProps = {

@@ -14,6 +14,7 @@ import {
   getFont,
   getTypo,
 } from '@nx-kit/styling';
+import { useSlotProps } from '@nx-kit/slot';
 import { ButtonProps, ButtonStyledProps } from './Button.types';
 
 const ButtonStyled = styled.button<ButtonStyledProps>`
@@ -68,7 +69,8 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
   ${getTypo()}
 `;
 
-export const Button = (props: ButtonProps) => {
+export const Button = (buttonProps: ButtonProps) => {
+  const props = useSlotProps<ButtonProps>(buttonProps.slot ?? 'button', buttonProps);
   const {
     className,
     children,
@@ -80,7 +82,7 @@ export const Button = (props: ButtonProps) => {
   } = props;
   const ref = useRef(null);
 
-  const { buttonProps, isPressed } = useButton({ ...props, elementType }, ref);
+  const { buttonProps: useButtonProps, isPressed } = useButton({ ...props, elementType }, ref);
   const { hoverProps, isHovered } = useHover({ isDisabled });
   const { focusProps, isFocusVisible } = useFocusRing({ autoFocus });
 
@@ -91,10 +93,10 @@ export const Button = (props: ButtonProps) => {
       className={className}
       skin={skin}
       styles={styles}
-      {...mergeProps(buttonProps, hoverProps)}
+      {...mergeProps(useButtonProps, hoverProps)}
       {...focusProps}
       isActive={isPressed}
-      isFocus={isFocusVisible}
+      isFocused={isFocusVisible}
       isHovered={isHovered}
       isDisabled={isDisabled !== undefined}
     >
