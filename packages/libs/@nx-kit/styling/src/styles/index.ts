@@ -22,11 +22,15 @@ export type Spacing = {
   marginLeft?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginLeft']>;
   marginRight?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginRight']>;
   margin?: LiteralOrBreakpoints<SpacingKey | CSSProperties['margin']>;
+  marginX?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginLeft']>;
+  marginY?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginTop']>;
   paddingTop?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingTop']>;
   paddingBottom?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingBottom']>;
   paddingLeft?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingLeft']>;
   paddingRight?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingRight']>;
   padding?: LiteralOrBreakpoints<SpacingKey | CSSProperties['padding']>;
+  paddingX?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingLeft']>;
+  paddingY?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingTop']>;
 };
 
 export type FlexItem = {
@@ -198,7 +202,35 @@ export const getSpacing = () => {
       getLiteralOrBreakpointValue('paddingBottom', props, themeLookup),
       getLiteralOrBreakpointValue('paddingLeft', props, themeLookup),
       getLiteralOrBreakpointValue('paddingRight', props, themeLookup),
-      getLiteralOrBreakpointValue('padding', props, themeLookup)
+      getLiteralOrBreakpointValue('padding', props, themeLookup),
+      getLiteralOrBreakpointValue('marginX', props, themeLookup, (_: string, propValue: any) => {
+        const value = themeLookup?.[propValue] ?? propValue;
+        return {
+          marginLeft: value,
+          marginRight: value,
+        };
+      }),
+      getLiteralOrBreakpointValue('marginY', props, themeLookup, (_: string, propValue: any) => {
+        const value = themeLookup?.[propValue] ?? propValue;
+        return {
+          marginTop: value,
+          marginBottom: value,
+        };
+      }),
+      getLiteralOrBreakpointValue('paddingX', props, themeLookup, (_: string, propValue: any) => {
+        const value = themeLookup?.[propValue] ?? propValue;
+        return {
+          paddingLeft: value,
+          paddingRight: value,
+        };
+      }),
+      getLiteralOrBreakpointValue('paddingY', props, themeLookup, (_: string, propValue: any) => {
+        const value = themeLookup?.[propValue] ?? propValue;
+        return {
+          paddingTop: value,
+          paddingBottom: value,
+        };
+      })
     );
   };
 };

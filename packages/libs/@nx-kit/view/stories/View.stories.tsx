@@ -21,3 +21,20 @@ export const Default = () => (
     opacity={0.5}
   />
 );
+
+export const MarginPaddingXY = () => (
+  <>
+    <View
+      height="50px"
+      backgroundColor="primary800"
+      marginY="20"
+      marginX={{ xs: '20', md: '40' }}
+    />
+    <View
+      height="50px"
+      backgroundColor="primary800"
+      marginY="20"
+      paddingY={{ xs: '20', md: '40' }}
+    />
+  </>
+);
