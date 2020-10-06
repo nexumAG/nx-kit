@@ -158,22 +158,19 @@ const getLiteralOrBreakpointString = (
 };
 
 const merge = (...objects: any[]) => {
-  // create a new object
-  const target = {};
+  const target: any = {};
 
-  // deep merge the object into the target object
   const merger = (obj: any) => {
     // eslint-disable-next-line no-restricted-syntax
     for (const prop in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-        if (Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+        const value = obj[prop];
+        if (Object.prototype.toString.call(value) === '[object Object]') {
           // if the property is a nested object
-          // @ts-ignore
-          target[prop] = merge(target[prop], obj[prop]);
+          target[prop] = merge(target[prop], value);
         } else {
           // for regular property
-          // @ts-ignore
-          target[prop] = obj[prop];
+          target[prop] = value;
         }
       }
     }
@@ -181,7 +178,8 @@ const merge = (...objects: any[]) => {
 
   // iterate through all objects and
   // deep merge them with target
-  for (let i = 0; i < objects.length; i += 1) {
+  const { length } = objects;
+  for (let i = 0; i < length; i += 1) {
     merger(objects[i]);
   }
 
