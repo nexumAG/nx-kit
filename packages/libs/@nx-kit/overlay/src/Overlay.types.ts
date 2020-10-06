@@ -29,6 +29,7 @@ export type OverlayStyledProps = {
 
 export type OverlayTriggerProps = {
   children: (props: { isOpen: boolean; close: () => void }) => React.ReactNode;
+  isOpen?: boolean;
 };
 
 export type OverlayWrapperStyledProps = {

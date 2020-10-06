@@ -115,8 +115,11 @@ export const Overlay = (overlayProps: OverlayProps) => {
   );
 };
 
-export const OverlayTrigger = ({ children }: OverlayTriggerProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const OverlayTrigger = ({
+  children,
+  isOpen: isOpenDefault = false,
+}: OverlayTriggerProps) => {
+  const [isOpen, setIsOpen] = useState(isOpenDefault);
 
   const open = () => {
     setIsOpen(true);
