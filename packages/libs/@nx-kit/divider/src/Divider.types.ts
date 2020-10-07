@@ -5,6 +5,7 @@ export type DividerSkin = keyof Theme['component']['divider']['skin'];
 type Styles = Spacing & FlexItem & Position & Color;
 
 export type DividerProps = {
+  id?: string;
   className?: string;
   skin?: DividerSkin;
   styles?: Styles;

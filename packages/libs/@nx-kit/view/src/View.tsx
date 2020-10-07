@@ -24,9 +24,9 @@ const ViewStyled = styled.div<ViewStyledProps>`
   )};
 `;
 
-export const View = ({ className, children, elementType, ...rest }: ViewProps) => {
+export const View = ({ children, elementType, ...rest }: ViewProps) => {
   return (
-    <ViewStyled className={className} as={elementType} {...rest}>
+    <ViewStyled as={elementType} {...rest}>
       {children}
     </ViewStyled>
   );

@@ -48,11 +48,10 @@ const OverlayInner = (props: OverlayInnerProps) => {
   const {
     children,
     className,
-    skin,
     verticalAlignment = 'center',
     horizontalAlignment = 'center',
     state,
-    styles,
+    ...rest
   } = props;
 
   const ref = React.useRef(null);
@@ -90,7 +89,6 @@ const OverlayInner = (props: OverlayInnerProps) => {
         <FocusScope contain restoreFocus autoFocus>
           <OverlayStyled
             className={className}
-            skin={skin}
             {...useOverlayProps}
             {...dialogProps}
             {...modalProps}
@@ -98,7 +96,7 @@ const OverlayInner = (props: OverlayInnerProps) => {
             isFocused={isFocusVisible}
             ref={ref}
             state={state as TransitionStates}
-            styles={styles}
+            {...rest}
           >
             <SlotProvider slots={slots}>{children}</SlotProvider>
           </OverlayStyled>

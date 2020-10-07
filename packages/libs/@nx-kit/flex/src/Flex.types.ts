@@ -17,6 +17,7 @@ type Styles = Spacing & Position & Color & Layout & Font & Typo;
 type FlexType = 'flex' | 'inline-flex' | 'none';
 
 export type FlexProps = {
+  id?: string;
   className?: string;
   children: ReactNode;
   elementType?: As;

@@ -10,7 +10,7 @@ const DividerStyled = styled.hr<DividerStyledProps>`
 `;
 
 export const Divider = (props: DividerProps) => {
-  const { className, orientation = 'horizontal', skin } = props;
+  const { orientation = 'horizontal', ...rest } = props;
 
   const elementType = orientation === 'horizontal' ? 'hr' : 'div';
 
@@ -19,13 +19,5 @@ export const Divider = (props: DividerProps) => {
     elementType,
   });
 
-  return (
-    <DividerStyled
-      as={elementType}
-      className={className}
-      skin={skin}
-      orientation={orientation}
-      {...separatorProps}
-    />
-  );
+  return <DividerStyled as={elementType} orientation={orientation} {...separatorProps} {...rest} />;
 };

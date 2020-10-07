@@ -12,6 +12,7 @@ export type OverlayTransitionProps = {
 };
 
 export type OverlayProps = {
+  id?: string;
   className?: string;
   title?: string;
   children?: React.ReactNode;

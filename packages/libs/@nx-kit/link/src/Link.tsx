@@ -33,7 +33,7 @@ const LinkStyled = styled.a<LinkStyledProps>`
 
 export const Link = (linkProps: LinkProps) => {
   const props = useSlotProps<LinkProps>(linkProps.slot ?? 'link', linkProps);
-  const { className, children, skin, styles } = props;
+  const { children, ...rest } = props;
   const ref = useRef(null);
 
   const elementType = typeof children === 'string' ? 'span' : 'a';
@@ -53,15 +53,13 @@ export const Link = (linkProps: LinkProps) => {
   return (
     <LinkStyled
       ref={ref}
-      className={className}
       as={elementType}
-      skin={skin}
-      styles={styles}
       {...mergeProps(useLinkProps, hoverProps)}
       {...focusProps}
       isFocused={isFocusVisible}
       isHovered={isHovered}
       {...childProps}
+      {...rest}
     >
       {linkText}
     </LinkStyled>

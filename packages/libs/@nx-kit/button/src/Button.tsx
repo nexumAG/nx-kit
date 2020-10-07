@@ -34,15 +34,7 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
 
 export const Button = (buttonProps: ButtonProps) => {
   const props = useSlotProps<ButtonProps>(buttonProps.slot ?? 'button', buttonProps);
-  const {
-    className,
-    children,
-    isDisabled,
-    autoFocus,
-    skin,
-    styles,
-    elementType = 'button',
-  } = props;
+  const { children, isDisabled, autoFocus, elementType = 'button', ...rest } = props;
   const ref = useRef(null);
 
   const { buttonProps: useButtonProps, isPressed } = useButton({ ...props, elementType }, ref);
@@ -53,15 +45,13 @@ export const Button = (buttonProps: ButtonProps) => {
     <ButtonStyled
       ref={ref}
       as={elementType as As}
-      className={className}
-      skin={skin}
-      styles={styles}
       {...mergeProps(useButtonProps, hoverProps)}
       {...focusProps}
       isActive={isPressed}
       isFocused={isFocusVisible}
       isHovered={isHovered}
       isDisabled={isDisabled !== undefined}
+      {...rest}
     >
       {children}
     </ButtonStyled>

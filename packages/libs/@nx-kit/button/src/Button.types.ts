@@ -5,6 +5,7 @@ type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 type ButtonSkin = keyof Theme['component']['button']['skin'];
 
 export interface ButtonProps extends AriaButtonProps {
+  id?: string;
   className?: string;
   skin?: ButtonSkin;
   styles?: Styles;

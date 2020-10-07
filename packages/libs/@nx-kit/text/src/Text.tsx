@@ -26,9 +26,9 @@ const TextStyled = styled.span<TextStyledProps>`
   )}
 `;
 
-export const Text = ({ className, children, elementType, skin, styles }: TextProps) => {
+export const Text = ({ children, elementType, ...rest }: TextProps) => {
   return (
-    <TextStyled className={className} skin={skin} as={elementType} styles={styles}>
+    <TextStyled as={elementType} {...rest}>
       {children}
     </TextStyled>
   );
