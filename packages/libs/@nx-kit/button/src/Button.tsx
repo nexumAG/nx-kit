@@ -13,6 +13,7 @@ import {
   getLayout,
   getFont,
   getTypo,
+  compose,
 } from '@nx-kit/styling';
 import { useSlotProps } from '@nx-kit/slot';
 import { ButtonProps, ButtonStyledProps } from './Button.types';
@@ -20,13 +21,15 @@ import { ButtonProps, ButtonStyledProps } from './Button.types';
 const ButtonStyled = styled.button<ButtonStyledProps>`
   ${({ theme }) => theme?.component?.button?.global};
   ${({ theme, skin }) => skin && theme?.component?.button?.skin?.[skin]};
-  ${getSpacing()}
-  ${getFlexItem()}
-  ${getPosition()}
-  ${getColor()}
-  ${getLayout()}
-  ${getFont()}
-  ${getTypo()}
+  ${compose(
+    getSpacing(),
+    getFlexItem(),
+    getPosition(),
+    getColor(),
+    getLayout(),
+    getFont(),
+    getTypo()
+  )}
 `;
 
 export const Button = (buttonProps: ButtonProps) => {

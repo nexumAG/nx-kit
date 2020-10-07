@@ -12,6 +12,7 @@ import {
   useTheme,
   getLiteralOrBreakpointValue,
   useBreakpointsSorted,
+  compose,
 } from '@nx-kit/styling';
 import { FlexProps, FlexStyledProps, FlexContextGap } from './Flex.types';
 import {
@@ -32,14 +33,16 @@ const FlexStyled = styled.div<FlexStyledProps>`
   ${({ col }) => col};
   ${({ row }) => row};
   ${({ colOffset }) => colOffset};
-  ${getFlexContainer()}
-  ${getPosition()}
-  ${getSpacing()}
-  ${getColor()}
-  ${getLayout()}
-  ${getFlexItem()}
-  ${getFont()}
-  ${getTypo()}
+  ${compose(
+    getFlexContainer(),
+    getPosition(),
+    getSpacing(),
+    getColor(),
+    getLayout(),
+    getFlexItem(),
+    getFont(),
+    getTypo()
+  )}
 `;
 
 export const Flex = ({

@@ -158,32 +158,29 @@ const getLiteralOrBreakpointString = (
 };
 
 const merge = (...objects: any[]) => {
-  const target: any = {};
-
-  const merger = (obj: any) => {
+  const merged: any = {};
+  const { length } = objects;
+  for (let i = 0; i < length; i += 1) {
+    const obj = objects[i];
     // eslint-disable-next-line no-restricted-syntax
     for (const prop in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, prop)) {
         const value = obj[prop];
-        if (Object.prototype.toString.call(value) === '[object Object]') {
-          // if the property is a nested object
-          target[prop] = merge(target[prop], value);
+        if (typeof value === 'object') {
+          merged[prop] = { ...merged[prop], ...value };
         } else {
-          // for regular property
-          target[prop] = value;
+          merged[prop] = value;
         }
       }
     }
-  };
-
-  // iterate through all objects and
-  // deep merge them with target
-  const { length } = objects;
-  for (let i = 0; i < length; i += 1) {
-    merger(objects[i]);
   }
+  return merged;
+};
 
-  return target;
+export const compose = (...objects: any[]) => {
+  return (props: ThemedStyledProps<DirectOrStylesProp<any>, Theme>) => {
+    return merge(...objects.map((object) => object(props)));
+  };
 };
 
 export const getSpacing = () => {

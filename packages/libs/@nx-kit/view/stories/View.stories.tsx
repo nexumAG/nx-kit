@@ -39,23 +39,25 @@ export const MarginPaddingXY = () => (
   </>
 );
 
-export const Test = () => (
-  <>
-    {Array.from(Array(1000)).map((index) => (
-      <View
-        key={index}
-        height="1px"
-        backgroundColor="blue"
-        // marginX={{ xs: '20', md: '40' }}
-      />
-    ))}
-  </>
-);
-
-export const Test2 = () => (
-  <>
-    {Array.from(Array(1000)).map((index) => (
-      <div key={index} style={{ height: '1px', backgroundColor: 'red' }} />
-    ))}
-  </>
-);
+// export const Test = () => (
+//   <>
+//     {Array.from(Array(1000)).map((index) => (
+//       <View
+//         key={index}
+//         marginTop="20"
+//         marginBottom={{ xs: '20', md: '40' }}
+//         paddingTop={{ xs: '20', md: '40' }}
+//         paddingLeft={{ md: '60px', lg: '80px' }}
+//         backgroundColor={{ xs: 'red', md: 'blue', lg: 'black' }}
+//       />
+//     ))}
+//   </>
+// );
+//
+// export const Test3 = () => (
+//   <>
+//     {Array.from(Array(1000)).map((index) => (
+//       <div key={index} style={{ height: '1px', backgroundColor: 'red' }} />
+//     ))}
+//   </>
+// );

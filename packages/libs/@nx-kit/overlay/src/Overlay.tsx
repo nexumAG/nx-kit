@@ -9,7 +9,16 @@ import {
 } from '@react-aria/overlays';
 import { useDialog } from '@react-aria/dialog';
 import { FocusScope, useFocusRing } from '@react-aria/focus';
-import { styled } from '@nx-kit/styling';
+import {
+  styled,
+  getSpacing,
+  getPosition,
+  getColor,
+  getLayout,
+  getFont,
+  getTypo,
+  compose,
+} from '@nx-kit/styling';
 import { SlotProvider, useSlotProps } from '@nx-kit/slot';
 import {
   OverlayProps,
@@ -28,6 +37,7 @@ export const Underlay = styled.div<UnderlayStyledProps>`
 export const OverlayStyled = styled.div<OverlayStyledProps>`
   ${({ theme }) => theme?.component?.overlay?.global};
   ${({ theme, skin }) => skin && theme?.component?.overlay?.skin?.[skin]};
+  ${compose(getSpacing(), getPosition(), getColor(), getLayout(), getFont(), getTypo())}
 `;
 
 export const OverlayWrapper = styled.div<OverlayWrapperStyledProps>`
@@ -42,6 +52,7 @@ const OverlayInner = (props: OverlayInnerProps) => {
     verticalAlignment = 'center',
     horizontalAlignment = 'center',
     state,
+    styles,
   } = props;
 
   const ref = React.useRef(null);
@@ -87,6 +98,7 @@ const OverlayInner = (props: OverlayInnerProps) => {
             isFocused={isFocusVisible}
             ref={ref}
             state={state as TransitionStates}
+            styles={styles}
           >
             <SlotProvider slots={slots}>{children}</SlotProvider>
           </OverlayStyled>

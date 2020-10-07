@@ -12,6 +12,7 @@ import {
   getLayout,
   getFont,
   getTypo,
+  compose,
 } from '@nx-kit/styling';
 import { useSlotProps } from '@nx-kit/slot';
 import { LinkProps, LinkStyledProps } from './Link.types';
@@ -19,13 +20,15 @@ import { LinkProps, LinkStyledProps } from './Link.types';
 const LinkStyled = styled.a<LinkStyledProps>`
   ${({ theme }) => theme?.component?.link?.global};
   ${({ theme, skin }) => skin && theme?.component?.link?.skin?.[skin]};
-  ${getSpacing()}
-  ${getFlexItem()}
-  ${getPosition()}
-  ${getColor()}
-  ${getLayout()}
-  ${getFont()}
-  ${getTypo()}
+  ${compose(
+    getSpacing(),
+    getFlexItem(),
+    getPosition(),
+    getColor(),
+    getLayout(),
+    getFont(),
+    getTypo()
+  )}
 `;
 
 export const Link = (linkProps: LinkProps) => {

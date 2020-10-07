@@ -24,6 +24,7 @@ import {
   getLayout,
   getFont,
   getTypo,
+  compose,
 } from './styles';
 import type {
   Breakpoints,
@@ -55,6 +56,7 @@ export {
   getLayout,
   getFont,
   getTypo,
+  compose,
 };
 
 // eslint-disable-next-line no-undef
