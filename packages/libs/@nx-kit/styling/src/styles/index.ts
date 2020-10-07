@@ -22,11 +22,15 @@ export type Spacing = {
   marginLeft?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginLeft']>;
   marginRight?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginRight']>;
   margin?: LiteralOrBreakpoints<SpacingKey | CSSProperties['margin']>;
+  marginX?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginLeft']>;
+  marginY?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginTop']>;
   paddingTop?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingTop']>;
   paddingBottom?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingBottom']>;
   paddingLeft?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingLeft']>;
   paddingRight?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingRight']>;
   padding?: LiteralOrBreakpoints<SpacingKey | CSSProperties['padding']>;
+  paddingX?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingLeft']>;
+  paddingY?: LiteralOrBreakpoints<SpacingKey | CSSProperties['paddingTop']>;
 };
 
 export type FlexItem = {
@@ -154,34 +158,29 @@ const getLiteralOrBreakpointString = (
 };
 
 const merge = (...objects: any[]) => {
-  // create a new object
-  const target = {};
-
-  // deep merge the object into the target object
-  const merger = (obj: any) => {
+  const merged: any = {};
+  const { length } = objects;
+  for (let i = 0; i < length; i += 1) {
+    const obj = objects[i];
     // eslint-disable-next-line no-restricted-syntax
     for (const prop in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-        if (Object.prototype.toString.call(obj[prop]) === '[object Object]') {
-          // if the property is a nested object
-          // @ts-ignore
-          target[prop] = merge(target[prop], obj[prop]);
+        const value = obj[prop];
+        if (typeof value === 'object') {
+          merged[prop] = { ...merged[prop], ...value };
         } else {
-          // for regular property
-          // @ts-ignore
-          target[prop] = obj[prop];
+          merged[prop] = value;
         }
       }
     }
-  };
-
-  // iterate through all objects and
-  // deep merge them with target
-  for (let i = 0; i < objects.length; i += 1) {
-    merger(objects[i]);
   }
+  return merged;
+};
 
-  return target;
+export const compose = (...objects: any[]) => {
+  return (props: ThemedStyledProps<DirectOrStylesProp<any>, Theme>) => {
+    return merge(...objects.map((object) => object(props)));
+  };
 };
 
 export const getSpacing = () => {
@@ -198,7 +197,35 @@ export const getSpacing = () => {
       getLiteralOrBreakpointValue('paddingBottom', props, themeLookup),
       getLiteralOrBreakpointValue('paddingLeft', props, themeLookup),
       getLiteralOrBreakpointValue('paddingRight', props, themeLookup),
-      getLiteralOrBreakpointValue('padding', props, themeLookup)
+      getLiteralOrBreakpointValue('padding', props, themeLookup),
+      getLiteralOrBreakpointValue('marginX', props, themeLookup, (_: string, propValue: any) => {
+        const value = themeLookup?.[propValue] ?? propValue;
+        return {
+          marginLeft: value,
+          marginRight: value,
+        };
+      }),
+      getLiteralOrBreakpointValue('marginY', props, themeLookup, (_: string, propValue: any) => {
+        const value = themeLookup?.[propValue] ?? propValue;
+        return {
+          marginTop: value,
+          marginBottom: value,
+        };
+      }),
+      getLiteralOrBreakpointValue('paddingX', props, themeLookup, (_: string, propValue: any) => {
+        const value = themeLookup?.[propValue] ?? propValue;
+        return {
+          paddingLeft: value,
+          paddingRight: value,
+        };
+      }),
+      getLiteralOrBreakpointValue('paddingY', props, themeLookup, (_: string, propValue: any) => {
+        const value = themeLookup?.[propValue] ?? propValue;
+        return {
+          paddingTop: value,
+          paddingBottom: value,
+        };
+      })
     );
   };
 };

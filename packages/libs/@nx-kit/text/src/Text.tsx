@@ -8,24 +8,27 @@ import {
   getLayout,
   getFont,
   getTypo,
+  compose,
 } from '@nx-kit/styling';
 import { TextProps, TextStyledProps } from './Text.types';
 
 const TextStyled = styled.span<TextStyledProps>`
   ${({ theme }) => theme?.component?.text?.global};
   ${({ theme, skin }) => skin && theme?.component?.text?.skin?.[skin]};
-  ${getSpacing()}
-  ${getFlexItem()}
-  ${getPosition()}
-  ${getColor()}
-  ${getLayout()}
-  ${getFont()}
-  ${getTypo()}
+  ${compose(
+    getSpacing(),
+    getFlexItem(),
+    getPosition(),
+    getColor(),
+    getLayout(),
+    getFont(),
+    getTypo()
+  )}
 `;
 
-export const Text = ({ className, children, elementType, skin, styles }: TextProps) => {
+export const Text = ({ children, elementType, ...rest }: TextProps) => {
   return (
-    <TextStyled className={className} skin={skin} as={elementType} styles={styles}>
+    <TextStyled as={elementType} {...rest}>
       {children}
     </TextStyled>
   );

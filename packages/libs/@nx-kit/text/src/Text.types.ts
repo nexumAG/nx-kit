@@ -8,6 +8,7 @@ export type TextSkin = keyof Theme['component']['text']['skin'];
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
 export type TextProps = {
+  id?: string;
   className?: string;
   children: ReactNode;
   elementType?: As;

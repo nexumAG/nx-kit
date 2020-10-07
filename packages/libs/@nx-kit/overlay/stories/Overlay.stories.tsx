@@ -112,7 +112,12 @@ export const OverlayTriggerFullscreen = () => {
         <>
           <Button skin="primary">Open Overlay</Button>
 
-          <Overlay skin="fullscreen" isDismissable animationDisabled>
+          <Overlay
+            skin="fullscreen"
+            isDismissable
+            animationDisabled
+            styles={{ backgroundColor: '#f0f0f0' }}
+          >
             <Heading skin="400" elementType="h3">
               Test Overlay
             </Heading>

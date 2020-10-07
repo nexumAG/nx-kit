@@ -21,3 +21,43 @@ export const Default = () => (
     opacity={0.5}
   />
 );
+
+export const MarginPaddingXY = () => (
+  <>
+    <View
+      height="50px"
+      backgroundColor="primary800"
+      marginY="20"
+      marginX={{ xs: '20', md: '40' }}
+    />
+    <View
+      height="50px"
+      backgroundColor="primary800"
+      marginY="20"
+      paddingY={{ xs: '20', md: '40' }}
+    />
+  </>
+);
+
+// export const Test = () => (
+//   <>
+//     {Array.from(Array(1000)).map((index) => (
+//       <View
+//         key={index}
+//         marginTop="20"
+//         marginBottom={{ xs: '20', md: '40' }}
+//         paddingTop={{ xs: '20', md: '40' }}
+//         paddingLeft={{ md: '60px', lg: '80px' }}
+//         backgroundColor={{ xs: 'red', md: 'blue', lg: 'black' }}
+//       />
+//     ))}
+//   </>
+// );
+//
+// export const Test3 = () => (
+//   <>
+//     {Array.from(Array(1000)).map((index) => (
+//       <div key={index} style={{ height: '1px', backgroundColor: 'red' }} />
+//     ))}
+//   </>
+// );

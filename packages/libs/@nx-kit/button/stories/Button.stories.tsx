@@ -39,7 +39,9 @@ export const PrimaryStyled = () => (
     elementType="div"
     styles={{ padding: '40px' }}
     css={`
-      margin-bottom: 50px;
+      &&& {
+        margin-bottom: 50px;
+      }
     `}
   >
     Press me

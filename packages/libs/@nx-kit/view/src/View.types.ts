@@ -4,6 +4,7 @@ import { As, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
 export type ViewProps = {
+  id?: string;
   className?: string;
   children?: ReactNode;
   elementType?: As;
