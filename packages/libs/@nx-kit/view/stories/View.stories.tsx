@@ -41,7 +41,7 @@ export const MarginPaddingXY = () => (
 
 // export const Test = () => (
 //   <>
-//     {Array.from(Array(1000)).map((index) => (
+//     {Array.from(Array(300)).map((index) => (
 //       <View
 //         key={index}
 //         marginTop="20"
@@ -54,10 +54,13 @@ export const MarginPaddingXY = () => (
 //   </>
 // );
 //
-// export const Test3 = () => (
+// export const Test2 = () => (
 //   <>
-//     {Array.from(Array(1000)).map((index) => (
-//       <div key={index} style={{ height: '1px', backgroundColor: 'red' }} />
+//     {Array.from(Array(300)).map((index) => (
+//       <div
+//         key={index}
+//         style={{ paddingTop: '40px', backgroundColor: 'red', marginBottom: '40px' }}
+//       />
 //     ))}
 //   </>
 // );
