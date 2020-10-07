@@ -34,14 +34,14 @@ const FlexStyled = styled.div<FlexStyledProps>`
   ${({ row }) => row};
   ${({ colOffset }) => colOffset};
   ${compose(
-    getFlexContainer(),
-    getPosition(),
-    getSpacing(),
-    getColor(),
-    getLayout(),
-    getFlexItem(),
-    getFont(),
-    getTypo()
+    getFlexContainer,
+    getPosition,
+    getSpacing,
+    getColor,
+    getLayout,
+    getFlexItem,
+    getFont,
+    getTypo
   )}
 `;
 

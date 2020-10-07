@@ -6,7 +6,7 @@ import { DividerProps, DividerStyledProps } from './Divider.types';
 const DividerStyled = styled.hr<DividerStyledProps>`
   ${({ theme }) => theme?.component?.divider?.global};
   ${({ theme, skin }) => skin && theme?.component?.divider?.skin?.[skin]};
-  ${compose(getSpacing(), getFlexItem(), getPosition(), getColor())}
+  ${compose(getSpacing, getFlexItem, getPosition, getColor)}
 `;
 
 export const Divider = (props: DividerProps) => {
