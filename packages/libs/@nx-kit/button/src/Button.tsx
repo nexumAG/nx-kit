@@ -21,7 +21,8 @@ import { ButtonProps, ButtonStyledProps } from './Button.types';
 const ButtonStyled = styled.button<ButtonStyledProps>`
   ${({ theme }) => theme?.component?.button?.global};
   ${({ theme, skin }) => skin && theme?.component?.button?.skin?.[skin]};
-  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getFont, getTypo)}
+  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)}
+  ${getFont};
 `;
 
 export const Button = (buttonProps: ButtonProps) => {

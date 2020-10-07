@@ -13,7 +13,8 @@ import {
 import { ViewProps, ViewStyledProps } from './View.types';
 
 const ViewStyled = styled.div<ViewStyledProps>`
-  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getFont, getTypo)};
+  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)};
+  ${getFont};
 `;
 
 export const View = ({ children, elementType, ...rest }: ViewProps) => {

@@ -15,7 +15,8 @@ import { TextProps, TextStyledProps } from './Text.types';
 const TextStyled = styled.span<TextStyledProps>`
   ${({ theme }) => theme?.component?.text?.global};
   ${({ theme, skin }) => skin && theme?.component?.text?.skin?.[skin]};
-  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getFont, getTypo)}
+  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)}
+  ${getFont};
 `;
 
 export const Text = ({ children, elementType, ...rest }: TextProps) => {
