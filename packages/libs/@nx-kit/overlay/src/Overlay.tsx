@@ -37,7 +37,8 @@ export const Underlay = styled.div<UnderlayStyledProps>`
 export const OverlayStyled = styled.div<OverlayStyledProps>`
   ${({ theme }) => theme?.component?.overlay?.global};
   ${({ theme, skin }) => skin && theme?.component?.overlay?.skin?.[skin]};
-  ${compose(getSpacing(), getPosition(), getColor(), getLayout(), getFont(), getTypo())}
+  ${compose(getSpacing, getPosition, getColor, getLayout, getTypo)}
+  ${getFont};
 `;
 
 export const OverlayWrapper = styled.div<OverlayWrapperStyledProps>`

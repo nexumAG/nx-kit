@@ -20,15 +20,8 @@ import { LinkProps, LinkStyledProps } from './Link.types';
 const LinkStyled = styled.a<LinkStyledProps>`
   ${({ theme }) => theme?.component?.link?.global};
   ${({ theme, skin }) => skin && theme?.component?.link?.skin?.[skin]};
-  ${compose(
-    getSpacing(),
-    getFlexItem(),
-    getPosition(),
-    getColor(),
-    getLayout(),
-    getFont(),
-    getTypo()
-  )}
+  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)}
+  ${getFont};
 `;
 
 export const Link = (linkProps: LinkProps) => {

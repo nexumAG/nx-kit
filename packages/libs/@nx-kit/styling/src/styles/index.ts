@@ -183,63 +183,60 @@ export const compose = (...objects: any[]) => {
   };
 };
 
-export const getSpacing = () => {
-  return (props: ThemedStyledProps<DirectOrStylesProp<Spacing>, Theme>) => {
-    const themeLookup = props.theme?.global?.spacing;
+export const getSpacing = (props: ThemedStyledProps<DirectOrStylesProp<Spacing>, Theme>) => {
+  const themeLookup = props.theme?.global?.spacing;
 
-    return merge(
-      getLiteralOrBreakpointValue('marginTop', props, themeLookup),
-      getLiteralOrBreakpointValue('marginBottom', props, themeLookup),
-      getLiteralOrBreakpointValue('marginLeft', props, themeLookup),
-      getLiteralOrBreakpointValue('marginRight', props, themeLookup),
-      getLiteralOrBreakpointValue('margin', props, themeLookup),
-      getLiteralOrBreakpointValue('paddingTop', props, themeLookup),
-      getLiteralOrBreakpointValue('paddingBottom', props, themeLookup),
-      getLiteralOrBreakpointValue('paddingLeft', props, themeLookup),
-      getLiteralOrBreakpointValue('paddingRight', props, themeLookup),
-      getLiteralOrBreakpointValue('padding', props, themeLookup),
-      getLiteralOrBreakpointValue('marginX', props, themeLookup, (_: string, propValue: any) => {
-        const value = themeLookup?.[propValue] ?? propValue;
-        return {
-          marginLeft: value,
-          marginRight: value,
-        };
-      }),
-      getLiteralOrBreakpointValue('marginY', props, themeLookup, (_: string, propValue: any) => {
-        const value = themeLookup?.[propValue] ?? propValue;
-        return {
-          marginTop: value,
-          marginBottom: value,
-        };
-      }),
-      getLiteralOrBreakpointValue('paddingX', props, themeLookup, (_: string, propValue: any) => {
-        const value = themeLookup?.[propValue] ?? propValue;
-        return {
-          paddingLeft: value,
-          paddingRight: value,
-        };
-      }),
-      getLiteralOrBreakpointValue('paddingY', props, themeLookup, (_: string, propValue: any) => {
-        const value = themeLookup?.[propValue] ?? propValue;
-        return {
-          paddingTop: value,
-          paddingBottom: value,
-        };
-      })
-    );
-  };
+  return merge(
+    getLiteralOrBreakpointValue('marginTop', props, themeLookup),
+    getLiteralOrBreakpointValue('marginBottom', props, themeLookup),
+    getLiteralOrBreakpointValue('marginLeft', props, themeLookup),
+    getLiteralOrBreakpointValue('marginRight', props, themeLookup),
+    getLiteralOrBreakpointValue('margin', props, themeLookup),
+    getLiteralOrBreakpointValue('paddingTop', props, themeLookup),
+    getLiteralOrBreakpointValue('paddingBottom', props, themeLookup),
+    getLiteralOrBreakpointValue('paddingLeft', props, themeLookup),
+    getLiteralOrBreakpointValue('paddingRight', props, themeLookup),
+    getLiteralOrBreakpointValue('padding', props, themeLookup),
+    getLiteralOrBreakpointValue('marginX', props, themeLookup, (_: string, propValue: any) => {
+      const value = themeLookup?.[propValue] ?? propValue;
+      return {
+        marginLeft: value,
+        marginRight: value,
+      };
+    }),
+    getLiteralOrBreakpointValue('marginY', props, themeLookup, (_: string, propValue: any) => {
+      const value = themeLookup?.[propValue] ?? propValue;
+      return {
+        marginTop: value,
+        marginBottom: value,
+      };
+    }),
+    getLiteralOrBreakpointValue('paddingX', props, themeLookup, (_: string, propValue: any) => {
+      const value = themeLookup?.[propValue] ?? propValue;
+      return {
+        paddingLeft: value,
+        paddingRight: value,
+      };
+    }),
+    getLiteralOrBreakpointValue('paddingY', props, themeLookup, (_: string, propValue: any) => {
+      const value = themeLookup?.[propValue] ?? propValue;
+      return {
+        paddingTop: value,
+        paddingBottom: value,
+      };
+    })
+  );
 };
 
-export const getFlexItem = () => {
-  return (props: ThemedStyledProps<DirectOrStylesProp<FlexItem>, Theme>) =>
-    merge(
-      getLiteralOrBreakpointValue('flexGrow', props),
-      getLiteralOrBreakpointValue('flexShrink', props),
-      getLiteralOrBreakpointValue('flexBasis', props),
-      getLiteralOrBreakpointValue('flex', props),
-      getLiteralOrBreakpointValue('alignSelf', props),
-      getLiteralOrBreakpointValue('order', props)
-    );
+export const getFlexItem = (props: ThemedStyledProps<DirectOrStylesProp<FlexItem>, Theme>) => {
+  return merge(
+    getLiteralOrBreakpointValue('flexGrow', props),
+    getLiteralOrBreakpointValue('flexShrink', props),
+    getLiteralOrBreakpointValue('flexBasis', props),
+    getLiteralOrBreakpointValue('flex', props),
+    getLiteralOrBreakpointValue('alignSelf', props),
+    getLiteralOrBreakpointValue('order', props)
+  );
 };
 
 export const parseGap = (gap: string | number, theme?: Theme) => {
@@ -253,81 +250,76 @@ export const parseGap = (gap: string | number, theme?: Theme) => {
   return { rowGap, columnGap };
 };
 
-export const getFlexContainer = () => {
-  return (props: ThemedStyledProps<DirectOrStylesProp<FlexContainer>, Theme>) => {
-    return merge(
-      getLiteralOrBreakpointValue('alignContent', props),
-      getLiteralOrBreakpointValue('alignItems', props),
-      getLiteralOrBreakpointValue('flexDirection', props),
-      getLiteralOrBreakpointValue('flexFlow', props),
-      getLiteralOrBreakpointValue('flexWrap', props),
-      getLiteralOrBreakpointValue('justifyContent', props),
-      getLiteralOrBreakpointValue('gap', props, null, (_: string, value: string) => {
-        const { rowGap, columnGap } = parseGap(value, props.theme);
-        return {
-          margin: `calc(${rowGap} / -2) calc(${columnGap} / -2)`,
-          '& > *': {
-            margin: `calc(${rowGap} / 2) calc(${columnGap} / 2)`,
-          },
-        };
-      })
-    );
-  };
+export const getFlexContainer = (
+  props: ThemedStyledProps<DirectOrStylesProp<FlexContainer>, Theme>
+) => {
+  return merge(
+    getLiteralOrBreakpointValue('alignContent', props),
+    getLiteralOrBreakpointValue('alignItems', props),
+    getLiteralOrBreakpointValue('flexDirection', props),
+    getLiteralOrBreakpointValue('flexFlow', props),
+    getLiteralOrBreakpointValue('flexWrap', props),
+    getLiteralOrBreakpointValue('justifyContent', props),
+    getLiteralOrBreakpointValue('gap', props, null, (_: string, value: string) => {
+      const { rowGap, columnGap } = parseGap(value, props.theme);
+      return {
+        margin: `calc(${rowGap} / -2) calc(${columnGap} / -2)`,
+        '& > *': {
+          margin: `calc(${rowGap} / 2) calc(${columnGap} / 2)`,
+        },
+      };
+    })
+  );
 };
 
-export const getPosition = () => {
-  return (props: ThemedStyledProps<DirectOrStylesProp<Position>, Theme>) =>
-    merge(
-      getLiteralOrBreakpointValue('position', props),
-      getLiteralOrBreakpointValue('top', props),
-      getLiteralOrBreakpointValue('right', props),
-      getLiteralOrBreakpointValue('bottom', props),
-      getLiteralOrBreakpointValue('left', props),
-      getLiteralOrBreakpointValue('zIndex', props, props.theme?.global?.zIndex)
-    );
+export const getPosition = (props: ThemedStyledProps<DirectOrStylesProp<Position>, Theme>) => {
+  return merge(
+    getLiteralOrBreakpointValue('position', props),
+    getLiteralOrBreakpointValue('top', props),
+    getLiteralOrBreakpointValue('right', props),
+    getLiteralOrBreakpointValue('bottom', props),
+    getLiteralOrBreakpointValue('left', props),
+    getLiteralOrBreakpointValue('zIndex', props, props.theme?.global?.zIndex)
+  );
 };
 
-export const getColor = () => {
-  return (props: ThemedStyledProps<DirectOrStylesProp<Color>, Theme>) =>
-    merge(
-      getLiteralOrBreakpointValue('color', props, props.theme?.global?.color),
-      getLiteralOrBreakpointValue('backgroundColor', props, props.theme?.global?.color),
-      getLiteralOrBreakpointValue('opacity', props)
-    );
+export const getColor = (props: ThemedStyledProps<DirectOrStylesProp<Color>, Theme>) => {
+  return merge(
+    getLiteralOrBreakpointValue('color', props, props.theme?.global?.color),
+    getLiteralOrBreakpointValue('backgroundColor', props, props.theme?.global?.color),
+    getLiteralOrBreakpointValue('opacity', props)
+  );
 };
 
-export const getLayout = () => {
-  return (props: ThemedStyledProps<DirectOrStylesProp<Layout>, Theme>) =>
-    merge(
-      getLiteralOrBreakpointValue('width', props),
-      getLiteralOrBreakpointValue('height', props),
-      getLiteralOrBreakpointValue('minWidth', props),
-      getLiteralOrBreakpointValue('maxWidth', props),
-      getLiteralOrBreakpointValue('minHeight', props),
-      getLiteralOrBreakpointValue('maxHeight', props),
-      getLiteralOrBreakpointValue('display', props),
-      getLiteralOrBreakpointValue('verticalAlign', props),
-      getLiteralOrBreakpointValue('overflow', props),
-      getLiteralOrBreakpointValue('overflowX', props),
-      getLiteralOrBreakpointValue('overflowY', props)
-    );
+export const getLayout = (props: ThemedStyledProps<DirectOrStylesProp<Layout>, Theme>) => {
+  return merge(
+    getLiteralOrBreakpointValue('width', props),
+    getLiteralOrBreakpointValue('height', props),
+    getLiteralOrBreakpointValue('minWidth', props),
+    getLiteralOrBreakpointValue('maxWidth', props),
+    getLiteralOrBreakpointValue('minHeight', props),
+    getLiteralOrBreakpointValue('maxHeight', props),
+    getLiteralOrBreakpointValue('display', props),
+    getLiteralOrBreakpointValue('verticalAlign', props),
+    getLiteralOrBreakpointValue('overflow', props),
+    getLiteralOrBreakpointValue('overflowX', props),
+    getLiteralOrBreakpointValue('overflowY', props)
+  );
 };
 
-export const getFont = () => {
-  return (props: ThemedStyledProps<DirectOrStylesProp<Font>, Theme>) =>
-    getLiteralOrBreakpointString('font', props, props.theme?.global?.font);
+export const getFont = (props: ThemedStyledProps<DirectOrStylesProp<Font>, Theme>) => {
+  return getLiteralOrBreakpointString('font', props, props.theme?.global?.font);
 };
 
-export const getTypo = () => {
-  return (props: ThemedStyledProps<DirectOrStylesProp<Typo>, Theme>) =>
-    merge(
-      getLiteralOrBreakpointValue('fontSize', props, props.theme?.global?.fontSize),
-      getLiteralOrBreakpointValue('lineHeight', props, props.theme?.global?.lineHeight),
-      getLiteralOrBreakpointValue('letterSpacing', props),
-      getLiteralOrBreakpointValue('textAlign', props),
-      getLiteralOrBreakpointValue('fontStyle', props),
-      getLiteralOrBreakpointValue('textTransform', props),
-      getLiteralOrBreakpointValue('textDecoration', props),
-      getLiteralOrBreakpointValue('textOverflow', props)
-    );
+export const getTypo = (props: ThemedStyledProps<DirectOrStylesProp<Typo>, Theme>) => {
+  return merge(
+    getLiteralOrBreakpointValue('fontSize', props, props.theme?.global?.fontSize),
+    getLiteralOrBreakpointValue('lineHeight', props, props.theme?.global?.lineHeight),
+    getLiteralOrBreakpointValue('letterSpacing', props),
+    getLiteralOrBreakpointValue('textAlign', props),
+    getLiteralOrBreakpointValue('fontStyle', props),
+    getLiteralOrBreakpointValue('textTransform', props),
+    getLiteralOrBreakpointValue('textDecoration', props),
+    getLiteralOrBreakpointValue('textOverflow', props)
+  );
 };

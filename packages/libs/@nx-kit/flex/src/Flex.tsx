@@ -33,16 +33,8 @@ const FlexStyled = styled.div<FlexStyledProps>`
   ${({ col }) => col};
   ${({ row }) => row};
   ${({ colOffset }) => colOffset};
-  ${compose(
-    getFlexContainer(),
-    getPosition(),
-    getSpacing(),
-    getColor(),
-    getLayout(),
-    getFlexItem(),
-    getFont(),
-    getTypo()
-  )}
+  ${compose(getFlexContainer, getPosition, getSpacing, getColor, getLayout, getFlexItem, getTypo)}
+  ${getFont};
 `;
 
 export const Flex = ({
