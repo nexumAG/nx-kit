@@ -14,11 +14,11 @@ const GlobalStyle = createGlobalStyle`
 
 export const decorators = [
   (Story: any) => (
-    <OverlayProvider>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <OverlayProvider>
         <Story />
-      </ThemeProvider>
-    </OverlayProvider>
+      </OverlayProvider>
+    </ThemeProvider>
   ),
 ];
