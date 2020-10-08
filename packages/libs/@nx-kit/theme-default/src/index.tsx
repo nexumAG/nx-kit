@@ -353,11 +353,11 @@ export const theme: Theme = {
         margin-inline-start: 0px;
         margin-inline-end: 0px;
         align-self: stretch;
+        background-color: ${({ theme }) => theme.global.color.gray600};
+        display: inline-block;
       `,
       skin: {
         100: css<any>`
-          background-color: #000;
-          display: inline-block;
           width: ${({ orientation }) => (orientation === 'vertical' ? '1px' : '100%')};
           height: ${({ orientation }) => (orientation === 'vertical' ? '20px' : '1px')};
           margin: ${({ orientation }) => (orientation === 'vertical' ? '0 5px' : '5px 0')};
