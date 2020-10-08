@@ -27,7 +27,7 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
 
 export const Button = (buttonProps: ButtonProps) => {
   const props = useSlotProps<ButtonProps>(buttonProps.slot ?? 'button', buttonProps);
-  const { children, isDisabled, autoFocus, elementType = 'button', ...rest } = props;
+  const { children, isDisabled, autoFocus, elementType = 'button', onPress, ...rest } = props;
   const ref = useRef(null);
 
   const { buttonProps: useButtonProps, isPressed } = useButton({ ...props, elementType }, ref);

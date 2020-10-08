@@ -10,7 +10,7 @@ export type TextFieldProps = {
   name?: string;
   value?: string;
   defaultValue?: string;
-  readonly?: boolean;
+  readOnly?: boolean;
   placeholder?: string;
   isTextArea?: boolean;
   autoFocus?: boolean;

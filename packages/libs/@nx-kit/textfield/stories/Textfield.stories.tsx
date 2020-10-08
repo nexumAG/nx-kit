@@ -20,6 +20,8 @@ export const InputDefaultValue = () => <TextField defaultValue="Bugs Bunny" />;
 
 export const InputDisabled = () => <TextField defaultValue="Bugs Bunny" isDisabled />;
 
+export const InputReadonly = () => <TextField defaultValue="Bugs Bunny" readOnly />;
+
 export const InputError = () => (
   <TextField defaultValue="" error="This field is required" isRequired />
 );
