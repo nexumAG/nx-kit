@@ -26,7 +26,7 @@ const LinkStyled = styled.a<LinkStyledProps>`
 
 export const Link = (linkProps: LinkProps) => {
   const props = useSlotProps<LinkProps>(linkProps.slot ?? 'link', linkProps);
-  const { children, ...rest } = props;
+  const { children, onPress, ...rest } = props;
   const ref = useRef(null);
 
   const elementType = typeof children === 'string' ? 'span' : 'a';

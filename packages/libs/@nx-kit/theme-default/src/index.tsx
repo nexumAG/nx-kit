@@ -21,12 +21,12 @@ export const theme: Theme = {
       background: '#fff',
       white500: '#ffffff',
       black500: '#000000',
+      gray50: '#f4f4f4',
       gray100: '#efefef',
       gray200: '#e8e8e8',
       gray300: '#e1e1e1',
       gray400: '#e7e7e7',
       gray500: '#dcdada',
-      gray50: '#f4f4f4',
       gray600: '#6b6b6b',
       gray700: '#444444',
       brandDanger500: '#B90739',
@@ -353,11 +353,11 @@ export const theme: Theme = {
         margin-inline-start: 0px;
         margin-inline-end: 0px;
         align-self: stretch;
+        background-color: ${({ theme }) => theme.global.color.gray600};
+        display: inline-block;
       `,
       skin: {
         100: css<any>`
-          background-color: #000;
-          display: inline-block;
           width: ${({ orientation }) => (orientation === 'vertical' ? '1px' : '100%')};
           height: ${({ orientation }) => (orientation === 'vertical' ? '20px' : '1px')};
           margin: ${({ orientation }) => (orientation === 'vertical' ? '0 5px' : '5px 0')};
@@ -396,6 +396,49 @@ export const theme: Theme = {
           ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
         `,
       },
+    },
+    textfield: {
+      global: css<any>`
+        position: relative;
+        border: 1px solid ${({ theme }) => theme.global.color.gray500};
+        border-radius: 2px;
+        padding: 4px;
+        color: ${({ theme }) => theme.global.color.gray700};
+
+        &:focus {
+          outline: none;
+          border: 1px solid ${({ theme }) => theme.global.color.focus};
+        }
+
+        ${({ isFocused, hasError }) =>
+          isFocused &&
+          !hasError &&
+          css`
+            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.focus};
+          `};
+
+        ${({ isFocused, hasError }) =>
+          isFocused &&
+          hasError &&
+          css`
+            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.brandDanger500};
+          `};
+
+        ${({ isDisabled }) =>
+          isDisabled &&
+          css`
+            background-color: ${({ theme }) => theme.global.color.gray50};
+          `};
+
+        ${({ hasError }) =>
+          hasError &&
+          css`
+            &&& {
+              border: 1px solid ${({ theme }) => theme.global.color.brandDanger500};
+            }
+          `};
+      `,
+      skin: {},
     },
   },
 };
