@@ -37,14 +37,14 @@ export const TextField = (props: TextFieldProps) => {
     <TextFieldStyled
       as={isTextArea ? ('textarea' as As) : ('input' as As)}
       isFocused={isFocusVisible}
-      {...rest}
       isDisabled={isDisabled !== undefined}
       disabled={isDisabled}
       autoFocus={autoFocus}
-      {...focusProps}
       required={isRequired}
       aria-invalid={error ? true : undefined}
       hasError={!!error}
+      {...focusProps}
+      {...rest}
     />
   );
 };

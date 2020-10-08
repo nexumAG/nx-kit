@@ -26,8 +26,11 @@ export const InputError = () => (
   <TextField defaultValue="" error="This field is required" isRequired />
 );
 
-export const InputWithOnChange = () => (
-  <TextField onChange={(event: SyntheticEvent) => console.log(event)} />
+export const InputEvents = () => (
+  <TextField
+    onChange={(event: SyntheticEvent) => console.log('onChange', event)}
+    onBlur={(event: SyntheticEvent) => console.log('onBlur', event)}
+  />
 );
 
 export const TextArea = () => <TextField isTextArea />;
