@@ -1,6 +1,41 @@
 import React from 'react';
-import { TextFieldProps } from './TextField.types';
+import { useFocusRing } from '@react-aria/focus';
+import {
+  styled,
+  getSpacing,
+  getFlexItem,
+  getPosition,
+  getColor,
+  getLayout,
+  getFont,
+  getTypo,
+  compose,
+} from '@nx-kit/styling';
+import { TextFieldProps, TextFieldStyledProps } from './TextField.types';
 
-export const TextField = ({ className }: TextFieldProps) => {
-  return <div className={className}>Let me just change this one line of code...</div>;
+const TextFieldStyled = styled.input<TextFieldStyledProps>`
+  ${({ theme }) => theme?.component?.textfield?.global};
+  ${({ theme, skin }) => skin && theme?.component?.textfield?.skin?.[skin]};
+  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)}
+  ${getFont};
+`;
+
+export const TextField = (props: TextFieldProps) => {
+  const { isDisabled, isTextArea, autoFocus, ...rest } = props;
+  const { isFocusVisible, focusProps } = useFocusRing({
+    autoFocus,
+    isTextInput: true,
+  });
+
+  return (
+    <TextFieldStyled
+      as={isTextArea ? 'textarea' : 'input'}
+      isFocused={isFocusVisible}
+      {...rest}
+      isDisabled={isDisabled}
+      disabled={isDisabled}
+      autoFocus={autoFocus}
+      {...focusProps}
+    />
+  );
 };
