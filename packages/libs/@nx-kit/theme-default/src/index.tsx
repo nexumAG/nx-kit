@@ -397,5 +397,30 @@ export const theme: Theme = {
         `,
       },
     },
+    textfield: {
+      global: css<any>`
+        position: relative;
+        border: 1px solid ${({ theme }) => theme.global.color.gray500};
+        border-radius: 2px;
+
+        &:focus {
+          outline: none;
+          border: 1px solid ${({ theme }) => theme.global.color.focus};
+        }
+
+        ${({ isFocused }) =>
+          isFocused &&
+          css`
+            &&& {
+              box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.focus};
+            }
+          `};
+      `,
+      skin: {
+        input: css<any>`
+          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
+        `,
+      },
+    },
   },
 };

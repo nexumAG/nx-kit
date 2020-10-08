@@ -10,6 +10,7 @@ import {
   getTypo,
   compose,
 } from '@nx-kit/styling';
+import { useSlotProps } from '@nx-kit/slot';
 import { TextProps, TextStyledProps } from './Text.types';
 
 const TextStyled = styled.span<TextStyledProps>`
@@ -19,7 +20,11 @@ const TextStyled = styled.span<TextStyledProps>`
   ${getFont};
 `;
 
-export const Text = ({ children, elementType, ...rest }: TextProps) => {
+export const Text = (props: TextProps) => {
+  const { children, elementType, slot, ...rest } = useSlotProps<TextProps>(
+    props.slot ?? 'text',
+    props
+  );
   return (
     <TextStyled as={elementType} {...rest}>
       {children}

@@ -12,6 +12,7 @@ export type TextProps = {
   className?: string;
   children: ReactNode;
   elementType?: As;
+  slot?: string;
   skin?: TextSkin;
   styles?: Styles;
 };
