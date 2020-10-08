@@ -21,12 +21,12 @@ export const theme: Theme = {
       background: '#fff',
       white500: '#ffffff',
       black500: '#000000',
+      gray50: '#f4f4f4',
       gray100: '#efefef',
       gray200: '#e8e8e8',
       gray300: '#e1e1e1',
       gray400: '#e7e7e7',
       gray500: '#dcdada',
-      gray50: '#f4f4f4',
       gray600: '#6b6b6b',
       gray700: '#444444',
       brandDanger500: '#B90739',
@@ -402,25 +402,43 @@ export const theme: Theme = {
         position: relative;
         border: 1px solid ${({ theme }) => theme.global.color.gray500};
         border-radius: 2px;
+        padding: 4px;
+        color: ${({ theme }) => theme.global.color.gray700};
 
         &:focus {
           outline: none;
           border: 1px solid ${({ theme }) => theme.global.color.focus};
         }
 
-        ${({ isFocused }) =>
+        ${({ isFocused, hasError }) =>
           isFocused &&
+          !hasError &&
+          css`
+            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.focus};
+          `};
+
+        ${({ isFocused, hasError }) =>
+          isFocused &&
+          hasError &&
+          css`
+            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.brandDanger500};
+          `};
+
+        ${({ isDisabled }) =>
+          isDisabled &&
+          css`
+            background-color: ${({ theme }) => theme.global.color.gray50};
+          `};
+
+        ${({ hasError }) =>
+          hasError &&
           css`
             &&& {
-              box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.focus};
+              border: 1px solid ${({ theme }) => theme.global.color.brandDanger500};
             }
           `};
       `,
-      skin: {
-        input: css<any>`
-          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
-        `,
-      },
+      skin: {},
     },
   },
 };

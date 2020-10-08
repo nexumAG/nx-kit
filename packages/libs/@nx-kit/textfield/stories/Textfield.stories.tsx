@@ -1,5 +1,7 @@
 import React, { SyntheticEvent } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Text } from '@nx-kit/text';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Flex } from '@nx-kit/flex';
 import { TextField, TextFieldContainer } from '../src';
 
@@ -8,23 +10,29 @@ export default {
   component: TextField,
 };
 
-export const Input = () => <TextField skin="input" />;
+export const Input = () => <TextField />;
 
-export const InputAutoFocus = () => <TextField skin="input" autoFocus />;
+export const InputAutoFocus = () => <TextField autoFocus />;
 
-export const InputWithPlaceholder = () => <TextField skin="input" placeholder="You name please" />;
+export const InputWithPlaceholder = () => <TextField placeholder="You name please" />;
 
-export const InputDefaultValue = () => <TextField skin="input" defaultValue="Bugs Bunny" />;
+export const InputDefaultValue = () => <TextField defaultValue="Bugs Bunny" />;
 
-export const InputDisabled = () => <TextField skin="input" defaultValue="Bugs Bunny" isDisabled />;
+export const InputDisabled = () => <TextField defaultValue="Bugs Bunny" isDisabled />;
 
-export const InputWithOnChange = () => (
-  <TextField skin="input" onChange={(event: SyntheticEvent) => console.log(event)} />
+export const InputError = () => (
+  <TextField defaultValue="" error="This field is required" isRequired />
 );
 
-export const TextArea = () => <TextField skin="textarea" isTextArea />;
+export const InputWithOnChange = () => (
+  <TextField onChange={(event: SyntheticEvent) => console.log(event)} />
+);
 
-export const TextFieldContainerStory = () => (
+export const TextArea = () => <TextField isTextArea />;
+
+export const TextAreaError = () => <TextField isTextArea error="Error" />;
+
+export const TextFieldContainerExample = () => (
   <Flex gap="15px" flexDirection="column">
     <div>
       <Flex
@@ -36,7 +44,7 @@ export const TextFieldContainerStory = () => (
           <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is a label
           </Text>
-          <TextField skin="input" styles={{ flex: 1 }} />
+          <TextField styles={{ flex: 1 }} />
         </TextFieldContainer>
       </Flex>
     </div>
@@ -50,7 +58,7 @@ export const TextFieldContainerStory = () => (
           <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is another label
           </Text>
-          <TextField skin="input" styles={{ flex: 1 }} />
+          <TextField styles={{ flex: 1 }} error="Something wrong" />
         </TextFieldContainer>
       </Flex>
     </div>
@@ -60,7 +68,7 @@ export const TextFieldContainerStory = () => (
           <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is yet another very very very long label
           </Text>
-          <TextField skin="input" styles={{ flex: 1 }} isTextArea />
+          <TextField styles={{ flex: 1 }} isTextArea />
         </TextFieldContainer>
       </Flex>
     </div>

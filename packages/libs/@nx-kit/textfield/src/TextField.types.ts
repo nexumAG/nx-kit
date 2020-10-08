@@ -16,6 +16,8 @@ export type TextFieldProps = {
   autoFocus?: boolean;
   isDisabled?: boolean;
   onChange?: (event: SyntheticEvent) => void;
+  isRequired?: boolean;
+  error?: string;
   slot?: string;
   skin?: TextFieldSkin;
   styles?: Styles;
@@ -25,5 +27,6 @@ export type TextFieldStyledProps = {
   skin?: TextFieldSkin;
   styles?: Styles;
   isFocused: boolean;
-  isDisabled?: boolean;
+  isDisabled: boolean;
+  hasError: boolean;
 };

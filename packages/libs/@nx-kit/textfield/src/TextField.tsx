@@ -10,6 +10,7 @@ import {
   getFont,
   getTypo,
   compose,
+  As,
 } from '@nx-kit/styling';
 import { useSlotProps } from '@nx-kit/slot';
 import { TextFieldProps, TextFieldStyledProps } from './TextField.types';
@@ -22,10 +23,10 @@ const TextFieldStyled = styled.input<TextFieldStyledProps>`
 `;
 
 export const TextField = (props: TextFieldProps) => {
-  const { isDisabled, isTextArea, autoFocus, ...rest } = useSlotProps<TextFieldProps>(
-    props.slot ?? 'textfield',
-    props
-  );
+  const { slot } = props;
+  const { isDisabled, isTextArea, autoFocus, isRequired, error, ...rest } = useSlotProps<
+    TextFieldProps
+  >(slot ?? 'textfield', props);
 
   const { isFocusVisible, focusProps } = useFocusRing({
     autoFocus,
@@ -34,13 +35,16 @@ export const TextField = (props: TextFieldProps) => {
 
   return (
     <TextFieldStyled
-      as={isTextArea ? 'textarea' : 'input'}
+      as={isTextArea ? ('textarea' as As) : ('input' as As)}
       isFocused={isFocusVisible}
       {...rest}
-      isDisabled={isDisabled}
+      isDisabled={isDisabled !== undefined}
       disabled={isDisabled}
       autoFocus={autoFocus}
       {...focusProps}
+      required={isRequired}
+      aria-invalid={error ? true : undefined}
+      hasError={!!error}
     />
   );
 };
