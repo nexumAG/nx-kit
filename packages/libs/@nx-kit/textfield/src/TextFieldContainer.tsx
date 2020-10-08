@@ -5,7 +5,7 @@ import { TextFieldContainerProps } from './TextFieldContainer.types';
 
 export const TextFieldContainer = ({ children }: TextFieldContainerProps) => {
   const ref = React.useRef(null);
-  let { labelProps, inputProps } = useTextField({ label: ' ' }, ref);
+  const { labelProps, inputProps } = useTextField({ label: ' ' }, ref);
 
   const slots = {
     label: labelProps,
