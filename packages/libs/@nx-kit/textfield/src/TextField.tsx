@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFocusRing } from '@react-aria/focus';
+import { mergeProps } from '@react-aria/utils';
 import {
   styled,
   getSpacing,
@@ -24,9 +25,15 @@ const TextFieldStyled = styled.input<TextFieldStyledProps>`
 
 export const TextField = (props: TextFieldProps) => {
   const { slot } = props;
-  const { isDisabled, isTextArea, autoFocus, isRequired, error, ...rest } = useSlotProps<
-    TextFieldProps
-  >(slot ?? 'textfield', props);
+  const {
+    isDisabled,
+    isTextArea,
+    autoFocus,
+    isRequired,
+    isReadOnly,
+    error,
+    ...rest
+  } = useSlotProps<TextFieldProps>(slot ?? 'textfield', props);
 
   const { isFocusVisible, focusProps } = useFocusRing({
     autoFocus,
@@ -37,14 +44,14 @@ export const TextField = (props: TextFieldProps) => {
     <TextFieldStyled
       as={isTextArea ? ('textarea' as As) : ('input' as As)}
       isFocused={isFocusVisible}
+      autoFocus={autoFocus}
       isDisabled={isDisabled !== undefined}
       disabled={isDisabled}
-      autoFocus={autoFocus}
       required={isRequired}
-      aria-invalid={error ? true : undefined}
+      readOnly={isReadOnly}
       hasError={!!error}
-      {...focusProps}
-      {...rest}
+      aria-invalid={error ? true : undefined}
+      {...mergeProps(focusProps, rest)}
     />
   );
 };

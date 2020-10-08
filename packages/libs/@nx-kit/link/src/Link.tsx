@@ -47,12 +47,9 @@ export const Link = (linkProps: LinkProps) => {
     <LinkStyled
       ref={ref}
       as={elementType}
-      {...mergeProps(useLinkProps, hoverProps)}
-      {...focusProps}
       isFocused={isFocusVisible}
       isHovered={isHovered}
-      {...childProps}
-      {...rest}
+      {...mergeProps(useLinkProps, hoverProps, focusProps, childProps, rest)}
     >
       {linkText}
     </LinkStyled>

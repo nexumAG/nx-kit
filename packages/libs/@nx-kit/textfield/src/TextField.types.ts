@@ -10,18 +10,18 @@ export type TextFieldProps = {
   name?: string;
   value?: string;
   defaultValue?: string;
-  readOnly?: boolean;
   placeholder?: string;
-  isTextArea?: boolean;
   autoFocus?: boolean;
+  isTextArea?: boolean;
   isDisabled?: boolean;
-  onChange?: (event: SyntheticEvent) => void;
-  onBlur?: (event: SyntheticEvent) => void;
+  isReadOnly?: boolean;
   isRequired?: boolean;
   error?: string;
   slot?: string;
   skin?: TextFieldSkin;
   styles?: Styles;
+  onChange?: (event: SyntheticEvent) => void;
+  onBlur?: (event: SyntheticEvent) => void;
 };
 
 export type TextFieldStyledProps = {

@@ -9,6 +9,7 @@ import {
 } from '@react-aria/overlays';
 import { useDialog } from '@react-aria/dialog';
 import { FocusScope, useFocusRing } from '@react-aria/focus';
+import { mergeProps } from '@react-aria/utils';
 import {
   styled,
   getSpacing,
@@ -90,14 +91,10 @@ const OverlayInner = (props: OverlayInnerProps) => {
         <FocusScope contain restoreFocus autoFocus>
           <OverlayStyled
             className={className}
-            {...useOverlayProps}
-            {...dialogProps}
-            {...modalProps}
-            {...focusProps}
             isFocused={isFocusVisible}
             ref={ref}
             state={state as TransitionStates}
-            {...rest}
+            {...mergeProps(useOverlayProps, dialogProps, modalProps, focusProps, rest)}
           >
             <SlotProvider slots={slots}>{children}</SlotProvider>
           </OverlayStyled>
