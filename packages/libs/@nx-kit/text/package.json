@@ -30,6 +30,7 @@
     "@nx-kit/dependencies-dev": "^0.1.2"
   },
   "dependencies": {
+    "@nx-kit/slot": "^0.1.2",
     "@nx-kit/styling": "^0.1.5"
   }
 }

@@ -412,7 +412,7 @@ export const theme: Theme = {
           isFocused &&
           css`
             &&& {
-              border: 2px solid ${({ theme }) => theme.global.color.focus};
+              box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.focus};
             }
           `};
       `,

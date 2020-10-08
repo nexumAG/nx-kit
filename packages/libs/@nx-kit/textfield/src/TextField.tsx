@@ -11,6 +11,7 @@ import {
   getTypo,
   compose,
 } from '@nx-kit/styling';
+import { useSlotProps } from '@nx-kit/slot';
 import { TextFieldProps, TextFieldStyledProps } from './TextField.types';
 
 const TextFieldStyled = styled.input<TextFieldStyledProps>`
@@ -21,7 +22,11 @@ const TextFieldStyled = styled.input<TextFieldStyledProps>`
 `;
 
 export const TextField = (props: TextFieldProps) => {
-  const { isDisabled, isTextArea, autoFocus, ...rest } = props;
+  const { isDisabled, isTextArea, autoFocus, ...rest } = useSlotProps<TextFieldProps>(
+    props.slot ?? 'textfield',
+    props
+  );
+
   const { isFocusVisible, focusProps } = useFocusRing({
     autoFocus,
     isTextInput: true,

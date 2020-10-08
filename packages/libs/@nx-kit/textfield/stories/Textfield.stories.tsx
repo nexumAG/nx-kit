@@ -1,5 +1,7 @@
 import React, { SyntheticEvent } from 'react';
-import { TextField } from '../src';
+import { Text } from '@nx-kit/text';
+import { Flex } from '@nx-kit/flex';
+import { TextField, TextFieldContainer } from '../src';
 
 export default {
   title: '@nx-kit/textfield',
@@ -21,3 +23,46 @@ export const InputWithOnChange = () => (
 );
 
 export const TextArea = () => <TextField skin="textarea" isTextArea />;
+
+export const TextFieldContainerStory = () => (
+  <Flex gap="15px" flexDirection="column">
+    <div>
+      <Flex
+        gap={{ xs: '0px', sm: '15px' }}
+        flexDirection={{ xs: 'column', sm: 'row' }}
+        alignItems={{ xs: 'normal', sm: 'baseline' }}
+      >
+        <TextFieldContainer>
+          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
+            This is a label
+          </Text>
+          <TextField skin="input" styles={{ flex: 1 }} />
+        </TextFieldContainer>
+      </Flex>
+    </div>
+    <div>
+      <Flex
+        gap={{ xs: '0px', sm: '15px' }}
+        flexDirection={{ xs: 'column', sm: 'row' }}
+        alignItems={{ xs: 'normal', sm: 'baseline' }}
+      >
+        <TextFieldContainer>
+          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
+            This is another label
+          </Text>
+          <TextField skin="input" styles={{ flex: 1 }} />
+        </TextFieldContainer>
+      </Flex>
+    </div>
+    <div>
+      <Flex gap={{ xs: '0px', sm: '15px' }} flexDirection={{ xs: 'column', sm: 'row' }}>
+        <TextFieldContainer>
+          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
+            This is yet another very very very long label
+          </Text>
+          <TextField skin="input" styles={{ flex: 1 }} isTextArea />
+        </TextFieldContainer>
+      </Flex>
+    </div>
+  </Flex>
+);
