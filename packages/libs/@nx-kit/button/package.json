@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/button",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@nx-kit/slot": "^0.1.2",
-    "@nx-kit/styling": "^0.1.5",
+    "@nx-kit/styling": "^0.1.6",
     "@react-aria/button": "^3.2.2",
     "@react-aria/focus": "^3.2.2",
     "@react-aria/interactions": "^3.2.1",
