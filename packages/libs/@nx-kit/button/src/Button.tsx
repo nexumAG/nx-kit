@@ -38,13 +38,11 @@ export const Button = (buttonProps: ButtonProps) => {
     <ButtonStyled
       ref={ref}
       as={elementType as As}
-      {...mergeProps(useButtonProps, hoverProps)}
-      {...focusProps}
       isActive={isPressed}
       isFocused={isFocusVisible}
       isHovered={isHovered}
       isDisabled={isDisabled !== undefined}
-      {...rest}
+      {...mergeProps(useButtonProps, hoverProps, focusProps, rest)}
     >
       {children}
     </ButtonStyled>

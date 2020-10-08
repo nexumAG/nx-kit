@@ -20,7 +20,7 @@ export const InputDefaultValue = () => <TextField defaultValue="Bugs Bunny" />;
 
 export const InputDisabled = () => <TextField defaultValue="Bugs Bunny" isDisabled />;
 
-export const InputReadonly = () => <TextField defaultValue="Bugs Bunny" readOnly />;
+export const InputReadonly = () => <TextField defaultValue="Bugs Bunny" isReadOnly />;
 
 export const InputError = () => (
   <TextField defaultValue="" error="This field is required" isRequired />
@@ -30,6 +30,7 @@ export const InputEvents = () => (
   <TextField
     onChange={(event: SyntheticEvent) => console.log('onChange', event)}
     onBlur={(event: SyntheticEvent) => console.log('onBlur', event)}
+    autoFocus
   />
 );
 
