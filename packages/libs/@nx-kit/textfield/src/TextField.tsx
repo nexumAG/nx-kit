@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import {
@@ -14,6 +14,8 @@ import {
   As,
 } from '@nx-kit/styling';
 import { useSlotProps } from '@nx-kit/slot';
+// import { mergeRefs } from '@nx-kit/utils';
+// import { useForm } from '@nx-kit/form';
 import { TextFieldProps, TextFieldStyledProps } from './TextField.types';
 
 const TextFieldStyled = styled.input<TextFieldStyledProps>`
@@ -23,7 +25,10 @@ const TextFieldStyled = styled.input<TextFieldStyledProps>`
   ${getFont};
 `;
 
-export const TextField = (props: TextFieldProps) => {
+const TextField = (
+  props: TextFieldProps,
+  ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement | null>
+) => {
   const { slot } = props;
   const {
     isDisabled,
@@ -32,6 +37,8 @@ export const TextField = (props: TextFieldProps) => {
     isRequired,
     isReadOnly,
     error,
+    name,
+    validation,
     ...rest
   } = useSlotProps<TextFieldProps>(slot ?? 'textfield', props);
 
@@ -40,8 +47,17 @@ export const TextField = (props: TextFieldProps) => {
     isTextInput: true,
   });
 
+  // // register field and merge refs
+  // const { register } = useForm();
+  // const mergedRefs = useCallback(
+  //   mergeRefs<HTMLInputElement | HTMLTextAreaElement | null>(ref, register(validation)),
+  //   []
+  // );
+
   return (
     <TextFieldStyled
+      ref={ref}
+      name={name}
       as={isTextArea ? ('textarea' as As) : ('input' as As)}
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
@@ -55,3 +71,6 @@ export const TextField = (props: TextFieldProps) => {
     />
   );
 };
+
+const TextFieldWithRef = React.forwardRef(TextField);
+export { TextFieldWithRef as TextField };

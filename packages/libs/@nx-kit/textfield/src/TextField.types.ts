@@ -22,6 +22,7 @@ export type TextFieldProps = {
   styles?: Styles;
   onChange?: (event: SyntheticEvent) => void;
   onBlur?: (event: SyntheticEvent) => void;
+  validation?: any;
 };
 
 export type TextFieldStyledProps = {
