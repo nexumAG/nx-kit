@@ -19,7 +19,7 @@ export const Skin500 = () => <Heading skin="500">Heading Test</Heading>;
 export const Skin400 = () => <Heading skin="400">Heading Test</Heading>;
 
 export const Skin700FontOverride = () => (
-  <Heading skin="700" styles={{ font: 'georgiaNormal' }}>
+  <Heading skin="700" styles={{ marginBottom: { xs: '20', md: '40' } }}>
     Heading Test
   </Heading>
 );

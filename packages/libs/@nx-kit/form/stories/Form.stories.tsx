@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { TextField, TextFieldContainer } from '@nx-kit/textfield';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Text } from '@nx-kit/text';
 import { Form } from '../src';
 
 export default {
@@ -16,41 +12,53 @@ export const Default = () => {
   return (
     <>
       <button type="button" onClick={() => setInside(false)}>
-        Remove
+        Remove Field
       </button>
       <Form
-        defaultValues={{ test: 'fsdf' }}
+        defaultValues={{ test: 'default value' }}
+        mode="all"
         onSubmit={(values: any) => console.log('submit', values)}
-        onWatch={(value: any) => console.log('watch', value)}
       >
-        <TextFieldContainer>
+        <Form.Field type="text">
           <div>
-            <Text slot="label" elementType="label">
-              Test
-            </Text>
+            <Form.Label>Test</Form.Label>
           </div>
           <div>
-            <Form.Input type="text" name="test" validation={{ required: true, maxLength: 3 }} />
+            <Form.Input
+              type="password"
+              name="test"
+              validation={{
+                required: { value: true, message: 'The field is required' },
+                maxLength: { value: 3, message: 'The text cannot be longer than 3 chars' },
+              }}
+            />
           </div>
-          <Form.Error name="test" />
-        </TextFieldContainer>
-        <TextFieldContainer>
           <div>
-            <Text slot="label" elementType="label">
-              Test 2
-            </Text>
+            <Form.Error name="test" styles={{ color: 'brandDanger500' }} />
+          </div>
+        </Form.Field>
+        <Form.Field type="text">
+          <div>
+            <Form.Label>Test 2</Form.Label>
           </div>
           <div>
             {inside && (
               <Form.Input
                 type="text"
                 name="test2"
-                validation={{ required: true, minLength: 2, maxLength: 4 }}
+                validation={{
+                  required: { value: true, message: 'The field is required' },
+                  minLength: { value: 2, message: 'The text must be longer than 2 chars' },
+                  maxLength: { value: 4, message: 'The text cannot be longer than 4 chars' },
+                }}
               />
             )}
           </div>
-          <Form.Error name="test2" />
-        </TextFieldContainer>
+          <div>
+            <Form.Error name="test2" styles={{ color: 'brandDanger500' }} />
+          </div>
+        </Form.Field>
+        <button type="submit">Submit</button>
       </Form>
     </>
   );

@@ -1,11 +1,22 @@
 import React from 'react';
+import { Text, TextProps } from '@nx-kit/text';
+// eslint-disable-next-line import/no-cycle
 import { useForm } from './Form';
 
 export type ErrorProps = {
   name: string;
+  className?: string;
+  styles?: TextProps['styles'];
+  elementType?: TextProps['elementType'];
 };
 
-export const Error = ({ name }: ErrorProps) => {
+export const Error = ({ className, name, styles, elementType }: ErrorProps) => {
   const { errors } = useForm();
-  return errors?.[name] ? <span>Error</span> : null;
+  const error = errors?.[name];
+  // console.log('error', error);
+  return error ? (
+    <Text className={className} elementType={elementType} styles={styles}>
+      {error.message}
+    </Text>
+  ) : null;
 };

@@ -1,26 +1,26 @@
-export enum InputType {
-  text = 'text',
-  textarea = 'textarea',
-  checkbox = 'checkbox',
-  checkboxes = 'checkboxes',
-  radio = 'radio',
-  radios = 'radios',
-  select = 'select',
-  switch = 'switch',
-}
+export type InputType =
+  | 'text'
+  | 'password'
+  | 'textarea'
+  | 'checkbox'
+  | 'checkboxes'
+  | 'radio'
+  | 'radios'
+  | 'select'
+  | 'switch';
+
 export type InputProps = {
   className?: string;
   skin?: string;
 
-  name?: string;
-  type: string;
+  name: string;
+  type: InputType;
   defaultValue?: string;
   placeholder?: string;
   autoFocus?: boolean;
 
   isDisabled?: boolean;
   isReadOnly?: boolean;
-  isRequired?: boolean;
 
   validation?: any;
   error?: string;

@@ -1,21 +1,19 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import {
-  styled,
-  getSpacing,
-  getFlexItem,
-  getPosition,
-  getColor,
-  getLayout,
-  getFont,
-  getTypo,
-  compose,
   As,
+  compose,
+  getColor,
+  getFlexItem,
+  getFont,
+  getLayout,
+  getPosition,
+  getSpacing,
+  getTypo,
+  styled,
 } from '@nx-kit/styling';
 import { useSlotProps } from '@nx-kit/slot';
-// import { mergeRefs } from '@nx-kit/utils';
-// import { useForm } from '@nx-kit/form';
 import { TextFieldProps, TextFieldStyledProps } from './TextField.types';
 
 const TextFieldStyled = styled.input<TextFieldStyledProps>`
@@ -32,7 +30,7 @@ const TextField = (
   const { slot } = props;
   const {
     isDisabled,
-    isTextArea,
+    type,
     autoFocus,
     isRequired,
     isReadOnly,
@@ -47,18 +45,26 @@ const TextField = (
     isTextInput: true,
   });
 
-  // // register field and merge refs
-  // const { register } = useForm();
-  // const mergedRefs = useCallback(
-  //   mergeRefs<HTMLInputElement | HTMLTextAreaElement | null>(ref, register(validation)),
-  //   []
-  // );
+  const elementType = {
+    text: {
+      as: 'input' as As,
+      type: 'text',
+    },
+    password: {
+      as: 'input' as As,
+      type: 'password',
+    },
+    textarea: {
+      as: 'textarea' as As,
+    },
+  };
+
+  const elementTypeProps = elementType[type];
 
   return (
     <TextFieldStyled
       ref={ref}
       name={name}
-      as={isTextArea ? ('textarea' as As) : ('input' as As)}
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
       isDisabled={isDisabled !== undefined}
@@ -67,7 +73,7 @@ const TextField = (
       readOnly={isReadOnly}
       hasError={!!error}
       aria-invalid={error ? true : undefined}
-      {...mergeProps(focusProps, rest)}
+      {...mergeProps(focusProps, rest, elementTypeProps)}
     />
   );
 };
