@@ -10,7 +10,13 @@ import { Label } from './Label';
 import { Field } from './Field';
 import { FormProps } from './Form.types';
 
-export const FormContext = React.createContext<{ register: any; errors?: any }>({
+export type FormContextValue = {
+  register: any;
+  errors?: any;
+  defaultValues?: any;
+};
+
+export const FormContext = React.createContext<FormContextValue>({
   register: () => {},
 });
 
@@ -31,7 +37,9 @@ export const Form = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormContext.Provider value={{ register, errors }}>{children}</FormContext.Provider>
+      <FormContext.Provider value={{ register, errors, defaultValues }}>
+        {children}
+      </FormContext.Provider>
     </form>
   );
 };

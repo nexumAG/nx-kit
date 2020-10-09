@@ -440,5 +440,49 @@ export const theme: Theme = {
       `,
       skin: {},
     },
+    checkbox: {
+      global: css<any>`
+        position: relative;
+        border: 1px solid ${({ theme }) => theme.global.color.gray500};
+        border-radius: 2px;
+        padding: 4px;
+        color: ${({ theme }) => theme.global.color.gray700};
+
+        &:focus {
+          outline: none;
+        }
+
+        ${({ isFocused, hasError }) =>
+          isFocused &&
+          !hasError &&
+          css`
+            box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.focus};
+          `};
+
+        ${({ isFocused, hasError }) =>
+          isFocused &&
+          hasError &&
+          css`
+            &&& {
+              box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.brandDanger500};
+            }
+          `};
+
+        ${({ isDisabled }) =>
+          isDisabled &&
+          css`
+            background-color: ${({ theme }) => theme.global.color.gray50};
+          `};
+
+        ${({ hasError }) =>
+          hasError &&
+          css`
+            && {
+              box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.brandDanger500};
+            }
+          `};
+      `,
+      skin: {},
+    },
   },
 };

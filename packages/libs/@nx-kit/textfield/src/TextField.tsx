@@ -35,7 +35,8 @@ const TextField = (
     isRequired,
     isReadOnly,
     error,
-    name,
+    label,
+    // don't pass through
     validation,
     ...rest
   } = useSlotProps<TextFieldProps>(slot ?? 'textfield', props);
@@ -64,7 +65,6 @@ const TextField = (
   return (
     <TextFieldStyled
       ref={ref}
-      name={name}
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
       isDisabled={isDisabled !== undefined}
@@ -73,7 +73,8 @@ const TextField = (
       readOnly={isReadOnly}
       hasError={!!error}
       aria-invalid={error ? true : undefined}
-      {...mergeProps(focusProps, rest, elementTypeProps)}
+      aria-label={label}
+      {...mergeProps(focusProps, elementTypeProps, rest)}
     />
   );
 };

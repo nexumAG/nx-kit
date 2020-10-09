@@ -15,7 +15,7 @@ export const Default = () => {
         Remove Field
       </button>
       <Form
-        defaultValues={{ test: 'default value' }}
+        defaultValues={{ test: 'default value', checked: true }}
         mode="all"
         onSubmit={(values: any) => console.log('submit', values)}
       >
@@ -56,6 +56,22 @@ export const Default = () => {
           </div>
           <div>
             <Form.Error name="test2" styles={{ color: 'brandDanger500' }} />
+          </div>
+        </Form.Field>
+        <Form.Field type="checkbox">
+          <div>
+            <Form.Label>Checked?</Form.Label>
+          </div>
+          <div>
+            <Form.Input
+              type="checkbox"
+              name="checked"
+              label="This is a checkbox"
+              validation={{ required: { value: true, message: 'The field is required' } }}
+            />
+          </div>
+          <div>
+            <Form.Error name="checked" styles={{ color: 'brandDanger500' }} />
           </div>
         </Form.Field>
         <button type="submit">Submit</button>
