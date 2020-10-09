@@ -27,5 +27,8 @@
   },
   "devDependencies": {
     "@nx-kit/dependencies-dev": "^0.1.2"
+  },
+  "dependencies": {
+    "@react-aria/utils": "^3.3.0"
   }
 }

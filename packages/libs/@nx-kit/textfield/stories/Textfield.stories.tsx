@@ -20,19 +20,25 @@ export const InputDefaultValue = () => <TextField defaultValue="Bugs Bunny" />;
 
 export const InputDisabled = () => <TextField defaultValue="Bugs Bunny" isDisabled />;
 
-export const InputReadonly = () => <TextField defaultValue="Bugs Bunny" readOnly />;
+export const InputReadonly = () => <TextField defaultValue="Bugs Bunny" isReadOnly />;
 
 export const InputError = () => (
   <TextField defaultValue="" error="This field is required" isRequired />
 );
 
-export const InputWithOnChange = () => (
-  <TextField onChange={(event: SyntheticEvent) => console.log(event)} />
+export const InputEvents = () => (
+  <TextField
+    onChange={(event: SyntheticEvent) => console.log('onChange', event)}
+    onBlur={(event: SyntheticEvent) => console.log('onBlur', event)}
+    autoFocus
+  />
 );
 
-export const TextArea = () => <TextField isTextArea />;
+export const TextArea = () => <TextField type="textarea" />;
 
-export const TextAreaError = () => <TextField isTextArea error="Error" />;
+export const TextAreaError = () => <TextField type="textarea" error="Error" />;
+
+export const Password = () => <TextField type="password" />;
 
 export const TextFieldContainerExample = () => (
   <Flex gap="15px" flexDirection="column">
@@ -70,7 +76,7 @@ export const TextFieldContainerExample = () => (
           <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is yet another very very very long label
           </Text>
-          <TextField styles={{ flex: 1 }} isTextArea />
+          <TextField styles={{ flex: 1 }} type="textarea" />
         </TextFieldContainer>
       </Flex>
     </div>

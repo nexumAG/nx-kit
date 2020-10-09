@@ -4,23 +4,27 @@ import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@
 export type TextFieldSkin = keyof Theme['component']['textfield']['skin'];
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
+export type TextFieldType = 'text' | 'textarea' | 'password';
+
 export type TextFieldProps = {
   id?: string;
   className?: string;
   name?: string;
+  type?: TextFieldType;
   value?: string;
   defaultValue?: string;
-  readOnly?: boolean;
   placeholder?: string;
-  isTextArea?: boolean;
   autoFocus?: boolean;
   isDisabled?: boolean;
-  onChange?: (event: SyntheticEvent) => void;
+  isReadOnly?: boolean;
   isRequired?: boolean;
   error?: string;
   slot?: string;
   skin?: TextFieldSkin;
   styles?: Styles;
+  onChange?: (event: SyntheticEvent) => void;
+  onBlur?: (event: SyntheticEvent) => void;
+  validation?: any;
 };
 
 export type TextFieldStyledProps = {

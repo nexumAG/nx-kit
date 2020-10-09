@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import { mergeProps } from '@react-aria/utils';
 
 const SlotContext = React.createContext<{ [key: string]: any }>({});
 
 export function useSlotProps<T>(slot: string, props: any = {}): T {
   const { [slot]: slotProps = {} } = useContext(SlotContext);
-  return { ...slotProps, ...props };
+  return mergeProps(slotProps, props);
 }
 
 type SlotProviderProps = {
