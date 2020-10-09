@@ -2,22 +2,21 @@ import { SyntheticEvent } from 'react';
 import { InputBaseProps } from '@nx-kit/types';
 import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
 
-export type TextFieldSkin = keyof Theme['component']['textfield']['skin'];
+export type CheckboxSkin = keyof Theme['component']['checkbox']['skin'];
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
-export type TextFieldType = 'text' | 'textarea' | 'password';
-
-export type TextFieldProps = InputBaseProps & {
+export type CheckboxProps = InputBaseProps & {
   id?: string;
-  type?: TextFieldType;
   value?: string;
+  children?: React.ReactNode;
   isRequired?: boolean;
+  isIndeterminate?: boolean;
   onChange?: (event: SyntheticEvent) => void;
   onBlur?: (event: SyntheticEvent) => void;
 };
 
-export type TextFieldStyledProps = {
-  skin?: TextFieldSkin;
+export type CheckboxStyledProps = {
+  skin?: CheckboxSkin;
   styles?: Styles;
   isFocused: boolean;
   isDisabled: boolean;

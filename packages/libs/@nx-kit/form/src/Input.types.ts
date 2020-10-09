@@ -1,3 +1,5 @@
+import { InputBaseProps } from '@nx-kit/types';
+
 export type InputType =
   | 'text'
   | 'password'
@@ -10,18 +12,5 @@ export type InputType =
   | 'switch';
 
 export type InputProps = {
-  className?: string;
-  skin?: string;
-
-  name: string;
   type: InputType;
-  defaultValue?: string;
-  placeholder?: string;
-  autoFocus?: boolean;
-
-  isDisabled?: boolean;
-  isReadOnly?: boolean;
-
-  validation?: any;
-  error?: string;
-};
+} & InputBaseProps;
