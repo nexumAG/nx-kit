@@ -25,7 +25,7 @@ export const Default = () => {
           </div>
           <div>
             <Form.Input
-              type="password"
+              type="text"
               name="test"
               validation={{
                 required: { value: true, message: 'The field is required' },

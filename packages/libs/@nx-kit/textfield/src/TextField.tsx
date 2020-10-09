@@ -30,7 +30,7 @@ const TextField = (
   const { slot } = props;
   const {
     isDisabled,
-    type,
+    type = 'text',
     autoFocus,
     isRequired,
     isReadOnly,

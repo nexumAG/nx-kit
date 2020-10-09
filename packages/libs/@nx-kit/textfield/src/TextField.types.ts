@@ -10,7 +10,7 @@ export type TextFieldProps = {
   id?: string;
   className?: string;
   name?: string;
-  type: TextFieldType;
+  type?: TextFieldType;
   value?: string;
   defaultValue?: string;
   placeholder?: string;
