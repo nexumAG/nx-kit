@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["."],
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
@@ -8,10 +8,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "types": []
-  },
-  "exclude": [
-    "node_modules",
-    "../../../../node_modules"
-  ]
+    "types": ["react", "jest", "node"],
+    "declaration": true,
+    "declarationDir": "dist"
+  }
 }

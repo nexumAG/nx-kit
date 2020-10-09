@@ -1,6 +1,5 @@
 {
   "name": "@nx/kit",
-  "private": true,
   "repository": "github:nexumAG/nx-kit",
   "version": "0.1.0",
   "license": "MIT",
@@ -11,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc index.ts --outDir dist --declaration false --jsx react"
+    "build": "tsc --project . --outDir dist"
   },
   "publishConfig": {
     "access": "public"
