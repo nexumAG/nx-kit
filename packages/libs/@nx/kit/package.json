@@ -1,0 +1,43 @@
+{
+  "name": "@nx/kit",
+  "private": true,
+  "repository": "github:nexumAG/nx-kit",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc index.ts --outDir dist --declaration false --jsx react"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
+  },
+  "devDependencies": {
+    "@nx-kit/dependencies-dev": "^0.1.3"
+  },
+  "dependencies": {
+    "@nx-kit/button": "^0.1.7",
+    "@nx-kit/divider": "^0.1.4",
+    "@nx-kit/flex": "^0.1.7",
+    "@nx-kit/form": "^0.1.1",
+    "@nx-kit/heading": "^0.1.7",
+    "@nx-kit/link": "^0.1.7",
+    "@nx-kit/overlay": "^0.1.4",
+    "@nx-kit/slot": "^0.1.3",
+    "@nx-kit/ssr": "^0.1.2",
+    "@nx-kit/styling": "^0.1.7",
+    "@nx-kit/text": "^0.1.5",
+    "@nx-kit/textfield": "^0.1.2",
+    "@nx-kit/theme-default": "^0.1.7",
+    "@nx-kit/utils": "^0.1.1",
+    "@nx-kit/view": "^0.1.7"
+  }
+}
