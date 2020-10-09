@@ -2,16 +2,16 @@ import React from 'react';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import {
-  styled,
-  getSpacing,
-  getFlexItem,
-  getPosition,
-  getColor,
-  getLayout,
-  getFont,
-  getTypo,
-  compose,
   As,
+  compose,
+  getColor,
+  getFlexItem,
+  getFont,
+  getLayout,
+  getPosition,
+  getSpacing,
+  getTypo,
+  styled,
 } from '@nx-kit/styling';
 import { useSlotProps } from '@nx-kit/slot';
 import { TextFieldProps, TextFieldStyledProps } from './TextField.types';
@@ -23,15 +23,20 @@ const TextFieldStyled = styled.input<TextFieldStyledProps>`
   ${getFont};
 `;
 
-export const TextField = (props: TextFieldProps) => {
+const TextField = (
+  props: TextFieldProps,
+  ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement | null>
+) => {
   const { slot } = props;
   const {
     isDisabled,
-    isTextArea,
+    type,
     autoFocus,
     isRequired,
     isReadOnly,
     error,
+    name,
+    validation,
     ...rest
   } = useSlotProps<TextFieldProps>(slot ?? 'textfield', props);
 
@@ -40,9 +45,26 @@ export const TextField = (props: TextFieldProps) => {
     isTextInput: true,
   });
 
+  const elementType = {
+    text: {
+      as: 'input' as As,
+      type: 'text',
+    },
+    password: {
+      as: 'input' as As,
+      type: 'password',
+    },
+    textarea: {
+      as: 'textarea' as As,
+    },
+  };
+
+  const elementTypeProps = elementType[type];
+
   return (
     <TextFieldStyled
-      as={isTextArea ? ('textarea' as As) : ('input' as As)}
+      ref={ref}
+      name={name}
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
       isDisabled={isDisabled !== undefined}
@@ -51,7 +73,10 @@ export const TextField = (props: TextFieldProps) => {
       readOnly={isReadOnly}
       hasError={!!error}
       aria-invalid={error ? true : undefined}
-      {...mergeProps(focusProps, rest)}
+      {...mergeProps(focusProps, rest, elementTypeProps)}
     />
   );
 };
+
+const TextFieldWithRef = React.forwardRef(TextField);
+export { TextFieldWithRef as TextField };
