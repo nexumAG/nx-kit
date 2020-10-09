@@ -1,10 +1,11 @@
 import React from 'react';
+import { useForm } from './Form';
 
 export type ErrorProps = {
   name: string;
-  errors: any;
 };
 
-export const Error = ({ name, errors }: ErrorProps) => {
+export const Error = ({ name }: ErrorProps) => {
+  const { errors } = useForm();
   return errors?.[name] ? <span>Error</span> : null;
 };

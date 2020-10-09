@@ -30,14 +30,9 @@ export const Default = () => {
             </Text>
           </div>
           <div>
-            <Form.Input
-              type="text"
-              name="test"
-              validation={{ required: true, maxLength: 3 }}
-              // error={errors.test && errors.test}
-            />
+            <Form.Input type="text" name="test" validation={{ required: true, maxLength: 3 }} />
           </div>
-          <Form.Error name="test" errors={{}} />
+          <Form.Error name="test" />
         </TextFieldContainer>
         <TextFieldContainer>
           <div>
@@ -51,11 +46,10 @@ export const Default = () => {
                 type="text"
                 name="test2"
                 validation={{ required: true, minLength: 2, maxLength: 4 }}
-                // error={errors.test2 && errors.test2}
               />
             )}
           </div>
-          <Form.Error name="test2" errors={{}} />
+          <Form.Error name="test2" />
         </TextFieldContainer>
       </Form>
     </>
