@@ -33,6 +33,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     autoFocus,
     isRequired,
     isReadOnly,
+    isIndeterminate,
     error,
     label,
     defaultValue,
@@ -46,9 +47,13 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     isTextInput: false,
   });
 
-  let state = useToggleState({ ...(props as any), defaultSelected: defaultValue });
+  const state = useToggleState({ ...(props as any), defaultSelected: defaultValue });
   const localRef = React.useRef<HTMLInputElement | null>(null);
-  const { inputProps } = useCheckbox({ ...(props as any), 'aria-label': label }, state, localRef);
+  const { inputProps } = useCheckbox(
+    { ...(props as any), isIndeterminate, 'aria-label': label },
+    state,
+    localRef
+  );
   const mergedRefs = useCallback(mergeRefs<HTMLInputElement | null>(ref, localRef), []);
 
   const elementTypeProps = {
@@ -62,9 +67,6 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
       isDisabled={isDisabled !== undefined}
-      // disabled={isDisabled}
-      // required={isRequired}
-      // readOnly={isReadOnly}
       hasError={!!error}
       {...mergeProps(inputProps, focusProps, elementTypeProps, rest)}
       aria-invalid={error ? true : undefined}

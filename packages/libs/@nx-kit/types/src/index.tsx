@@ -1,18 +1,37 @@
-export type InputBaseProps = {
-  className?: string;
-  skin?: string;
-  slot?: string;
-  styles?: any;
+import { SyntheticEvent } from 'react';
 
+export type FieldBaseProps<T, Styles> = {
+  id?: string;
   name?: string;
-  label?: string;
-  defaultValue?: string;
-  placeholder?: string;
-  autoFocus?: boolean;
 
+  label?: string;
+  placeholder?: string;
+  defaultValue?: T;
+  value?: T;
+  validation?: any;
+
+  slot?: string;
+  skin?: string;
+  styles?: Styles;
+  className?: string;
+
+  autoFocus?: boolean;
+  isRequired?: boolean;
   isDisabled?: boolean;
   isReadOnly?: boolean;
-
-  validation?: any;
   error?: any;
+
+  onChange?: (event: SyntheticEvent) => void;
+  onBlur?: (event: SyntheticEvent) => void;
 };
+
+export interface InputInterface<T = any> {
+  name?: string;
+  ref?: any;
+  value?: T;
+  defaultValue?: T;
+  error?: any;
+
+  onChange?: (event: SyntheticEvent) => void;
+  onBlur?: (event: SyntheticEvent) => void;
+}

@@ -30,7 +30,6 @@ export const InputEvents = () => (
   <TextField
     onChange={(event: SyntheticEvent) => console.log('onChange', event)}
     onBlur={(event: SyntheticEvent) => console.log('onBlur', event)}
-    autoFocus
   />
 );
 

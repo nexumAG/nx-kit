@@ -1,16 +1,8 @@
-import { InputBaseProps } from '@nx-kit/types';
-
-export type InputType =
-  | 'text'
-  | 'password'
-  | 'textarea'
-  | 'checkbox'
-  | 'checkboxes'
-  | 'radio'
-  | 'radios'
-  | 'select'
-  | 'switch';
+import React from 'react';
+import { InputInterface } from '@nx-kit/types';
 
 export type InputProps = {
-  type: InputType;
-} & InputBaseProps;
+  name: string;
+  field: React.ReactElement<InputInterface>;
+  validation?: any;
+};

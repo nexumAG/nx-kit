@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { TextField } from '@nx-kit/textfield';
+import { Checkbox } from '@nx-kit/checkbox';
 import { Form } from '../src';
 
 export default {
@@ -25,8 +27,8 @@ export const Default = () => {
           </div>
           <div>
             <Form.Input
-              type="text"
               name="test"
+              field={<TextField />}
               validation={{
                 required: { value: true, message: 'The field is required' },
                 maxLength: { value: 3, message: 'The text cannot be longer than 3 chars' },
@@ -44,8 +46,8 @@ export const Default = () => {
           <div>
             {inside && (
               <Form.Input
-                type="text"
                 name="test2"
+                field={<TextField />}
                 validation={{
                   required: { value: true, message: 'The field is required' },
                   minLength: { value: 2, message: 'The text must be longer than 2 chars' },
@@ -64,14 +66,24 @@ export const Default = () => {
           </div>
           <div>
             <Form.Input
-              type="checkbox"
               name="checked"
-              label="This is a checkbox"
+              field={<Checkbox />}
               validation={{ required: { value: true, message: 'The field is required' } }}
             />
           </div>
           <div>
             <Form.Error name="checked" styles={{ color: 'brandDanger500' }} />
+          </div>
+        </Form.Field>
+        <Form.Field type="checkbox">
+          <div>
+            <Form.Label>Also checked?</Form.Label>
+          </div>
+          <div>
+            <Form.Input name="checked2" field={<Checkbox />} validation={{}} />
+          </div>
+          <div>
+            <Form.Error name="checked2" styles={{ color: 'brandDanger500' }} />
           </div>
         </Form.Field>
         <button type="submit">Submit</button>
