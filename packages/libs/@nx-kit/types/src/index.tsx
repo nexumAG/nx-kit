@@ -1,13 +1,9 @@
 import { SyntheticEvent } from 'react';
 
-export type FieldBaseProps<T, Styles> = {
+export type FieldBaseProps<T, Styles> = InputInterface<T> & {
   id?: string;
-  name?: string;
 
-  label?: string;
   placeholder?: string;
-  defaultValue?: T;
-  value?: T;
   validation?: any;
 
   slot?: string;
@@ -19,18 +15,17 @@ export type FieldBaseProps<T, Styles> = {
   isRequired?: boolean;
   isDisabled?: boolean;
   isReadOnly?: boolean;
-  error?: any;
-
-  onChange?: (event: SyntheticEvent) => void;
-  onBlur?: (event: SyntheticEvent) => void;
 };
 
 export interface InputInterface<T = any> {
-  name?: string;
   ref?: any;
-  value?: T;
+  name?: string;
   defaultValue?: T;
+  value?: T;
   error?: any;
+
+  isAriaRequired?: boolean;
+  ariaLabel?: string;
 
   onChange?: (event: SyntheticEvent) => void;
   onBlur?: (event: SyntheticEvent) => void;

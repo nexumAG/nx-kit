@@ -33,9 +33,10 @@ const TextField = (
     type = 'text',
     autoFocus,
     isRequired,
+    isAriaRequired,
     isReadOnly,
     error,
-    label,
+    ariaLabel,
     // don't pass through
     validation,
     ...rest
@@ -73,8 +74,9 @@ const TextField = (
       readOnly={isReadOnly}
       hasError={!!error}
       aria-invalid={error ? true : undefined}
-      aria-label={label}
+      aria-label={ariaLabel}
       {...mergeProps(focusProps, elementTypeProps, rest)}
+      aria-required={isAriaRequired}
     />
   );
 };

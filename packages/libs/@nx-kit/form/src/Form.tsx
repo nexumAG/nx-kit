@@ -14,6 +14,9 @@ export type FormContextValue = {
   register: any;
   errors?: any;
   defaultValues?: any;
+  reset?: () => void;
+  watch?: () => any;
+  getValues?: () => any;
 };
 
 export const FormContext = React.createContext<FormContextValue>({
@@ -27,17 +30,38 @@ export const useForm = () => {
 export const Form = ({
   children,
   mode = 'onSubmit',
+  reValidateMode = 'onChange',
   defaultValues,
   onSubmit,
-  onWatch,
+  setWatchers,
+  ...rest
 }: FormProps) => {
-  const { register, handleSubmit, watch, errors } = useReactHookForm({ mode, defaultValues });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    errors,
+    getValues,
+    reset,
+    clearErrors,
+    setError,
+    unregister,
+  } = useReactHookForm({
+    mode,
+    reValidateMode,
+    defaultValues,
+    ...rest,
+  });
 
-  watch(onWatch);
+  // setWatchers?.forEach((watcher) => {
+  //   // watcher(watch());
+  // });
+
+  // console.log('getValues', getValues());
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormContext.Provider value={{ register, errors, defaultValues }}>
+      <FormContext.Provider value={{ register, errors, defaultValues, watch, getValues }}>
         {children}
       </FormContext.Provider>
     </form>

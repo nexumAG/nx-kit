@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { TextField } from '@nx-kit/textfield';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Checkbox } from '@nx-kit/checkbox';
 import { Form } from '../src';
 
@@ -10,6 +12,9 @@ export default {
 
 export const Default = () => {
   const [inside, setInside] = useState(true);
+  const [valuesState, setValuesState] = useState({});
+
+  console.log('valuesState', valuesState);
 
   return (
     <>
@@ -19,7 +24,9 @@ export const Default = () => {
       <Form
         defaultValues={{ test: 'default value', checked: true }}
         mode="all"
+        reValidateMode="onChange"
         onSubmit={(values: any) => console.log('submit', values)}
+        setWatchers={[setValuesState]}
       >
         <Form.Field type="text">
           <div>
@@ -28,7 +35,7 @@ export const Default = () => {
           <div>
             <Form.Input
               name="test"
-              field={<TextField />}
+              field={<TextField isAriaRequired />}
               validation={{
                 required: { value: true, message: 'The field is required' },
                 maxLength: { value: 3, message: 'The text cannot be longer than 3 chars' },
@@ -67,7 +74,7 @@ export const Default = () => {
           <div>
             <Form.Input
               name="checked"
-              field={<Checkbox />}
+              field={<Checkbox ariaLabel="checked" isAriaRequired />}
               validation={{ required: { value: true, message: 'The field is required' } }}
             />
           </div>
@@ -80,7 +87,17 @@ export const Default = () => {
             <Form.Label>Also checked?</Form.Label>
           </div>
           <div>
-            <Form.Input name="checked2" field={<Checkbox />} validation={{}} />
+            <Form.Input
+              name="checked2"
+              field={<Checkbox ariaLabel="checked2" />}
+              validation={(watch: any, getValues: any) => {
+                console.log('getValues', getValues());
+                const checkedValue = getValues().checked;
+                return {
+                  required: { value: checkedValue, message: 'The field is required' },
+                };
+              }}
+            />
           </div>
           <div>
             <Form.Error name="checked2" styles={{ color: 'brandDanger500' }} />

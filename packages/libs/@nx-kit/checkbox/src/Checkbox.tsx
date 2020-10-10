@@ -32,10 +32,11 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     isDisabled,
     autoFocus,
     isRequired,
+    isAriaRequired,
     isReadOnly,
     isIndeterminate,
     error,
-    label,
+    ariaLabel,
     defaultValue,
     // don't pass through
     validation,
@@ -50,7 +51,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
   const state = useToggleState({ ...(props as any), defaultSelected: defaultValue });
   const localRef = React.useRef<HTMLInputElement | null>(null);
   const { inputProps } = useCheckbox(
-    { ...(props as any), isIndeterminate, 'aria-label': label },
+    { ...(props as any), isIndeterminate, 'aria-label': ariaLabel },
     state,
     localRef
   );
@@ -70,6 +71,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
       hasError={!!error}
       {...mergeProps(inputProps, focusProps, elementTypeProps, rest)}
       aria-invalid={error ? true : undefined}
+      aria-required={isAriaRequired}
     />
   );
 };
