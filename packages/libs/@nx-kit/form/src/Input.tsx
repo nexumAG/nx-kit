@@ -8,12 +8,12 @@ const Input = (
   { name, field: Field, validation }: InputProps,
   ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement | null>
 ) => {
-  const { register, errors, defaultValues, watch, getValues } = useForm();
+  const { register, errors, defaultValues, getValues } = useForm();
   // register field and merge refs
   const refs = useCallback(
     mergeRefs<HTMLInputElement | HTMLTextAreaElement | null>(
       ref,
-      register(typeof validation === 'function' ? validation(watch, getValues) : validation)
+      register(typeof validation === 'function' ? validation(getValues) : validation)
     ),
     []
   );

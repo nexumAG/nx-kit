@@ -8,19 +8,19 @@ import { Error } from './Error';
 import { Label } from './Label';
 // eslint-disable-next-line import/no-cycle
 import { Field } from './Field';
-import { FormProps } from './Form.types';
-
-export type FormContextValue = {
-  register: any;
-  errors?: any;
-  defaultValues?: any;
-  reset?: () => void;
-  watch?: () => any;
-  getValues?: () => any;
-};
+import { FormProps, FormContextValue } from './Form.types';
 
 export const FormContext = React.createContext<FormContextValue>({
   register: () => {},
+  errors: {},
+  defaultValues: {},
+  reset: () => {},
+  watch: () => {},
+  getValues: () => {},
+  clearErrors: () => {},
+  setError: () => {},
+  unregister: () => {},
+  trigger: () => new Promise<boolean>((resolve) => resolve(true)),
 });
 
 export const useForm = () => {
@@ -33,7 +33,6 @@ export const Form = ({
   reValidateMode = 'onChange',
   defaultValues,
   onSubmit,
-  setWatchers,
   ...rest
 }: FormProps) => {
   const {
@@ -46,6 +45,7 @@ export const Form = ({
     clearErrors,
     setError,
     unregister,
+    trigger,
   } = useReactHookForm({
     mode,
     reValidateMode,
@@ -53,16 +53,23 @@ export const Form = ({
     ...rest,
   });
 
-  // setWatchers?.forEach((watcher) => {
-  //   // watcher(watch());
-  // });
-
-  // console.log('getValues', getValues());
+  const values = {
+    register,
+    errors,
+    defaultValues,
+    reset,
+    watch,
+    getValues,
+    clearErrors,
+    setError,
+    unregister,
+    trigger,
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormContext.Provider value={{ register, errors, defaultValues, watch, getValues }}>
-        {children}
+      <FormContext.Provider value={values}>
+        {typeof children === 'function' ? children(values) : children}
       </FormContext.Provider>
     </form>
   );
