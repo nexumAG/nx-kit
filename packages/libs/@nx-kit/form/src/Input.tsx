@@ -22,7 +22,7 @@ const Input = (
     name,
     ref: refs,
     defaultValue: name && defaultValues?.[name],
-    error: name && errors?.[name],
+    hasError: name && errors?.[name],
   });
 };
 

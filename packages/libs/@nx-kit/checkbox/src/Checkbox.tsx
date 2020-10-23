@@ -35,7 +35,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     isAriaRequired,
     isReadOnly,
     isIndeterminate,
-    error,
+    hasError,
     ariaLabel,
     defaultValue,
     // don't pass through
@@ -68,9 +68,9 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
       isDisabled={isDisabled !== undefined}
-      hasError={!!error}
+      hasError={hasError}
       {...mergeProps(inputProps, focusProps, elementTypeProps, rest)}
-      aria-invalid={error ? true : undefined}
+      aria-invalid={hasError ? true : undefined}
       aria-required={isAriaRequired}
     />
   );

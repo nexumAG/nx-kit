@@ -56,11 +56,6 @@ export const Default = () => {
                   <Form.Input
                     name="test2"
                     field={<TextField />}
-                    // validation={{
-                    //   required: { value: true, message: 'The field is required' },
-                    //   minLength: { value: 2, message: 'The text must be longer than 2 chars' },
-                    //   maxLength: { value: 4, message: 'The text cannot be longer than 4 chars' },
-                    // }}
                     validation={(getValues: any) => {
                       return {
                         validate: {
@@ -92,7 +87,6 @@ export const Default = () => {
                       onChange={() => trigger('checked2')}
                     />
                   }
-                  // validation={{ required: { value: true, message: 'The field is required' } }}
                 />
               </div>
               <div>
