@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { TextField } from '@nx-kit/textfield';
+import { TextField, TextFieldWrapper } from '@nx-kit/textfield';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Checkbox } from '@nx-kit/checkbox';
 import { Form } from '../src';
@@ -22,14 +22,14 @@ export const Default = () => {
         Remove Field
       </button>
       <Form
-        defaultValues={{ test: 'default value', checked: true }}
+        defaultValues={{ test: 'test', checked: true }}
         mode="all"
         reValidateMode="onChange"
         onSubmit={(values: any) => console.log('submit', values)}
       >
         {({ trigger }) => (
           <>
-            <Form.Field type="text">
+            <TextFieldWrapper>
               <div>
                 <Form.Label>Test</Form.Label>
               </div>
@@ -46,8 +46,8 @@ export const Default = () => {
               <div>
                 <Form.Error name="test" styles={{ color: 'brandDanger500' }} />
               </div>
-            </Form.Field>
-            <Form.Field type="text">
+            </TextFieldWrapper>
+            <TextFieldWrapper>
               <div>
                 <Form.Label>Test 2</Form.Label>
               </div>
@@ -77,8 +77,8 @@ export const Default = () => {
               <div>
                 <Form.Error name="test2" styles={{ color: 'brandDanger500' }} />
               </div>
-            </Form.Field>
-            <Form.Field type="checkbox">
+            </TextFieldWrapper>
+            <>
               <div>
                 <Form.Label>Checked?</Form.Label>
               </div>
@@ -98,8 +98,8 @@ export const Default = () => {
               <div>
                 <Form.Error name="checked" styles={{ color: 'brandDanger500' }} />
               </div>
-            </Form.Field>
-            <Form.Field type="checkbox">
+            </>
+            <>
               <div>
                 <Form.Label>Also checked?</Form.Label>
               </div>
@@ -122,7 +122,7 @@ export const Default = () => {
               <div>
                 <Form.Error name="checked2" styles={{ color: 'brandDanger500' }} />
               </div>
-            </Form.Field>
+            </>
             <button type="submit">Submit</button>
           </>
         )}

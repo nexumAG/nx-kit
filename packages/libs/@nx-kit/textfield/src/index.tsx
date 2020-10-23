@@ -1,3 +1,3 @@
 export * from './TextField';
-export * from './TextFieldContainer';
+export * from './TextFieldWrapper';
 export * from './TextField.types';

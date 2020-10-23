@@ -6,8 +6,6 @@ import { Input } from './Input';
 import { Error } from './Error';
 // eslint-disable-next-line import/no-cycle
 import { Label } from './Label';
-// eslint-disable-next-line import/no-cycle
-import { Field } from './Field';
 import { FormProps, FormContextValue } from './Form.types';
 
 export const FormContext = React.createContext<FormContextValue>({
@@ -78,4 +76,3 @@ export const Form = ({
 Form.Input = Input;
 Form.Error = Error;
 Form.Label = Label;
-Form.Field = Field;

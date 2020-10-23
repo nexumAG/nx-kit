@@ -1,6 +1,5 @@
 import React from 'react';
 
-export type FieldProps = {
-  type: string;
+export type TextFieldWrapperProps = {
   children: React.ReactNode;
 };

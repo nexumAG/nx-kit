@@ -3,7 +3,7 @@ import React, { SyntheticEvent } from 'react';
 import { Text } from '@nx-kit/text';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Flex } from '@nx-kit/flex';
-import { TextField, TextFieldContainer } from '../src';
+import { TextField, TextFieldWrapper } from '../src';
 
 export default {
   title: '@nx-kit/textfield',
@@ -47,12 +47,12 @@ export const TextFieldContainerExample = () => (
         flexDirection={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'normal', sm: 'baseline' }}
       >
-        <TextFieldContainer>
+        <TextFieldWrapper>
           <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is a label
           </Text>
           <TextField styles={{ flex: 1 }} />
-        </TextFieldContainer>
+        </TextFieldWrapper>
       </Flex>
     </div>
     <div>
@@ -61,22 +61,22 @@ export const TextFieldContainerExample = () => (
         flexDirection={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'normal', sm: 'baseline' }}
       >
-        <TextFieldContainer>
+        <TextFieldWrapper>
           <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is another label
           </Text>
           <TextField styles={{ flex: 1 }} error="Something wrong" />
-        </TextFieldContainer>
+        </TextFieldWrapper>
       </Flex>
     </div>
     <div>
       <Flex gap={{ xs: '0px', sm: '15px' }} flexDirection={{ xs: 'column', sm: 'row' }}>
-        <TextFieldContainer>
+        <TextFieldWrapper>
           <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is yet another very very very long label
           </Text>
           <TextField styles={{ flex: 1 }} type="textarea" />
-        </TextFieldContainer>
+        </TextFieldWrapper>
       </Flex>
     </div>
   </Flex>
