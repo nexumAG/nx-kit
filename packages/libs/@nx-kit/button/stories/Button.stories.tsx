@@ -38,6 +38,9 @@ export const PrimaryStyled = () => (
     skin="primary"
     elementType="div"
     styles={{ padding: '40px' }}
+    // If you want to use this syntax without typescript errors you have to handle it in the final project
+    // see: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/31245
+    // @ts-ignore
     css={`
       &&& {
         margin-bottom: 50px;

@@ -80,13 +80,7 @@ export const Default = () => {
               <div>
                 <Form.Input
                   name="checked"
-                  field={
-                    <Checkbox
-                      ariaLabel="checked"
-                      isAriaRequired
-                      onChange={() => trigger('checked2')}
-                    />
-                  }
+                  field={<Checkbox ariaLabel="checked" onChange={() => trigger('checked2')} />}
                 />
               </div>
               <div>

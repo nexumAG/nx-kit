@@ -1,7 +1,7 @@
 {
   "name": "storybook",
   "private": true,
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8",
@@ -16,15 +16,17 @@
     "@storybook/react": "^6.0.27",
     "babel-loader": "^8.1.0",
     "fork-ts-checker-webpack-plugin": "^5.2.0",
+    "http-server": "^0.12.3",
     "react-is": "^17.0.1"
   },
   "dependencies": {
-    "@nx-kit/overlay": "^0.1.4",
-    "@nx-kit/styling": "^0.1.7",
-    "@nx-kit/theme-default": "^0.1.7"
+    "@nx-kit/overlay": "^0.1.5",
+    "@nx-kit/styling": "^0.1.8",
+    "@nx-kit/theme-default": "^0.1.8"
   },
   "scripts": {
     "storybook:dev": "start-storybook -p 6006",
-    "storybook:build": "build-storybook -o dist"
+    "storybook:build": "build-storybook -o dist",
+    "storybook:start": "http-server dist"
   }
 }

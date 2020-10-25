@@ -1,4 +1,4 @@
-# run storybook
+# run storybook in dev mode
 >yarn storybook
 
 # lint, test all
@@ -7,6 +7,9 @@
 
 # build storybook
 >yarn storybook:build
+
+# start static storybook build
+>yarn storybook:start
 
 # build @nx-kit/*
 >yarn build

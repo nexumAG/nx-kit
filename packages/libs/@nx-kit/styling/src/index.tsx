@@ -1,6 +1,4 @@
-/// <reference types="styled-components/cssprop" />
 import { ComponentType } from 'react';
-import type {} from 'styled-components/cssprop';
 import { media, useBreakpointsSorted } from './utils';
 import type { Theme } from './theme';
 import {
