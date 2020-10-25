@@ -16,6 +16,7 @@
     "@storybook/react": "^6.0.27",
     "babel-loader": "^8.1.0",
     "fork-ts-checker-webpack-plugin": "^5.2.0",
+    "http-server": "^0.12.3",
     "react-is": "^17.0.1"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
   },
   "scripts": {
     "storybook:dev": "start-storybook -p 6006",
-    "storybook:build": "build-storybook -o dist"
+    "storybook:build": "build-storybook -o dist",
+    "storybook:start": "http-server dist"
   }
 }
