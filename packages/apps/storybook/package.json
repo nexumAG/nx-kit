@@ -1,7 +1,7 @@
 {
   "name": "storybook",
   "private": true,
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8",
@@ -20,9 +20,9 @@
     "react-is": "^17.0.1"
   },
   "dependencies": {
-    "@nx-kit/overlay": "^0.1.4",
-    "@nx-kit/styling": "^0.1.7",
-    "@nx-kit/theme-default": "^0.1.7"
+    "@nx-kit/overlay": "^0.1.5",
+    "@nx-kit/styling": "^0.1.8",
+    "@nx-kit/theme-default": "^0.1.8"
   },
   "scripts": {
     "storybook:dev": "start-storybook -p 6006",
