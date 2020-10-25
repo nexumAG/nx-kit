@@ -6,6 +6,6 @@ export default {
   component: Checkbox,
 };
 
-export const Default = () => <Checkbox />;
+export const Default = () => <Checkbox onChange={console.log} />;
 
 export const Disabled = () => <Checkbox isDisabled />;

@@ -22,9 +22,7 @@ export const InputDisabled = () => <TextField defaultValue="Bugs Bunny" isDisabl
 
 export const InputReadonly = () => <TextField defaultValue="Bugs Bunny" isReadOnly />;
 
-export const InputError = () => (
-  <TextField defaultValue="" error="This field is required" isRequired />
-);
+export const InputError = () => <TextField defaultValue="" hasError isRequired />;
 
 export const InputEvents = () => (
   <TextField
@@ -35,7 +33,7 @@ export const InputEvents = () => (
 
 export const TextArea = () => <TextField type="textarea" />;
 
-export const TextAreaError = () => <TextField type="textarea" error="Error" />;
+export const TextAreaError = () => <TextField type="textarea" hasError />;
 
 export const Password = () => <TextField type="password" />;
 
@@ -65,7 +63,7 @@ export const TextFieldContainerExample = () => (
           <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is another label
           </Text>
-          <TextField styles={{ flex: 1 }} error="Something wrong" />
+          <TextField styles={{ flex: 1 }} hasError />
         </TextFieldWrapper>
       </Flex>
     </div>
