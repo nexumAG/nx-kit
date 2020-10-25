@@ -1,5 +1,6 @@
 {
   "name": "@nx/kit",
+  "private": true,
   "repository": "github:nexumAG/nx-kit",
   "version": "0.1.0",
   "license": "MIT",
