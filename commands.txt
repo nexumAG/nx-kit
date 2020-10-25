@@ -1,0 +1,25 @@
+# run storybook
+>yarn storybook
+
+# lint, test all
+>yarn lint
+>yarn test
+
+# build storybook
+>yarn storybook:build
+
+# build @nx-kit/*
+>yarn build
+
+# build @nx/*
+>yarn nx:build
+
+# publish all public packages
+>yarn publish:all
+
+# publish storybook to gh-pages
+>yarn storybook:publish
+
+# clean @nx/*, @nx-kit/*
+>yarn clean:libs
+

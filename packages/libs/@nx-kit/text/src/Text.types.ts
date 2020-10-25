@@ -10,6 +10,7 @@ type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 export type TextProps = {
   id?: string;
   className?: string;
+  role?: string;
   children: ReactNode;
   elementType?: As;
   slot?: string;
