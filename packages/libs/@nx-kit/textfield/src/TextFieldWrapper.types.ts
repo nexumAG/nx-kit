@@ -1,5 +1,5 @@
 import React from 'react';
 
-export type TextFieldContainerProps = {
+export type TextFieldWrapperProps = {
   children: React.ReactNode;
 };
