@@ -6,6 +6,6 @@ export default {
   component: Checkbox,
 };
 
-export const Default = () => <Checkbox />;
+export const Default = () => <Checkbox onChange={console.log} ariaLabel="test" />;
 
-export const Disabled = () => <Checkbox isDisabled />;
+export const Disabled = () => <Checkbox isDisabled ariaLabel="test" />;

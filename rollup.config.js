@@ -27,7 +27,7 @@ export default [
         dir: 'dist/es',
         format: 'es',
         sourcemap: true,
-      }
+      },
     ],
     plugins: [
       typescript({
@@ -36,5 +36,5 @@ export default [
       }),
       terser(),
     ],
-  }
+  },
 ];

@@ -1,4 +1,5 @@
 export { Button } from '@nx-kit/button';
+export { Checkbox } from '@nx-kit/checkbox';
 export { Divider } from '@nx-kit/divider';
 export { Flex } from '@nx-kit/flex';
 export { Form, useForm } from '@nx-kit/form';
@@ -44,7 +45,8 @@ export type {
   Typo,
 } from '@nx-kit/styling';
 export { Text, TextProps } from '@nx-kit/text';
-export { TextField, TextFieldContainer } from '@nx-kit/textfield';
+export { TextField, TextFieldWrapper } from '@nx-kit/textfield';
 export { theme } from '@nx-kit/theme-default';
+export { FieldBaseProps, InputInterface } from '@nx-kit/types';
 export { mergeRefs } from '@nx-kit/utils';
 export { View } from '@nx-kit/view';
