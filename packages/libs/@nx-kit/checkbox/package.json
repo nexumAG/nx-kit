@@ -37,6 +37,7 @@
     "@react-aria/checkbox": "^3.2.1",
     "@react-aria/focus": "^3.2.2",
     "@react-aria/utils": "^3.3.0",
+    "@react-aria/visually-hidden": "^3.2.1",
     "@react-stately/toggle": "^3.2.1"
   }
 }
