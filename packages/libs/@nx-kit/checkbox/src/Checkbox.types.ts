@@ -6,6 +6,13 @@ type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
 export type CheckboxProps = FieldBaseProps<boolean, Styles> & {
   isIndeterminate?: boolean;
+  render?: (props: {
+    isFocused: boolean;
+    isDisabled: boolean;
+    hasError: boolean;
+    isSelected: boolean;
+    setSelected: (isSelected: boolean) => void;
+  }) => React.ReactNode;
 };
 
 export type CheckboxStyledProps = {
