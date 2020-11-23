@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/flex",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
