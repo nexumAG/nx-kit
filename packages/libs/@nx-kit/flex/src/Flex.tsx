@@ -56,8 +56,8 @@ export const Flex = ({
   const gapContext = getGapContextAllBreakpoints(breakpointsSorted, gapContextTmp);
   const gapHasBreakpoints = hasGapBreakpoints(gapContext);
 
-  const col = gapHasBreakpoints ? getAllBreakpoints(breakpointsSorted, 1, colTmp) : colTmp;
-  const row = gapHasBreakpoints ? getAllBreakpoints(breakpointsSorted, 1, rowTmp) : rowTmp;
+  const col = gapHasBreakpoints ? getAllBreakpoints(breakpointsSorted, null, colTmp) : colTmp;
+  const row = gapHasBreakpoints ? getAllBreakpoints(breakpointsSorted, null, rowTmp) : rowTmp;
   const colOffset = gapHasBreakpoints
     ? getAllBreakpoints(breakpointsSorted, 0, colOffsetTmp)
     : colOffsetTmp;

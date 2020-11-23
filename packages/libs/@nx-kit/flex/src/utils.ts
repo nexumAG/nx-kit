@@ -123,7 +123,7 @@ export const getGapContextAllBreakpoints = (
 
 export const getAllBreakpoints = (
   breakpointsSorted: (string | number)[],
-  defaultValue: number,
+  defaultValue: number | null,
   valueInput?: LiteralOrBreakpoints<number>
 ): LiteralOrBreakpoints<number> => {
   const value =
