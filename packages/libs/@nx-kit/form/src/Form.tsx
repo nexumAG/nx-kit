@@ -21,9 +21,7 @@ export const FormContext = React.createContext<FormContextValue>({
   trigger: () => new Promise<boolean>((resolve) => resolve(true)),
 });
 
-export const useForm = () => {
-  return useContext(FormContext);
-};
+export const useForm = () => useContext(FormContext);
 
 export const Form = ({
   children,

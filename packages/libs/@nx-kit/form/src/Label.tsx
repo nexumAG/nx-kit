@@ -7,10 +7,8 @@ export type LabelProps = {
   children: React.ReactNode;
 };
 
-export const Label = ({ className, styles, children }: LabelProps) => {
-  return (
-    <Text className={className} styles={styles} slot="label" elementType="label">
-      {children}
-    </Text>
-  );
-};
+export const Label = ({ className, styles, children }: LabelProps) => (
+  <Text className={className} styles={styles} slot="label" elementType="label">
+    {children}
+  </Text>
+);
