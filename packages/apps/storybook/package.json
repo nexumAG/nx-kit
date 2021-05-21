@@ -4,20 +4,20 @@
   "version": "0.1.8",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16.8",
-    "react-dom": ">=16.8"
+    "react": "^16.8.0-0 || ^17.0.0-0",
+    "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@storybook/addon-actions": "^6.0.27",
-    "@storybook/addon-essentials": "^6.0.27",
-    "@storybook/addon-links": "^6.0.27",
+    "@babel/core": "^7.14.3",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
     "@storybook/preset-typescript": "^3.0.0",
-    "@storybook/react": "^6.0.27",
-    "babel-loader": "^8.1.0",
+    "@storybook/react": "^6.2.9",
+    "babel-loader": "^8.2.2",
     "fork-ts-checker-webpack-plugin": "^5.2.0",
     "http-server": "^0.12.3",
-    "react-is": "^17.0.1"
+    "react-is": "^17.0.2"
   },
   "dependencies": {
     "@nx-kit/overlay": "^0.1.5",
