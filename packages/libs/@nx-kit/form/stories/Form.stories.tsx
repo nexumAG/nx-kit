@@ -56,16 +56,14 @@ export const Default = () => {
                   <Form.Input
                     name="test2"
                     field={<TextField />}
-                    validation={(getValues: any) => {
-                      return {
-                        validate: {
-                          shorterThanTest: (value: string) =>
-                            value.length < getValues('test').length
-                              ? true
-                              : 'This field must be shorter than "Test"',
-                        },
-                      };
-                    }}
+                    validation={(getValues: any) => ({
+                      validate: {
+                        shorterThanTest: (value: string) =>
+                          value.length < getValues('test').length
+                            ? true
+                            : 'This field must be shorter than "Test"',
+                      },
+                    })}
                   />
                 )}
               </div>
@@ -95,16 +93,14 @@ export const Default = () => {
                 <Form.Input
                   name="checked2"
                   field={<Checkbox ariaLabel="checked2" />}
-                  validation={(getValues: any) => {
-                    return {
-                      validate: {
-                        requiredIfTestTrue: (value: boolean) =>
-                          !(getValues('checked') && !value)
-                            ? true
-                            : 'The field is required if "Checked" is checked',
-                      },
-                    };
-                  }}
+                  validation={(getValues: any) => ({
+                    validate: {
+                      requiredIfTestTrue: (value: boolean) =>
+                        !(getValues('checked') && !value)
+                          ? true
+                          : 'The field is required if "Checked" is checked',
+                    },
+                  })}
                 />
               </div>
               <div>

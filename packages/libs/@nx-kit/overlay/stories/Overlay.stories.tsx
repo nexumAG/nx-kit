@@ -40,93 +40,85 @@ export const Default = () => {
   );
 };
 
-export const OverlayTriggerNotDismissable = () => {
-  return (
-    <OverlayTrigger>
-      {({ close }) => (
-        <>
-          <Button skin="primary">Open Overlay</Button>
+export const OverlayTriggerNotDismissable = () => (
+  <OverlayTrigger>
+    {({ close }) => (
+      <>
+        <Button skin="primary">Open Overlay</Button>
 
-          <Overlay skin="default">
-            <Heading skin="400" elementType="h3">
-              Test Overlay
-            </Heading>
-            <Button onPress={close} skin="secondary">
-              Close Overlay
-            </Button>
-          </Overlay>
-        </>
-      )}
-    </OverlayTrigger>
-  );
-};
+        <Overlay skin="default">
+          <Heading skin="400" elementType="h3">
+            Test Overlay
+          </Heading>
+          <Button onPress={close} skin="secondary">
+            Close Overlay
+          </Button>
+        </Overlay>
+      </>
+    )}
+  </OverlayTrigger>
+);
 
-export const OverlayTriggerLink = () => {
-  return (
-    <OverlayTrigger>
-      {({ close }) => (
-        <>
-          <Link skin="primary" slot="button">
-            Open Overlay
-          </Link>
+export const OverlayTriggerLink = () => (
+  <OverlayTrigger>
+    {({ close }) => (
+      <>
+        <Link skin="primary" slot="button">
+          Open Overlay
+        </Link>
 
-          <Overlay skin="default" isDismissable>
-            <Heading skin="400" elementType="h3">
-              Test Overlay
-            </Heading>
-            <Button onPress={close} skin="secondary">
-              Close Overlay
-            </Button>
-          </Overlay>
-        </>
-      )}
-    </OverlayTrigger>
-  );
-};
+        <Overlay skin="default" isDismissable>
+          <Heading skin="400" elementType="h3">
+            Test Overlay
+          </Heading>
+          <Button onPress={close} skin="secondary">
+            Close Overlay
+          </Button>
+        </Overlay>
+      </>
+    )}
+  </OverlayTrigger>
+);
 
-export const OverlayTriggerTopRight = () => {
-  return (
-    <OverlayTrigger>
-      {({ close }) => (
-        <>
-          <Button skin="primary">Open Overlay</Button>
+export const OverlayTriggerTopRight = () => (
+  <OverlayTrigger>
+    {({ close }) => (
+      <>
+        <Button skin="primary">Open Overlay</Button>
 
-          <Overlay skin="default" verticalAlignment="top" horizontalAlignment="right" isDismissable>
-            <Heading skin="400" elementType="h3">
-              Test Overlay
-            </Heading>
-            <Button onPress={close} skin="secondary">
-              Close Overlay
-            </Button>
-          </Overlay>
-        </>
-      )}
-    </OverlayTrigger>
-  );
-};
+        <Overlay skin="default" verticalAlignment="top" horizontalAlignment="right" isDismissable>
+          <Heading skin="400" elementType="h3">
+            Test Overlay
+          </Heading>
+          <Button onPress={close} skin="secondary">
+            Close Overlay
+          </Button>
+        </Overlay>
+      </>
+    )}
+  </OverlayTrigger>
+);
 
-export const OverlayTriggerFullscreen = () => {
-  return (
-    <OverlayTrigger>
-      {({ close }) => (
-        <>
-          <Button skin="primary">Open Overlay</Button>
+export const OverlayTriggerFullscreen = () => (
+  <OverlayTrigger>
+    {({ close }) => (
+      <>
+        <Button skin="primary">Open Overlay</Button>
 
-          <Overlay
-            skin="fullscreen"
-            isDismissable
-            animationDisabled
-            styles={{ backgroundColor: '#f0f0f0' }}
-          >
-            <Heading skin="400" elementType="h3">
-              Test Overlay
-            </Heading>
-            <Button onPress={close} skin="secondary">
-              Close Overlay
-            </Button>
-          </Overlay>
-        </>
-      )}
-    </OverlayTrigger>
-  );
-};
+        <Overlay
+          skin="fullscreen"
+          isDismissable
+          animationDisabled
+          styles={{ backgroundColor: '#f0f0f0' }}
+        >
+          <Heading skin="400" elementType="h3">
+            Test Overlay
+          </Heading>
+          <Button onPress={close} skin="secondary">
+            Close Overlay
+          </Button>
+        </Overlay>
+      </>
+    )}
+  </OverlayTrigger>
+);
