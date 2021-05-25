@@ -9,7 +9,12 @@ import { Label } from './Label';
 import { FormProps, FormContextValue } from './Form.types';
 
 export const FormContext = React.createContext<FormContextValue>({
-  register: () => {},
+  register: () => ({
+    onChange: () => Promise.resolve(),
+    onBlur: () => Promise.resolve(),
+    ref: () => {},
+    name: '',
+  }),
   errors: {},
   defaultValues: {},
   reset: () => {},
@@ -35,7 +40,7 @@ export const Form = ({
     register,
     handleSubmit,
     watch,
-    errors,
+    formState: { errors },
     getValues,
     reset,
     clearErrors,
