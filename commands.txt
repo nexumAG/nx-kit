@@ -12,6 +12,7 @@
 >yarn storybook:start
 
 # build @nx-kit/*
+# run 2 times!
 >yarn build
 
 # build @nx/*

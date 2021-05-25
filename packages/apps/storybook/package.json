@@ -15,7 +15,7 @@
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "6.3.0-alpha.36",
     "babel-loader": "^8.2.2",
-    "fork-ts-checker-webpack-plugin": "^5.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.2.10",
     "http-server": "^0.12.3",
     "react-is": "^17.0.2"
   },
