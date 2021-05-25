@@ -35,6 +35,6 @@
     "@nx-kit/text": "^0.1.6",
     "@nx-kit/types": "^0.1.1",
     "@nx-kit/utils": "^0.1.2",
-    "react-hook-form": "^6.9.6"
+    "react-hook-form": "^7.6.6"
   }
 }
