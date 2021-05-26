@@ -19,9 +19,6 @@ export type FieldBaseProps<T, Styles> = InputInterface<T> & {
 
   isAriaRequired?: boolean;
   ariaLabel?: string;
-
-  // onChange?: (event: SyntheticEvent) => void;
-  // onBlur?: (event: SyntheticEvent) => void;
 };
 
 export interface InputInterface<T = any> {
