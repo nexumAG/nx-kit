@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/text",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -27,10 +27,10 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.4"
+    "@nx-kit/dependencies-dev": "^0.1.5"
   },
   "dependencies": {
-    "@nx-kit/slot": "^0.1.4",
-    "@nx-kit/styling": "^0.1.8"
+    "@nx-kit/slot": "^0.1.5",
+    "@nx-kit/styling": "^0.1.9"
   }
 }
