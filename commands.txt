@@ -5,7 +5,7 @@
 >yarn lint
 >yarn test
 
-# build storybook
+# build storybook (without lib dist folders)
 >yarn storybook:build
 
 # start static storybook build
