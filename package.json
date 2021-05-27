@@ -20,6 +20,7 @@
     "diff": "lerna diff",
     "new-version": "lerna version --conventional-commits",
     "publish:all": "lerna publish",
+    "publish:from-package": "lerna publish from-package",
     "plop": "plop",
     "clean:libs": "rimraf packages/libs/**/dist"
   },
