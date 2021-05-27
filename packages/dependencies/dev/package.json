@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/dependencies-dev",
   "private": true,
-  "version": "0.1.4",
+  "version": "0.1.5",
   "devDependencies": {
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
