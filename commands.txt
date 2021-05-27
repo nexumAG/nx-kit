@@ -21,6 +21,10 @@
 # publish all public packages
 >yarn publish:all
 
+# if publish:all could not push to git and hangs
+>git push
+>yarn publish:from-package
+
 # publish storybook to gh-pages
 >yarn storybook:publish
 
