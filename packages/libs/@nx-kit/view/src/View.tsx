@@ -17,10 +17,8 @@ const ViewStyled = styled.div<ViewStyledProps>`
   ${getFont};
 `;
 
-export const View = ({ children, elementType, ...rest }: ViewProps) => {
-  return (
-    <ViewStyled as={elementType} {...rest}>
-      {children}
-    </ViewStyled>
-  );
-};
+export const View = ({ children, elementType, ...rest }: ViewProps) => (
+  <ViewStyled as={elementType} {...rest}>
+    {children}
+  </ViewStyled>
+);

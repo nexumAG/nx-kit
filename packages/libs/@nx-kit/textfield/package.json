@@ -23,8 +23,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": ">=16.8",
-    "react-dom": ">=16.8"
+    "react": "^16.8.0-0 || ^17.0.0-0",
+    "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
     "@nx-kit/dependencies-dev": "^0.1.4",
@@ -36,8 +36,8 @@
     "@nx-kit/styling": "^0.1.8",
     "@nx-kit/types": "^0.1.1",
     "@nx-kit/utils": "^0.1.2",
-    "@react-aria/focus": "^3.2.2",
-    "@react-aria/textfield": "^3.2.1",
-    "@react-aria/utils": "^3.3.0"
+    "@react-aria/focus": "^3.3.0",
+    "@react-aria/textfield": "^3.3.0",
+    "@react-aria/utils": "^3.8.0"
   }
 }
