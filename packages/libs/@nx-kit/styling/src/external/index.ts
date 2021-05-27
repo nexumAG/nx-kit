@@ -9,6 +9,6 @@ const {
   keyframes,
   ThemeProvider,
   StyleSheetManager,
-} = styledComponents as unknown as styledComponents.ThemedStyledComponentsModule<Theme>;
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<Theme>;
 
 export { styled, css, useTheme, createGlobalStyle, keyframes, ThemeProvider, StyleSheetManager };
