@@ -495,17 +495,36 @@ export const theme: Theme = {
             margin-bottom: 0;
             position: relative;
             background-color: ${({ theme }) => theme.global.color.gray50};
-            padding-left: 5px;
             border-bottom: 1px solid ${({ theme }) => theme.global.color.gray200};
+            padding-left: 30px;
+          }
+
+          &[open] > summary ~ * {
+            animation: open 0.3s ease-in-out;
+          }
+
+          @keyframes open {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
           }
 
           & > summary::before {
             content: '⯈';
-            margin-right: 5px;
+            will-change: transform;
+            transition: transform 300ms ease;
+            position: absolute;
+            transform-origin: center;
+            left: 5px;
+            font-size: 80%;
+            top: 10%;
           }
 
           &[open] > summary::before {
-            content: '⯆';
+            transform: rotate(90deg);
           }
 
           & > summary:focus-visible {
@@ -513,7 +532,7 @@ export const theme: Theme = {
             ${({ theme }) => theme.global.focusRing};
           }
 
-          & > summary + p {
+          & > summary + * {
             border: 2px solid ${({ theme }) => theme.global.color.gray50};
             border-top: 0;
             padding: 5px;

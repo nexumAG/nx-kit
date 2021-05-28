@@ -85,6 +85,7 @@ const AccordionItem = ({
   // TODO: remove if bug is fixed? https://github.com/facebook/react/issues/15486
   const onToggle = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    e.stopPropagation();
 
     if (noControl) {
       return;

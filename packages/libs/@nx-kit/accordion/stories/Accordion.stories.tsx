@@ -124,3 +124,23 @@ export const NoControl = () => {
     </>
   );
 };
+
+export const Nested = () => (
+  <Accordion skin="default" allowMultipleExpanded onChange={console.log}>
+    <Accordion.Item title="Item 1" isOpen>
+      <p>Item 1 content</p>
+    </Accordion.Item>
+    <Accordion.Item title="Item 2">
+      <div>
+        <Accordion allowMultipleExpanded allowZeroExpanded onChange={console.log}>
+          <Accordion.Item id="item2.1" title="Item 2.1">
+            <p>Item 2.1 content</p>
+          </Accordion.Item>
+          <Accordion.Item id="item2.2" title="Item 2.2">
+            <p>Item 2.2 content</p>
+          </Accordion.Item>
+        </Accordion>
+      </div>
+    </Accordion.Item>
+  </Accordion>
+);
