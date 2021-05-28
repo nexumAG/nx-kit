@@ -30,6 +30,7 @@
     "@nx-kit/dependencies-dev": "^0.1.5"
   },
   "dependencies": {
-    "@nx-kit/styling": "^0.1.9"
+    "@nx-kit/styling": "^0.1.9",
+    "@react-aria/utils": "^3.8.0"
   }
 }
