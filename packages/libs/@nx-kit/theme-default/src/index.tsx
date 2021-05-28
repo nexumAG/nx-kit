@@ -96,6 +96,7 @@ export const theme: Theme = {
         display: block;
         box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.focus};
         margin: -5px;
+        z-index: 1;
       }
     `,
     underlay: css<any>`
@@ -483,6 +484,42 @@ export const theme: Theme = {
           `};
       `,
       skin: {},
+    },
+    accordion: {
+      skin: {
+        default: css<any>`
+          & > summary {
+            cursor: pointer;
+            list-style: none;
+            ${({ theme }) => theme?.component?.heading?.skin?.['400']};
+            margin-bottom: 0;
+            position: relative;
+            background-color: ${({ theme }) => theme.global.color.gray50};
+            padding-left: 5px;
+            border-bottom: 1px solid ${({ theme }) => theme.global.color.gray200};
+          }
+
+          & > summary::before {
+            content: '⯈';
+            margin-right: 5px;
+          }
+
+          &[open] > summary::before {
+            content: '⯆';
+          }
+
+          & > summary:focus-visible {
+            outline: none;
+            ${({ theme }) => theme.global.focusRing};
+          }
+
+          & > summary + p {
+            border: 2px solid ${({ theme }) => theme.global.color.gray50};
+            border-top: 0;
+            padding: 5px;
+          }
+        `,
+      },
     },
   },
 };

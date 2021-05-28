@@ -12,6 +12,12 @@ export const Skin700 = () => (
   </Heading>
 );
 
+export const Skin700Span = () => (
+  <Heading skin="700" elementType="span" styles={{ color: 'primary500' }}>
+    Heading Test
+  </Heading>
+);
+
 export const Skin600 = () => <Heading skin="600">Heading Test</Heading>;
 
 export const Skin500 = () => <Heading skin="500">Heading Test</Heading>;
