@@ -108,7 +108,13 @@ const AccordionItem = ({
         onChange(id, e.currentTarget.open)
       }
     >
-      <summary>{title}</summary>
+      <summary
+        role="button"
+        aria-expanded={isOpen}
+        aria-disabled={isOpen && !allowZeroExpanded && expandedItems.size < 2}
+      >
+        {title}
+      </summary>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
       <div role="region" onClick={(e) => e.stopPropagation()}>
         {children}
