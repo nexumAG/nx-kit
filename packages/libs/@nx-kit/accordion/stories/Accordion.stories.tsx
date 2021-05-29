@@ -10,6 +10,9 @@ export const Default = () => (
   <Accordion skin="default" onChange={console.log}>
     <Accordion.Item title="Item 1">
       <p>Item 1 content</p>
+      <p>
+        <input type="text" />
+      </p>
     </Accordion.Item>
     <Accordion.Item title="Item 2">
       <p>Item 2 content</p>
