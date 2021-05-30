@@ -488,55 +488,67 @@ export const theme: Theme = {
     accordion: {
       skin: {
         default: css<any>`
-          & > summary {
-            cursor: pointer;
-            list-style: none;
+          & > h3 {
             ${({ theme }) => theme?.component?.heading?.skin?.['400']};
             margin-bottom: 0;
+          }
+
+          & > h3 > button {
+            display: block;
+            width: 100%;
+            text-align: inherit;
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
             position: relative;
-            background-color: ${({ theme }) => theme.global.color.gray50};
-            border-bottom: 1px solid ${({ theme }) => theme.global.color.gray200};
-            padding-left: 30px;
+            ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
           }
 
-          &[open] > summary ~ * {
-            animation: open 0.3s ease-in-out;
+          & > div[hidden] {
+            display: none;
           }
 
-          @keyframes open {
-            0% {
-              opacity: 0;
-            }
-            100% {
-              opacity: 1;
-            }
-          }
+          //&[open] > summary ~ * {
+          //  animation: open 0.3s ease-in-out;
+          //}
+          //
+          //@keyframes open {
+          //  0% {
+          //    opacity: 0;
+          //  }
+          //  100% {
+          //    opacity: 1;
+          //  }
+          //}
 
-          & > summary::before {
-            content: '⯈';
-            will-change: transform;
-            transition: transform 300ms ease;
-            position: absolute;
-            transform-origin: center;
-            left: 5px;
-            font-size: 80%;
-            top: 10%;
-          }
+          // & > summary::before {
+          //   content: '⯈';
+          //   will-change: transform;
+          //   transition: transform 300ms ease;
+          //   position: absolute;
+          //   transform-origin: center;
+          //   left: 5px;
+          //   font-size: 80%;
+          //   top: 10%;
+          // }
+          //
+          // &[open] > summary::before {
+          //   transform: rotate(90deg);
+          // }
+          //
+          // & > summary:focus-visible {
+          //   outline: none;
 
-          &[open] > summary::before {
-            transform: rotate(90deg);
-          }
+          // }
 
-          & > summary:focus-visible {
-            outline: none;
-            ${({ theme }) => theme.global.focusRing};
-          }
-
-          & > summary + * {
-            border: 2px solid ${({ theme }) => theme.global.color.gray50};
-            border-top: 0;
-            padding: 5px;
-          }
+          // & > summary + * {
+          //   border-top: 0;
+          //   padding: 5px;
+          // }
         `,
       },
     },

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useId } from '@react-aria/utils';
+import { useId, mergeProps } from '@react-aria/utils';
+import { usePress } from '@react-aria/interactions';
+import { useFocusRing } from '@react-aria/focus';
 import { styled } from '@nx-kit/styling';
 import {
   AccordionProps,
   AccordionItemProps,
-  DetailsStyledProps,
+  AccordionItemStyledProps,
   AccordionContextProps,
 } from './Accordion.types';
 
@@ -14,7 +16,7 @@ const AccordionContext = React.createContext<AccordionContextProps>({
   allowZeroExpanded: false,
 });
 
-const DetailsStyled = styled.details<DetailsStyledProps>`
+const AccordionItemStyled = styled.div<AccordionItemStyledProps>`
   ${({ theme }) => theme?.component?.accordion?.global};
   ${({ theme, skin }) => skin && theme?.component?.accordion?.skin?.[skin]};
 `;
@@ -74,19 +76,24 @@ const AccordionItem = ({
   noControl = false,
 }: AccordionItemProps) => {
   const id = useId(idProp);
+  const idRegion = useId();
   const { skin, expandedItems, onChange, allowZeroExpanded } = useContext(AccordionContext);
   const [isOpen, setIsOpen] = useState(isOpenProp);
+  const { pressProps } = usePress({
+    onPress: () => onToggle(),
+  });
+  const { focusProps, isFocusVisible } = useFocusRing();
 
   useEffect(() => {
     const isOpenContext = expandedItems.has(id);
     setIsOpen(isOpenContext);
   }, [expandedItems]);
 
-  // TODO: remove if bug is fixed? https://github.com/facebook/react/issues/15486
-  const onToggle = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
+  useEffect(() => {
+    onChange(id, isOpen);
+  }, [isOpen]);
 
+  const onToggle = () => {
     if (noControl) {
       return;
     }
@@ -99,27 +106,23 @@ const AccordionItem = ({
   };
 
   return (
-    <DetailsStyled
-      open={isOpen}
-      skin={skin}
-      className={className}
-      onClick={onToggle}
-      onToggle={(e: React.SyntheticEvent<HTMLDetailsElement, Event>) =>
-        onChange(id, e.currentTarget.open)
-      }
-    >
-      <summary
-        role="button"
-        aria-expanded={isOpen}
-        aria-disabled={isOpen && !allowZeroExpanded && expandedItems.size < 2}
-      >
-        {title}
-      </summary>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
-      <div role="region" onClick={(e) => e.stopPropagation()}>
+    <AccordionItemStyled skin={skin} className={className} isFocused={isFocusVisible}>
+      <h3>
+        <button
+          id={id}
+          type="button"
+          aria-controls={idRegion}
+          aria-expanded={isOpen}
+          aria-disabled={isOpen && !allowZeroExpanded && expandedItems.size < 2}
+          {...mergeProps(pressProps, focusProps)}
+        >
+          {title}
+        </button>
+      </h3>
+      <div id={idRegion} role="region" hidden={!isOpen} aria-labelledby={id}>
         {children}
       </div>
-    </DetailsStyled>
+    </AccordionItemStyled>
   );
 };
 
