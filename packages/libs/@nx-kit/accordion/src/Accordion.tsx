@@ -113,7 +113,7 @@ const AccordionItem = ({
           type="button"
           aria-controls={idRegion}
           aria-expanded={isOpen}
-          aria-disabled={isOpen && !allowZeroExpanded && expandedItems.size < 2}
+          aria-disabled={isOpen && !allowZeroExpanded && expandedItems.size < 2 ? true : undefined}
           {...mergeProps(pressProps, focusProps)}
         >
           {title}
