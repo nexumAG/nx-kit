@@ -505,50 +505,46 @@ export const theme: Theme = {
             cursor: pointer;
             outline: inherit;
             position: relative;
+            background-color: ${({ theme }) => theme.global.color.gray50};
+            border-bottom: 1px solid ${({ theme }) => theme.global.color.gray200};
             ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
+            padding-left: 30px;
+          }
+
+          & > h3 > button::before {
+            content: '⯈';
+            will-change: transform;
+            transition: transform 300ms ease;
+            position: absolute;
+            transform-origin: center;
+            left: 5px;
+            font-size: 80%;
+            top: 10%;
+          }
+
+          & > h3 > button[aria-expanded='true']::before {
+            transform: rotate(90deg);
+          }
+
+          & > div {
+            border: 2px solid ${({ theme }) => theme.global.color.gray50};
+            border-top: 0;
+            padding: 5px;
+            animation: open 0.3s ease-in-out;
           }
 
           & > div[hidden] {
             display: none;
           }
 
-          //&[open] > summary ~ * {
-          //  animation: open 0.3s ease-in-out;
-          //}
-          //
-          //@keyframes open {
-          //  0% {
-          //    opacity: 0;
-          //  }
-          //  100% {
-          //    opacity: 1;
-          //  }
-          //}
-
-          // & > summary::before {
-          //   content: '⯈';
-          //   will-change: transform;
-          //   transition: transform 300ms ease;
-          //   position: absolute;
-          //   transform-origin: center;
-          //   left: 5px;
-          //   font-size: 80%;
-          //   top: 10%;
-          // }
-          //
-          // &[open] > summary::before {
-          //   transform: rotate(90deg);
-          // }
-          //
-          // & > summary:focus-visible {
-          //   outline: none;
-
-          // }
-
-          // & > summary + * {
-          //   border-top: 0;
-          //   padding: 5px;
-          // }
+          @keyframes open {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
         `,
       },
     },
