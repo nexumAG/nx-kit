@@ -19,6 +19,7 @@ export const Accordion = ({
   onChange: onChangeProp,
   allowMultipleExpanded = false,
   allowZeroExpanded = false,
+  headingLevel = 3,
 }: AccordionProps) => {
   const [expandedItems, setExpandedItems] = useState(new Set(expandedItemsProp ?? []));
   const items: HTMLButtonElement[] = [];
@@ -76,7 +77,9 @@ export const Accordion = ({
   }, [Array.from(expandedItems).join('|')]);
 
   return (
-    <AccordionContext.Provider value={{ skin, expandedItems, onChange, allowZeroExpanded }}>
+    <AccordionContext.Provider
+      value={{ skin, expandedItems, onChange, allowZeroExpanded, headingLevel }}
+    >
       <div {...keyboardProps}>
         {React.Children.map(children, (child, index) => {
           // @ts-ignore
@@ -90,6 +93,7 @@ export const Accordion = ({
                 {...child.props}
                 ref={(ref: HTMLButtonElement) => {
                   if (ref) {
+                    // TODO: prevent ref stealing
                     items.push(ref);
                   }
                 }}

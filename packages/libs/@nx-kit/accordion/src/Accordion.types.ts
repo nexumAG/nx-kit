@@ -10,12 +10,13 @@ export type AccordionProps = {
   allowZeroExpanded?: boolean;
   expandedItems?: string[];
   onChange?: (expandedItems: string[]) => void;
+  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 };
 
 export type AccordionItemProps = {
   id?: string;
   className?: string;
-  title: string;
+  title: React.ReactNode | ((isOpen: boolean, isDisabled?: boolean) => React.ReactNode);
   children: React.ReactNode;
   isOpen?: boolean;
   noControl?: boolean;
@@ -31,4 +32,5 @@ export type AccordionContextProps = {
   expandedItems: Set<string>;
   onChange: (id: string, isOpen: boolean) => void;
   allowZeroExpanded: boolean;
+  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 };
