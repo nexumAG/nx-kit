@@ -1,25 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useId, mergeProps } from '@react-aria/utils';
-import { usePress } from '@react-aria/interactions';
-import { useFocusRing } from '@react-aria/focus';
-import { styled } from '@nx-kit/styling';
-import {
-  AccordionProps,
-  AccordionItemProps,
-  AccordionItemStyledProps,
-  AccordionContextProps,
-} from './Accordion.types';
+import React, { useEffect, useState } from 'react';
+import { useKeyboard } from '@react-aria/interactions';
+import { AccordionContext } from './AccordionContext';
+import { AccordionItem } from './AccordionItem';
+import { AccordionProps } from './Accordion.types';
 
-const AccordionContext = React.createContext<AccordionContextProps>({
-  expandedItems: new Set([]),
-  onChange: () => {},
-  allowZeroExpanded: false,
-});
+const getButtonIndex = (target: HTMLElement, items: HTMLButtonElement[]) => {
+  return items.findIndex((item) => item === target);
+};
 
-const AccordionItemStyled = styled.div<AccordionItemStyledProps>`
-  ${({ theme }) => theme?.component?.accordion?.global};
-  ${({ theme, skin }) => skin && theme?.component?.accordion?.skin?.[skin]};
-`;
+const mod = (n: number, m: number) => {
+  return ((n % m) + m) % m;
+};
 
 export const Accordion = ({
   children,
@@ -30,6 +21,30 @@ export const Accordion = ({
   allowZeroExpanded = false,
 }: AccordionProps) => {
   const [expandedItems, setExpandedItems] = useState(new Set(expandedItemsProp ?? []));
+  const items: HTMLButtonElement[] = [];
+  const { keyboardProps } = useKeyboard({
+    onKeyDown: (e) => {
+      e.continuePropagation();
+
+      const buttonIndex = getButtonIndex(e.target as HTMLElement, items);
+
+      if (buttonIndex < 0) {
+        return;
+      }
+
+      if (e.key === 'ArrowDown') {
+        const index = mod(buttonIndex + 1, items.length);
+        items[index].focus();
+      } else if (e.key === 'ArrowUp') {
+        const index = mod(buttonIndex - 1, items.length);
+        items[index].focus();
+      } else if (e.key === 'Home') {
+        items[0].focus();
+      } else if (e.key === 'End') {
+        items[items.length - 1].focus();
+      }
+    },
+  });
   const onChange = (id: string, isOpen: boolean) => {
     if (isOpen) {
       if (allowMultipleExpanded) {
@@ -62,67 +77,29 @@ export const Accordion = ({
 
   return (
     <AccordionContext.Provider value={{ skin, expandedItems, onChange, allowZeroExpanded }}>
-      {children}
+      <div {...keyboardProps}>
+        {React.Children.map(children, (child, index) => {
+          // @ts-ignore
+          if (typeof child === 'object' && child?.type?.displayName === 'Accordion.Item') {
+            return (
+              // @ts-ignore
+              <child.type
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+                // @ts-ignore
+                {...child.props}
+                ref={(ref: HTMLButtonElement) => {
+                  if (ref) {
+                    items.push(ref);
+                  }
+                }}
+              />
+            );
+          }
+          return child;
+        })}
+      </div>
     </AccordionContext.Provider>
-  );
-};
-
-const AccordionItem = ({
-  id: idProp,
-  title,
-  isOpen: isOpenProp = false,
-  children,
-  className,
-  noControl = false,
-}: AccordionItemProps) => {
-  const id = useId(idProp);
-  const idRegion = useId();
-  const { skin, expandedItems, onChange, allowZeroExpanded } = useContext(AccordionContext);
-  const [isOpen, setIsOpen] = useState(isOpenProp);
-  const { pressProps } = usePress({
-    onPress: () => onToggle(),
-  });
-  const { focusProps, isFocusVisible } = useFocusRing();
-
-  useEffect(() => {
-    const isOpenContext = expandedItems.has(id);
-    setIsOpen(isOpenContext);
-  }, [expandedItems]);
-
-  useEffect(() => {
-    onChange(id, isOpen);
-  }, [isOpen]);
-
-  const onToggle = () => {
-    if (noControl) {
-      return;
-    }
-
-    if (isOpen && !allowZeroExpanded && expandedItems.size < 2) {
-      return;
-    }
-
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <AccordionItemStyled skin={skin} className={className} isFocused={isFocusVisible}>
-      <div role="heading" aria-level={3}>
-        <button
-          id={id}
-          type="button"
-          aria-controls={idRegion}
-          aria-expanded={isOpen}
-          aria-disabled={isOpen && !allowZeroExpanded && expandedItems.size < 2 ? true : undefined}
-          {...mergeProps(pressProps, focusProps)}
-        >
-          {title}
-        </button>
-      </div>
-      <div id={idRegion} role="region" hidden={!isOpen} aria-labelledby={id}>
-        {children}
-      </div>
-    </AccordionItemStyled>
   );
 };
 

@@ -51,6 +51,12 @@ export const AllowZeroAndMultipleExpanded = () => (
     <Accordion.Item title="Item 2">
       <p>Item 2 content</p>
     </Accordion.Item>
+    <Accordion.Item title="Item 3">
+      <p>Item 3 content</p>
+    </Accordion.Item>
+    <Accordion.Item title="Item 4">
+      <p>Item 4 content</p>
+    </Accordion.Item>
   </Accordion>
 );
 
