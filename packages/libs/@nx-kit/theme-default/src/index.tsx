@@ -511,6 +511,10 @@ export const theme: Theme = {
             padding-left: 30px;
           }
 
+          & > div[role='heading'] > button[aria-disabled='true'] {
+            cursor: default;
+          }
+
           & > div[role='heading'] > button::before {
             content: '⯈';
             will-change: transform;

@@ -14,7 +14,7 @@ const AccordionItemStyled = styled.div<AccordionItemStyledProps>`
 const AccordionItem = (
   {
     id: idProp,
-    title,
+    title: titleProp,
     isOpen: isOpenProp = false,
     children,
     className,
@@ -24,7 +24,8 @@ const AccordionItem = (
 ) => {
   const id = useId(idProp);
   const idRegion = useId();
-  const { skin, expandedItems, onChange, allowZeroExpanded } = useContext(AccordionContext);
+  const { skin, expandedItems, onChange, allowZeroExpanded, headingLevel } =
+    useContext(AccordionContext);
   const [isOpen, setIsOpen] = useState(isOpenProp);
   const { pressProps } = usePress({
     onPress: () => onToggle(),
@@ -52,18 +53,19 @@ const AccordionItem = (
     setIsOpen(!isOpen);
   };
 
+  const isDisabled = (isOpen && !allowZeroExpanded && expandedItems.size < 2) || noControl;
+  const title = typeof titleProp === 'function' ? titleProp(isOpen, isDisabled) : titleProp;
+
   return (
     <AccordionItemStyled skin={skin} className={className} isFocused={isFocusVisible}>
-      <div role="heading" aria-level={3}>
+      <div role="heading" aria-level={headingLevel}>
         <button
           id={id}
           ref={ref}
           type="button"
           aria-controls={idRegion}
           aria-expanded={isOpen}
-          aria-disabled={
-            (isOpen && !allowZeroExpanded && expandedItems.size < 2) || noControl ? true : undefined
-          }
+          aria-disabled={isDisabled ? true : undefined}
           {...mergeProps(pressProps, focusProps)}
         >
           {title}

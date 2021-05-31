@@ -20,6 +20,20 @@ export const Default = () => (
   </Accordion>
 );
 
+export const HeadingLevel4 = () => (
+  <Accordion skin="default" onChange={console.log} headingLevel={4}>
+    <Accordion.Item title="Item 1">
+      <p>Item 1 content</p>
+      <p>
+        <input type="text" />
+      </p>
+    </Accordion.Item>
+    <Accordion.Item title="Item 2">
+      <p>Item 2 content</p>
+    </Accordion.Item>
+  </Accordion>
+);
+
 export const OtherElements = () => (
   <Accordion skin="default" onChange={console.log}>
     <Accordion.Item title="Item 1">
@@ -150,6 +164,31 @@ export const Nested = () => (
           </Accordion.Item>
         </Accordion>
       </div>
+    </Accordion.Item>
+  </Accordion>
+);
+
+export const ItemFunction = () => (
+  <Accordion skin="default" allowZeroExpanded allowMultipleExpanded onChange={console.log}>
+    <Accordion.Item
+      title={(isOpen: boolean) => (
+        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>Item 1</span>
+          <span aria-hidden>{isOpen ? 'open' : 'closed'}</span>
+        </span>
+      )}
+    >
+      <p>Item 1 content</p>
+    </Accordion.Item>
+    <Accordion.Item
+      title={(isOpen: boolean) => (
+        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>Item 2</span>
+          <span aria-hidden>{isOpen ? 'open' : 'closed'}</span>
+        </span>
+      )}
+    >
+      <p>Item 2 content</p>
     </Accordion.Item>
   </Accordion>
 );
