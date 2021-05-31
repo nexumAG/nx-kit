@@ -25,6 +25,8 @@ export type AccordionItemProps = {
 export type AccordionItemStyledProps = {
   skin?: AccordionSkin;
   isFocused: boolean;
+  isHovered: boolean;
+  isDisabled: boolean;
 };
 
 export type AccordionContextProps = {

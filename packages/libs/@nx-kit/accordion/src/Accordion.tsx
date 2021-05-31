@@ -29,20 +29,24 @@ export const Accordion = ({
 
       const buttonIndex = getButtonIndex(e.target as HTMLElement, items);
 
-      if (buttonIndex < 0) {
+      if (buttonIndex < 0 || items.length === 0) {
         return;
       }
 
       if (e.key === 'ArrowDown') {
         const index = mod(buttonIndex + 1, items.length);
         items[index].focus();
+        e.preventDefault();
       } else if (e.key === 'ArrowUp') {
         const index = mod(buttonIndex - 1, items.length);
         items[index].focus();
+        e.preventDefault();
       } else if (e.key === 'Home') {
         items[0].focus();
+        e.preventDefault();
       } else if (e.key === 'End') {
         items[items.length - 1].focus();
+        e.preventDefault();
       }
     },
   });
@@ -93,8 +97,12 @@ export const Accordion = ({
                 {...child.props}
                 ref={(ref: HTMLButtonElement) => {
                   if (ref) {
-                    // TODO: prevent ref stealing
                     items.push(ref);
+                    // merge refs
+                    // @ts-ignore
+                    const { ref: refFromChild } = child;
+                    if (typeof refFromChild === 'function') refFromChild(ref);
+                    else if (refFromChild) refFromChild.current = ref;
                   }
                 }}
               />
