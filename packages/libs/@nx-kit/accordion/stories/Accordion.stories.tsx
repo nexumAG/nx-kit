@@ -115,6 +115,55 @@ export const ExpandedItems = () => (
   </Accordion>
 );
 
+export const ScrollIntoView = () => (
+  <Accordion skin="default" allowZeroExpanded allowMultipleExpanded onChange={console.log}>
+    <Accordion.Item
+      title="Item 1"
+      onPress={({ buttonElement, isOpen }) =>
+        isOpen && buttonElement?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      }
+    >
+      <p>Item 1 content</p>
+      <p>Item 1 content</p>
+      <p>Item 1 content</p>
+      <p>Item 1 content</p>
+    </Accordion.Item>
+    <Accordion.Item
+      title="Item 2"
+      onPress={({ buttonElement, isOpen }) =>
+        isOpen && buttonElement?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      }
+    >
+      <p>Item 2 content</p>
+      <p>Item 2 content</p>
+      <p>Item 2 content</p>
+      <p>Item 2 content</p>
+    </Accordion.Item>
+    <Accordion.Item
+      title="Item 3"
+      onPress={({ buttonElement, isOpen }) =>
+        isOpen && buttonElement?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      }
+    >
+      <p>Item 3 content</p>
+      <p>Item 3 content</p>
+      <p>Item 3 content</p>
+      <p>Item 3 content</p>
+    </Accordion.Item>
+    <Accordion.Item
+      title="Item 4"
+      onPress={({ buttonElement, isOpen }) =>
+        isOpen && buttonElement?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      }
+    >
+      <p>Item 4 content</p>
+      <p>Item 4 content</p>
+      <p>Item 4 content</p>
+      <p>Item 4 content</p>
+    </Accordion.Item>
+  </Accordion>
+);
+
 export const NoControl = () => {
   const [expandedItems, setExpandedItems] = useState(['item1', 'item3']);
 

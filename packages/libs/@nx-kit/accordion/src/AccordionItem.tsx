@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { mergeProps, useId } from '@react-aria/utils';
 import { usePress, useHover } from '@react-aria/interactions';
 import { useFocusRing } from '@react-aria/focus';
 import { styled } from '@nx-kit/styling';
+import { mergeRefs } from '@nx-kit/utils';
 import { AccordionContext } from './AccordionContext';
 import { AccordionItemProps, AccordionItemStyledProps } from './Accordion.types';
 
@@ -19,11 +20,13 @@ const AccordionItem = (
     children,
     className,
     noControl = false,
+    onPress,
   }: AccordionItemProps,
   ref?: React.Ref<HTMLButtonElement>
 ) => {
   const id = useId(idProp);
   const idRegion = useId();
+  const localRef = React.useRef<HTMLButtonElement | null>(null);
   const { skin, expandedItems, onChange, allowZeroExpanded, headingLevel } =
     useContext(AccordionContext);
   const [isOpen, setIsOpen] = useState(isOpenProp);
@@ -31,6 +34,7 @@ const AccordionItem = (
     onPress: () => onToggle(),
   });
   const { focusProps, isFocusVisible } = useFocusRing();
+  const mergedRefs = useCallback(mergeRefs<HTMLButtonElement | null>(ref, localRef), [ref]);
 
   useEffect(() => {
     const isOpenContext = expandedItems.has(id);
@@ -39,6 +43,9 @@ const AccordionItem = (
 
   useEffect(() => {
     onChange(id, isOpen);
+    if (onPress) {
+      onPress({ id, isOpen, buttonElement: localRef.current });
+    }
   }, [isOpen]);
 
   const onToggle = () => {
@@ -68,7 +75,7 @@ const AccordionItem = (
       <div role="heading" aria-level={headingLevel}>
         <button
           id={id}
-          ref={ref}
+          ref={mergedRefs}
           type="button"
           aria-controls={idRegion}
           aria-expanded={isOpen}
