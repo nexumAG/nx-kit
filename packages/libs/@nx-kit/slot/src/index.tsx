@@ -13,6 +13,6 @@ type SlotProviderProps = {
   children: React.ReactNode;
 };
 
-export const SlotProvider = ({ slots, children }: SlotProviderProps) => {
-  return <SlotContext.Provider value={slots}>{children}</SlotContext.Provider>;
-};
+export const SlotProvider = ({ slots, children }: SlotProviderProps) => (
+  <SlotContext.Provider value={slots}>{children}</SlotContext.Provider>
+);

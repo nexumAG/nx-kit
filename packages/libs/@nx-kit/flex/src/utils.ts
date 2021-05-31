@@ -49,12 +49,9 @@ export const getGapValue = (
   return (gap as any)[firstBreakpoint][key] ?? null;
 };
 
-export const customFunctionSize = (
-  key: 'columnGap' | 'rowGap',
-  prop: string,
-  gap?: FlexContextGap
-) => {
-  return (_: string, value: any, breakpoint?: string | number) => {
+export const customFunctionSize =
+  (key: 'columnGap' | 'rowGap', prop: string, gap?: FlexContextGap) =>
+  (_: string, value: any, breakpoint?: string | number) => {
     if (!value) {
       return undefined;
     }
@@ -64,14 +61,10 @@ export const customFunctionSize = (
     }
     return { [prop]: `calc(${value * 100}% - ${gapValue})` };
   };
-};
 
-export const customFunctionOffset = (
-  key: 'columnGap' | 'rowGap',
-  prop: string,
-  gap?: FlexContextGap
-) => {
-  return (_: string, value: any, breakpoint?: string | number) => {
+export const customFunctionOffset =
+  (key: 'columnGap' | 'rowGap', prop: string, gap?: FlexContextGap) =>
+  (_: string, value: any, breakpoint?: string | number) => {
     if (!value) {
       return undefined;
     }
@@ -83,7 +76,6 @@ export const customFunctionOffset = (
     const [, numberString, unit] = gapValue.split(regex);
     return { [prop]: `calc(${value * 100}% + ${parseFloat(numberString) / 2}${unit})` };
   };
-};
 
 export const getGapContextAllBreakpoints = (
   breakpointsSorted: (string | number)[],
@@ -123,7 +115,7 @@ export const getGapContextAllBreakpoints = (
 
 export const getAllBreakpoints = (
   breakpointsSorted: (string | number)[],
-  defaultValue: number,
+  defaultValue: number | null,
   valueInput?: LiteralOrBreakpoints<number>
 ): LiteralOrBreakpoints<number> => {
   const value =

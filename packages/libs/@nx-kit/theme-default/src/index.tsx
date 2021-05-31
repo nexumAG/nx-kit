@@ -96,6 +96,7 @@ export const theme: Theme = {
         display: block;
         box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.focus};
         margin: -5px;
+        z-index: 1;
       }
     `,
     underlay: css<any>`
@@ -483,6 +484,74 @@ export const theme: Theme = {
           `};
       `,
       skin: {},
+    },
+    accordion: {
+      skin: {
+        default: css<any>`
+          & > div[role='heading'] {
+            ${({ theme }) => theme?.component?.heading?.skin?.['400']};
+            margin-bottom: 0;
+          }
+
+          & > div[role='heading'] > button {
+            display: block;
+            width: 100%;
+            text-align: inherit;
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            position: relative;
+            padding-left: 30px;
+            border-bottom: 1px solid ${({ theme }) => theme.global.color.gray200};
+            ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
+            background-color: ${({ isHovered, theme }) =>
+              isHovered ? theme.global.color.gray100 : theme.global.color.gray50};
+          }
+
+          & > div[role='heading'] > button[aria-disabled='true'] {
+            cursor: default;
+          }
+
+          & > div[role='heading'] > button::before {
+            content: '⯈';
+            will-change: transform;
+            transition: transform 300ms ease;
+            position: absolute;
+            transform-origin: center;
+            left: 5px;
+            font-size: 80%;
+            top: 10%;
+          }
+
+          & > div[role='heading'] > button[aria-expanded='true']::before {
+            transform: rotate(90deg);
+          }
+
+          & > div[role='region'] {
+            border: 2px solid ${({ theme }) => theme.global.color.gray50};
+            border-top: 0;
+            padding: 5px;
+            animation: open 0.3s ease-in-out;
+          }
+
+          & > div[role='region'][hidden] {
+            display: none;
+          }
+
+          @keyframes open {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+        `,
+      },
     },
   },
 };

@@ -205,13 +205,33 @@ export const Test = () => (
       Col
     </Flex>
     <Flex col={{ md: 1 / 3 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
-      Col
+      Own yo fo shizzle ligula nec daahng dawg. Fo shizzle mah nizzle fo rizzle, mah home g-dizzle
+      ullamcorpizzle.
     </Flex>
     <Flex col={{ md: 1 / 3 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
       Col
     </Flex>
     <Flex col={{ md: 1 / 3 }} styles={{ backgroundColor: '#aaa', padding: '20px' }}>
       Col
+    </Flex>
+  </Flex>
+);
+
+export const GapNoWidth = () => (
+  <Flex
+    gap={{ xs: '15px', md: '30px' }}
+    flexWrap="wrap"
+    flexDirection={{ xs: 'column', md: 'row' }}
+  >
+    <Flex styles={{ backgroundColor: '#aaa', padding: '20px' }} flex="1">
+      Col
+    </Flex>
+    <Flex styles={{ backgroundColor: '#bbb', padding: '20px' }} flex="1">
+      Col
+    </Flex>
+    <Flex styles={{ backgroundColor: '#ccc', padding: '20px' }} flex="1">
+      Aliquizzle brizzle, sheezy et shut the shizzle up posuere, nibh quam tempizzle fizzle, boom
+      shackalack mollis magna break yo neck, yall pellentesque nizzle.
     </Flex>
   </Flex>
 );

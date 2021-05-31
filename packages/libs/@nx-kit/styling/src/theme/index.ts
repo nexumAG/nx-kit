@@ -77,5 +77,15 @@ export type Theme = {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
+    accordion: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      skin: {
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      };
+    };
   };
 };
+
+declare module 'styled-components' {
+  interface DefaultTheme extends Theme {}
+}

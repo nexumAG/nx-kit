@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/slot",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,13 +22,13 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": ">=16.8",
-    "react-dom": ">=16.8"
+    "react": "^16.8.0-0 || ^17.0.0-0",
+    "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.4"
+    "@nx-kit/dependencies-dev": "^0.1.5"
   },
   "dependencies": {
-    "@react-aria/utils": "^3.3.0"
+    "@react-aria/utils": "^3.8.0"
   }
 }

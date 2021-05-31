@@ -2,12 +2,7 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'jest'],
-  extends: [
-    'airbnb-typescript',
-    'plugin:jest/recommended',
-    'prettier',
-    'prettier/@typescript-eslint',
-  ],
+  extends: ['airbnb-typescript', 'plugin:jest/recommended', 'prettier'],
   parserOptions: {
     project: './tsconfig.json',
     // temp solution
@@ -30,5 +25,6 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': [0],
     'react/prop-types': [0],
     'react/jsx-wrap-multilines': ['error', { declaration: false, assignment: false }],
+    'arrow-body-style': ['warn'],
   },
 };

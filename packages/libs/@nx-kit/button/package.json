@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/button",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.8",
+  "version": "0.1.11",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -23,19 +23,19 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": ">=16.8",
-    "react-dom": ">=16.8"
+    "react": "^16.8.0-0 || ^17.0.0-0",
+    "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.4"
+    "@nx-kit/dependencies-dev": "^0.1.5"
   },
   "dependencies": {
-    "@nx-kit/slot": "^0.1.4",
-    "@nx-kit/styling": "^0.1.8",
-    "@react-aria/button": "^3.2.2",
-    "@react-aria/focus": "^3.2.2",
-    "@react-aria/interactions": "^3.2.1",
-    "@react-aria/utils": "^3.3.0",
-    "@react-types/button": "^3.2.1"
+    "@nx-kit/slot": "^0.1.5",
+    "@nx-kit/styling": "^0.1.10",
+    "@react-aria/button": "^3.3.2",
+    "@react-aria/focus": "^3.3.0",
+    "@react-aria/interactions": "^3.4.0",
+    "@react-aria/utils": "^3.8.0",
+    "@react-types/button": "^3.3.1"
   }
 }

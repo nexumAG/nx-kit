@@ -21,6 +21,7 @@ const HeadingStyled = styled.h2<HeadingStyledProps>`
 `;
 
 export const Heading = (headingProps: HeadingProps) => {
+  // eslint-disable-next-line react/destructuring-assignment
   const props = useSlotProps<HeadingProps>(headingProps.slot ?? 'heading', headingProps);
   const { elementType, children, slot, ...rest } = props;
 

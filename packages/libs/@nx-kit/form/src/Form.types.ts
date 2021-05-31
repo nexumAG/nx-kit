@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResolverResult } from 'react-hook-form';
+import { ResolverResult, UseFormRegister } from 'react-hook-form';
 
 export type FormProps = {
   children: React.ReactNode | ((values: FormContextValue) => React.ReactNode);
@@ -18,7 +18,7 @@ export type FormProps = {
 };
 
 export type FormContextValue = {
-  register: any;
+  register: UseFormRegister<any>;
   errors: Record<string, any>;
   defaultValues: any;
   reset: (values?: Record<string, any>, omitResetState?: Record<string, boolean>) => void;
