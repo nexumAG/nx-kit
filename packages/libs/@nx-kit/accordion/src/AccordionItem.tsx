@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { mergeProps, useId } from '@react-aria/utils';
-import { usePress } from '@react-aria/interactions';
+import { usePress, useHover } from '@react-aria/interactions';
 import { useFocusRing } from '@react-aria/focus';
 import { styled } from '@nx-kit/styling';
 import { AccordionContext } from './AccordionContext';
@@ -54,10 +54,17 @@ const AccordionItem = (
   };
 
   const isDisabled = (isOpen && !allowZeroExpanded && expandedItems.size < 2) || noControl;
+  const { hoverProps, isHovered } = useHover({ isDisabled });
   const title = typeof titleProp === 'function' ? titleProp(isOpen, isDisabled) : titleProp;
 
   return (
-    <AccordionItemStyled skin={skin} className={className} isFocused={isFocusVisible}>
+    <AccordionItemStyled
+      skin={skin}
+      className={className}
+      isFocused={isFocusVisible}
+      isDisabled={isDisabled}
+      isHovered={isHovered}
+    >
       <div role="heading" aria-level={headingLevel}>
         <button
           id={id}
@@ -66,7 +73,7 @@ const AccordionItem = (
           aria-controls={idRegion}
           aria-expanded={isOpen}
           aria-disabled={isDisabled ? true : undefined}
-          {...mergeProps(pressProps, focusProps)}
+          {...mergeProps(pressProps, focusProps, hoverProps)}
         >
           {title}
         </button>

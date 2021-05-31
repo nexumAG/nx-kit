@@ -505,10 +505,11 @@ export const theme: Theme = {
             cursor: pointer;
             outline: inherit;
             position: relative;
-            background-color: ${({ theme }) => theme.global.color.gray50};
+            padding-left: 30px;
             border-bottom: 1px solid ${({ theme }) => theme.global.color.gray200};
             ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
-            padding-left: 30px;
+            background-color: ${({ isHovered, theme }) =>
+              isHovered ? theme.global.color.gray100 : theme.global.color.gray50};
           }
 
           & > div[role='heading'] > button[aria-disabled='true'] {
