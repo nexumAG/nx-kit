@@ -31,6 +31,8 @@
   },
   "dependencies": {
     "@nx-kit/styling": "^0.1.10",
+    "@react-aria/focus": "^3.3.0",
+    "@react-aria/interactions": "^3.4.0",
     "@react-aria/utils": "^3.8.0"
   }
 }
