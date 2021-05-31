@@ -10,6 +10,9 @@ export const Default = () => (
   <Accordion skin="default" onChange={console.log}>
     <Accordion.Item title="Item 1">
       <p>Item 1 content</p>
+      <p>
+        <input type="text" />
+      </p>
     </Accordion.Item>
     <Accordion.Item title="Item 2">
       <p>Item 2 content</p>
@@ -47,6 +50,12 @@ export const AllowZeroAndMultipleExpanded = () => (
     </Accordion.Item>
     <Accordion.Item title="Item 2">
       <p>Item 2 content</p>
+    </Accordion.Item>
+    <Accordion.Item title="Item 3">
+      <p>Item 3 content</p>
+    </Accordion.Item>
+    <Accordion.Item title="Item 4">
+      <p>Item 4 content</p>
     </Accordion.Item>
   </Accordion>
 );
