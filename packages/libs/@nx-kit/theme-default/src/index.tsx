@@ -488,12 +488,12 @@ export const theme: Theme = {
     accordion: {
       skin: {
         default: css<any>`
-          & > h3 {
+          & > div[role='heading'] {
             ${({ theme }) => theme?.component?.heading?.skin?.['400']};
             margin-bottom: 0;
           }
 
-          & > h3 > button {
+          & > div[role='heading'] > button {
             display: block;
             width: 100%;
             text-align: inherit;
@@ -511,7 +511,7 @@ export const theme: Theme = {
             padding-left: 30px;
           }
 
-          & > h3 > button::before {
+          & > div[role='heading'] > button::before {
             content: '⯈';
             will-change: transform;
             transition: transform 300ms ease;
@@ -522,18 +522,18 @@ export const theme: Theme = {
             top: 10%;
           }
 
-          & > h3 > button[aria-expanded='true']::before {
+          & > div[role='heading'] > button[aria-expanded='true']::before {
             transform: rotate(90deg);
           }
 
-          & > div {
+          & > div[role='region'] {
             border: 2px solid ${({ theme }) => theme.global.color.gray50};
             border-top: 0;
             padding: 5px;
             animation: open 0.3s ease-in-out;
           }
 
-          & > div[hidden] {
+          & > div[role='region'][hidden] {
             display: none;
           }
 

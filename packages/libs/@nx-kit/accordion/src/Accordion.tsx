@@ -107,7 +107,7 @@ const AccordionItem = ({
 
   return (
     <AccordionItemStyled skin={skin} className={className} isFocused={isFocusVisible}>
-      <h3>
+      <div role="heading" aria-level={3}>
         <button
           id={id}
           type="button"
@@ -118,7 +118,7 @@ const AccordionItem = ({
         >
           {title}
         </button>
-      </h3>
+      </div>
       <div id={idRegion} role="region" hidden={!isOpen} aria-labelledby={id}>
         {children}
       </div>
