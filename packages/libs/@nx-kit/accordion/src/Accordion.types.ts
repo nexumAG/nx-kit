@@ -20,6 +20,11 @@ export type AccordionItemProps = {
   children: React.ReactNode;
   isOpen?: boolean;
   noControl?: boolean;
+  onPress?: (args: {
+    id: string;
+    buttonElement: HTMLButtonElement | null;
+    isOpen: boolean;
+  }) => void;
 };
 
 export type AccordionItemStyledProps = {
