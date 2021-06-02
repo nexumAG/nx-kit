@@ -1,3 +1,5 @@
+// add IE11 support: https://github.com/storybookjs/presets/tree/master/packages/preset-ie11
+
 module.exports = {
   stories: [
     './../../../../packages/**/*.stories.mdx',

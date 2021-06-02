@@ -462,18 +462,25 @@ export const theme: Theme = {
           outline: none;
         }
 
-        &:checked::before {
+        &[aria-checked='true']::before {
           content: '✓';
           position: absolute;
           top: -4px;
           left: 2px;
         }
 
+        &[aria-checked='mixed']::before {
+          content: '—';
+          position: absolute;
+          top: -5px;
+          left: 1px;
+        }
+
         ${({ isFocused, hasError }) =>
           isFocused &&
           !hasError &&
           css`
-            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.focus};
+            box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.focus};
           `};
 
         ${({ isFocused, hasError }) =>

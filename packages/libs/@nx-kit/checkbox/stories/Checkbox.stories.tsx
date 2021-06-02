@@ -16,6 +16,8 @@ export const Error = () => <Checkbox ariaLabel="test" hasError />;
 
 export const Readonly = () => <Checkbox ariaLabel="test" defaultValue isReadOnly />;
 
+export const Indeterminate = () => <Checkbox ariaLabel="test" defaultValue isIndeterminate />;
+
 export const CustomRender = () => (
   <Checkbox
     ariaLabel="test"
