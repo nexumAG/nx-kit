@@ -10,7 +10,7 @@ export const TextFieldWrapper = ({ children }: TextFieldWrapperProps) => {
 
   const slots = {
     label: labelProps,
-    textfield: { ...inputProps },
+    field: inputProps,
   };
 
   return <SlotProvider slots={slots}>{children}</SlotProvider>;

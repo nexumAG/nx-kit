@@ -40,7 +40,7 @@ const TextField = (
     // don't pass through
     validation,
     ...rest
-  } = useSlotProps<TextFieldProps>(slot ?? 'textfield', props);
+  } = useSlotProps<TextFieldProps>(slot ?? 'field', props);
 
   const { isFocusVisible, focusProps } = useFocusRing({
     autoFocus,

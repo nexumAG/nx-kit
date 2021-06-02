@@ -1,4 +1,6 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Form } from '@nx-kit/form';
 import { Checkbox } from '../src';
 
 export default {
@@ -49,4 +51,11 @@ export const CustomRender = () => (
       </div>
     )}
   />
+);
+
+export const LabelWrapper = () => (
+  <Form.LabelWrapper>
+    <Form.Label>Checkbox Label </Form.Label>
+    <Checkbox />
+  </Form.LabelWrapper>
 );

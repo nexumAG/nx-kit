@@ -44,7 +44,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     render,
     validation,
     ...rest
-  } = useSlotProps<CheckboxProps>(slot ?? 'checkbox', props);
+  } = useSlotProps<CheckboxProps>(slot ?? 'field', props);
 
   const { isFocusVisible, focusProps } = useFocusRing({
     autoFocus,
