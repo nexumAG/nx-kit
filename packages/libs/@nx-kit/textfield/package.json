@@ -29,7 +29,7 @@
   "devDependencies": {
     "@nx-kit/dependencies-dev": "^0.1.5",
     "@nx-kit/flex": "^0.1.11",
-    "@nx-kit/text": "^0.1.8"
+    "@nx-kit/form": "^0.1.5"
   },
   "dependencies": {
     "@nx-kit/slot": "^0.1.5",

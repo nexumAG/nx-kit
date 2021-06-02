@@ -29,6 +29,7 @@
   "devDependencies": {
     "@nx-kit/checkbox": "^0.1.3",
     "@nx-kit/dependencies-dev": "^0.1.5",
+    "@nx-kit/flex": "^0.1.11",
     "@nx-kit/textfield": "^0.1.6"
   },
   "dependencies": {

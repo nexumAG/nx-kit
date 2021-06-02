@@ -1,9 +1,9 @@
 import React, { SyntheticEvent } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Text } from '@nx-kit/text';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Flex } from '@nx-kit/flex';
-import { TextField, TextFieldWrapper } from '../src';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Form } from '@nx-kit/form';
+import { TextField } from '../src';
 
 export default {
   title: '@nx-kit/textfield',
@@ -45,12 +45,10 @@ export const TextFieldContainerExample = () => (
         flexDirection={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'normal', sm: 'baseline' }}
       >
-        <TextFieldWrapper>
-          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
-            This is a label
-          </Text>
+        <Form.LabelWrapper>
+          <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>This is a label</Form.Label>
           <TextField styles={{ flex: 1 }} />
-        </TextFieldWrapper>
+        </Form.LabelWrapper>
       </Flex>
     </div>
     <div>
@@ -59,22 +57,22 @@ export const TextFieldContainerExample = () => (
         flexDirection={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'normal', sm: 'baseline' }}
       >
-        <TextFieldWrapper>
-          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
+        <Form.LabelWrapper>
+          <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is another label
-          </Text>
+          </Form.Label>
           <TextField styles={{ flex: 1 }} hasError />
-        </TextFieldWrapper>
+        </Form.LabelWrapper>
       </Flex>
     </div>
     <div>
       <Flex gap={{ xs: '0px', sm: '15px' }} flexDirection={{ xs: 'column', sm: 'row' }}>
-        <TextFieldWrapper>
-          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
+        <Form.LabelWrapper>
+          <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is yet another very very very long label
-          </Text>
+          </Form.Label>
           <TextField styles={{ flex: 1 }} type="textarea" />
-        </TextFieldWrapper>
+        </Form.LabelWrapper>
       </Flex>
     </div>
   </Flex>
