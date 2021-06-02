@@ -10,6 +10,12 @@ export const Default = () => <Checkbox onChange={console.log} ariaLabel="test" /
 
 export const Disabled = () => <Checkbox isDisabled ariaLabel="test" />;
 
+export const Checked = () => <Checkbox ariaLabel="test" defaultValue />;
+
+export const Error = () => <Checkbox ariaLabel="test" hasError />;
+
+export const Readonly = () => <Checkbox ariaLabel="test" defaultValue isReadOnly />;
+
 export const CustomRender = () => (
   <Checkbox
     ariaLabel="test"

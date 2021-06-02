@@ -64,7 +64,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     state,
     localRef
   );
-  const mergedRefs = useCallback(mergeRefs<HTMLInputElement | null>(ref, localRef), []);
+  const mergedRefs = useCallback(mergeRefs<HTMLInputElement | null>(ref, localRef), [ref]);
 
   const elementTypeProps = {
     as: 'input' as As,
