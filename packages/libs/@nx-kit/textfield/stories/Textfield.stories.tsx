@@ -45,10 +45,10 @@ export const TextFieldContainerExample = () => (
         flexDirection={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'normal', sm: 'baseline' }}
       >
-        <Form.LabelWrapper>
+        <Form.FieldWrapper>
           <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>This is a label</Form.Label>
           <TextField styles={{ flex: 1 }} />
-        </Form.LabelWrapper>
+        </Form.FieldWrapper>
       </Flex>
     </div>
     <div>
@@ -57,22 +57,22 @@ export const TextFieldContainerExample = () => (
         flexDirection={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'normal', sm: 'baseline' }}
       >
-        <Form.LabelWrapper>
+        <Form.FieldWrapper>
           <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is another label
           </Form.Label>
           <TextField styles={{ flex: 1 }} hasError />
-        </Form.LabelWrapper>
+        </Form.FieldWrapper>
       </Flex>
     </div>
     <div>
       <Flex gap={{ xs: '0px', sm: '15px' }} flexDirection={{ xs: 'column', sm: 'row' }}>
-        <Form.LabelWrapper>
+        <Form.FieldWrapper>
           <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is yet another very very very long label
           </Form.Label>
           <TextField styles={{ flex: 1 }} type="textarea" />
-        </Form.LabelWrapper>
+        </Form.FieldWrapper>
       </Flex>
     </div>
   </Flex>

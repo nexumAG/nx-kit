@@ -38,7 +38,7 @@ export const Default = () => {
                   flexDirection={{ xs: 'column', sm: 'row' }}
                   alignItems={{ xs: 'normal', sm: 'baseline' }}
                 >
-                  <Form.LabelWrapper>
+                  <Form.FieldWrapper>
                     <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>Test</Form.Label>
                     <Flex flexType="none" flex={1}>
                       <Form.Input
@@ -62,7 +62,7 @@ export const Default = () => {
                         <Form.Error name="test" styles={{ color: 'brandDanger500' }} />
                       </div>
                     </Flex>
-                  </Form.LabelWrapper>
+                  </Form.FieldWrapper>
                 </Flex>
               </div>
               <div>
@@ -71,7 +71,7 @@ export const Default = () => {
                   flexDirection={{ xs: 'column', sm: 'row' }}
                   alignItems={{ xs: 'normal', sm: 'baseline' }}
                 >
-                  <Form.LabelWrapper>
+                  <Form.FieldWrapper>
                     <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>Test 2</Form.Label>
 
                     <Flex flexType="none" flex={1}>
@@ -93,7 +93,7 @@ export const Default = () => {
                         <Form.Error name="test2" styles={{ color: 'brandDanger500' }} />
                       </div>
                     </Flex>
-                  </Form.LabelWrapper>
+                  </Form.FieldWrapper>
                 </Flex>
               </div>
               <div>
@@ -102,7 +102,7 @@ export const Default = () => {
                   flexDirection={{ xs: 'column', sm: 'row' }}
                   alignItems={{ xs: 'normal', sm: 'baseline' }}
                 >
-                  <Form.LabelWrapper>
+                  <Form.FieldWrapper>
                     <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>Checked?</Form.Label>
 
                     <Flex flexType="none" flex={1}>
@@ -116,7 +116,7 @@ export const Default = () => {
                         <Form.Error name="checked" styles={{ color: 'brandDanger500' }} />
                       </div>
                     </Flex>
-                  </Form.LabelWrapper>
+                  </Form.FieldWrapper>
                 </Flex>
               </div>
               <div>
@@ -125,7 +125,7 @@ export const Default = () => {
                   flexDirection={{ xs: 'column', sm: 'row' }}
                   alignItems={{ xs: 'normal', sm: 'baseline' }}
                 >
-                  <Form.LabelWrapper>
+                  <Form.FieldWrapper>
                     <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
                       Also checked?
                     </Form.Label>
@@ -147,7 +147,7 @@ export const Default = () => {
                         <Form.Error name="checked2" styles={{ color: 'brandDanger500' }} />
                       </div>
                     </Flex>
-                  </Form.LabelWrapper>
+                  </Form.FieldWrapper>
                 </Flex>
               </div>
             </Flex>
