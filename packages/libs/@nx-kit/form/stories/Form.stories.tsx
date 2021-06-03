@@ -45,7 +45,7 @@ export const Default = () => {
                         name="test"
                         field={
                           <TextField
-                            isAriaRequired
+                            isRequired
                             onChange={() => trigger('test2')}
                             styles={{ width: '100%' }}
                           />

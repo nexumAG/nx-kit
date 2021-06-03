@@ -17,7 +17,6 @@ export type FieldBaseProps<T, Styles> = InputInterface<T> & {
   isDisabled?: boolean;
   isReadOnly?: boolean;
 
-  isAriaRequired?: boolean;
   ariaLabel?: string;
 };
 

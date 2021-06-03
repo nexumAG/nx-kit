@@ -33,7 +33,6 @@ const TextField = (
     type = 'text',
     autoFocus,
     isRequired,
-    isAriaRequired,
     isReadOnly,
     hasError,
     ariaLabel,
@@ -70,13 +69,12 @@ const TextField = (
       autoFocus={autoFocus}
       isDisabled={isDisabled !== undefined}
       disabled={isDisabled}
-      required={isRequired}
       readOnly={isReadOnly}
       hasError={hasError}
       aria-invalid={hasError ? true : undefined}
       aria-label={ariaLabel}
+      aria-required={isRequired}
       {...mergeProps(focusProps, elementTypeProps, rest)}
-      aria-required={isAriaRequired}
     />
   );
 };
