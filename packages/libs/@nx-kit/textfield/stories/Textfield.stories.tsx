@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Flex } from '@nx-kit/flex';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -81,3 +81,16 @@ export const FieldWrapper = () => (
     </div>
   </Flex>
 );
+
+export const Controlled = () => {
+  const [value, setValue] = useState('test');
+
+  return (
+    <TextField
+      value={value}
+      onChange={(event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+        setValue(event.currentTarget.value)
+      }
+    />
+  );
+};

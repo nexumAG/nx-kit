@@ -1,8 +1,8 @@
 import React, { SyntheticEvent } from 'react';
 
-export type FieldBaseProps<T, Styles> = InputInterface<T> & {
+export type FieldBaseProps<T, Styles, E> = InputInterface<T, E> & {
   id?: string;
-  value?: T;
+  value?: string;
 
   placeholder?: string;
   validation?: any;
@@ -20,11 +20,11 @@ export type FieldBaseProps<T, Styles> = InputInterface<T> & {
   ariaLabel?: string;
 };
 
-export interface InputInterface<T = any> {
+export interface InputInterface<T = any, E = HTMLElement> {
   ref?: React.Ref<any>;
   name?: string;
   defaultValue?: T;
   hasError?: boolean;
-  onChange?: (event: SyntheticEvent) => void;
-  onBlur?: (event: SyntheticEvent) => void;
+  onChange?: (event: SyntheticEvent<E>) => void;
+  onBlur?: (event: SyntheticEvent<E>) => void;
 }

@@ -31,12 +31,14 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
   const { slot } = props;
   const {
     isDisabled,
-    autoFocus,
     isRequired,
     isReadOnly,
     isIndeterminate,
+    isChecked,
+    autoFocus,
     hasError,
     ariaLabel,
+    defaultChecked,
     defaultValue,
     value,
     // don't pass through
@@ -52,8 +54,8 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
 
   const state = useToggleState({
     ...(props as any),
-    defaultSelected: defaultValue,
-    isSelected: value,
+    defaultSelected: defaultChecked ?? defaultValue, // uncontrolled
+    isSelected: isChecked, // controlled
     value,
     onChange: undefined,
   });
@@ -91,8 +93,8 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     <>
       <VisuallyHidden>{nativeCheckbox}</VisuallyHidden>
       {render({
-        isSelected: state.isSelected,
-        setSelected: state.setSelected,
+        isChecked: state.isSelected,
+        setChecked: state.setSelected,
         hasError: hasError === true,
         isDisabled: isDisabled === true,
         isFocused: isFocusVisible,

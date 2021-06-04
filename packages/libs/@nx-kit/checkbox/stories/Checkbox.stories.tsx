@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Form } from '@nx-kit/form';
 import { Checkbox } from '../src';
@@ -12,31 +12,31 @@ export const Default = () => <Checkbox onChange={console.log} ariaLabel="test" /
 
 export const Disabled = () => <Checkbox isDisabled ariaLabel="test" />;
 
-export const Checked = () => <Checkbox ariaLabel="test" defaultValue />;
+export const Checked = () => <Checkbox ariaLabel="test" defaultChecked />;
 
 export const Error = () => <Checkbox ariaLabel="test" hasError />;
 
-export const Readonly = () => <Checkbox ariaLabel="test" defaultValue isReadOnly />;
+export const Readonly = () => <Checkbox ariaLabel="test" defaultChecked isReadOnly />;
 
-export const Indeterminate = () => <Checkbox ariaLabel="test" defaultValue isIndeterminate />;
+export const Indeterminate = () => <Checkbox ariaLabel="test" defaultChecked isIndeterminate />;
 
 export const CustomRender = () => (
   <Checkbox
     ariaLabel="test"
-    render={({ isSelected, isFocused, setSelected }) => (
+    render={({ isChecked, isFocused, setChecked }) => (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-      <div onClick={() => setSelected(!isSelected)}>
+      <div onClick={() => setChecked(!isChecked)}>
         <svg width={24} height={24} aria-hidden="true" style={{ marginRight: 4 }}>
           <rect
-            x={isSelected ? 4 : 5}
-            y={isSelected ? 4 : 5}
-            width={isSelected ? 16 : 14}
-            height={isSelected ? 16 : 14}
-            fill={isSelected ? 'orange' : 'none'}
-            stroke={isSelected ? 'none' : 'gray'}
+            x={isChecked ? 4 : 5}
+            y={isChecked ? 4 : 5}
+            width={isChecked ? 16 : 14}
+            height={isChecked ? 16 : 14}
+            fill={isChecked ? 'orange' : 'none'}
+            stroke={isChecked ? 'none' : 'gray'}
             strokeWidth={2}
           />
-          {isSelected && (
+          {isChecked && (
             <path
               transform="translate(7 7)"
               d={`M3.788 9A.999.999 0 0 1 3 8.615l-2.288-3a1 1 0 1 1
@@ -59,3 +59,17 @@ export const FieldWrapper = () => (
     <Checkbox />
   </Form.FieldWrapper>
 );
+
+export const Controlled = () => {
+  const [checked, setChecked] = useState(true);
+
+  return (
+    <Checkbox
+      ariaLabel="test"
+      isChecked={checked}
+      onChange={(event: SyntheticEvent<HTMLInputElement>) =>
+        setChecked(event.currentTarget.checked)
+      }
+    />
+  );
+};

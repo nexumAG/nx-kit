@@ -12,7 +12,11 @@ type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
 export type TextFieldType = 'text' | 'textarea' | 'password';
 
-export type TextFieldProps = FieldBaseProps<string, Styles> & {
+export type TextFieldProps = FieldBaseProps<
+  string,
+  Styles,
+  HTMLInputElement | HTMLTextAreaElement
+> & {
   type?: TextFieldType;
   'aria-label'?: string;
   'aria-errormessage'?: string;

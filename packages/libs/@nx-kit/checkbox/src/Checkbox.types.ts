@@ -4,14 +4,16 @@ import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@
 export type CheckboxSkin = keyof Theme['component']['checkbox']['skin'];
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
-export type CheckboxProps = FieldBaseProps<boolean, Styles> & {
+export type CheckboxProps = FieldBaseProps<boolean, Styles, HTMLInputElement> & {
   isIndeterminate?: boolean;
+  isChecked?: boolean;
+  defaultChecked?: boolean;
   render?: (props: {
     isFocused: boolean;
     isDisabled: boolean;
     hasError: boolean;
-    isSelected: boolean;
-    setSelected: (isSelected: boolean) => void;
+    isChecked: boolean;
+    setChecked: (isChecked: boolean) => void;
   }) => React.ReactNode;
 };
 
