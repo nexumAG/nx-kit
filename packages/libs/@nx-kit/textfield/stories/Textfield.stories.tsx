@@ -41,7 +41,7 @@ export const MaxLength = () => <TextField maxLength={10} />;
 
 export const InputMode = () => <TextField inputMode="numeric" />;
 
-export const TextFieldContainerExample = () => (
+export const FieldWrapper = () => (
   <Flex gap="15px" flexDirection="column">
     <div>
       <Flex
