@@ -35,7 +35,6 @@ const TextField = (
     isRequired,
     isReadOnly,
     hasError,
-    ariaLabel,
     // don't pass through
     validation,
     ...rest
@@ -72,7 +71,6 @@ const TextField = (
       readOnly={isReadOnly}
       hasError={hasError}
       aria-invalid={hasError ? true : undefined}
-      aria-label={ariaLabel}
       aria-required={isRequired}
       {...mergeProps(focusProps, elementTypeProps, rest)}
     />
