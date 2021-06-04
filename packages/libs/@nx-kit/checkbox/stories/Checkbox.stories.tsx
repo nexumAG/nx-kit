@@ -53,7 +53,7 @@ export const CustomRender = () => (
   />
 );
 
-export const LabelWrapper = () => (
+export const FieldWrapper = () => (
   <Form.FieldWrapper>
     <Form.Label>Checkbox Label </Form.Label>
     <Checkbox />
