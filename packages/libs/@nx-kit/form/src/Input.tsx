@@ -18,7 +18,7 @@ const Input = (
   // register field and merge refs
   const refs = useCallback(
     mergeRefs<HTMLInputElement | HTMLTextAreaElement | null>(ref, registerRef),
-    []
+    [ref]
   );
 
   return React.cloneElement(Field, {

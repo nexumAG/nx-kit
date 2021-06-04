@@ -4,6 +4,7 @@ import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useToggleState } from '@react-stately/toggle';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
 import {
   As,
   compose,
@@ -32,7 +33,6 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     isDisabled,
     autoFocus,
     isRequired,
-    isAriaRequired,
     isReadOnly,
     isIndeterminate,
     hasError,
@@ -40,9 +40,10 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     defaultValue,
     value,
     // don't pass through
+    render,
     validation,
     ...rest
-  } = useSlotProps<CheckboxProps>(slot ?? 'checkbox', props);
+  } = useSlotProps<CheckboxProps>(slot ?? 'field', props);
 
   const { isFocusVisible, focusProps } = useFocusRing({
     autoFocus,
@@ -62,24 +63,41 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     state,
     localRef
   );
-  const mergedRefs = useCallback(mergeRefs<HTMLInputElement | null>(ref, localRef), []);
+  const mergedRefs = useCallback(mergeRefs<HTMLInputElement | null>(ref, localRef), [ref]);
 
   const elementTypeProps = {
     as: 'input' as As,
     type: 'checkbox',
   };
 
-  return (
+  const nativeCheckbox = (
     <CheckboxStyled
       ref={mergedRefs}
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
-      isDisabled={isDisabled !== undefined}
+      isDisabled={isDisabled === true}
       hasError={hasError}
-      {...mergeProps(inputProps, focusProps, elementTypeProps, rest)}
       aria-invalid={hasError ? true : undefined}
-      aria-required={isAriaRequired}
+      aria-required={isRequired}
+      {...mergeProps(inputProps, focusProps, elementTypeProps, rest)}
     />
+  );
+
+  if (!render) {
+    return nativeCheckbox;
+  }
+
+  return (
+    <>
+      <VisuallyHidden>{nativeCheckbox}</VisuallyHidden>
+      {render({
+        isSelected: state.isSelected,
+        setSelected: state.setSelected,
+        hasError: hasError === true,
+        isDisabled: isDisabled === true,
+        isFocused: isFocusVisible,
+      })}
+    </>
   );
 };
 

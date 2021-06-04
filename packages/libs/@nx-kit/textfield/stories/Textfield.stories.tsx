@@ -1,9 +1,9 @@
 import React, { SyntheticEvent } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Text } from '@nx-kit/text';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Flex } from '@nx-kit/flex';
-import { TextField, TextFieldWrapper } from '../src';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Form } from '@nx-kit/form';
+import { TextField } from '../src';
 
 export default {
   title: '@nx-kit/textfield',
@@ -37,6 +37,10 @@ export const TextAreaError = () => <TextField type="textarea" hasError />;
 
 export const Password = () => <TextField type="password" />;
 
+export const MaxLength = () => <TextField maxLength={10} />;
+
+export const InputMode = () => <TextField inputMode="numeric" />;
+
 export const TextFieldContainerExample = () => (
   <Flex gap="15px" flexDirection="column">
     <div>
@@ -45,12 +49,10 @@ export const TextFieldContainerExample = () => (
         flexDirection={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'normal', sm: 'baseline' }}
       >
-        <TextFieldWrapper>
-          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
-            This is a label
-          </Text>
+        <Form.FieldWrapper>
+          <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>This is a label</Form.Label>
           <TextField styles={{ flex: 1 }} />
-        </TextFieldWrapper>
+        </Form.FieldWrapper>
       </Flex>
     </div>
     <div>
@@ -59,22 +61,22 @@ export const TextFieldContainerExample = () => (
         flexDirection={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'normal', sm: 'baseline' }}
       >
-        <TextFieldWrapper>
-          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
+        <Form.FieldWrapper>
+          <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is another label
-          </Text>
+          </Form.Label>
           <TextField styles={{ flex: 1 }} hasError />
-        </TextFieldWrapper>
+        </Form.FieldWrapper>
       </Flex>
     </div>
     <div>
       <Flex gap={{ xs: '0px', sm: '15px' }} flexDirection={{ xs: 'column', sm: 'row' }}>
-        <TextFieldWrapper>
-          <Text slot="label" elementType="label" styles={{ width: { xs: '100%', sm: '20%' } }}>
+        <Form.FieldWrapper>
+          <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
             This is yet another very very very long label
-          </Text>
+          </Form.Label>
           <TextField styles={{ flex: 1 }} type="textarea" />
-        </TextFieldWrapper>
+        </Form.FieldWrapper>
       </Flex>
     </div>
   </Flex>
