@@ -27,7 +27,8 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.5"
+    "@nx-kit/dependencies-dev": "^0.1.5",
+    "@nx-kit/form": "^0.1.5"
   },
   "dependencies": {
     "@nx-kit/slot": "^0.1.5",
@@ -37,6 +38,7 @@
     "@react-aria/checkbox": "^3.2.2",
     "@react-aria/focus": "^3.3.0",
     "@react-aria/utils": "^3.8.0",
+    "@react-aria/visually-hidden": "^3.2.2",
     "@react-stately/toggle": "^3.2.2"
   }
 }

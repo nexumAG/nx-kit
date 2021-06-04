@@ -443,14 +443,37 @@ export const theme: Theme = {
     },
     checkbox: {
       global: css<any>`
+        &::-ms-check {
+          display: none;
+        }
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         position: relative;
+        height: 16px;
+        width: 16px;
+        margin: 0;
         border: 1px solid ${({ theme }) => theme.global.color.gray500};
         border-radius: 2px;
-        padding: 4px;
         color: ${({ theme }) => theme.global.color.gray700};
 
         &:focus {
           outline: none;
+        }
+
+        &[aria-checked='true']::before {
+          content: '✓';
+          position: absolute;
+          top: -4px;
+          left: 2px;
+        }
+
+        &[aria-checked='mixed']::before {
+          content: '—';
+          position: absolute;
+          top: -5px;
+          left: 1px;
         }
 
         ${({ isFocused, hasError }) =>
@@ -464,9 +487,7 @@ export const theme: Theme = {
           isFocused &&
           hasError &&
           css`
-            &&& {
-              box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.brandDanger500};
-            }
+            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.brandDanger500};
           `};
 
         ${({ isDisabled }) =>
@@ -478,8 +499,8 @@ export const theme: Theme = {
         ${({ hasError }) =>
           hasError &&
           css`
-            && {
-              box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.brandDanger500};
+            &&& {
+              border: 1px solid ${({ theme }) => theme.global.color.brandDanger500};
             }
           `};
       `,
