@@ -49,7 +49,6 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     isChecked,
     autoFocus,
     hasError,
-    ariaLabel,
     defaultChecked,
     defaultValue,
     value,
@@ -74,7 +73,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
   });
   const localRef = React.useRef<HTMLInputElement | null>(null);
   const { inputProps } = useCheckbox(
-    { ...(props as any), isIndeterminate, 'aria-label': ariaLabel, onChange: undefined },
+    { ...mergeProps(props as any, rest), isIndeterminate, onChange: undefined },
     state,
     localRef
   );

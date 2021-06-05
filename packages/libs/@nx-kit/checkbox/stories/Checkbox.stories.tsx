@@ -67,9 +67,10 @@ export const Controlled = () => {
     <Checkbox
       aria-label="test"
       isChecked={checked}
-      onChange={(event: SyntheticEvent<HTMLInputElement>) =>
-        setChecked(event.currentTarget.checked)
-      }
+      onChange={(event: SyntheticEvent<HTMLInputElement>) => {
+        setChecked(event.currentTarget.checked);
+        console.log(event.currentTarget.checked);
+      }}
     />
   );
 };

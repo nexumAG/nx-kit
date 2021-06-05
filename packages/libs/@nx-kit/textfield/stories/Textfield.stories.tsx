@@ -88,9 +88,10 @@ export const Controlled = () => {
   return (
     <TextField
       value={value}
-      onChange={(event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-        setValue(event.currentTarget.value)
-      }
+      onChange={(event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setValue(event.currentTarget.value);
+        console.log(event.currentTarget.value);
+      }}
     />
   );
 };
