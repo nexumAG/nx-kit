@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { get } from 'react-hook-form';
 import { mergeRefs } from '@nx-kit/utils';
 import { InputProps } from './Input.types';
 // eslint-disable-next-line import/no-cycle
@@ -21,12 +22,14 @@ const Input = (
     [ref]
   );
 
+  const defaultValue = get(defaultValues, name);
+
   return React.cloneElement(Field, {
     onChange,
     onBlur,
+    defaultValue,
     name: registerName,
     ref: refs,
-    defaultValue: name && defaultValues?.[name],
     hasError: name && errors?.[name],
   });
 };

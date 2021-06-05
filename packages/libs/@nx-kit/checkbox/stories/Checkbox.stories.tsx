@@ -8,21 +8,21 @@ export default {
   component: Checkbox,
 };
 
-export const Default = () => <Checkbox onChange={console.log} ariaLabel="test" />;
+export const Default = () => <Checkbox onChange={console.log} aria-label="test" />;
 
-export const Disabled = () => <Checkbox isDisabled ariaLabel="test" />;
+export const Disabled = () => <Checkbox isDisabled aria-label="test" />;
 
-export const Checked = () => <Checkbox ariaLabel="test" defaultChecked />;
+export const Checked = () => <Checkbox aria-label="test" defaultChecked />;
 
-export const Error = () => <Checkbox ariaLabel="test" hasError />;
+export const Error = () => <Checkbox aria-label="test" hasError />;
 
-export const Readonly = () => <Checkbox ariaLabel="test" defaultChecked isReadOnly />;
+export const Readonly = () => <Checkbox aria-label="test" defaultChecked isReadOnly />;
 
-export const Indeterminate = () => <Checkbox ariaLabel="test" defaultChecked isIndeterminate />;
+export const Indeterminate = () => <Checkbox aria-label="test" defaultChecked isIndeterminate />;
 
 export const CustomRender = () => (
   <Checkbox
-    ariaLabel="test"
+    aria-label="test"
     render={({ isChecked, isFocused, setChecked }) => (
       // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
       <div onClick={() => setChecked(!isChecked)}>
@@ -65,7 +65,7 @@ export const Controlled = () => {
 
   return (
     <Checkbox
-      ariaLabel="test"
+      aria-label="test"
       isChecked={checked}
       onChange={(event: SyntheticEvent<HTMLInputElement>) =>
         setChecked(event.currentTarget.checked)

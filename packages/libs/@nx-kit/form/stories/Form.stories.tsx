@@ -24,7 +24,7 @@ export const Default = () => {
         Remove Field
       </button>
       <Form
-        defaultValues={{ test: 'test', checked: true }}
+        defaultValues={{ test: 'test', checked: true, checked3: [true, false, true] }}
         mode="all"
         reValidateMode="onChange"
         onSubmit={(values: any) => console.log('submit', values)}
@@ -108,13 +108,8 @@ export const Default = () => {
                     <Flex flexType="none" flex={1}>
                       <Form.Input
                         name="checked"
-                        field={
-                          <Checkbox
-                            ariaLabel="checked"
-                            onChange={() => trigger('checked2')}
-                            value="checked1"
-                          />
-                        }
+                        field={<Checkbox onChange={() => trigger('checked2')} value="checked1" />}
+                        // field={<input type="checkbox" value="checked1" />}
                       />
                       <div>
                         <Form.Error name="checked" styles={{ color: 'brandDanger500' }} />
@@ -137,7 +132,7 @@ export const Default = () => {
                     <Flex flexType="none" flex={1}>
                       <Form.Input
                         name="checked2"
-                        field={<Checkbox ariaLabel="checked2" />}
+                        field={<Checkbox />}
                         validation={(getValues: any) => ({
                           validate: {
                             requiredIfTestTrue: (value: boolean) =>
@@ -149,6 +144,43 @@ export const Default = () => {
                       />
                       <div>
                         <Form.Error name="checked2" styles={{ color: 'brandDanger500' }} />
+                      </div>
+                    </Flex>
+                  </Form.FieldWrapper>
+                </Flex>
+              </div>
+              <div>
+                <Flex
+                  gap={{ xs: '0px', sm: '15px' }}
+                  flexDirection={{ xs: 'column', sm: 'row' }}
+                  alignItems={{ xs: 'normal', sm: 'baseline' }}
+                >
+                  <Form.FieldWrapper>
+                    <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
+                      Multiple Checked?
+                    </Form.Label>
+
+                    <Flex flexType="none" flex={1}>
+                      <div>
+                        <Form.Input
+                          name="checked3.0"
+                          field={<Checkbox value="checked31"> Checkbox 1</Checkbox>}
+                        />
+                      </div>
+                      <div>
+                        <Form.Input
+                          name="checked3.1"
+                          field={<Checkbox value="checked32"> Checkbox 2</Checkbox>}
+                        />
+                      </div>
+                      <div>
+                        <Form.Input
+                          name="checked3.2"
+                          field={<Checkbox value="checked33"> Checkbox 3</Checkbox>}
+                        />
+                      </div>
+                      <div>
+                        <Form.Error name="checked3" styles={{ color: 'brandDanger500' }} />
                       </div>
                     </Flex>
                   </Form.FieldWrapper>

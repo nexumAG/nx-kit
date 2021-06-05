@@ -1,13 +1,19 @@
+import { ReactNode } from 'react';
 import { FieldBaseProps } from '@nx-kit/types';
 import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
 
 export type CheckboxSkin = keyof Theme['component']['checkbox']['skin'];
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
-export type CheckboxProps = FieldBaseProps<boolean, Styles, HTMLInputElement> & {
+export type CheckboxProps = FieldBaseProps<
+  boolean | string | string[],
+  Styles,
+  HTMLInputElement
+> & {
   isIndeterminate?: boolean;
   isChecked?: boolean;
   defaultChecked?: boolean;
+  children?: ReactNode;
   render?: (props: {
     isFocused: boolean;
     isDisabled: boolean;

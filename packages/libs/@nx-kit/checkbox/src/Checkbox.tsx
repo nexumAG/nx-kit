@@ -27,6 +27,18 @@ const CheckboxStyled = styled.input<CheckboxStyledProps>`
   ${getFont};
 `;
 
+const WithLabel = ({ checkbox, children }: any) => {
+  if (!children) {
+    return checkbox;
+  }
+  return (
+    <label>
+      {checkbox}
+      {children}
+    </label>
+  );
+};
+
 const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>) => {
   const { slot } = props;
   const {
@@ -41,6 +53,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
     defaultChecked,
     defaultValue,
     value,
+    children,
     // don't pass through
     render,
     validation,
@@ -54,7 +67,7 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
 
   const state = useToggleState({
     ...(props as any),
-    defaultSelected: defaultChecked ?? defaultValue, // uncontrolled
+    defaultSelected: defaultChecked ?? !!defaultValue,
     isSelected: isChecked, // controlled
     value,
     onChange: undefined,
@@ -86,20 +99,26 @@ const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>
   );
 
   if (!render) {
-    return nativeCheckbox;
+    return <WithLabel checkbox={nativeCheckbox}>{children}</WithLabel>;
   }
 
   return (
-    <>
-      <VisuallyHidden>{nativeCheckbox}</VisuallyHidden>
-      {render({
-        isChecked: state.isSelected,
-        setChecked: state.setSelected,
-        hasError: hasError === true,
-        isDisabled: isDisabled === true,
-        isFocused: isFocusVisible,
-      })}
-    </>
+    <WithLabel
+      checkbox={
+        <>
+          <VisuallyHidden>{nativeCheckbox}</VisuallyHidden>
+          {render({
+            isChecked: state.isSelected,
+            setChecked: state.setSelected,
+            hasError: hasError === true,
+            isDisabled: isDisabled === true,
+            isFocused: isFocusVisible,
+          })}
+        </>
+      }
+    >
+      {children}
+    </WithLabel>
   );
 };
 

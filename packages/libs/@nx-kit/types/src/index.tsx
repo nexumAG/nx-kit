@@ -17,7 +17,7 @@ export type FieldBaseProps<T, Styles, E> = InputInterface<T, E> & {
   isDisabled?: boolean;
   isReadOnly?: boolean;
 
-  ariaLabel?: string;
+  'aria-label'?: string;
 };
 
 export interface InputInterface<T = any, E = HTMLElement> {

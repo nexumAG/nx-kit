@@ -18,7 +18,6 @@ export type TextFieldProps = FieldBaseProps<
   HTMLInputElement | HTMLTextAreaElement
 > & {
   type?: TextFieldType;
-  'aria-label'?: string;
   'aria-errormessage'?: string;
   'aria-activedescendant'?: string;
   'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both';
