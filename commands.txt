@@ -1,0 +1,33 @@
+# run storybook in dev mode
+>yarn storybook
+
+# lint, test all
+>yarn lint
+>yarn test
+
+# build storybook (without lib dist folders)
+>yarn storybook:build
+
+# start static storybook build
+>yarn storybook:start
+
+# build @nx-kit/*
+# run 2 times!
+>yarn build
+
+# build @nx/*
+>yarn nx:build
+
+# publish all public packages
+>yarn publish:all
+
+# if publish:all could not push to git and hangs
+>git push
+>yarn publish:from-package
+
+# publish storybook to gh-pages
+>yarn storybook:publish
+
+# clean @nx/*, @nx-kit/*
+>yarn clean:libs
+

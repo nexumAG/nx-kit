@@ -1,0 +1,15 @@
+{
+  "include": ["."],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "types": ["react", "jest", "node"],
+    "declaration": true,
+    "declarationDir": "dist"
+  }
+}

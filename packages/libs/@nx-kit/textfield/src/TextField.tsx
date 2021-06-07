@@ -30,15 +30,15 @@ const TextField = (
   const { slot } = props;
   const {
     isDisabled,
-    type,
+    type = 'text',
     autoFocus,
     isRequired,
     isReadOnly,
-    error,
-    name,
+    hasError,
+    // don't pass through
     validation,
     ...rest
-  } = useSlotProps<TextFieldProps>(slot ?? 'textfield', props);
+  } = useSlotProps<TextFieldProps>(slot ?? 'field', props);
 
   const { isFocusVisible, focusProps } = useFocusRing({
     autoFocus,
@@ -64,16 +64,15 @@ const TextField = (
   return (
     <TextFieldStyled
       ref={ref}
-      name={name}
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
       isDisabled={isDisabled !== undefined}
       disabled={isDisabled}
-      required={isRequired}
       readOnly={isReadOnly}
-      hasError={!!error}
-      aria-invalid={error ? true : undefined}
-      {...mergeProps(focusProps, rest, elementTypeProps)}
+      hasError={hasError}
+      aria-invalid={hasError ? true : undefined}
+      aria-required={isRequired}
+      {...mergeProps(focusProps, elementTypeProps, rest)}
     />
   );
 };

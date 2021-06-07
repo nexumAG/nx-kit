@@ -12,6 +12,12 @@ export const Skin700 = () => (
   </Heading>
 );
 
+export const Skin700Span = () => (
+  <Heading skin="700" elementType="span" styles={{ color: 'primary500' }}>
+    Heading Test
+  </Heading>
+);
+
 export const Skin600 = () => <Heading skin="600">Heading Test</Heading>;
 
 export const Skin500 = () => <Heading skin="500">Heading Test</Heading>;
@@ -27,6 +33,9 @@ export const Skin700FontOverride = () => (
 export const CustomStyled = () => (
   <Heading
     skin="700"
+    // If you want to use this syntax without typescript errors you have to handle it in the final project
+    // see: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/31245
+    // @ts-ignore
     css={`
       text-shadow: 3px 3px 4px #777;
     `}

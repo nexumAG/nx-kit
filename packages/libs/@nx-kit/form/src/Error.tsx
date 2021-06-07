@@ -13,9 +13,11 @@ export type ErrorProps = {
 export const Error = ({ className, name, styles, elementType }: ErrorProps) => {
   const { errors } = useForm();
   const error = errors?.[name];
-  // console.log('error', error);
+
+  // TODO: add role="alert"?
+
   return error ? (
-    <Text className={className} elementType={elementType} styles={styles}>
+    <Text slot="error" className={className} elementType={elementType} styles={styles}>
       {error.message}
     </Text>
   ) : null;

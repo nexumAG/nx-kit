@@ -4,7 +4,7 @@ import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 type ButtonSkin = keyof Theme['component']['button']['skin'];
 
-export interface ButtonProps extends AriaButtonProps {
+export interface ButtonProps extends AriaButtonProps<keyof JSX.IntrinsicElements> {
   id?: string;
   className?: string;
   skin?: ButtonSkin;

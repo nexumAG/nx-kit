@@ -25,6 +25,7 @@ const LinkStyled = styled.a<LinkStyledProps>`
 `;
 
 export const Link = (linkProps: LinkProps) => {
+  // eslint-disable-next-line react/destructuring-assignment
   const props = useSlotProps<LinkProps>(linkProps.slot ?? 'link', linkProps);
   const { children, onPress, ...rest } = props;
   const ref = useRef(null);

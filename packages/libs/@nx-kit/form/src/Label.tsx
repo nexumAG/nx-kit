@@ -5,12 +5,11 @@ export type LabelProps = {
   className?: string;
   styles?: TextProps['styles'];
   children: React.ReactNode;
+  slot?: string;
 };
 
-export const Label = ({ className, styles, children }: LabelProps) => {
-  return (
-    <Text className={className} styles={styles} slot="label" elementType="label">
-      {children}
-    </Text>
-  );
-};
+export const Label = ({ className, styles, children, slot = 'label' }: LabelProps) => (
+  <Text className={className} styles={styles} slot={slot} elementType="label">
+    {children}
+  </Text>
+);
