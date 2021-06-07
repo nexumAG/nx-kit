@@ -24,6 +24,8 @@ const Input = (
 
   const defaultValue = get(defaultValues, name);
 
+  // console.log(name, getValues());
+
   return React.cloneElement(Field, {
     onChange,
     onBlur,

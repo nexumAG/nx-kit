@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { TextField } from '@nx-kit/textfield';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Checkbox } from '@nx-kit/checkbox';
+import { Checkbox, CheckboxGroup } from '@nx-kit/checkbox';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Flex } from '@nx-kit/flex';
 import { Form } from '../src';
@@ -161,24 +161,38 @@ export const Default = () => {
                     </Form.Label>
 
                     <Flex flexType="none" flex={1}>
-                      <div>
+                      <CheckboxGroup name="checked3">
                         <Form.Input
                           name="checked3.0"
-                          field={<Checkbox value="checked31"> Checkbox 1</Checkbox>}
+                          field={
+                            <Checkbox value="checked31">
+                              {(checkbox: ReactNode) => (
+                                <label style={{ display: 'block' }}>{checkbox} Checkbox 1</label>
+                              )}
+                            </Checkbox>
+                          }
                         />
-                      </div>
-                      <div>
                         <Form.Input
                           name="checked3.1"
-                          field={<Checkbox value="checked32"> Checkbox 2</Checkbox>}
+                          field={
+                            <Checkbox value="checked32">
+                              {(checkbox: ReactNode) => (
+                                <label style={{ display: 'block' }}>{checkbox} Checkbox 2</label>
+                              )}
+                            </Checkbox>
+                          }
                         />
-                      </div>
-                      <div>
                         <Form.Input
                           name="checked3.2"
-                          field={<Checkbox value="checked33"> Checkbox 3</Checkbox>}
+                          field={
+                            <Checkbox value="checked33">
+                              {(checkbox: ReactNode) => (
+                                <label style={{ display: 'block' }}>{checkbox} Checkbox 3</label>
+                              )}
+                            </Checkbox>
+                          }
                         />
-                      </div>
+                      </CheckboxGroup>
                       <div>
                         <Form.Error name="checked3" styles={{ color: 'brandDanger500' }} />
                       </div>

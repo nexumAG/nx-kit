@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { mergeRefs } from '@nx-kit/utils';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
@@ -27,10 +27,21 @@ const CheckboxStyled = styled.input<CheckboxStyledProps>`
   ${getFont};
 `;
 
-const WithLabel = ({ checkbox, children }: any) => {
+const WithLabel = ({
+  checkbox,
+  children,
+}: {
+  checkbox: ReactNode;
+  children: ReactNode | ((checkbox: ReactNode) => ReactNode) | undefined;
+}) => {
   if (!children) {
     return checkbox;
   }
+
+  if (typeof children === 'function') {
+    return children(checkbox);
+  }
+
   return (
     <label>
       {checkbox}
