@@ -9,7 +9,7 @@ type CheckboxGroupProps = {
 const CheckboxGroup = ({ name, children }: CheckboxGroupProps) => {
   const props = useSlotProps('field', {});
 
-  console.log('props', props);
+  console.log('props', props, name);
 
   const slots = {
     label: {},
