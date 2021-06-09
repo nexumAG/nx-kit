@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, RefAttributes, FunctionComponentElement } from 'react';
+import { useForm } from './FormProvider';
 
 export type FieldHandle = {
   getValue: () => any;
@@ -10,7 +11,7 @@ export type FieldHandle = {
 export type FieldProps = {
   name?: string;
   onChange?: (value: any) => void;
-  onBlur?: (value: any) => void;
+  onBlur?: () => void;
 };
 
 type InputProps = {
@@ -23,18 +24,30 @@ type InputProps = {
 
 const Input = ({ name, field }: InputProps) => {
   const ref = useRef<FieldHandle | null>(null);
+  const { register, unregister, defaultValues } = useForm();
+
+  const { onChange, onBlur } = register(name);
 
   useEffect(() => {
-    ref.current?.setValue('gdfg');
+    // console.log('defaultValues', defaultValues);
+
+    // TODO: pass defaultValues or set it in form?
+    if (defaultValues[name]) {
+      ref.current?.setValue(defaultValues[name]);
+    }
+
+    return () => {
+      unregister(name);
+    };
   }, []);
 
   return (
     <>
-      <field.type ref={ref} name={name} onChange={console.log} onBlur={console.log} />
+      <field.type ref={ref} name={name} onChange={onChange} onBlur={onBlur} />
       <button type="button" onClick={() => ref.current?.setValue('aaaaaaa')}>
         setValue
       </button>
-      <button type="button" onClick={() => console.log(ref.current?.getValue())}>
+      <button type="button" onClick={() => console.log('getValue', ref.current?.getValue())}>
         getValue
       </button>
       <button type="button" onClick={() => ref.current?.setError(true)}>
