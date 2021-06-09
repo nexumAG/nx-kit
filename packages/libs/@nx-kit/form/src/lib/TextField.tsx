@@ -1,4 +1,6 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { TextField as TextFieldNx } from '@nx-kit/textfield';
 import { FieldHandle, FieldProps } from './Input';
 
 type TextFieldProps = FieldProps & {
@@ -7,19 +9,25 @@ type TextFieldProps = FieldProps & {
 
 const TextField = forwardRef<FieldHandle, TextFieldProps>(({ name, ...rest }, ref) => {
   const localRef = useRef<HTMLInputElement | null>(null);
+  const [hasError, setHasError] = useState(false);
+
   useImperativeHandle(ref, () => ({
+    getValue: () => localRef.current?.value,
     setValue: (value: any) => {
       if (localRef) {
         // @ts-ignore
         localRef.current.value = value;
       }
     },
-    setDefaultValue: (value: any) => {},
-    setError: (error: any) => {},
-    setFocus: () => {},
+    setError: (error: any) => {
+      setHasError(!!error);
+    },
+    setFocus: () => localRef.current?.focus(),
   }));
 
-  return <input type="text" name={name} ref={localRef} {...rest} />;
+  console.log('render', 'TextField');
+
+  return <TextFieldNx name={name} ref={localRef} {...rest} hasError={hasError} />;
 });
 
 export { TextField };
