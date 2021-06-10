@@ -36,6 +36,9 @@ const Input = ({ name, field }: InputProps) => {
       ref.current?.setValue(defaultValues[name]);
     }
 
+    // trigger onChange at init?
+    onChange(ref.current?.getValue());
+
     return () => {
       unregister(name);
     };

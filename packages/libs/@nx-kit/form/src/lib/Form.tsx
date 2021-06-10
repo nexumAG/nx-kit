@@ -4,7 +4,7 @@ import { Group } from './Group';
 import { FormContext } from './FormProvider';
 import { FormProps, FormContextValue } from './Form.types';
 
-// https://medium.com/dailyjs/usetheform-react-library-for-composing-declarative-forms-1e01f4473b72
+// https://github.com/iusehooks/usetheform
 
 const Form = ({
   children,
@@ -24,11 +24,13 @@ const Form = ({
   };
 
   const handleChange = (name: string, value: any) => {
-    console.log('handleChange', name, value);
+    // console.log('handleChange', name, value);
+    fields.current[name] = value;
+    console.log('handleChange fields', fields.current);
   };
 
   const handleBlur = (name: string) => {
-    console.log('handleBlur', name);
+    // console.log('handleBlur', name);
   };
 
   const formContextValue: FormContextValue = {

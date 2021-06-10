@@ -10,14 +10,16 @@ export default {
 export const Test = () => (
   <Form
     defaultValues={{
-      test: 'asdf',
+      test: '123',
       group1: { test1: 'abc', test2: 'def' },
-      group2: { test1: 'ghi' },
+      // group2: [],
+      group3: { 'group3.1': { test1: 'ghi' } },
     }}
   >
     <Form.Input name="test" field={<TextField />} />
 
     <Form.Group name="group1">
+      <div>group1</div>
       <div>
         <Form.Input name="test1" field={<TextField />} />
       </div>
@@ -27,21 +29,24 @@ export const Test = () => (
     </Form.Group>
 
     <Form.Group name="group2" type="array">
+      <div>group2</div>
       <div>
-        <Form.Input name="group2" field={<TextField />} />
+        <Form.Input name="0" field={<TextField />} />
       </div>
       <div>
-        <Form.Input name="group2" field={<TextField />} />
+        <Form.Input name="1" field={<TextField />} />
       </div>
     </Form.Group>
 
     <Form.Group name="group3">
       <Form.Group name="group3.1">
+        <div>group3.1</div>
         <div>
           <Form.Input name="test1" field={<TextField />} />
         </div>
       </Form.Group>
       <Form.Group name="group3.2">
+        <div>group3.2</div>
         <div>
           <Form.Input name="test1" field={<TextField />} />
         </div>

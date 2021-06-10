@@ -10,7 +10,7 @@ type GroupProps = {
 };
 
 const Group = ({ name: groupName, children, type = 'object' }: GroupProps) => {
-  const fields = useRef<any>({});
+  const fields = useRef<any | any[]>(type === 'object' ? {} : []);
   const { register, unregister, defaultValues } = useForm();
 
   useEffect(() => {
@@ -25,14 +25,22 @@ const Group = ({ name: groupName, children, type = 'object' }: GroupProps) => {
         fields.current[name] = values;
         const { onChange, onBlur } = register(groupName, fields.current);
         return {
-          onChange,
+          onChange: (value: any) => {
+            fields.current[name] = value;
+            onChange(fields.current);
+          },
           onBlur,
         };
       }
 
-      const { onChange, onBlur } = register(groupName, []);
+      // type array
+      fields.current.push(null);
+      const { onChange, onBlur } = register(groupName, fields.current);
       return {
-        onChange,
+        onChange: (value: any) => {
+          fields.current[name] = value;
+          onChange(fields.current);
+        },
         onBlur,
       };
     },

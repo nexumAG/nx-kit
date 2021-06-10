@@ -15,9 +15,13 @@ const TextField = forwardRef<FieldHandle, TextFieldProps>(
     useImperativeHandle(ref, () => ({
       getValue: () => localRef.current?.value,
       setValue: (value: any) => {
-        if (localRef) {
-          // @ts-ignore
+        if (localRef?.current) {
           localRef.current.value = value;
+
+          // trigger onChange here?
+          if (onChange) {
+            onChange(value);
+          }
         }
       },
       setError: (error: any) => {
