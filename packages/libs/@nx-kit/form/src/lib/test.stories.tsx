@@ -10,13 +10,23 @@ export default {
 export const Test = () => (
   <Form
     defaultValues={{
-      test: '123',
+      test: '12',
       group1: { test1: 'abc', test2: 'def' },
       // group2: [],
       group3: { 'group3.1': { test1: 'ghi' } },
     }}
   >
-    <Form.Input name="test" field={<TextField />} />
+    <Form.Input
+      name="test"
+      validation={[
+        { type: 'required', value: true, message: 'Is required' },
+        { type: 'minLength', value: 3, message: 'Min 3 chars' },
+        { type: 'maxLength', value: 7, message: 'Max 7 chars' },
+        // { type: 'min', value: 3, message: 'Min 3' },
+        // { type: 'max', value: 7, message: 'Max 7' },
+      ]}
+      field={<TextField />}
+    />
 
     <Form.Group name="group1">
       <div>group1</div>

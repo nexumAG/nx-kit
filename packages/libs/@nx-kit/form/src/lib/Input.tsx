@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, RefAttributes, FunctionComponentElement } from 'react';
 import { useForm } from './FormProvider';
+import { Validation } from './Form.types';
 
 export type FieldHandle = {
   getValue: () => any;
@@ -11,7 +12,7 @@ export type FieldHandle = {
 export type FieldProps = {
   name?: string;
   onChange?: (value: any) => void;
-  onBlur?: () => void;
+  onBlur?: (value: any) => void;
 };
 
 type InputProps = {
@@ -20,13 +21,34 @@ type InputProps = {
   // type checking on field not possible: https://github.com/microsoft/TypeScript/issues/21699
   // TODO: also allow class element?
   field: FunctionComponentElement<FieldProps & RefAttributes<FieldHandle>>;
+
+  // eslint-disable-next-line react/require-default-props
+  validation?: Validation;
 };
 
-const Input = ({ name, field }: InputProps) => {
+const Input = ({ name, field, validation }: InputProps) => {
   const ref = useRef<FieldHandle | null>(null);
   const { register, unregister, defaultValues } = useForm();
 
-  const { onChange, onBlur } = register(name);
+  const { onChange, onBlur, runValidation } = register(name, null, validation);
+
+  const runValidationWrapper = (value: any, callback: any) => {
+    const validationResult = runValidation(value);
+    if (validationResult === true) {
+      ref.current?.setError(false);
+      callback(value);
+    } else {
+      ref.current?.setError(validationResult);
+    }
+  };
+
+  const onChangeWrapper = (value: any) => {
+    runValidationWrapper(value, onChange);
+  };
+
+  const onBlurWrapper = (value: any) => {
+    runValidationWrapper(value, onBlur);
+  };
 
   useEffect(() => {
     // console.log('defaultValues', defaultValues);
@@ -37,7 +59,8 @@ const Input = ({ name, field }: InputProps) => {
     }
 
     // trigger onChange at init?
-    onChange(ref.current?.getValue());
+    // this will trigger onChange also for fields that don't have a defaultValue
+    // onChange(ref.current?.getValue());
 
     return () => {
       unregister(name);
@@ -46,7 +69,7 @@ const Input = ({ name, field }: InputProps) => {
 
   return (
     <>
-      <field.type ref={ref} name={name} onChange={onChange} onBlur={onBlur} />
+      <field.type ref={ref} name={name} onChange={onChangeWrapper} onBlur={onBlurWrapper} />
       <button type="button" onClick={() => ref.current?.setValue('aaaaaaa')}>
         setValue
       </button>

@@ -25,6 +25,7 @@ const TextField = forwardRef<FieldHandle, TextFieldProps>(
         }
       },
       setError: (error: any) => {
+        console.log('error', error);
         setHasError(!!error);
       },
       setFocus: () => localRef.current?.focus(),
@@ -37,7 +38,7 @@ const TextField = forwardRef<FieldHandle, TextFieldProps>(
         name={name}
         ref={localRef}
         onChange={(event) => onChange && onChange(event.currentTarget.value)}
-        onBlur={() => onBlur && onBlur()}
+        onBlur={(event) => onBlur && onBlur(event.currentTarget.value)}
         {...rest}
         hasError={hasError}
       />

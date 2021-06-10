@@ -2,7 +2,8 @@ import React, { useRef, FormEvent } from 'react';
 import { Input } from './Input';
 import { Group } from './Group';
 import { FormContext } from './FormProvider';
-import { FormProps, FormContextValue } from './Form.types';
+import { FormProps, FormContextValue, Validation } from './Form.types';
+import { runValidation } from './validation';
 
 // https://github.com/iusehooks/usetheform
 
@@ -34,15 +35,20 @@ const Form = ({
   };
 
   const formContextValue: FormContextValue = {
-    register: (name: string, values: any) => {
-      fields.current[name] = values;
+    register: (name: string, value?: any, validation?: Validation) => {
+      fields.current[name] = value;
 
       return {
+        // eslint-disable-next-line @typescript-eslint/no-shadow
         onChange: (value: any) => {
           handleChange(name, value);
         },
         onBlur: () => {
           handleBlur(name);
+        },
+        // eslint-disable-next-line @typescript-eslint/no-shadow
+        runValidation: (value: any) => {
+          return runValidation(value, validation);
         },
       };
     },

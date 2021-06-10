@@ -15,7 +15,59 @@ export type FormProps = {
 };
 
 export type FormContextValue = {
-  register: (name: string, values?: any) => { onChange: (value: any) => void; onBlur: () => void };
+  register: (
+    name: string,
+    value?: any,
+    validation?: any
+  ) => { onChange: (value: any) => void; onBlur: () => void; runValidation: (value: any) => any };
   unregister: (name: string) => void;
   defaultValues: any;
 };
+
+type ValidationRequired = {
+  type: 'required';
+  value: boolean;
+};
+
+type ValidationMinLength = {
+  type: 'minLength';
+  value: number;
+};
+
+type ValidationMaxLength = {
+  type: 'maxLength';
+  value: number;
+};
+
+type ValidationMin = {
+  type: 'min';
+  value: number;
+};
+
+type ValidationMax = {
+  type: 'max';
+  value: number;
+};
+
+type ValidationPattern = {
+  type: 'pattern';
+  value: RegExp;
+};
+
+type ValidationValidate = {
+  type: 'validate';
+  value: (value: any) => boolean;
+};
+
+type ValidationMethods =
+  | ValidationRequired
+  | ValidationMinLength
+  | ValidationMaxLength
+  | ValidationMin
+  | ValidationMax
+  | ValidationPattern
+  | ValidationValidate;
+
+export type Validation = (ValidationMethods & {
+  message?: string;
+})[];

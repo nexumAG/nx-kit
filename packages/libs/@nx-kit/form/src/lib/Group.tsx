@@ -20,28 +20,21 @@ const Group = ({ name: groupName, children, type = 'object' }: GroupProps) => {
   }, []);
 
   const formContextValue: FormContextValue = {
-    register: (name: string, values: any) => {
+    register: (name: string, value?: any, validation?: any) => {
       if (type === 'object') {
-        fields.current[name] = values;
-        const { onChange, onBlur } = register(groupName, fields.current);
-        return {
-          onChange: (value: any) => {
-            fields.current[name] = value;
-            onChange(fields.current);
-          },
-          onBlur,
-        };
+        fields.current[name] = value;
+      } else if (type === 'array') {
+        fields.current.push(null);
       }
-
-      // type array
-      fields.current.push(null);
-      const { onChange, onBlur } = register(groupName, fields.current);
+      const { onChange, onBlur, runValidation } = register(groupName, fields.current, validation);
       return {
+        // eslint-disable-next-line @typescript-eslint/no-shadow
         onChange: (value: any) => {
           fields.current[name] = value;
           onChange(fields.current);
         },
         onBlur,
+        runValidation,
       };
     },
     unregister: (name: string) => {
