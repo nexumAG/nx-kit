@@ -51,16 +51,21 @@ const Input = ({ name, field, validation }: InputProps) => {
   };
 
   useEffect(() => {
-    // console.log('defaultValues', defaultValues);
+    // console.log('defaultValues', name, defaultValues);
 
     // TODO: pass defaultValues or set it in form?
-    if (defaultValues[name] !== null || defaultValues[name] !== undefined) {
+    if (defaultValues[name] !== null && defaultValues[name] !== undefined) {
       ref.current?.setValue(defaultValues[name]);
-    }
+    } else {
+      // trigger onChange at init?
+      // this will trigger onChange also for fields that don't have a defaultValue
 
-    // trigger onChange at init?
-    // this will trigger onChange also for fields that don't have a defaultValue
-    // onChange(ref.current?.getValue());
+      // run initial validation
+      runValidationWrapper(ref.current?.getValue(), onChange);
+
+      // no initial validation
+      // onChange(ref.current?.getValue());
+    }
 
     return () => {
       unregister(name);
@@ -69,7 +74,14 @@ const Input = ({ name, field, validation }: InputProps) => {
 
   return (
     <>
-      <field.type ref={ref} name={name} onChange={onChangeWrapper} onBlur={onBlurWrapper} />
+      <field.type
+        {...field.props}
+        // TODO: merge refs
+        ref={ref}
+        name={name}
+        onChange={onChangeWrapper}
+        onBlur={onBlurWrapper}
+      />
       <button type="button" onClick={() => ref.current?.setValue('aaaaaaa')}>
         setValue
       </button>

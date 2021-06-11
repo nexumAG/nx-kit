@@ -3,13 +3,13 @@ import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } f
 import { Checkbox as CheckboxNx, CheckboxProps as CheckboxPropsNx } from '@nx-kit/checkbox';
 import { FieldHandle, FieldProps } from './Input';
 
-type CheckboxProps = FieldProps & CheckboxPropsNx & { value?: boolean | string };
+type CheckboxProps = FieldProps & CheckboxPropsNx & { value?: any };
 
 const Checkbox = forwardRef<FieldHandle, CheckboxProps>(
   ({ name, onChange, onBlur, value: valueProp = true, ...rest }, ref) => {
     const localRef = useRef<HTMLInputElement | null>(null);
     const [hasError, setHasError] = useState(false);
-    const [checkboxValue, setCheckboxValue] = useState<boolean | string>(valueProp);
+    const [checkboxValue, setCheckboxValue] = useState<any>(valueProp);
     const [checked, setChecked] = useState<boolean>(false);
 
     // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -45,13 +45,13 @@ const Checkbox = forwardRef<FieldHandle, CheckboxProps>(
         }
       },
       setError: (error: any) => {
-        console.log('error', error);
+        // console.log('error', error);
         setHasError(!!error);
       },
       setFocus: () => localRef.current?.focus(),
     }));
 
-    console.log('render', 'Checkbox');
+    // console.log('render', 'Checkbox');
 
     return (
       <CheckboxNx

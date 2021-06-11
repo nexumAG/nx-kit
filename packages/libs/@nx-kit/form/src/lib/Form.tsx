@@ -20,14 +20,14 @@ const Form = ({
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log('handleSubmit event', event);
+    // console.log('handleSubmit event', event);
     console.log('handleSubmit fields', fields.current);
   };
 
   const handleChange = (name: string, value: any) => {
     // console.log('handleChange', name, value);
     fields.current[name] = value;
-    console.log('handleChange fields', fields.current);
+    // console.log('handleChange fields', name, value, fields.current);
   };
 
   const handleBlur = (name: string) => {

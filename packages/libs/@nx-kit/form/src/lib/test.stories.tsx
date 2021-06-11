@@ -8,14 +8,17 @@ export default {
   component: Form,
 };
 
+const checkboxValue = { cat: 'lion' };
+
 export const Test = () => (
   <Form
     defaultValues={{
-      test: '12',
-      test2: false,
+      // test: '12',
+      // test2: checkboxValue,
       group1: { test1: 'abc', test2: 'def' },
       // group2: [],
       group3: { 'group3.1': { test1: 'ghi' } },
+      cats: [false, 'tiger'],
     }}
   >
     <div>
@@ -36,7 +39,7 @@ export const Test = () => (
       <Form.Input
         name="test2"
         validation={[{ type: 'required', value: true, message: 'Is required' }]}
-        field={<Checkbox />}
+        field={<Checkbox value={checkboxValue} aria-label="" />}
       />
     </div>
 
@@ -73,6 +76,16 @@ export const Test = () => (
           <Form.Input name="test1" field={<TextField />} />
         </div>
       </Form.Group>
+    </Form.Group>
+
+    <Form.Group name="cats" type="array">
+      <div>group4</div>
+      <div>
+        <Form.Input name="0" field={<Checkbox value="lion" aria-label="" />} />
+      </div>
+      <div>
+        <Form.Input name="1" field={<Checkbox value="tiger" aria-label="" />} />
+      </div>
     </Form.Group>
 
     <button type="submit">Submit</button>
