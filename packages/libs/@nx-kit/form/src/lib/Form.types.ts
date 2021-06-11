@@ -17,11 +17,23 @@ export type FormProps = {
 export type FormContextValue = {
   register: (
     name: string,
+    id: string,
     value?: any,
     validation?: any
   ) => { onChange: (value: any) => void; onBlur: () => void; runValidation: (value: any) => any };
-  unregister: (name: string) => void;
+  unregister: (name: string, id: string) => void;
+  setFieldState: (id: string, state: FieldState | null) => void;
   defaultValues: any;
+};
+
+export type FieldState = {
+  valid: boolean;
+};
+
+export type FieldStates = {
+  [id: string]: {
+    valid: boolean;
+  };
 };
 
 type ValidationRequired = {

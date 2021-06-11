@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, RefAttributes, FunctionComponentElement } from 'react';
+import { useId } from '@react-aria/utils';
 import { useForm } from './FormProvider';
 import { Validation } from './Form.types';
 
@@ -28,17 +29,20 @@ type InputProps = {
 
 const Input = ({ name, field, validation }: InputProps) => {
   const ref = useRef<FieldHandle | null>(null);
-  const { register, unregister, defaultValues } = useForm();
+  const { register, unregister, defaultValues, setFieldState } = useForm();
+  const id = useId();
 
-  const { onChange, onBlur, runValidation } = register(name, null, validation);
+  const { onChange, onBlur, runValidation } = register(name, id, null, validation);
 
   const runValidationWrapper = (value: any, callback: any) => {
     const validationResult = runValidation(value);
     if (validationResult === true) {
       ref.current?.setError(false);
+      setFieldState(id, { valid: true });
       callback(value);
     } else {
       ref.current?.setError(validationResult);
+      setFieldState(id, { valid: false });
     }
   };
 
@@ -68,7 +72,7 @@ const Input = ({ name, field, validation }: InputProps) => {
     }
 
     return () => {
-      unregister(name);
+      unregister(name, id);
     };
   }, []);
 

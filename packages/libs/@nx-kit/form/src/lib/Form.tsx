@@ -2,7 +2,7 @@ import React, { useRef, FormEvent } from 'react';
 import { Input } from './Input';
 import { Group } from './Group';
 import { FormContext } from './FormProvider';
-import { FormProps, FormContextValue, Validation } from './Form.types';
+import { FormProps, FormContextValue, Validation, FieldStates, FieldState } from './Form.types';
 import { runValidation } from './validation';
 
 // https://github.com/iusehooks/usetheform
@@ -16,11 +16,13 @@ const Form = ({
   ...rest
 }: FormProps) => {
   const fields = useRef<any>({});
+  const fieldStates = useRef<FieldStates>({});
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // console.log('handleSubmit event', event);
+    console.log('handleSubmit fieldStates', fieldStates.current);
     console.log('handleSubmit fields', fields.current);
   };
 
@@ -35,8 +37,9 @@ const Form = ({
   };
 
   const formContextValue: FormContextValue = {
-    register: (name: string, value?: any, validation?: Validation) => {
+    register: (name: string, id: string, value?: any, validation?: Validation) => {
       fields.current[name] = value;
+      fieldStates.current[id] = { valid: true };
 
       return {
         // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -53,7 +56,14 @@ const Form = ({
       };
     },
     unregister: (name: string) => {
-      fields.current[name] = undefined;
+      delete fields.current[name];
+    },
+    setFieldState: (id: string, state: FieldState | null) => {
+      if (state === null) {
+        delete fieldStates.current[id];
+      } else {
+        fieldStates.current[id] = state;
+      }
     },
     defaultValues,
   };
