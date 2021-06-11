@@ -6,6 +6,7 @@ const required = (inputValue: any, value: boolean) => {
     (inputValue === '' ||
       inputValue === null ||
       inputValue === undefined ||
+      inputValue === false ||
       Number.isNaN(inputValue))
   ) {
     return false;

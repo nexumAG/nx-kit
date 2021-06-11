@@ -54,7 +54,7 @@ const Input = ({ name, field, validation }: InputProps) => {
     // console.log('defaultValues', defaultValues);
 
     // TODO: pass defaultValues or set it in form?
-    if (defaultValues[name]) {
+    if (defaultValues[name] !== null || defaultValues[name] !== undefined) {
       ref.current?.setValue(defaultValues[name]);
     }
 
