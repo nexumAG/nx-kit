@@ -14,13 +14,22 @@ export type FormProps = {
   onChange?: any;
 };
 
+export type RegisterParams = {
+  name: string;
+  id: string;
+  value?: any;
+  validation?: any;
+  onSubmit: () => void;
+};
+
+export type RegisterReturn = {
+  onChange: (value: any) => void;
+  onBlur: () => void;
+  runValidation: (value: any) => any;
+};
+
 export type FormContextValue = {
-  register: (
-    name: string,
-    id: string,
-    value?: any,
-    validation?: any
-  ) => { onChange: (value: any) => void; onBlur: () => void; runValidation: (value: any) => any };
+  register: (params: RegisterParams) => RegisterReturn;
   unregister: (name: string, id: string) => void;
   setFieldState: (id: string, state: FieldState | null) => void;
   defaultValues: any;

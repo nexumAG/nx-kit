@@ -32,7 +32,11 @@ const Input = ({ name, field, validation }: InputProps) => {
   const { register, unregister, defaultValues, setFieldState } = useForm();
   const id = useId();
 
-  const { onChange, onBlur, runValidation } = register(name, id, null, validation);
+  const onSubmit = () => {
+    console.log('Input onSubmit', id);
+  };
+
+  const { onChange, onBlur, runValidation } = register({ name, id, validation, onSubmit });
 
   const runValidationWrapper = (value: any, callback: any) => {
     const validationResult = runValidation(value);
