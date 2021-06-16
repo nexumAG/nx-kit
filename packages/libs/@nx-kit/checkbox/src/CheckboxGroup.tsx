@@ -6,10 +6,10 @@ type CheckboxGroupProps = {
   children: ReactNode;
 };
 
-const CheckboxGroup = ({ name, children }: CheckboxGroupProps) => {
+const CheckboxGroup = ({ children }: CheckboxGroupProps) => {
   const props = useSlotProps('field', {});
 
-  console.log('props', props, name);
+  // console.log('props', props);
 
   const slots = {
     label: {},
