@@ -33,7 +33,9 @@ const Input = ({ name, field, validation }: InputProps) => {
   const id = useId();
 
   const onSubmit = () => {
-    console.log('Input onSubmit', id);
+    const value = ref.current?.getValue();
+    const validationResult = runValidation(value);
+    console.log('Input onSubmit', id, value, validationResult);
   };
 
   const { onChange, onBlur, runValidation } = register({ name, id, validation, onSubmit });
