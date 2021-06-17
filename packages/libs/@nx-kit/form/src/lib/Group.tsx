@@ -12,6 +12,8 @@ type GroupProps = {
 
 const Group = ({ name: groupName, children, type = 'object' }: GroupProps) => {
   const fields = useRef<any | any[]>(type === 'object' ? {} : []);
+  const submitHandlers = useRef<{ [id: string]: () => void }>({});
+
   const { register, unregister, defaultValues, setFieldState } = useForm();
   const groupId = useId();
 
@@ -25,6 +27,12 @@ const Group = ({ name: groupName, children, type = 'object' }: GroupProps) => {
     console.log('Group onSubmit', groupId);
   };
 
+  const onSubmitFields = () => {
+    Object.keys(submitHandlers.current).forEach((id) => {
+      submitHandlers.current[id]();
+    });
+  };
+
   const formContextValue: FormContextValue = {
     register: ({ name, id, value, validation, onSubmit }: RegisterParams) => {
       // set initial field state
@@ -36,13 +44,15 @@ const Group = ({ name: groupName, children, type = 'object' }: GroupProps) => {
         fields.current.push(null);
       }
 
+      // add onSubmit to submitHandlers
+      submitHandlers.current[id] = onSubmit;
+
       const { onChange, onBlur, runValidation } = register({
         name: groupName,
         value: fields.current,
         id: groupId,
-        // TODO: onSubmit handlers have to be collected, else they get overriden
         onSubmit: () => {
-          onSubmit();
+          onSubmitFields();
           onSubmitGroup();
         },
         validation,
@@ -59,6 +69,7 @@ const Group = ({ name: groupName, children, type = 'object' }: GroupProps) => {
     },
     unregister: (name: string, id: string) => {
       delete fields.current[name];
+      delete submitHandlers.current[id];
       // TODO: validation gets removed? how to completely remove group?
       register({ name: groupName, id: groupId, value: fields.current, onSubmit: onSubmitGroup });
       setFieldState(id, null);
