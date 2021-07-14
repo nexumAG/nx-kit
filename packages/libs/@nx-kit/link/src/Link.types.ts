@@ -1,9 +1,20 @@
 import { ReactNode } from 'react';
 import { AriaLinkProps } from '@react-types/link';
-import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
+import {
+  Spacing,
+  FlexItem,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+  LinkSkins,
+  DefaultTheme,
+} from '@nx-kit/styling';
 
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
-type LinkSkin = keyof Theme['component']['link']['skin'];
+// @ts-ignore
+type LinkSkin = LinkSkins<DefaultTheme>;
 
 export interface LinkProps extends AriaLinkProps {
   id?: string;

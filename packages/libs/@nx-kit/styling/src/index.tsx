@@ -9,7 +9,9 @@ import {
   keyframes,
   ThemeProvider,
   StyleSheetManager,
+  ServerStyleSheet,
 } from './external';
+import type { DefaultTheme } from './external';
 import resetCSS from './global/resetCSS';
 import {
   parseGap,
@@ -35,10 +37,28 @@ import type {
   Layout,
   Font,
   Typo,
+  HeadingSkins,
+  TextSkins,
+  ButtonSkins,
+  LinkSkins,
+  DividerSkins,
+  OverlaySkins,
+  TextfieldSkins,
+  CheckboxSkins,
+  AccordionSkins,
 } from './styles';
 
 // external export
-export { styled, css, useTheme, createGlobalStyle, keyframes, ThemeProvider, StyleSheetManager };
+export {
+  styled,
+  css,
+  useTheme,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  StyleSheetManager,
+  ServerStyleSheet,
+};
 
 export {
   resetCSS,
@@ -72,4 +92,14 @@ export type {
   Layout,
   Font,
   Typo,
+  DefaultTheme,
+  HeadingSkins,
+  TextSkins,
+  ButtonSkins,
+  LinkSkins,
+  DividerSkins,
+  OverlaySkins,
+  TextfieldSkins,
+  CheckboxSkins,
+  AccordionSkins,
 };

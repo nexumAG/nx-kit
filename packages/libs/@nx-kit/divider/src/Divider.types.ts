@@ -1,7 +1,8 @@
 import { SeparatorProps } from '@react-aria/separator';
-import { Theme, Spacing, FlexItem, Position, Color } from '@nx-kit/styling';
+import { Spacing, FlexItem, Position, Color, DividerSkins, DefaultTheme } from '@nx-kit/styling';
 
-export type DividerSkin = keyof Theme['component']['divider']['skin'];
+// @ts-ignore
+export type DividerSkin = DividerSkins<DefaultTheme>;
 type Styles = Spacing & FlexItem & Position & Color;
 
 export type DividerProps = {

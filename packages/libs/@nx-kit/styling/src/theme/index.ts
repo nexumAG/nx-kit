@@ -85,7 +85,3 @@ export type Theme = {
     };
   };
 };
-
-declare module 'styled-components' {
-  interface DefaultTheme extends Theme {}
-}

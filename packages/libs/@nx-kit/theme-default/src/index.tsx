@@ -126,7 +126,7 @@ export const theme: Theme = {
   component: {
     heading: {
       skin: {
-        400: css`
+        400: css<any>`
           ${({ theme }) => theme.global.font.trebuchetBold};
           font-size: ${({ theme }) => theme.global.fontSize['18']};
           line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
@@ -136,7 +136,7 @@ export const theme: Theme = {
             font-size: ${({ theme }) => theme.global.fontSize['24']};
           }
         `,
-        500: css`
+        500: css<any>`
           ${({ theme }) => theme.global.font.trebuchetBold};
           font-size: ${({ theme }) => theme.global.fontSize['22']};
           line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
@@ -149,7 +149,7 @@ export const theme: Theme = {
             font-size: ${({ theme }) => theme.global.fontSize['42']};
           }
         `,
-        600: css`
+        600: css<any>`
           ${({ theme }) => theme.global.font.trebuchetBold};
           font-size: ${({ theme }) => theme.global.fontSize['26']};
           line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
@@ -165,7 +165,7 @@ export const theme: Theme = {
             font-size: ${({ theme }) => theme.global.fontSize['48']};
           }
         `,
-        700: css`
+        700: css<any>`
           ${({ theme }) => theme.global.font.trebuchetBold};
           font-size: ${({ theme }) => theme.global.fontSize['34']};
           line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
@@ -197,7 +197,7 @@ export const theme: Theme = {
           font-size: ${({ theme }) => theme.global.fontSize['18']};
           margin-bottom: 18px;
         `,
-        600: css`
+        600: css<any>`
           font-size: ${({ theme }) => theme.global.fontSize['18']};
           margin-bottom: 18px;
           ${media('lg')} {
@@ -205,7 +205,7 @@ export const theme: Theme = {
             margin-bottom: 22px;
           }
         `,
-        700: css`
+        700: css<any>`
           font-size: ${({ theme }) => theme.global.fontSize['22']};
           margin-bottom: 22px;
           ${media('lg')} {

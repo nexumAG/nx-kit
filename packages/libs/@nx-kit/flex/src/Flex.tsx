@@ -13,6 +13,7 @@ import {
   getLiteralOrBreakpointValue,
   useBreakpointsSorted,
   compose,
+  Theme,
 } from '@nx-kit/styling';
 import { FlexProps, FlexStyledProps, FlexContextGap } from './Flex.types';
 import {
@@ -84,7 +85,7 @@ export const Flex = ({
   );
 
   return (
-    <FlexContext.Provider value={{ gap: getGapContextValue(theme, gap) }}>
+    <FlexContext.Provider value={{ gap: getGapContextValue(theme as Theme, gap) }}>
       <FlexStyled
         className={className}
         as={elementType}

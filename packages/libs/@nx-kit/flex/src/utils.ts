@@ -21,6 +21,7 @@ export const getGapContextValue = (theme?: Theme, gap?: FlexContainer['gap']): F
   return Object.keys(gap).reduce(
     (acc, breakpoint: number | string) => ({
       ...acc,
+      // @ts-ignore
       [breakpoint]: parseGap(gap[breakpoint], theme),
     }),
     {}

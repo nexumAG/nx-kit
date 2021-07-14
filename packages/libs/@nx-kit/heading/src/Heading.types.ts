@@ -1,9 +1,19 @@
 import { ReactNode } from 'react';
-import { As, Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
+import {
+  As,
+  Spacing,
+  FlexItem,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+  HeadingSkins,
+  DefaultTheme,
+} from '@nx-kit/styling';
 
-// TODO: if heading is optional, maybe a conditional type can help
-// https://mariusschulz.com/blog/conditional-types-in-typescript
-export type HeadingSkin = keyof Theme['component']['heading']['skin'];
+// @ts-ignore
+export type HeadingSkin = HeadingSkins<DefaultTheme>;
 
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
