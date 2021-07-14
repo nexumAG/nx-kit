@@ -31,8 +31,8 @@
     "@nx-kit/styling": "^0.1.10",
     "@nx-kit/types": "^0.1.3",
     "@nx-kit/utils": "^0.1.3",
-    "@react-aria/focus": "^3.3.0",
+    "@react-aria/focus": "^3.4.0",
     "@react-aria/textfield": "^3.3.0",
-    "@react-aria/utils": "^3.8.0"
+    "@react-aria/utils": "^3.8.1"
   }
 }

@@ -28,9 +28,9 @@
     "@nx-kit/slot": "^0.1.5",
     "@nx-kit/styling": "^0.1.10",
     "@react-aria/button": "^3.3.2",
-    "@react-aria/focus": "^3.3.0",
-    "@react-aria/interactions": "^3.4.0",
-    "@react-aria/utils": "^3.8.0",
-    "@react-types/button": "^3.3.1"
+    "@react-aria/focus": "^3.4.0",
+    "@react-aria/interactions": "^3.5.0",
+    "@react-aria/utils": "^3.8.1",
+    "@react-types/button": "^3.4.0"
   }
 }
