@@ -1,17 +1,17 @@
 {
   "name": "next",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start",
+    "next:lint": "next lint"
   },
   "dependencies": {
-    "@nx-kit/flex": "^0.1.11",
-    "@nx-kit/heading": "^0.1.10",
-    "@nx-kit/styling": "^0.1.10",
+    "@nx-kit/flex": "^0.1.12",
+    "@nx-kit/heading": "^0.1.11",
+    "@nx-kit/styling": "^0.1.11",
     "next": "11.0.1",
     "next-transpile-modules": "^8.0.0",
     "react": "17.0.2",

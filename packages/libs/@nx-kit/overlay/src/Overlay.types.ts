@@ -40,7 +40,7 @@ export type OverlayInnerProps = OverlayProps & OverlayTransitionProps;
 
 export type OverlayStyledProps = {
   isFocused: boolean;
-  skin?: string;
+  skin?: OverlaySkin;
   state?: TransitionStates;
   styles?: Styles;
 };
