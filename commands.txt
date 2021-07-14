@@ -5,12 +5,6 @@
 >yarn lint
 >yarn test
 
-# build storybook (without lib dist folders)
->yarn storybook:build
-
-# start static storybook build
->yarn storybook:start
-
 # build @nx-kit/*
 # run 2 times!
 >yarn build
@@ -25,9 +19,14 @@
 >git push
 >yarn publish:from-package
 
-# publish storybook to gh-pages
->yarn storybook:publish
-
 # clean @nx/*, @nx-kit/*
 >yarn clean:libs
 
+# build storybook (without lib dist folders)
+>yarn storybook:build
+
+# start static storybook build
+>yarn storybook:start
+
+# publish storybook to gh-pages
+>yarn storybook:publish
