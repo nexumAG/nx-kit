@@ -16,6 +16,7 @@
     "storybook:build": "yarn workspace storybook run storybook:build",
     "storybook:publish": "gh-pages -d packages/apps/storybook/dist",
     "storybook:start": "yarn workspace storybook run storybook:start",
+    "next": "yarn workspace next run next:dev",
     "bootstrap": "lerna bootstrap",
     "diff": "lerna diff",
     "new-version": "lerna version --conventional-commits",
