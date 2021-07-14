@@ -1,8 +1,19 @@
 import { AriaButtonProps } from '@react-types/button';
-import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
+import {
+  Spacing,
+  FlexItem,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+  ButtonSkins,
+  DefaultTheme,
+} from '@nx-kit/styling';
 
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
-type ButtonSkin = keyof Theme['component']['button']['skin'];
+// @ts-ignore
+type ButtonSkin = ButtonSkins<DefaultTheme>;
 
 export interface ButtonProps extends AriaButtonProps<keyof JSX.IntrinsicElements> {
   id?: string;

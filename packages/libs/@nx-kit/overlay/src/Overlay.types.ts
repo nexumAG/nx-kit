@@ -1,11 +1,23 @@
 import React from 'react';
 import { OverlayProps as AriaOverlayProps } from '@react-aria/overlays';
 import { AriaDialogProps } from '@react-types/dialog';
-import { Spacing, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
+import {
+  Spacing,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+  OverlaySkins,
+  DefaultTheme,
+} from '@nx-kit/styling';
 
 export type TransitionStates = 'entering' | 'entered' | 'exiting' | 'exited';
 
 type Styles = Spacing & Position & Color & Layout & Font & Typo;
+
+// @ts-ignore
+type OverlaySkin = OverlaySkins<DefaultTheme>;
 
 export type OverlayTransitionProps = {
   state: TransitionStates;
@@ -16,7 +28,7 @@ export type OverlayProps = {
   className?: string;
   title?: string;
   children?: React.ReactNode;
-  skin?: string;
+  skin?: OverlaySkin;
   verticalAlignment?: 'top' | 'center' | 'bottom';
   horizontalAlignment?: 'left' | 'center' | 'right';
   animationDisabled?: boolean;

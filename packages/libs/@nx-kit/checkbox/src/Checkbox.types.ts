@@ -1,8 +1,19 @@
 import { ReactNode } from 'react';
 import { FieldBaseProps } from '@nx-kit/types';
-import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
+import {
+  Spacing,
+  FlexItem,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+  CheckboxSkins,
+  DefaultTheme,
+} from '@nx-kit/styling';
 
-export type CheckboxSkin = keyof Theme['component']['checkbox']['skin'];
+// @ts-ignore
+export type CheckboxSkin = CheckboxSkins<DefaultTheme>;
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
 export type CheckboxProps = FieldBaseProps<

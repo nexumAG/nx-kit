@@ -5,9 +5,20 @@ import {
   ReactEventHandler,
 } from 'react';
 import { FieldBaseProps } from '@nx-kit/types';
-import { Theme, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
+import {
+  Spacing,
+  FlexItem,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+  TextfieldSkins,
+  DefaultTheme,
+} from '@nx-kit/styling';
 
-export type TextFieldSkin = keyof Theme['component']['textfield']['skin'];
+// @ts-ignore
+export type TextFieldSkin = TextfieldSkins<DefaultTheme>;
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 
 export type TextFieldType = 'text' | 'textarea' | 'password';

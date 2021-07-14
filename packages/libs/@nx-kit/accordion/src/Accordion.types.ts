@@ -1,7 +1,8 @@
 import React from 'react';
-import { Theme } from '@nx-kit/styling';
+import { AccordionSkins, DefaultTheme } from '@nx-kit/styling';
 
-type AccordionSkin = keyof Theme['component']['accordion']['skin'];
+// @ts-ignore
+type AccordionSkin = AccordionSkins<DefaultTheme>;
 
 export type AccordionProps = {
   skin?: AccordionSkin;

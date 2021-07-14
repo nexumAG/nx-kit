@@ -1,5 +1,8 @@
 import * as styledComponents from 'styled-components';
-import { Theme } from '../theme';
+
+export declare interface DefaultTheme {
+  [key: string]: any;
+}
 
 const {
   default: styled,
@@ -9,6 +12,16 @@ const {
   keyframes,
   ThemeProvider,
   StyleSheetManager,
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<Theme>;
+  ServerStyleSheet,
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<DefaultTheme>;
 
-export { styled, css, useTheme, createGlobalStyle, keyframes, ThemeProvider, StyleSheetManager };
+export {
+  styled,
+  css,
+  useTheme,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  StyleSheetManager,
+  ServerStyleSheet,
+};

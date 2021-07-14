@@ -1,20 +1,94 @@
 import { ThemedStyledProps, CSSProperties } from 'styled-components';
-import { Theme } from '../theme';
+import type { Theme } from '../theme';
+import type { DefaultTheme } from '../external';
 import { media } from '../utils';
 
-type SpacingKey = keyof Theme['global']['spacing'];
-type ZIndexKey = keyof Theme['global']['zIndex'];
-type BreakpointKey = keyof Theme['global']['breakpoint'];
-type ColorKey = keyof Theme['global']['color'];
-type FontKey = keyof Theme['global']['font'];
-type FontSizeKey = keyof Theme['global']['fontSize'];
-type LineHeightKey = keyof Theme['global']['lineHeight'];
-
-export type Breakpoints<T> = {
-  [key in BreakpointKey]: T;
+type ThemeGlobalKey<K extends string | number, T> = {
+  global: {
+    [key in K]: T;
+  };
 };
 
-export type LiteralOrBreakpoints<T> = T | Breakpoints<T>;
+type ThemeSpacings = ThemeGlobalKey<'spacing', Theme['global']['spacing']>;
+type ThemeZIndices = ThemeGlobalKey<'zIndex', Theme['global']['zIndex']>;
+type ThemeBreakpoints = ThemeGlobalKey<'breakpoint', Theme['global']['breakpoint']>;
+type ThemeColors = ThemeGlobalKey<'color', Theme['global']['color']>;
+type ThemeFonts = ThemeGlobalKey<'font', Theme['global']['font']>;
+type ThemeFontSizes = ThemeGlobalKey<'fontSize', Theme['global']['fontSize']>;
+type ThemeLineHeights = ThemeGlobalKey<'lineHeight', Theme['global']['lineHeight']>;
+
+type SpacingKeyG<T extends ThemeSpacings> = keyof T['global']['spacing'];
+export type SpacingKey = SpacingKeyG<DefaultTheme extends ThemeSpacings ? DefaultTheme : any>;
+
+type ZIndexKeyG<T extends ThemeZIndices> = keyof T['global']['zIndex'];
+export type ZIndexKey = ZIndexKeyG<DefaultTheme extends ThemeZIndices ? DefaultTheme : any>;
+
+export type BreakpointKey<T extends ThemeBreakpoints> = keyof T['global']['breakpoint'];
+
+type ColorKeyG<T extends ThemeColors> = keyof T['global']['color'];
+export type ColorKey = ColorKeyG<DefaultTheme extends ThemeColors ? DefaultTheme : any>;
+
+type FontKeyG<T extends ThemeFonts> = keyof T['global']['font'];
+export type FontKey = FontKeyG<DefaultTheme extends ThemeFonts ? DefaultTheme : any>;
+
+type FontSizeKeyG<T extends ThemeFontSizes> = keyof T['global']['fontSize'];
+export type FontSizeKey = FontSizeKeyG<DefaultTheme extends ThemeFontSizes ? DefaultTheme : any>;
+
+type LineHeightKeyG<T extends ThemeLineHeights> = keyof T['global']['lineHeight'];
+export type LineHeightKey = LineHeightKeyG<
+  DefaultTheme extends ThemeLineHeights ? DefaultTheme : any
+>;
+
+export type Breakpoints<K, T> = Partial<
+  Record<BreakpointKey<T extends ThemeBreakpoints ? T : never>, K>
+>;
+
+export type LiteralOrBreakpoints<K, T = DefaultTheme> = K | Breakpoints<K, T>;
+
+// component skins
+
+type ThemeComponentSkinKey<C extends string, T> = {
+  component: {
+    [component in C]: {
+      skin: T;
+    };
+  };
+};
+
+type ThemeSkinsHeading = ThemeComponentSkinKey<'heading', Theme['component']['heading']['skin']>;
+export type HeadingSkins<T extends ThemeSkinsHeading> = keyof T['component']['heading']['skin'];
+
+type ThemeSkinsText = ThemeComponentSkinKey<'text', Theme['component']['text']['skin']>;
+export type TextSkins<T extends ThemeSkinsText> = keyof T['component']['text']['skin'];
+
+type ThemeSkinsButton = ThemeComponentSkinKey<'button', Theme['component']['button']['skin']>;
+export type ButtonSkins<T extends ThemeSkinsButton> = keyof T['component']['button']['skin'];
+
+type ThemeSkinsLink = ThemeComponentSkinKey<'link', Theme['component']['link']['skin']>;
+export type LinkSkins<T extends ThemeSkinsLink> = keyof T['component']['link']['skin'];
+
+type ThemeSkinsDivider = ThemeComponentSkinKey<'divider', Theme['component']['divider']['skin']>;
+export type DividerSkins<T extends ThemeSkinsDivider> = keyof T['component']['divider']['skin'];
+
+type ThemeSkinsOverlay = ThemeComponentSkinKey<'overlay', Theme['component']['overlay']['skin']>;
+export type OverlaySkins<T extends ThemeSkinsOverlay> = keyof T['component']['overlay']['skin'];
+
+type ThemeSkinsTextfield = ThemeComponentSkinKey<
+  'textfield',
+  Theme['component']['textfield']['skin']
+>;
+export type TextfieldSkins<T extends ThemeSkinsTextfield> =
+  keyof T['component']['textfield']['skin'];
+
+type ThemeSkinsCheckbox = ThemeComponentSkinKey<'checkbox', Theme['component']['checkbox']['skin']>;
+export type CheckboxSkins<T extends ThemeSkinsCheckbox> = keyof T['component']['checkbox']['skin'];
+
+type ThemeSkinsAccordion = ThemeComponentSkinKey<
+  'accordion',
+  Theme['component']['accordion']['skin']
+>;
+export type AccordionSkins<T extends ThemeSkinsAccordion> =
+  keyof T['component']['accordion']['skin'];
 
 export type Spacing = {
   marginTop?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginTop']>;
@@ -135,7 +209,10 @@ export const getLiteralOrBreakpointValue = (
 
 const getLiteralOrBreakpointString = (
   key: string,
-  { theme, ...props }: { theme: Theme } & DirectOrStylesProp<LiteralOrBreakpoints<any> | null>,
+  {
+    theme,
+    ...props
+  }: { theme: DefaultTheme } & DirectOrStylesProp<LiteralOrBreakpoints<any> | null>,
   themeLookup?: any
 ): string => {
   const value = props[key] ?? props.styles?.[key];
@@ -239,7 +316,10 @@ export const getFlexItem = (props: ThemedStyledProps<DirectOrStylesProp<FlexItem
   );
 };
 
-export const parseGap = (gap: string | number, theme?: Theme) => {
+export const parseGap = (gap?: string | number, theme?: Theme) => {
+  if (!gap) {
+    return { rowGap: '0px', columnGap: '0px' };
+  }
   const [rowGapTmp, columnGapTmp] = gap.toString().split(' ');
   const themeLookup = theme?.global?.spacing;
   const rowGap = themeLookup?.[rowGapTmp] ?? (rowGapTmp === '0' ? '0px' : rowGapTmp);
@@ -307,7 +387,7 @@ export const getLayout = (props: ThemedStyledProps<DirectOrStylesProp<Layout>, T
   );
 };
 
-export const getFont = (props: ThemedStyledProps<DirectOrStylesProp<Font>, Theme>) => {
+export const getFont = (props: ThemedStyledProps<DirectOrStylesProp<Font>, DefaultTheme>) => {
   return getLiteralOrBreakpointString('font', props, props.theme?.global?.font);
 };
 
