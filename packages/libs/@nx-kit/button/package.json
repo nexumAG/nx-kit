@@ -27,10 +27,10 @@
   "dependencies": {
     "@nx-kit/slot": "^0.1.6",
     "@nx-kit/styling": "^0.1.11",
-    "@react-aria/button": "^3.3.2",
-    "@react-aria/focus": "^3.4.0",
-    "@react-aria/interactions": "^3.5.0",
-    "@react-aria/utils": "^3.8.1",
-    "@react-types/button": "^3.4.0"
+    "@react-aria/button": "^3.3.4",
+    "@react-aria/focus": "^3.5.0",
+    "@react-aria/interactions": "^3.6.0",
+    "@react-aria/utils": "^3.9.0",
+    "@react-types/button": "^3.4.1"
   }
 }
