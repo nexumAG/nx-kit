@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/link",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,11 +22,11 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.6"
+    "@nx-kit/dependencies-dev": "^0.1.7"
   },
   "dependencies": {
-    "@nx-kit/slot": "^0.1.6",
-    "@nx-kit/styling": "^0.1.11",
+    "@nx-kit/slot": "^0.1.7",
+    "@nx-kit/styling": "^0.1.12",
     "@react-aria/focus": "^3.5.0",
     "@react-aria/interactions": "^3.6.0",
     "@react-aria/link": "^3.1.4",
