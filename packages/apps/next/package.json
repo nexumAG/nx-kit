@@ -1,6 +1,6 @@
 {
   "name": "next",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "scripts": {
     "next:dev": "next dev",
@@ -9,8 +9,8 @@
     "next:lint": "next lint"
   },
   "dependencies": {
-    "@nx-kit/flex": "^0.1.13",
-    "@nx-kit/heading": "^0.1.12",
+    "@nx-kit/flex": "^0.1.14",
+    "@nx-kit/heading": "^0.1.13",
     "@nx-kit/styling": "^0.1.12",
     "next": "11.1.2",
     "next-transpile-modules": "^8.0.0",

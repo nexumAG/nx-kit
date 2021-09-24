@@ -2,7 +2,7 @@
   "name": "@nx/kit",
   "private": true,
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -24,22 +24,22 @@
     "@nx-kit/dependencies-dev": "^0.1.7"
   },
   "dependencies": {
-    "@nx-kit/button": "^0.1.13",
-    "@nx-kit/checkbox": "^0.1.6",
-    "@nx-kit/divider": "^0.1.9",
-    "@nx-kit/flex": "^0.1.13",
-    "@nx-kit/form": "^0.1.8",
-    "@nx-kit/heading": "^0.1.12",
-    "@nx-kit/link": "^0.1.12",
-    "@nx-kit/overlay": "^0.1.10",
-    "@nx-kit/slot": "^0.1.7",
+    "@nx-kit/button": "^0.1.14",
+    "@nx-kit/checkbox": "^0.1.7",
+    "@nx-kit/divider": "^0.1.10",
+    "@nx-kit/flex": "^0.1.14",
+    "@nx-kit/form": "^0.1.9",
+    "@nx-kit/heading": "^0.1.13",
+    "@nx-kit/link": "^0.1.13",
+    "@nx-kit/overlay": "^0.1.11",
+    "@nx-kit/slot": "^0.1.8",
     "@nx-kit/ssr": "^0.1.6",
     "@nx-kit/styling": "^0.1.12",
-    "@nx-kit/text": "^0.1.10",
-    "@nx-kit/textfield": "^0.1.9",
+    "@nx-kit/text": "^0.1.11",
+    "@nx-kit/textfield": "^0.1.10",
     "@nx-kit/theme-default": "^0.1.15",
     "@nx-kit/types": "^0.1.5",
     "@nx-kit/utils": "^0.1.5",
-    "@nx-kit/view": "^0.1.12"
+    "@nx-kit/view": "^0.1.13"
   }
 }
