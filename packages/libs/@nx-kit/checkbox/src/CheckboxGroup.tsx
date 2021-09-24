@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { SlotProvider, useSlotProps } from '@nx-kit/slot';
 
-type CheckboxGroupProps = {
+export type CheckboxGroupProps = {
   name: string;
   children: ReactNode;
 };
