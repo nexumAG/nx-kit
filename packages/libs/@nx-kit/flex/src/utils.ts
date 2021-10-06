@@ -103,11 +103,11 @@ export const getGapContextAllBreakpoints = (
     const gapBreakpoint = (gap as any)[breakpoint.breakpoint];
     if (gapBreakpoint) {
       // @ts-ignore
-      gapContext[breakpoint] = gapBreakpoint;
+      gapContext[breakpoint.breakpoint] = gapBreakpoint;
       lastGap = gapBreakpoint;
     } else {
       // @ts-ignore
-      gapContext[breakpoint] = lastGap;
+      gapContext[breakpoint.breakpoint] = lastGap;
     }
   }
 
@@ -132,11 +132,11 @@ export const getAllBreakpoints = (
     const valueBreakpoint = (value as any)[breakpoint.breakpoint];
     if (valueBreakpoint) {
       // @ts-ignore
-      valueBreakpoints[breakpoint] = valueBreakpoint;
+      valueBreakpoints[breakpoint.breakpoint] = valueBreakpoint;
       lastValue = valueBreakpoint;
     } else {
       // @ts-ignore
-      valueBreakpoints[breakpoint] = lastValue;
+      valueBreakpoints[breakpoint.breakpoint] = lastValue;
     }
   }
 
