@@ -33,13 +33,19 @@ export const media = <T extends ThemeBreakpoints>(
   };
 };
 
-export const useBreakpointsSorted = (): (string | number)[] => {
+export const useBreakpointsSorted = (): {
+  min: number;
+  max: number | null;
+  breakpoint: string | number;
+}[] => {
   const theme = useTheme();
-  const breakpoints = theme?.global?.breakpoint ?? defaultBreakpoints;
-  return (
-    Object.entries(breakpoints)
-      // @ts-ignore
-      .sort((a, b) => a[1].min - b[1].min)
-      .map((a) => a[0])
-  );
+  const breakpoints = (theme?.global?.breakpoint ?? defaultBreakpoints) as {
+    [key: string | number]: {
+      min: number;
+      max: number | null;
+    };
+  };
+  return Object.entries(breakpoints)
+    .sort((a, b) => a[1].min - b[1].min)
+    .map((a) => ({ breakpoint: a[0], min: a[1].min, max: a[1].max }));
 };
