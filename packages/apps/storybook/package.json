@@ -9,17 +9,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
-    "@storybook/addon-actions": "^6.3.8",
-    "@storybook/addon-essentials": "^6.3.8",
-    "@storybook/addon-links": "^6.3.8",
+    "@storybook/addon-actions": "^6.3.9",
+    "@storybook/addon-essentials": "^6.3.9",
+    "@storybook/addon-links": "^6.3.9",
     "@storybook/preset-typescript": "^3.0.0",
-    "@storybook/react": "6.3.8",
+    "@storybook/react": "6.3.9",
     "babel-loader": "^8.2.2",
     "fork-ts-checker-webpack-plugin": "^6.3.3",
     "http-server": "^13.0.2",
     "react-is": "^17.0.2"
   },
   "dependencies": {
+    "@nx-kit/breakpoint": "^0.1.0",
     "@nx-kit/overlay": "^0.1.11",
     "@nx-kit/styling": "^0.1.12",
     "@nx-kit/theme-default": "^0.1.15"
