@@ -26,7 +26,7 @@
     "@nx-kit/dependencies-dev": "^0.1.7",
     "@nx-kit/heading": "^0.1.13",
     "@nx-kit/link": "^0.1.13",
-    "@types/react-transition-group": "^4.4.2"
+    "@types/react-transition-group": "^4.4.3"
   },
   "dependencies": {
     "@nx-kit/slot": "^0.1.8",
