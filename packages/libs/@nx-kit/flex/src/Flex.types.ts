@@ -42,3 +42,9 @@ export type FlexContextGap = LiteralOrBreakpoints<{
   rowGap: string;
   columnGap: string;
 }>;
+
+export type Breakpoints = {
+  min: number;
+  max: number | null;
+  breakpoint: string | number;
+}[];

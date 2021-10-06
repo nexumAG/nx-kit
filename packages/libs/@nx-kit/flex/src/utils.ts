@@ -1,5 +1,5 @@
 import { FlexContainer, LiteralOrBreakpoints, parseGap, Theme } from '@nx-kit/styling';
-import { FlexContextGap } from './Flex.types';
+import { FlexContextGap, Breakpoints } from './Flex.types';
 
 export const hasGapBreakpoints = (gap?: FlexContextGap): boolean => {
   if (!gap) {
@@ -79,7 +79,7 @@ export const customFunctionOffset =
   };
 
 export const getGapContextAllBreakpoints = (
-  breakpointsSorted: (string | number)[],
+  breakpointsSorted: Breakpoints,
   gap?: FlexContextGap
 ): FlexContextGap => {
   if (!gap) {
@@ -100,7 +100,7 @@ export const getGapContextAllBreakpoints = (
   const gapContext: FlexContextGap = {};
   // eslint-disable-next-line no-restricted-syntax
   for (const breakpoint of breakpointsSorted) {
-    const gapBreakpoint = (gap as any)[breakpoint];
+    const gapBreakpoint = (gap as any)[breakpoint.breakpoint];
     if (gapBreakpoint) {
       // @ts-ignore
       gapContext[breakpoint] = gapBreakpoint;
@@ -115,21 +115,21 @@ export const getGapContextAllBreakpoints = (
 };
 
 export const getAllBreakpoints = (
-  breakpointsSorted: (string | number)[],
+  breakpointsSorted: Breakpoints,
   defaultValue: number | null,
   valueInput?: LiteralOrBreakpoints<number>
 ): LiteralOrBreakpoints<number> => {
   const value =
     typeof valueInput === 'object'
       ? valueInput
-      : { [breakpointsSorted[0]]: valueInput ?? defaultValue };
+      : { [breakpointsSorted[0].breakpoint]: valueInput ?? defaultValue };
 
   let lastValue = defaultValue;
   const valueBreakpoints: LiteralOrBreakpoints<number> = {};
 
   // eslint-disable-next-line no-restricted-syntax
   for (const breakpoint of breakpointsSorted) {
-    const valueBreakpoint = (value as any)[breakpoint];
+    const valueBreakpoint = (value as any)[breakpoint.breakpoint];
     if (valueBreakpoint) {
       // @ts-ignore
       valueBreakpoints[breakpoint] = valueBreakpoint;
