@@ -16,6 +16,9 @@ type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
 // @ts-ignore
 type LinkSkin = LinkSkins<DefaultTheme>;
 
+// all a attributes
+// type HtmlLinkProps = LinkHTMLAttributes<HTMLLinkElement>;
+
 export interface LinkProps extends AriaLinkProps {
   id?: string;
   className?: string;

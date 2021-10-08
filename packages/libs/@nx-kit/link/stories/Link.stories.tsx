@@ -37,3 +37,19 @@ export const Styles = () => (
     Press me
   </Link>
 );
+
+export const DivAsChild = () => (
+  <Link onPress={(e: any) => console.log(e)}>
+    <div style={{ width: 100, height: 50, background: 'red' }} />
+  </Link>
+);
+
+const Comp1 = () => <div style={{ width: 100, height: 50, background: 'blue' }} />;
+
+export const NestedComponent = () => (
+  <Link onPress={(e: any) => console.log(e)}>
+    <div>
+      <Comp1 />
+    </div>
+  </Link>
+);

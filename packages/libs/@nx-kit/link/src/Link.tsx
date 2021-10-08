@@ -30,9 +30,15 @@ export const Link = (linkProps: LinkProps) => {
   const { children, onPress, ...rest } = props;
   const ref = useRef(null);
 
-  const elementType = typeof children === 'string' ? 'span' : 'a';
+  const childrenType = typeof children;
+  const elementType = childrenType === 'string' ? 'span' : React.Children.only<any>(children).type;
+
+  if (typeof elementType !== 'string') {
+    throw new Error('The direct child of a Link only can be a string or HTML element');
+  }
+
   const { children: linkText, ...childProps } =
-    typeof children === 'string' ? { children } : React.Children.only<any>(children).props;
+    childrenType === 'string' ? { children } : React.Children.only<any>(children).props;
 
   const { linkProps: useLinkProps } = useLink(
     {
