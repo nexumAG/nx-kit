@@ -1,7 +1,7 @@
 {
   "name": "storybook",
   "private": true,
-  "version": "0.1.19",
+  "version": "0.1.20",
   "license": "MIT",
   "peerDependencies": {
     "react": "^16.8.0-0 || ^17.0.0-0",
@@ -20,10 +20,10 @@
     "react-is": "^17.0.2"
   },
   "dependencies": {
-    "@nx-kit/breakpoint": "^0.1.1",
-    "@nx-kit/overlay": "^0.1.13",
-    "@nx-kit/styling": "^0.1.13",
-    "@nx-kit/theme-default": "^0.1.16"
+    "@nx-kit/breakpoint": "^0.1.2",
+    "@nx-kit/overlay": "^0.1.14",
+    "@nx-kit/styling": "^0.1.14",
+    "@nx-kit/theme-default": "^0.1.17"
   },
   "scripts": {
     "storybook:dev": "start-storybook -p 6006",
