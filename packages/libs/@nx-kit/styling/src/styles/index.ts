@@ -221,6 +221,7 @@ const getLiteralOrBreakpointString = (
     return '';
   }
   if (typeof value === 'object') {
+    // TODO: sort breakpoints
     return Object.keys(value).reduce((acc, breakpoint) => {
       const mediaQuery = media(breakpoint)({ theme });
       return `
@@ -254,9 +255,44 @@ const merge = (...objects: any[]) => {
   return merged;
 };
 
-export const compose = (...objects: any[]) => {
+const getKeySortValue = (key: string): number | string => {
+  const matched = /^@media \(min-width: ([0-9.]+)px\)$/.exec(key);
+  if (matched) {
+    return parseFloat(matched[1]);
+  }
+  return key;
+};
+
+export const compose = (...objects: any[]): any => {
   return (props: ThemedStyledProps<DirectOrStylesProp<any>, Theme>) => {
-    return merge(...objects.map((object) => object(props)));
+    const merged = merge(...objects.map((object) => object(props)));
+    const sorted = Object.fromEntries(
+      Object.entries(merged).sort((a: [string, any], b: [string, any]) => {
+        const aSort = getKeySortValue(a[0]);
+        const bSort = getKeySortValue(b[0]);
+
+        if (typeof aSort === 'number' && typeof bSort === 'string') {
+          return 1;
+        }
+
+        if (typeof aSort === 'string' && typeof bSort === 'number') {
+          return -1;
+        }
+
+        if (typeof aSort === 'string' && typeof bSort === 'string') {
+          // eslint-disable-next-line no-nested-ternary
+          return aSort > bSort ? 1 : aSort < bSort ? -1 : 0;
+        }
+
+        if (typeof aSort === 'number' && typeof bSort === 'number') {
+          return aSort - bSort;
+        }
+
+        return 0;
+      })
+    );
+
+    return sorted;
   };
 };
 
