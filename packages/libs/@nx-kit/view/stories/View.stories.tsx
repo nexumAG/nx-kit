@@ -18,8 +18,12 @@ export const Default = () => (
       xxl: 'secondary700',
       xxxl: 'secondary800',
     }}
+    marginX={{ sm: '10', md: '20', xl: '40' }}
     opacity={0.5}
-  />
+    font={{ xs: 'trebuchetNormal', sm: 'trebuchetBold', md: 'georgiaNormal' }}
+  >
+    Demo Text
+  </View>
 );
 
 export const MarginPaddingXY = () => (
