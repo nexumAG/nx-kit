@@ -93,7 +93,7 @@ You can use the global values in the styled components but they are also used fo
 
 Most of the nx-kit components have a special `styles` prop.
 With this prop you are able to set some styles directly on the component.
-These are not inline styles like the `style` prop and you can also you the global values from the theme.
+These are not inline styles like the `style` prop and you can also use the global values from the theme.
 
 **Example:**
 
