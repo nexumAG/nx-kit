@@ -115,6 +115,8 @@ For consistency it is recommend to also use the global values in the styled comp
 **Example styled:**
 
 ```javascript
+import { styled } from '@nx-kit/styling';
+
 const Example = styled.div`
   ${({ theme }) => `
     color: ${theme?.global?.color?.gray500};
@@ -139,3 +141,48 @@ position, top, right, bottom, left | -
 opacity | -
 width, height, minWidth, maxWidth, minHeight, maxHeight, display, verticalAlign, overflow, overflowX, overflowY | -
 letterSpacing, textAlign, fontStyle, textTransform, textDecoration, textOverflow | -
+
+## media Helper
+
+@nx-kit/styling exports a `media` function that can be used for media queries.
+You can use the breakpoint keys from the theme.
+First parameter is min (uses the min value from the breakpoint), second optional is max (uses the max value from the breakpoint).
+
+```javascript
+import { styled, media } from '@nx-kit/styling';
+
+const Example = styled.div`
+  margin-top: 10px;
+
+  ${media('md')} {
+    margin-top: 20px;
+  }
+
+  ${media('lg', 'xl')} {
+    color: red;
+  }
+`;
+```
+
+## Sorted breakpoints
+
+If you need the breakpoints sorted you can use the `useBreakpointsSorted` hook.
+It is a low level functionality and is used by @nx-kit/breakpoint.
+
+```javascript
+import { useBreakpointsSorted } from '@nx-kit/styling';
+
+const Example = () => {
+  const sortedBreakpoints = useBreakpointsSorted();
+
+  // returns array like { min: number; max: number | null; breakpoint: string | number }[]
+};
+```
+
+## reset CSS
+
+@nx-kit/styling also exports a lightweight reset CSS string:
+
+```javascript
+import { resetCSS } from '@nx-kit/styling';
+```
