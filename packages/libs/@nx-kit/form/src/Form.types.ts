@@ -1,34 +1,69 @@
 import React from 'react';
-import { ResolverResult, UseFormRegister } from 'react-hook-form';
+import { DefaultValues, Resolver, UseFormRegister } from 'react-hook-form';
+import { FieldErrors } from 'react-hook-form/dist/types/errors';
+import {
+  UnpackNestedValue,
+  UseFormClearErrors,
+  UseFormGetValues,
+  UseFormReset,
+  UseFormSetError,
+  UseFormTrigger,
+  UseFormUnregister,
+  UseFormWatch,
+} from 'react-hook-form/dist/types/form';
+import { FieldValues } from 'react-hook-form/dist/types/fields';
 
-export type FormProps = {
-  children: React.ReactNode | ((values: FormContextValue) => React.ReactNode);
+export type OnSubmitData<FormValues> = UnpackNestedValue<FormValues>;
+export type OnErrorErrors<FormValues> = FieldErrors<FormValues>;
+export type BaseEvent = React.BaseSyntheticEvent;
+
+export type FormSubmitHandler<FormValues> = (
+  data: OnSubmitData<FormValues>,
+  event?: BaseEvent,
+  contextValue?: FormContextValue
+) => any | Promise<any>;
+
+export type FormErrorHandler<FormValues> = (
+  errors: OnErrorErrors<FormValues>,
+  event?: BaseEvent,
+  contextValue?: FormContextValue
+) => any | Promise<any>;
+
+export type FormProps<FormValues> = {
+  children: React.ReactNode | ((contextValue: FormContextValue) => React.ReactNode);
   mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'onTouched' | 'all';
   reValidateMode?: 'onChange' | 'onBlur' | 'onSubmit';
-  defaultValues?: Record<string, any>;
+  defaultValues?: DefaultValues<FormValues>;
 
-  resolver?: (values: any, context?: object) => Promise<ResolverResult> | ResolverResult;
+  // resolver?: (values: any, context?: object) => Promise<ResolverResult> | ResolverResult;
+  resolver?: Resolver<FormValues, object>;
   context?: any;
 
   criteriaMode?: 'firstError' | 'all';
   shouldFocusError?: boolean;
   shouldUnregister?: boolean;
 
-  onSubmit?: any;
+  onSubmit?: FormSubmitHandler<FormValues>;
+  onError?: FormErrorHandler<FormValues>;
 };
 
-export type FormContextValue = {
-  register: UseFormRegister<any>;
-  errors: Record<string, any>;
-  defaultValues: any;
-  reset: (values?: Record<string, any>, omitResetState?: Record<string, boolean>) => void;
-  watch: (names?: string | string[]) => any;
-  getValues: (payload?: string | string[]) => any;
-  clearErrors: (name?: string | string[]) => void;
-  setError: (
-    name: string,
-    error: { type?: string; types?: any; message?: string; shouldFocus?: boolean }
-  ) => void;
-  unregister: (name: string | string[]) => void;
-  trigger: (payload?: string | string[]) => Promise<boolean>;
+export type FormContextValue<
+  FormValues extends FieldValues = FieldValues
+  // FormContext extends object = object
+> = {
+  errors: FieldErrors<FormValues>;
+  defaultValues: DefaultValues<FormValues>;
+  watch?: UseFormWatch<FormValues>;
+  getValues?: UseFormGetValues<FormValues>;
+  setError: UseFormSetError<FormValues>;
+  clearErrors: UseFormClearErrors<FormValues>;
+  trigger: UseFormTrigger<FormValues>;
+  reset: UseFormReset<FormValues>;
+  unregister: UseFormUnregister<FormValues>;
+  register: UseFormRegister<FormValues>;
+  // formState: FormState<FormValues>;
+  // setValue: UseFormSetValue<FormValues>;
+  // handleSubmit: UseFormHandleSubmit<FormValues>;
+  // control: Control<FormValues, FormContext>;
+  // setFocus: UseFormSetFocus<FormValues>;
 };

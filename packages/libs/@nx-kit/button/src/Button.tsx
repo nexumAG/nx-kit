@@ -42,7 +42,7 @@ export const Button = (buttonProps: ButtonProps) => {
       isActive={isPressed}
       isFocused={isFocusVisible}
       isHovered={isHovered}
-      isDisabled={isDisabled !== undefined}
+      isDisabled={isDisabled === true}
       {...mergeProps(useButtonProps, hoverProps, focusProps, rest)}
     >
       {children}
