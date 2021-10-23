@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/theme-default",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -24,6 +24,6 @@
     "@nx-kit/dependencies-dev": "^0.1.9"
   },
   "dependencies": {
-    "@nx-kit/styling": "^0.1.15"
+    "@nx-kit/styling": "^0.1.16"
   }
 }
