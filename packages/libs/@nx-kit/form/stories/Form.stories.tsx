@@ -12,6 +12,12 @@ export default {
   component: Form,
 };
 
+type FormValues = {
+  test: string;
+  checked: boolean;
+  checked3: [boolean, boolean, boolean];
+};
+
 export const Default = () => {
   const [inside, setInside] = useState(true);
   // const [valuesState, setValuesState] = useState({});
@@ -23,11 +29,23 @@ export const Default = () => {
       <button type="button" onClick={() => setInside(false)}>
         Remove Field
       </button>
-      <Form
+      <Form<FormValues>
         defaultValues={{ test: 'test', checked: true, checked3: [true, false, true] }}
         mode="all"
         reValidateMode="onChange"
-        onSubmit={(values: any) => console.log('submit', values)}
+        onSubmit={async (values, _, contextValue) => {
+          console.log('submit', values);
+
+          await new Promise((res) => setTimeout(res, 500));
+
+          contextValue?.setError('test', {
+            type: 'manual',
+            message: 'This is a fake server error',
+          });
+        }}
+        onError={async (errors) => {
+          console.log('errors', errors);
+        }}
       >
         {({ trigger }) => (
           <>

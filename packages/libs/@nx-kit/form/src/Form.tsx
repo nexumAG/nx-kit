@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useForm as useReactHookForm } from 'react-hook-form';
 // eslint-disable-next-line import/no-cycle
 import { Input } from './Input';
@@ -7,7 +7,7 @@ import { Error } from './Error';
 // eslint-disable-next-line import/no-cycle
 import { Label } from './Label';
 import { FieldWrapper } from './FieldWrapper';
-import { FormProps, FormContextValue } from './Form.types';
+import { FormProps, FormContextValue, OnSubmitData, BaseEvent, OnErrorErrors } from './Form.types';
 
 export const FormContext = React.createContext<FormContextValue>({
   register: () => ({
@@ -19,24 +19,25 @@ export const FormContext = React.createContext<FormContextValue>({
   errors: {},
   defaultValues: {},
   reset: () => {},
-  watch: () => {},
-  getValues: () => {},
   clearErrors: () => {},
   setError: () => {},
   unregister: () => {},
   trigger: () => new Promise<boolean>((resolve) => resolve(true)),
+  // watch: () => {},
+  // getValues: () => {},
 });
 
 export const useForm = () => useContext(FormContext);
 
-export const Form = ({
+export const Form = <FormValues,>({
   children,
   mode = 'onSubmit',
   reValidateMode = 'onChange',
   defaultValues,
   onSubmit,
+  onError,
   ...rest
-}: FormProps) => {
+}: FormProps<FormValues>) => {
   const {
     register,
     handleSubmit,
@@ -48,7 +49,7 @@ export const Form = ({
     setError,
     unregister,
     trigger,
-  } = useReactHookForm({
+  } = useReactHookForm<FormValues>({
     mode,
     reValidateMode,
     defaultValues,
@@ -68,9 +69,31 @@ export const Form = ({
     trigger,
   };
 
+  const onSubmitCallback = useCallback(
+    (data: OnSubmitData<FormValues>, event?: BaseEvent) => {
+      if (onSubmit) {
+        // @ts-ignore
+        onSubmit(data, event, values);
+      }
+    },
+    [onSubmit]
+  );
+
+  const onErrorCallback = useCallback(
+    (_errors: OnErrorErrors<FormValues>, event?: BaseEvent) => {
+      if (onError) {
+        // @ts-ignore
+        onError(_errors, event, values);
+      }
+    },
+    [onSubmit]
+  );
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmitCallback ?? (() => {}), onErrorCallback)}>
+      {/* @ts-ignore */}
       <FormContext.Provider value={values}>
+        {/* @ts-ignore */}
         {typeof children === 'function' ? children(values) : children}
       </FormContext.Provider>
     </form>
