@@ -123,7 +123,8 @@ export type FlexContainer = {
   flexFlow?: LiteralOrBreakpoints<CSSProperties['flexFlow']>;
   flexWrap?: LiteralOrBreakpoints<CSSProperties['flexWrap']>;
   justifyContent?: LiteralOrBreakpoints<CSSProperties['justifyContent']>;
-  gap?: LiteralOrBreakpoints<SpacingKey | string>;
+  gap?: LiteralOrBreakpoints<SpacingKey | CSSProperties['gap']>;
+  gapNative?: LiteralOrBreakpoints<SpacingKey | CSSProperties['gap']>;
 };
 
 export type Position = {
@@ -383,6 +384,11 @@ export const getFlexContainer = (
         '& > *': {
           margin: `calc(${rowGap} / 2) calc(${columnGap} / 2)`,
         },
+      };
+    }),
+    getLiteralOrBreakpointValue('gapNative', props, null, (_: string, value: string) => {
+      return {
+        gap: value,
       };
     })
   );

@@ -20,17 +20,17 @@ export type BaseEvent = React.BaseSyntheticEvent;
 export type FormSubmitHandler<FormValues> = (
   data: OnSubmitData<FormValues>,
   event?: BaseEvent,
-  contextValue?: FormContextValue
+  context?: FormContext
 ) => any | Promise<any>;
 
 export type FormErrorHandler<FormValues> = (
   errors: OnErrorErrors<FormValues>,
   event?: BaseEvent,
-  contextValue?: FormContextValue
+  context?: FormContext
 ) => any | Promise<any>;
 
 export type FormProps<FormValues> = {
-  children: React.ReactNode | ((contextValue: FormContextValue) => React.ReactNode);
+  children: React.ReactNode | ((context: FormContext) => React.ReactNode);
   mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'onTouched' | 'all';
   reValidateMode?: 'onChange' | 'onBlur' | 'onSubmit';
   defaultValues?: DefaultValues<FormValues>;
@@ -47,12 +47,12 @@ export type FormProps<FormValues> = {
   onError?: FormErrorHandler<FormValues>;
 };
 
-export type FormContextValue<
+export type FormContext<
   FormValues extends FieldValues = FieldValues
   // FormContext extends object = object
 > = {
   errors: FieldErrors<FormValues>;
-  defaultValues: DefaultValues<FormValues>;
+  defaultValues?: DefaultValues<FormValues>;
   watch?: UseFormWatch<FormValues>;
   getValues?: UseFormGetValues<FormValues>;
   setError: UseFormSetError<FormValues>;

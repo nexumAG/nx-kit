@@ -20,8 +20,7 @@ const TextStyled = styled.span<TextStyledProps>`
   ${getFont};
 `;
 
-export const Text = (props: TextProps) => {
-  const { slot } = props;
+export const Text = ({ slot, ...props }: TextProps) => {
   const { children, elementType, ...rest } = useSlotProps<TextProps>(slot ?? 'text', props);
   return (
     <TextStyled as={elementType} {...rest}>

@@ -6,6 +6,7 @@ import { useFocusRing } from '@react-aria/focus';
 import {
   styled,
   getSpacing,
+  getFlexContainer,
   getFlexItem,
   getPosition,
   getColor,
@@ -20,13 +21,13 @@ import { LinkProps, LinkStyledProps } from './Link.types';
 const LinkStyled = styled.a<LinkStyledProps>`
   ${({ theme }) => theme?.component?.link?.global};
   ${({ theme, skin }) => skin && theme?.component?.link?.skin?.[skin]};
-  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)}
+  ${compose(getSpacing, getFlexContainer, getFlexItem, getPosition, getColor, getLayout, getTypo)}
   ${getFont};
 `;
 
-export const Link = (linkProps: LinkProps) => {
+export const Link = ({ slot, ...linkProps }: LinkProps) => {
   // eslint-disable-next-line react/destructuring-assignment
-  const props = useSlotProps<LinkProps>(linkProps.slot ?? 'link', linkProps);
+  const props = useSlotProps<LinkProps>(slot ?? 'link', linkProps);
   const { children, onPress, ...rest } = props;
   const ref = useRef(null);
 

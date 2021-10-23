@@ -2,6 +2,7 @@ import React from 'react';
 import {
   styled,
   getSpacing,
+  getFlexContainer,
   getFlexItem,
   getPosition,
   getColor,
@@ -16,14 +17,14 @@ import { HeadingProps, HeadingStyledProps } from './Heading.types';
 const HeadingStyled = styled.h2<HeadingStyledProps>`
   ${({ theme }) => theme?.component?.heading?.global};
   ${({ theme, skin }) => skin && theme?.component?.heading?.skin?.[skin]};
-  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)}
+  ${compose(getSpacing, getFlexContainer, getFlexItem, getPosition, getColor, getLayout, getTypo)}
   ${getFont};
 `;
 
-export const Heading = (headingProps: HeadingProps) => {
+export const Heading = ({ slot, ...headingProps }: HeadingProps) => {
   // eslint-disable-next-line react/destructuring-assignment
-  const props = useSlotProps<HeadingProps>(headingProps.slot ?? 'heading', headingProps);
-  const { elementType, children, slot, ...rest } = props;
+  const props = useSlotProps<HeadingProps>(slot ?? 'heading', headingProps);
+  const { elementType, children, ...rest } = props;
 
   return (
     <HeadingStyled as={elementType} {...rest}>

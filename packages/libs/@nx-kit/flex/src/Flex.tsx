@@ -39,6 +39,7 @@ const FlexStyled = styled.div<FlexStyledProps>`
 `;
 
 export const Flex = ({
+  id,
   className,
   children,
   elementType,
@@ -87,14 +88,14 @@ export const Flex = ({
   return (
     <FlexContext.Provider value={{ gap: getGapContextValue(theme as Theme, gap) }}>
       <FlexStyled
+        id={id}
         className={className}
         as={elementType}
-        styles={styles}
+        styles={{ ...styles, ...rest }}
         flexType={flexType}
         col={colWidth}
         row={rowHeight}
         colOffset={colOffsetWidth}
-        {...rest}
       >
         {children}
       </FlexStyled>
