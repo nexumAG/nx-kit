@@ -20,9 +20,6 @@ type FormValues = {
 
 export const Default = () => {
   const [inside, setInside] = useState(true);
-  // const [valuesState, setValuesState] = useState({});
-  //
-  // console.log('valuesState', valuesState);
 
   return (
     <>
@@ -33,12 +30,12 @@ export const Default = () => {
         defaultValues={{ test: 'test', checked: true, checked3: [true, false, true] }}
         mode="all"
         reValidateMode="onChange"
-        onSubmit={async (values, _, contextValue) => {
+        onSubmit={async (values, _, context) => {
           console.log('submit', values);
 
           await new Promise((res) => setTimeout(res, 500));
 
-          contextValue?.setError('test', {
+          context?.setError('test', {
             type: 'manual',
             message: 'This is a fake server error',
           });

@@ -7,9 +7,9 @@ import { Error } from './Error';
 // eslint-disable-next-line import/no-cycle
 import { Label } from './Label';
 import { FieldWrapper } from './FieldWrapper';
-import { FormProps, FormContextValue, OnSubmitData, BaseEvent, OnErrorErrors } from './Form.types';
+import { FormProps, FormContext, OnSubmitData, BaseEvent, OnErrorErrors } from './Form.types';
 
-export const FormContext = React.createContext<FormContextValue>({
+const FormReactContext = React.createContext<FormContext>({
   register: () => ({
     onChange: () => Promise.resolve(),
     onBlur: () => Promise.resolve(),
@@ -17,7 +17,7 @@ export const FormContext = React.createContext<FormContextValue>({
     name: '',
   }),
   errors: {},
-  defaultValues: {},
+  // defaultValues: {},
   reset: () => {},
   clearErrors: () => {},
   setError: () => {},
@@ -27,7 +27,7 @@ export const FormContext = React.createContext<FormContextValue>({
   // getValues: () => {},
 });
 
-export const useForm = () => useContext(FormContext);
+export const useForm = () => useContext(FormReactContext);
 
 export const Form = <FormValues,>({
   children,
@@ -56,7 +56,7 @@ export const Form = <FormValues,>({
     ...rest,
   });
 
-  const values = {
+  const values: FormContext<FormValues> = {
     register,
     errors,
     defaultValues,
@@ -86,16 +86,16 @@ export const Form = <FormValues,>({
         onError(_errors, event, values);
       }
     },
-    [onSubmit]
+    [onError]
   );
 
   return (
     <form onSubmit={handleSubmit(onSubmitCallback ?? (() => {}), onErrorCallback)}>
       {/* @ts-ignore */}
-      <FormContext.Provider value={values}>
+      <FormReactContext.Provider value={values}>
         {/* @ts-ignore */}
         {typeof children === 'function' ? children(values) : children}
-      </FormContext.Provider>
+      </FormReactContext.Provider>
     </form>
   );
 };
