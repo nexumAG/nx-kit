@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../src';
 
 export default {
@@ -20,11 +20,17 @@ export const PrimaryAutoFocus = () => (
   </Button>
 );
 
-export const PrimaryDisabled = () => (
-  <Button onPress={(e: any) => console.log(e)} skin="primary" isDisabled>
-    Press me
-  </Button>
-);
+export const PrimaryDisabled = () => {
+  const [isDisabled, setIsDisabled] = useState(true);
+  return (
+    <>
+      <input type="checkbox" onChange={(event) => setIsDisabled(!event.currentTarget.checked)} />
+      <Button onPress={(e: any) => console.log(e)} skin="primary" isDisabled={isDisabled}>
+        Press me
+      </Button>
+    </>
+  );
+};
 
 export const PrimaryLink = () => (
   <Button href="#" elementType="a" skin="primary">

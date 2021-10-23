@@ -66,7 +66,7 @@ const TextField = (
       ref={ref}
       isFocused={isFocusVisible}
       autoFocus={autoFocus}
-      isDisabled={isDisabled !== undefined}
+      isDisabled={isDisabled === true}
       disabled={isDisabled}
       readOnly={isReadOnly}
       hasError={hasError}
