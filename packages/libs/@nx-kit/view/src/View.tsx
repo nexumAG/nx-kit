@@ -2,6 +2,7 @@ import React from 'react';
 import {
   styled,
   getSpacing,
+  getFlexContainer,
   getFlexItem,
   getPosition,
   getColor,
@@ -13,12 +14,12 @@ import {
 import { ViewProps, ViewStyledProps } from './View.types';
 
 const ViewStyled = styled.div<ViewStyledProps>`
-  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)};
+  ${compose(getSpacing, getFlexContainer, getFlexItem, getPosition, getColor, getLayout, getTypo)};
   ${getFont};
 `;
 
-export const View = ({ children, elementType, ...rest }: ViewProps) => (
-  <ViewStyled as={elementType} {...rest}>
+export const View = ({ id, className, children, elementType, ...rest }: ViewProps) => (
+  <ViewStyled id={id} className={className} as={elementType} styles={rest}>
     {children}
   </ViewStyled>
 );

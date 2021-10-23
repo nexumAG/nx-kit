@@ -43,6 +43,67 @@ export const MarginPaddingXY = () => (
   </>
 );
 
+export const NativeGap = () => (
+  <View gapNative="20px" display="flex" flexWrap="wrap" width="100%">
+    <View
+      flexBasis={{ xs: '100%', md: 'calc(25% - 20px)' }}
+      flexGrow={1}
+      backgroundColor="#ccc"
+      padding="20px"
+    >
+      Box
+    </View>
+    <View
+      flexBasis={{ xs: '100%', md: 'calc(25% - 20px)' }}
+      flexGrow={1}
+      backgroundColor="#ccc"
+      padding="20px"
+    >
+      Box
+    </View>
+    <View
+      flexBasis={{ xs: '100%', md: 'calc(25% - 20px)' }}
+      flexGrow={1}
+      backgroundColor="#ccc"
+      padding="20px"
+    >
+      Box
+    </View>
+    <View
+      flexBasis={{ xs: '100%', md: 'calc(25% - 20px)' }}
+      flexGrow={1}
+      backgroundColor="#ccc"
+      padding="20px"
+    >
+      Box
+    </View>
+    <View
+      flexBasis={{ xs: '100%', md: 'calc(25% - 20px)' }}
+      flexGrow={1}
+      backgroundColor="#ccc"
+      padding="20px"
+    >
+      Box
+    </View>
+    <View
+      flexBasis={{ xs: '100%', md: 'calc(25% - 20px)' }}
+      flexGrow={1}
+      backgroundColor="#ccc"
+      padding="20px"
+    >
+      Box
+    </View>
+    <View
+      flexBasis={{ xs: '100%', md: 'calc(25% - 20px)' }}
+      flexGrow={1}
+      backgroundColor="#ccc"
+      padding="20px"
+    >
+      Box
+    </View>
+  </View>
+);
+
 // export const Test = () => (
 //   <>
 //     {Array.from(Array(300)).map((index) => (

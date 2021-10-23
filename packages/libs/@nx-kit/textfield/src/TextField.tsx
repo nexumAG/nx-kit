@@ -24,10 +24,9 @@ const TextFieldStyled = styled.input<TextFieldStyledProps>`
 `;
 
 const TextField = (
-  props: TextFieldProps,
+  { slot, ...props }: TextFieldProps,
   ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement | null>
 ) => {
-  const { slot } = props;
   const {
     isDisabled,
     type = 'text',

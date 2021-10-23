@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import {
   As,
   Spacing,
+  FlexContainer,
   FlexItem,
   Position,
   Color,
@@ -15,7 +16,7 @@ import {
 // @ts-ignore
 export type HeadingSkin = HeadingSkins<DefaultTheme>;
 
-type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
+type Styles = Spacing & FlexContainer & FlexItem & Position & Color & Layout & Font & Typo;
 
 export type HeadingProps = {
   id?: string;

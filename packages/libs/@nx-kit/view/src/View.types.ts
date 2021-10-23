@@ -1,7 +1,17 @@
 import { ReactNode } from 'react';
-import { As, Spacing, FlexItem, Position, Color, Layout, Font, Typo } from '@nx-kit/styling';
+import {
+  As,
+  Spacing,
+  FlexContainer,
+  FlexItem,
+  Position,
+  Color,
+  Layout,
+  Font,
+  Typo,
+} from '@nx-kit/styling';
 
-type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
+type Styles = Spacing & FlexContainer & FlexItem & Position & Color & Layout & Font & Typo;
 
 export type ViewProps = {
   id?: string;

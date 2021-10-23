@@ -50,8 +50,7 @@ const WithLabel = ({
   );
 };
 
-const Checkbox = (props: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>) => {
-  const { slot } = props;
+const Checkbox = ({ slot, ...props }: CheckboxProps, ref?: React.Ref<HTMLInputElement | null>) => {
   const {
     isDisabled,
     isRequired,

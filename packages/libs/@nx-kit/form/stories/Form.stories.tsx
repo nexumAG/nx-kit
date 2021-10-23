@@ -23,9 +23,12 @@ export const Default = () => {
 
   return (
     <>
-      <button type="button" onClick={() => setInside(false)}>
-        Remove Field
-      </button>
+      Show Test 2?{' '}
+      <input
+        type="checkbox"
+        checked={inside}
+        onChange={(event) => setInside(event.currentTarget.checked)}
+      />
       <Form<FormValues>
         defaultValues={{ test: 'test', checked: true, checked3: [true, false, true] }}
         mode="all"

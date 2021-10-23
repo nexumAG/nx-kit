@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { AriaLinkProps } from '@react-types/link';
 import {
   Spacing,
+  FlexContainer,
   FlexItem,
   Position,
   Color,
@@ -12,7 +13,7 @@ import {
   DefaultTheme,
 } from '@nx-kit/styling';
 
-type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
+type Styles = Spacing & FlexContainer & FlexItem & Position & Color & Layout & Font & Typo;
 // @ts-ignore
 type LinkSkin = LinkSkins<DefaultTheme>;
 

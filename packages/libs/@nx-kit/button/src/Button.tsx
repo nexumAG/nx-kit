@@ -25,9 +25,9 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
   ${getFont};
 `;
 
-export const Button = (buttonProps: ButtonProps) => {
+export const Button = ({ slot, ...buttonProps }: ButtonProps) => {
   // eslint-disable-next-line react/destructuring-assignment
-  const props = useSlotProps<ButtonProps>(buttonProps.slot ?? 'button', buttonProps);
+  const props = useSlotProps<ButtonProps>(slot ?? 'button', buttonProps);
   const { children, isDisabled, autoFocus, elementType = 'button', onPress, ...rest } = props;
   const ref = useRef(null);
 
