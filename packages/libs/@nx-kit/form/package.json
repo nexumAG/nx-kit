@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/form",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,14 +22,14 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/checkbox": "^0.1.11",
+    "@nx-kit/checkbox": "^0.1.12",
     "@nx-kit/dependencies-dev": "^0.1.9",
-    "@nx-kit/flex": "^0.1.18",
-    "@nx-kit/textfield": "^0.1.14"
+    "@nx-kit/flex": "^0.1.19",
+    "@nx-kit/textfield": "^0.1.15"
   },
   "dependencies": {
     "@nx-kit/slot": "^0.1.10",
-    "@nx-kit/text": "^0.1.15",
+    "@nx-kit/text": "^0.1.16",
     "@nx-kit/types": "^0.1.7",
     "@nx-kit/utils": "^0.1.7",
     "@react-aria/label": "^3.2.0",
