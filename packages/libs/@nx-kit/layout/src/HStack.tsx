@@ -10,21 +10,53 @@ import {
   getFont,
   getTypo,
   compose,
+  getLiteralOrBreakpointValue,
+  Theme,
+  ThemedStyledProps,
+  merge,
+  DirectOrStylesProp,
+  media,
+  css,
 } from '@nx-kit/styling';
-import { HStackProps, HStackStyledProps } from './types';
+import { HStackProps, HStackSpecialProps, HStackStyledProps, Alignment } from './types';
+import { alignmentMap } from './utils';
+
+const getHStack = (props: ThemedStyledProps<DirectOrStylesProp<HStackSpecialProps>, Theme>) => {
+  const themeLookup = props.theme?.global?.spacing;
+
+  return merge(
+    getLiteralOrBreakpointValue('alignment', props, null, (_: string, value: Alignment) => {
+      return { alignItems: alignmentMap[value] };
+    }),
+    getLiteralOrBreakpointValue('spacing', props, null, (_: string, propValue: string | number) => {
+      const value = themeLookup?.[propValue] ?? propValue;
+      return { gap: value };
+    })
+  );
+};
 
 const HStackStyled = styled.div<HStackStyledProps>`
-  ${compose(getSpacing, getFlexContainer, getFlexItem, getPosition, getColor, getLayout, getTypo)};
+  ${({ horizontalBreakpoint }) =>
+    horizontalBreakpoint
+      ? css<any>`
+          flex-direction: column;
+          ${media(horizontalBreakpoint as any)} {
+            flex-direction: row;
+          }
+        `
+      : `flex-direction: row;`}
+  ${compose(
+    getHStack,
+    getSpacing,
+    getFlexContainer,
+    getFlexItem,
+    getPosition,
+    getColor,
+    getLayout,
+    getTypo
+  )};
   ${getFont};
 `;
-
-const map = {
-  stretch: 'stretch',
-  top: 'flex-start',
-  center: 'center',
-  bottom: 'flex-end',
-  baseline: 'baseline',
-};
 
 export const HStack = ({
   id,
@@ -33,20 +65,20 @@ export const HStack = ({
   elementType,
   alignment,
   spacing,
+  horizontalBreakpoint,
   styles,
 }: HStackProps) => (
   <HStackStyled
     id={id}
     className={className}
     as={elementType}
+    horizontalBreakpoint={horizontalBreakpoint}
     styles={{
       ...{
         display: 'flex',
-        flexDirection: 'row',
-        width: '100%',
         justifyContent: 'center',
-        alignItems: map[alignment ?? 'stretch'],
-        gapNative: spacing && `0 ${spacing}`,
+        alignment: alignment ?? 'center',
+        spacing,
       },
       ...styles,
     }}

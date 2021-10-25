@@ -10,20 +10,42 @@ import {
   getFont,
   getTypo,
   compose,
+  ThemedStyledProps,
+  DirectOrStylesProp,
+  Theme,
+  merge,
+  getLiteralOrBreakpointValue,
 } from '@nx-kit/styling';
-import { VStackProps, VStackStyledProps } from './types';
+import { VStackSpecialProps, Alignment, VStackProps, VStackStyledProps } from './types';
+import { alignmentMap } from './utils';
+
+const getVStack = (props: ThemedStyledProps<DirectOrStylesProp<VStackSpecialProps>, Theme>) => {
+  const themeLookup = props.theme?.global?.spacing;
+
+  return merge(
+    getLiteralOrBreakpointValue('alignment', props, null, (_: string, value: Alignment) => {
+      return { alignItems: alignmentMap[value] };
+    }),
+    getLiteralOrBreakpointValue('spacing', props, null, (_: string, propValue: string | number) => {
+      const value = themeLookup?.[propValue] ?? propValue;
+      return { rowGap: value };
+    })
+  );
+};
 
 const VStackStyled = styled.div<VStackStyledProps>`
-  ${compose(getSpacing, getFlexContainer, getFlexItem, getPosition, getColor, getLayout, getTypo)};
+  ${compose(
+    getVStack,
+    getSpacing,
+    getFlexContainer,
+    getFlexItem,
+    getPosition,
+    getColor,
+    getLayout,
+    getTypo
+  )};
   ${getFont};
 `;
-
-const map = {
-  stretch: 'stretch',
-  left: 'flex-start',
-  center: 'center',
-  right: 'flex-end',
-};
 
 export const VStack = ({
   id,
@@ -42,11 +64,9 @@ export const VStack = ({
       ...{
         display: 'flex',
         flexDirection: 'column',
-        width: '100%',
-        height: '100%',
         justifyContent: 'center',
-        alignItems: map[alignment ?? 'center'],
-        gapNative: spacing && `${spacing} 0`,
+        alignment: alignment ?? 'center',
+        spacing,
       },
       ...styles,
     }}

@@ -4,10 +4,16 @@ import { HStack, VStack, Spacer } from '../src';
 export default {
   title: '@nx-kit/layout',
   component: HStack,
+  subcomponents: { VStack },
 };
 
 export const HStackExample = () => (
-  <HStack spacing="10px">
+  <HStack
+    alignment="start"
+    spacing={{ xs: 0, sm: 20, md: 40 }}
+    horizontalBreakpoint="sm"
+    styles={{ width: '100%' }}
+  >
     <span>Test</span>
     <span>Test</span>
     <Spacer />
@@ -15,9 +21,11 @@ export const HStackExample = () => (
   </HStack>
 );
 
+HStackExample.storyName = 'HStack';
+
 export const HStackInVStackExample = () => (
-  <div style={{ height: '200px' }}>
-    <VStack spacing="10px" alignment="left">
+  <div style={{ height: '300px' }}>
+    <VStack spacing={20} styles={{ height: { xs: 'auto', sm: '100%' } }}>
       <HStackExample />
       <HStackExample />
       <Spacer />
@@ -25,3 +33,5 @@ export const HStackInVStackExample = () => (
     </VStack>
   </div>
 );
+
+HStackInVStackExample.storyName = 'HStack in VStack';

@@ -171,7 +171,7 @@ export type Typo = {
   textOverflow?: LiteralOrBreakpoints<CSSProperties['textOverflow']>;
 };
 
-type DirectOrStylesProp<T> = T | { styles?: T };
+export type DirectOrStylesProp<T> = T | { styles?: T };
 
 const getValue = (key: string, value: any, themeLookup?: any) => {
   // eslint-disable-next-line no-nested-ternary
@@ -208,7 +208,7 @@ export const getLiteralOrBreakpointValue = (
   return customFunction ? customFunction(key, value) : getValue(key, value, themeLookup);
 };
 
-const getLiteralOrBreakpointString = (
+export const getLiteralOrBreakpointString = (
   key: string,
   {
     theme,
@@ -236,7 +236,7 @@ const getLiteralOrBreakpointString = (
   return getString(value, themeLookup);
 };
 
-const merge = (...objects: any[]) => {
+export const merge = (...objects: any[]) => {
   const merged: any = {};
   const { length } = objects;
   for (let i = 0; i < length; i += 1) {
