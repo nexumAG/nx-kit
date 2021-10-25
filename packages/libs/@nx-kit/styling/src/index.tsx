@@ -1,4 +1,5 @@
 import { ComponentType } from 'react';
+import { ThemedStyledProps, CSSProperties } from 'styled-components';
 import { media, useBreakpointsSorted } from './utils';
 import type { Theme } from './theme';
 import {
@@ -16,6 +17,7 @@ import resetCSS from './global/resetCSS';
 import {
   parseGap,
   getLiteralOrBreakpointValue,
+  getLiteralOrBreakpointString,
   getSpacing,
   getFlexItem,
   getFlexContainer,
@@ -25,6 +27,7 @@ import {
   getFont,
   getTypo,
   compose,
+  merge,
 } from './styles';
 import type {
   Breakpoints,
@@ -46,6 +49,14 @@ import type {
   TextfieldSkins,
   CheckboxSkins,
   AccordionSkins,
+  DirectOrStylesProp,
+  SpacingKey,
+  ZIndexKey,
+  BreakpointKey,
+  ColorKey,
+  FontKey,
+  FontSizeKey,
+  LineHeightKey,
 } from './styles';
 
 // external export
@@ -66,6 +77,7 @@ export {
   useBreakpointsSorted,
   parseGap,
   getLiteralOrBreakpointValue,
+  getLiteralOrBreakpointString,
   getSpacing,
   getFlexItem,
   getFlexContainer,
@@ -75,6 +87,7 @@ export {
   getFont,
   getTypo,
   compose,
+  merge,
 };
 
 // eslint-disable-next-line no-undef
@@ -102,4 +115,14 @@ export type {
   TextfieldSkins,
   CheckboxSkins,
   AccordionSkins,
+  ThemedStyledProps,
+  CSSProperties,
+  DirectOrStylesProp,
+  SpacingKey,
+  ZIndexKey,
+  BreakpointKey,
+  ColorKey,
+  FontKey,
+  FontSizeKey,
+  LineHeightKey,
 };
