@@ -18,11 +18,16 @@ type StackStyles = Spacing & Position & Color & Layout & Font & Typo;
 type SpacerStyles = StackStyles & FlexContainer;
 
 export type Alignment = 'stretch' | 'start' | 'center' | 'end' | 'baseline';
-
-export type HStackSpecialProps = {
-  alignment?: LiteralOrBreakpoints<Alignment>;
-  spacing?: LiteralOrBreakpoints<SpacingKey | CSSProperties['columnGap']>;
-};
+export type ZStackAlignment =
+  | 'center'
+  | 'top'
+  | 'topRight'
+  | 'right'
+  | 'bottomRight'
+  | 'bottom'
+  | 'bottomLeft'
+  | 'left'
+  | 'topLeft';
 
 // TODO: export from styling
 type ThemeBreakpoints = {
@@ -35,6 +40,11 @@ type ThemeBreakpoints = {
 type BreakpointKeyG<T extends ThemeBreakpoints> = keyof T['global']['breakpoint'];
 type BreakpointKey = BreakpointKeyG<DefaultTheme extends ThemeBreakpoints ? DefaultTheme : any>;
 
+export type HStackSpecialProps = {
+  alignment?: LiteralOrBreakpoints<Alignment>;
+  spacing?: LiteralOrBreakpoints<SpacingKey | CSSProperties['columnGap']>;
+};
+
 export type HStackProps = {
   id?: string;
   className?: string;
@@ -44,7 +54,8 @@ export type HStackProps = {
   horizontalBreakpoint?: BreakpointKey;
 } & HStackSpecialProps;
 
-export type HStackStyledProps = StackStyles & { horizontalBreakpoint?: BreakpointKey };
+export type HStackStyledProps = StackStyles &
+  HStackSpecialProps & { horizontalBreakpoint?: BreakpointKey };
 
 export type VStackSpecialProps = {
   alignment?: LiteralOrBreakpoints<Alignment>;
@@ -59,7 +70,21 @@ export type VStackProps = {
   styles?: StackStyles;
 } & VStackSpecialProps;
 
-export type VStackStyledProps = StackStyles;
+export type VStackStyledProps = StackStyles & VStackSpecialProps;
+
+export type ZStackSpecialProps = {
+  alignment?: LiteralOrBreakpoints<ZStackAlignment>;
+};
+
+export type ZStackProps = {
+  id?: string;
+  className?: string;
+  children?: ReactNode;
+  elementType?: As;
+  styles?: StackStyles;
+} & ZStackSpecialProps;
+
+export type ZStackStyledProps = StackStyles & ZStackSpecialProps;
 
 export type SpacerProps = {
   id?: string;
