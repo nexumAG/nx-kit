@@ -12,9 +12,10 @@ import {
   SpacingKey,
   CSSProperties,
   DefaultTheme,
+  FlexItem,
 } from '@nx-kit/styling';
 
-type StackStyles = Spacing & Position & Color & Layout & Font & Typo;
+type StackStyles = Spacing & Position & Color & Layout & Font & Typo & FlexItem;
 type SpacerStyles = StackStyles & FlexContainer;
 
 export type Alignment = 'stretch' | 'start' | 'center' | 'end' | 'baseline';
