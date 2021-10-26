@@ -20,13 +20,13 @@ export type BaseEvent = React.BaseSyntheticEvent;
 export type FormSubmitHandler<FormValues> = (
   data: OnSubmitData<FormValues>,
   event?: BaseEvent,
-  context?: FormContext
+  context?: FormContext<FormValues>
 ) => any | Promise<any>;
 
 export type FormErrorHandler<FormValues> = (
   errors: OnErrorErrors<FormValues>,
   event?: BaseEvent,
-  context?: FormContext
+  context?: FormContext<FormValues>
 ) => any | Promise<any>;
 
 export type FormProps<FormValues> = {
