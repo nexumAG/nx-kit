@@ -19,32 +19,36 @@ import {
 import { ZStackAlignment, ZStackSpecialProps, ZStackProps, ZStackStyledProps } from './types';
 
 const map = {
-  top: { top: '0', left: '50%', transform: 'translate(-50%, 0)' },
-  topRight: { top: '0', right: '0' },
-  right: { top: '50%', right: '0', transform: 'translate(0, -50%)' },
-  bottomRight: { bottom: '0', right: '0' },
-  bottom: { bottom: '0', left: '50%', transform: 'translate(-50%, 0)' },
-  bottomLeft: { bottom: '0', left: '0' },
-  left: { top: '50%', left: '0', transform: 'translate(0, -50%)' },
-  topLeft: { top: '0', left: '0' },
-  center: { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' },
+  top: { alignItems: 'flex-start', justifyContent: 'center', textAlign: 'center' },
+  topRight: { alignItems: 'flex-start', justifyContent: 'flex-end', textAlign: 'right' },
+  right: { alignItems: 'center', justifyContent: 'flex-end', textAlign: 'right' },
+  bottomRight: { alignItems: 'flex-end', justifyContent: 'flex-end', textAlign: 'right' },
+  bottom: { alignItems: 'flex-end', justifyContent: 'center', textAlign: 'center' },
+  bottomLeft: { alignItems: 'flex-end', justifyContent: 'flex-start', textAlign: 'left' },
+  left: { alignItems: 'center', justifyContent: 'flex-start', textAlign: 'left' },
+  topLeft: { alignItems: 'flex-start', justifyContent: 'flex-start', textAlign: 'left' },
+  center: { alignItems: 'center', justifyContent: 'center', textAlign: 'center' },
 };
 
 const getZStack = (props: ThemedStyledProps<DirectOrStylesProp<ZStackSpecialProps>, Theme>) => {
   return merge(
     getLiteralOrBreakpointValue('alignment', props, null, (_: string, value: ZStackAlignment) => {
-      return {
-        '& > *': {
-          position: 'absolute',
-          ...map[value],
-        },
-      };
+      return map[value];
     })
   );
 };
 
 const ZStackStyled = styled.div<ZStackStyledProps>`
   position: relative;
+  display: flex;
+
+  & > * {
+    position: absolute;
+  }
+
+  & > *:first-child {
+    position: relative;
+  }
 
   ${compose(
     getZStack,

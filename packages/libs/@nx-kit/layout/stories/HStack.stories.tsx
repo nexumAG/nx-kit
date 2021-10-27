@@ -5,6 +5,22 @@ export default {
   title: '@nx-kit/layout',
   component: HStack,
   subcomponents: { VStack, ZStack },
+  argTypes: {
+    alignment: {
+      options: [
+        'center',
+        'top',
+        'topRight',
+        'right',
+        'bottomRight',
+        'bottom',
+        'bottomLeft',
+        'left',
+        'topLeft',
+      ],
+      control: { type: 'inline-radio' },
+    },
+  },
 };
 
 export const HStackExample = () => (
@@ -36,11 +52,20 @@ export const HStackInVStackExample = () => (
 
 HStackInVStackExample.storyName = 'HStack in VStack';
 
-export const ZStackExample = () => (
-  <ZStack alignment="center" styles={{ height: '450px', backgroundColor: '#ccc' }}>
+export const ZStackExample = (args: any) => (
+  <ZStack {...args} styles={{ height: '500px', backgroundColor: '#ccc' }}>
     <img src="https://loremflickr.com/360/360" alt="lorem" />
-    <span style={{ color: 'red', fontSize: '30px' }}>Test</span>
+    <span style={{ color: 'red', fontSize: '30px', width: '200px' }}>
+      This is a little longer text that should be correctly aligned
+    </span>
+    <svg width="100" height="100">
+      <circle cx="50" cy="50" r="40" stroke="green" strokeWidth="4" fill="yellow" />
+    </svg>
   </ZStack>
 );
+
+ZStackExample.args = {
+  alignment: 'center',
+};
 
 ZStackExample.storyName = 'ZStack';
