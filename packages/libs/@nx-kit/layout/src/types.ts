@@ -15,9 +15,7 @@ import {
   FlexItem,
 } from '@nx-kit/styling';
 
-type BaseStyles = Spacing & Position & Color & Layout & Font & Typo;
-type StackStyles = BaseStyles & FlexItem;
-type SpacerStyles = BaseStyles & FlexContainer;
+type Styles = Spacing & Position & Color & Layout & Font & Typo & FlexContainer & FlexItem;
 
 export type Alignment = 'stretch' | 'start' | 'center' | 'end' | 'baseline';
 export type ZStackAlignment =
@@ -52,11 +50,11 @@ export type HStackProps = {
   className?: string;
   children?: ReactNode;
   elementType?: As;
-  styles?: StackStyles;
+  styles?: Styles;
   horizontalBreakpoint?: BreakpointKey;
 } & HStackSpecialProps;
 
-export type HStackStyledProps = StackStyles &
+export type HStackStyledProps = Styles &
   HStackSpecialProps & { horizontalBreakpoint?: BreakpointKey };
 
 export type VStackSpecialProps = {
@@ -69,10 +67,10 @@ export type VStackProps = {
   className?: string;
   children?: ReactNode;
   elementType?: As;
-  styles?: StackStyles;
+  styles?: Styles;
 } & VStackSpecialProps;
 
-export type VStackStyledProps = StackStyles & VStackSpecialProps;
+export type VStackStyledProps = Styles & VStackSpecialProps;
 
 export type ZStackSpecialProps = {
   alignment?: LiteralOrBreakpoints<ZStackAlignment>;
@@ -83,17 +81,17 @@ export type ZStackProps = {
   className?: string;
   children?: ReactNode;
   elementType?: As;
-  styles?: StackStyles;
+  styles?: Styles;
 } & ZStackSpecialProps;
 
-export type ZStackStyledProps = StackStyles & ZStackSpecialProps;
+export type ZStackStyledProps = Styles & ZStackSpecialProps;
 
 export type SpacerProps = {
   id?: string;
   className?: string;
   children?: ReactNode;
   elementType?: As;
-  styles?: SpacerStyles;
+  styles?: Styles;
 };
 
-export type SpacerStyledProps = SpacerStyles;
+export type SpacerStyledProps = Styles;
