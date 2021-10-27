@@ -15,8 +15,9 @@ import {
   FlexItem,
 } from '@nx-kit/styling';
 
-type StackStyles = Spacing & Position & Color & Layout & Font & Typo & FlexItem;
-type SpacerStyles = StackStyles & FlexContainer;
+type BaseStyles = Spacing & Position & Color & Layout & Font & Typo;
+type StackStyles = BaseStyles & FlexItem;
+type SpacerStyles = BaseStyles & FlexContainer;
 
 export type Alignment = 'stretch' | 'start' | 'center' | 'end' | 'baseline';
 export type ZStackAlignment =
