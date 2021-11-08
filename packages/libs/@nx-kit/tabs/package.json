@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/tabs",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -25,7 +25,7 @@
     "@nx-kit/dependencies-dev": "^0.1.1"
   },
   "dependencies": {
-    "@nx-kit/styling": "^0.1.17",
+    "@nx-kit/styling": "^0.1.18",
     "@react-aria/focus": "^3.5.0",
     "@react-aria/tabs": "^3.0.2",
     "@react-aria/utils": "^3.9.0",
