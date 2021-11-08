@@ -28,6 +28,7 @@
 //      "@types"
 //    ],
     "allowSyntheticDefaultImports": true,
-    "preserveConstEnums": true
+    "preserveConstEnums": true,
+    "downlevelIteration": true
   }
 }

@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-// import styled, { useTheme } from 'styled-components';
 import { media, useBreakpointsSorted, useTheme, styled, ThemeProvider } from '@nx-kit/styling';
 import { Flex } from '@nx-kit/flex';
 import { Heading } from '@nx-kit/heading';
