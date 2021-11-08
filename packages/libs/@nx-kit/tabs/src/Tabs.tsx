@@ -2,56 +2,51 @@ import React from 'react';
 import { useTabList, useTab, useTabPanel } from '@react-aria/tabs';
 import { useTabListState } from '@react-stately/tabs';
 import { Item } from '@react-stately/collections';
-import { TabsProps } from './Tabs.types';
+import { useFocusRing } from '@react-aria/focus';
+import { mergeProps } from '@react-aria/utils';
+import { styled } from '@nx-kit/styling';
+import { TabsProps, TabsStyledProps } from './Tabs.types';
 
-// export const Tabs = ({ className }: TabsProps) => {
-//   return (
-//     <div className={className}>Let me just change this one line of code...</div>
-//   );
-// };
+const TabsStyled = styled.div<TabsStyledProps>`
+  ${({ theme }) => theme?.component?.tabs?.global};
+  ${({ theme, skin }) => skin && theme?.component?.tabs?.skin?.[skin]};
+`;
 
-export const Tabs = (props) => {
+export const Tabs = ({ className, skin, ...props }: TabsProps) => {
   const state = useTabListState(props);
   const ref = React.useRef(null);
   const { tabListProps } = useTabList(props, state, ref);
+
   return (
-    <div style={{ height: '150px' }}>
-      <div {...tabListProps} ref={ref} style={{ display: 'flex', borderBottom: '1px solid grey' }}>
+    <TabsStyled className={className} skin={skin} orientation={props.orientation ?? 'horizontal'}>
+      <div {...tabListProps} ref={ref}>
         {[...state.collection].map((item) => (
           <Tab key={item.key} item={item} state={state} />
         ))}
       </div>
       <TabPanel key={state.selectedItem?.key} state={state} />
-    </div>
+    </TabsStyled>
   );
 };
 
-const Tab = ({ item, state }) => {
+const Tab = ({ item, state }: any) => {
   const { key, rendered } = item;
   const ref = React.useRef(null);
   const { tabProps } = useTab({ key }, state, ref);
-  const isSelected = state.selectedKey === key;
-  const isDisabled = state.disabledKeys.has(key);
+  const { focusProps, isFocusVisible } = useFocusRing();
   return (
-    <div
-      {...tabProps}
-      ref={ref}
-      style={{
-        padding: '10px',
-        borderBottom: isSelected ? '3px solid var(--blue)' : undefined,
-        opacity: isDisabled ? '0.5' : undefined,
-      }}
-    >
+    <div {...mergeProps(tabProps, focusProps)} ref={ref} data-is-focused={isFocusVisible}>
       {rendered}
     </div>
   );
 };
 
-const TabPanel = ({ state, ...props }) => {
+const TabPanel = ({ state, ...props }: any) => {
   const ref = React.useRef(null);
   const { tabPanelProps } = useTabPanel(props, state, ref);
+  const { focusProps, isFocusVisible } = useFocusRing();
   return (
-    <div {...tabPanelProps} ref={ref} style={{ padding: '10px' }}>
+    <div {...mergeProps(tabPanelProps, focusProps)} ref={ref} data-is-focused={isFocusVisible}>
       {state.selectedItem?.props.children}
     </div>
   );
