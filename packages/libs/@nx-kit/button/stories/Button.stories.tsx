@@ -6,7 +6,7 @@ export default {
   component: Button,
 };
 
-export const NoSkin = () => <Button onPress={(e: any) => console.log(e)}>Press me</Button>;
+// export const NoSkin = () => <Button onPress={(e: any) => console.log(e)}>Press me</Button>;
 
 export const Primary = () => (
   <Button onPress={(e: any) => console.log(e)} skin="primary">
@@ -24,7 +24,10 @@ export const PrimaryDisabled = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   return (
     <>
-      <input type="checkbox" onChange={(event) => setIsDisabled(!event.currentTarget.checked)} />
+      <p>
+        Is disabled?{' '}
+        <input type="checkbox" checked={isDisabled} onChange={() => setIsDisabled(!isDisabled)} />
+      </p>
       <Button onPress={(e: any) => console.log(e)} skin="primary" isDisabled={isDisabled}>
         Press me
       </Button>
@@ -49,7 +52,7 @@ export const PrimaryStyled = () => (
     // @ts-ignore
     css={`
       &&& {
-        margin-bottom: 50px;
+        border: 4px solid #b3c5ff;
       }
     `}
   >
