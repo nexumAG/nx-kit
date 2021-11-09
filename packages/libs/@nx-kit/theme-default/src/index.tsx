@@ -1,5 +1,15 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import { Theme, css, media } from '@nx-kit/styling';
+import { Theme, css } from '@nx-kit/styling';
+import { heading } from './components/heading';
+import { text } from './components/text';
+import { button } from './components/button';
+import { link } from './components/link';
+import { divider } from './components/divider';
+import { overlay } from './components/overlay';
+import { textfield } from './components/textfield';
+import { checkbox } from './components/checkbox';
+import { accordion } from './components/accordion';
+import { tabs } from './components/tabs';
 
 export const theme: Theme = {
   global: {
@@ -7,31 +17,34 @@ export const theme: Theme = {
       body {
         font-size: ${({ theme }) => theme?.global?.fontSize?.['16']};
         ${({ theme }) => theme?.global?.font?.trebuchetNormal};
-        color: ${({ theme }) => theme?.global?.color?.gray700};
+        color: ${({ theme }) => theme?.global?.color?.gray100};
       }
     `,
     color: {
-      primary500: '#6880A5',
-      primary600: '#4176C7',
-      primary700: '#1E4279',
-      primary800: '#002967',
-      secondary700: '#DD8DBC',
-      secondary800: '#C74190',
-      tertiary500: '#009948',
+      primary500: '#0030CC',
+      primary600: '#3363FF',
+      primary700: '#809EFF',
+      primary800: '#B3C5FF',
+      secondary500: '#C80068',
+      secondary600: '#FA0082',
+      secondary700: '#FB339B',
+      secondary800: '#FC66B4',
+      tertiary500: '#18BA92',
+      tertiary600: '#1BD2A4',
+      tertiary700: '#35EBBD',
       background: '#fff',
-      white500: '#ffffff',
-      black500: '#000000',
-      gray50: '#f4f4f4',
-      gray100: '#efefef',
-      gray200: '#e8e8e8',
-      gray300: '#e1e1e1',
-      gray400: '#e7e7e7',
-      gray500: '#dcdada',
-      gray600: '#6b6b6b',
-      gray700: '#444444',
-      brandDanger500: '#B90739',
-      brandSuccess500: '#1CA642',
-      focus: '#1CA642',
+      white: '#ffffff',
+      black: '#000000',
+      gray100: '#0F0D15',
+      gray200: '#34303E',
+      gray300: '#615E69',
+      gray400: '#8E8C94',
+      gray500: '#BBBABF',
+      gray600: '#E8E8EA',
+      gray700: '#F9F9F9',
+      brandDanger500: '#F42829',
+      brandSuccess500: '#18BA92',
+      focus: '#003CFF',
     },
     breakpoint: {
       xs: { min: 0, max: 575.98 },
@@ -95,7 +108,8 @@ export const theme: Theme = {
         top: 0;
         display: block;
         box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.focus};
-        margin: -5px;
+        border-radius: 16px;
+        margin: -4px;
         z-index: 1;
       }
     `,
@@ -124,507 +138,15 @@ export const theme: Theme = {
     `,
   },
   component: {
-    heading: {
-      skin: {
-        400: css<any>`
-          ${({ theme }) => theme.global.font.trebuchetBold};
-          font-size: ${({ theme }) => theme.global.fontSize['18']};
-          line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
-          // margin-top: 53px;
-          margin-bottom: 18px;
-          ${media('xl')} {
-            font-size: ${({ theme }) => theme.global.fontSize['24']};
-          }
-        `,
-        500: css<any>`
-          ${({ theme }) => theme.global.font.trebuchetBold};
-          font-size: ${({ theme }) => theme.global.fontSize['22']};
-          line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
-          // margin-top: 53px;
-          margin-bottom: 18px;
-          ${media('lg')} {
-            font-size: ${({ theme }) => theme.global.fontSize['34']};
-          }
-          ${media('xl')} {
-            font-size: ${({ theme }) => theme.global.fontSize['42']};
-          }
-        `,
-        600: css<any>`
-          ${({ theme }) => theme.global.font.trebuchetBold};
-          font-size: ${({ theme }) => theme.global.fontSize['26']};
-          line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
-          // margin-top: 35px;
-          margin-bottom: 20px;
-          ${media('md')} {
-            font-size: ${({ theme }) => theme.global.fontSize['34']};
-          }
-          ${media('lg')} {
-            font-size: ${({ theme }) => theme.global.fontSize['42']};
-          }
-          ${media('xl')} {
-            font-size: ${({ theme }) => theme.global.fontSize['48']};
-          }
-        `,
-        700: css<any>`
-          ${({ theme }) => theme.global.font.trebuchetBold};
-          font-size: ${({ theme }) => theme.global.fontSize['34']};
-          line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
-          margin-bottom: 15px;
-          ${media('md')} {
-            font-size: ${({ theme }) => theme.global.fontSize['50']};
-            margin-bottom: 20px;
-          }
-          ${media('lg')} {
-            font-size: ${({ theme }) => theme.global.fontSize['58']};
-          }
-          ${media('xl')} {
-            font-size: ${({ theme }) => theme.global.fontSize['72']};
-          }
-        `,
-      },
-    },
-    text: {
-      skin: {
-        300: css`
-          font-size: ${({ theme }) => theme.global.fontSize['14']};
-          margin-bottom: 14px;
-        `,
-        400: css`
-          font-size: ${({ theme }) => theme.global.fontSize['16']};
-          margin-bottom: 16px;
-        `,
-        500: css`
-          font-size: ${({ theme }) => theme.global.fontSize['18']};
-          margin-bottom: 18px;
-        `,
-        600: css<any>`
-          font-size: ${({ theme }) => theme.global.fontSize['18']};
-          margin-bottom: 18px;
-          ${media('lg')} {
-            font-size: ${({ theme }) => theme.global.fontSize['22']};
-            margin-bottom: 22px;
-          }
-        `,
-        700: css<any>`
-          font-size: ${({ theme }) => theme.global.fontSize['22']};
-          margin-bottom: 22px;
-          ${media('lg')} {
-            font-size: ${({ theme }) => theme.global.fontSize['26']};
-            margin-bottom: 26px;
-          }
-        `,
-      },
-    },
-    button: {
-      global: css<any>`
-        // reset
-        position: relative;
-        display: inline-flex;
-        box-sizing: border-box;
-        align-items: center;
-        justify-content: center;
-        overflow: visible;
-        margin: 0;
-        border-style: solid;
-        text-transform: none;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-appearance: button;
-        vertical-align: top;
-        text-decoration: none;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: none;
-        isolation: isolate;
-
-        &:hover,
-        &:active {
-          box-shadow: none;
-        }
-
-        &:disabled {
-          cursor: default;
-        }
-
-        &:focus {
-          outline: none;
-        }
-
-        &::-moz-focus-inner {
-          border: 0;
-          border-style: none;
-          padding: 0;
-          margin-block-start: -2px;
-          margin-block-end: -2px;
-        }
-      `,
-      skin: {
-        primary: css<any>`
-          color: ${({ theme }) => theme.global.color.white500};
-          background-color: ${({ theme }) => theme.global.color.black500};
-          padding: 10px 30px;
-          margin: 10px;
-          border: 4px solid ${({ theme }) => theme.global.color.black500};
-
-          ${({ isHovered }) =>
-            isHovered &&
-            css`
-              color: ${({ theme }) => theme.global.color.white500};
-              background-color: ${({ theme }) => theme.global.color.tertiary500};
-              border: 4px solid ${({ theme }) => theme.global.color.tertiary500};
-            `};
-          ${({ isActive }) =>
-            isActive &&
-            css`
-              color: ${({ theme }) => theme.global.color.white500};
-              background-color: rgba(0, 153, 72, 0.7);
-              border: 4px solid ${({ theme }) => theme.global.color.tertiary500};
-            `};
-          ${({ isDisabled }) =>
-            isDisabled &&
-            css`
-              color: #b7b7b7;
-              background-color: ${({ theme }) => theme.global.color.gray50};
-              border: 4px solid ${({ theme }) => theme.global.color.gray50};
-            `};
-          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
-        `,
-        secondary: css<any>`
-          color: ${({ theme }) => theme.global.color.black500};
-          background-color: ${({ theme }) => theme.global.color.white500};
-          padding: 12px 30px;
-          margin: 10px;
-          border: 2px solid ${({ theme }) => theme.global.color.black500};
-
-          ${({ isHovered }) =>
-            isHovered &&
-            css`
-              color: ${({ theme }) => theme.global.color.tertiary500};
-              background-color: ${({ theme }) => theme.global.color.white500};
-              border: 2px solid ${({ theme }) => theme.global.color.tertiary500};
-            `};
-          ${({ isActive }) =>
-            isActive &&
-            css`
-              color: ${({ theme }) => theme.global.color.tertiary500};
-              background-color: ${({ theme }) => theme.global.color.white500};
-              border: 2px solid ${({ theme }) => theme.global.color.tertiary500};
-            `};
-          ${({ isDisabled }) =>
-            isDisabled &&
-            css`
-              color: #b7b7b7;
-              background-color: ${({ theme }) => theme.global.color.white500};
-              border: 2px solid #b7b7b7;
-            `};
-          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
-        `,
-      },
-    },
-    link: {
-      global: css<any>`
-        &:focus {
-          outline: none;
-        }
-      `,
-      skin: {
-        primary: css<any>`
-          position: relative;
-          ${({ theme }) => theme.global.font.trebuchetNormal};
-          font-size: ${({ theme }) => theme.global.fontSize['16']};
-          line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
-          color: ${({ theme }) => theme.global.color.gray700};
-
-          text-decoration: underline;
-
-          &:hover {
-            cursor: pointer;
-          }
-
-          ${({ isHovered }) => isHovered && 'color: #999'};
-          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
-        `,
-      },
-    },
-    divider: {
-      global: css<any>`
-        overflow: visible;
-        border: none;
-        margin: 0px;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-        align-self: stretch;
-        background-color: ${({ theme }) => theme.global.color.gray600};
-        display: inline-block;
-      `,
-      skin: {
-        100: css<any>`
-          width: ${({ orientation }) => (orientation === 'vertical' ? '1px' : '100%')};
-          height: ${({ orientation }) => (orientation === 'vertical' ? '20px' : '1px')};
-          margin: ${({ orientation }) => (orientation === 'vertical' ? '0 5px' : '5px 0')};
-        `,
-      },
-    },
-    overlay: {
-      global: css<any>`
-        &:focus {
-          outline: none;
-        }
-        position: relative;
-      `,
-      skin: {
-        default: css<any>`
-          background: white;
-          padding: 30px;
-          margin: 30px;
-          border-radius: 5px;
-          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
-
-          transition: opacity 350ms ease-in-out;
-          opacity: 0;
-          opacity: ${({ state }) => state === 'entered' && 1};
-          opacity: ${({ state }) => state === 'exiting' && 0};
-
-          transition: transform 0.5s;
-          transform: translateY(20px);
-          ${({ state }) => state === 'entered' && `transform: translateY(0)`};
-        `,
-        fullscreen: css<any>`
-          background: white;
-          padding: 30px;
-          width: 100vw;
-          height: 100vh;
-          ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
-        `,
-      },
-    },
-    textfield: {
-      global: css<any>`
-        position: relative;
-        border: 1px solid ${({ theme }) => theme.global.color.gray500};
-        border-radius: 2px;
-        padding: 4px;
-        color: ${({ theme }) => theme.global.color.gray700};
-
-        &:focus {
-          outline: none;
-          border: 1px solid ${({ theme }) => theme.global.color.focus};
-        }
-
-        ${({ isFocused, hasError }) =>
-          isFocused &&
-          !hasError &&
-          css`
-            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.focus};
-          `};
-
-        ${({ isFocused, hasError }) =>
-          isFocused &&
-          hasError &&
-          css`
-            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.brandDanger500};
-          `};
-
-        ${({ isDisabled }) =>
-          isDisabled &&
-          css`
-            background-color: ${({ theme }) => theme.global.color.gray50};
-          `};
-
-        ${({ hasError }) =>
-          hasError &&
-          css`
-            &&& {
-              border: 1px solid ${({ theme }) => theme.global.color.brandDanger500};
-            }
-          `};
-      `,
-      skin: {},
-    },
-    checkbox: {
-      global: css<any>`
-        &::-ms-check {
-          display: none;
-        }
-
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        position: relative;
-        height: 16px;
-        width: 16px;
-        margin: 0;
-        border: 1px solid ${({ theme }) => theme.global.color.gray500};
-        border-radius: 2px;
-        color: ${({ theme }) => theme.global.color.gray700};
-
-        &:focus {
-          outline: none;
-        }
-
-        &[aria-checked='true']::before {
-          content: '✓';
-          position: absolute;
-          top: -4px;
-          left: 2px;
-        }
-
-        &[aria-checked='mixed']::before {
-          content: '—';
-          position: absolute;
-          top: -5px;
-          left: 1px;
-        }
-
-        ${({ isFocused, hasError }) =>
-          isFocused &&
-          !hasError &&
-          css`
-            box-shadow: 0px 0px 0px 2px ${({ theme }) => theme.global.color.focus};
-          `};
-
-        ${({ isFocused, hasError }) =>
-          isFocused &&
-          hasError &&
-          css`
-            box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.global.color.brandDanger500};
-          `};
-
-        ${({ isDisabled }) =>
-          isDisabled &&
-          css`
-            background-color: ${({ theme }) => theme.global.color.gray50};
-          `};
-
-        ${({ hasError }) =>
-          hasError &&
-          css`
-            &&& {
-              border: 1px solid ${({ theme }) => theme.global.color.brandDanger500};
-            }
-          `};
-      `,
-      skin: {},
-    },
-    accordion: {
-      skin: {
-        default: css<any>`
-          & > div[role='heading'] {
-            ${({ theme }) => theme?.component?.heading?.skin?.['400']};
-            margin-bottom: 0;
-          }
-
-          & > div[role='heading'] > button {
-            display: block;
-            width: 100%;
-            text-align: inherit;
-            background: none;
-            color: inherit;
-            border: none;
-            padding: 0;
-            font: inherit;
-            cursor: pointer;
-            outline: inherit;
-            position: relative;
-            padding-left: 30px;
-            border-bottom: 1px solid ${({ theme }) => theme.global.color.gray200};
-            ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
-            background-color: ${({ isHovered, theme }) =>
-              isHovered ? theme.global.color.gray100 : theme.global.color.gray50};
-          }
-
-          & > div[role='heading'] > button[aria-disabled='true'] {
-            cursor: default;
-          }
-
-          & > div[role='heading'] > button::before {
-            content: '⯈';
-            will-change: transform;
-            transition: transform 300ms ease;
-            position: absolute;
-            transform-origin: center;
-            left: 5px;
-            font-size: 80%;
-            top: 10%;
-          }
-
-          & > div[role='heading'] > button[aria-expanded='true']::before {
-            transform: rotate(90deg);
-          }
-
-          & > div[role='region'] {
-            border: 2px solid ${({ theme }) => theme.global.color.gray50};
-            border-top: 0;
-            padding: 5px;
-            animation: open 0.3s ease-in-out;
-          }
-
-          & > div[role='region'][hidden] {
-            display: none;
-          }
-
-          @keyframes open {
-            0% {
-              opacity: 0;
-            }
-            100% {
-              opacity: 1;
-            }
-          }
-        `,
-      },
-    },
-    tabs: {
-      skin: {
-        default: css<any>`
-          display: flex;
-          flex-direction: ${({ orientation }) => (orientation === 'horizontal' ? 'column' : 'row')};
-
-          & > div[role='tablist'] {
-            display: flex;
-            ${({ orientation }) =>
-              orientation === 'horizontal'
-                ? 'border-bottom: 1px solid grey;'
-                : 'border-left: 1px solid grey;'};
-
-            flex-direction: ${({ orientation }) =>
-              orientation === 'horizontal' ? 'row' : 'column'};
-
-            & > div[role='tab'] {
-              padding: 10px;
-              cursor: default;
-              outline: inherit;
-              position: relative;
-            }
-
-            & > div[role='tab'][aria-selected='true'] {
-              ${({ orientation, theme }) =>
-                orientation === 'horizontal'
-                  ? `border-bottom: 3px solid ${theme.global.color.primary500};`
-                  : `border-left: 3px solid ${theme.global.color.primary500};`};
-            }
-
-            & > div[role='tab'][aria-disabled='true'] {
-              opacity: 0.5;
-            }
-
-            & > div[role='tab'][data-is-focused='true'] {
-              ${({ theme }) => theme.global.focusRing}
-            }
-          }
-
-          & > div[role='tabpanel'] {
-            ${({ orientation }) =>
-              orientation === 'horizontal' ? `padding: 10px;` : `padding: 0px 10px;`};
-            outline: inherit;
-            position: relative;
-          }
-
-          & > div[role='tabpanel'][data-is-focused='true'] {
-            ${({ theme }) => theme.global.focusRing}
-          }
-        `,
-      },
-    },
+    heading,
+    text,
+    button,
+    link,
+    divider,
+    overlay,
+    textfield,
+    checkbox,
+    accordion,
+    tabs,
   },
 };
