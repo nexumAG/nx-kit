@@ -5,7 +5,7 @@ import { Heading } from '@nx-kit/heading';
 import { Button } from '@nx-kit/button';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from '@nx-kit/link';
-import { Overlay, OverlayTrigger } from '../src';
+import { Overlay, OverlayTrigger, Popover, PopoverTrigger } from '../src';
 
 export default {
   title: '@nx-kit/overlay',
@@ -121,4 +121,28 @@ export const OverlayTriggerFullscreen = () => (
       </>
     )}
   </OverlayTrigger>
+);
+
+export const PopoverDefault = () => (
+  <PopoverTrigger>
+    <Button skin="primary">Open Popover</Button>
+
+    <Popover skin="popover" animationDisabled>
+      <Heading skin="400" elementType="h3">
+        Test Popover
+      </Heading>
+    </Popover>
+  </PopoverTrigger>
+);
+
+export const PopoverPlacement = () => (
+  <PopoverTrigger placement="bottom left" offset={10}>
+    <Button skin="primary">Open Popover</Button>
+
+    <Popover skin="popover">
+      <Heading skin="400" elementType="h3">
+        Test Popover
+      </Heading>
+    </Popover>
+  </PopoverTrigger>
 );
