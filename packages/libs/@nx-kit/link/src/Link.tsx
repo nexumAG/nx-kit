@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useLink } from '@react-aria/link';
 import { useHover } from '@react-aria/interactions';
 import { mergeProps } from '@react-aria/utils';
@@ -16,6 +16,7 @@ import {
   compose,
 } from '@nx-kit/styling';
 import { useSlotProps } from '@nx-kit/slot';
+import { mergeRefs } from '@nx-kit/utils';
 import { LinkProps, LinkStyledProps } from './Link.types';
 
 const LinkStyled = styled.a<LinkStyledProps>`
@@ -25,11 +26,11 @@ const LinkStyled = styled.a<LinkStyledProps>`
   ${getFont};
 `;
 
-export const Link = ({ slot, ...linkProps }: LinkProps) => {
+const Link = ({ slot, ...linkProps }: LinkProps, ref?: React.Ref<HTMLElement | null>) => {
   // eslint-disable-next-line react/destructuring-assignment
   const props = useSlotProps<LinkProps>(slot ?? 'link', linkProps);
   const { children, onPress, ...rest } = props;
-  const ref = useRef(null);
+  const localRef = useRef(null);
 
   const childrenType = typeof children;
   const elementType = childrenType === 'string' ? 'span' : React.Children.only<any>(children).type;
@@ -46,14 +47,16 @@ export const Link = ({ slot, ...linkProps }: LinkProps) => {
       ...props,
       elementType,
     },
-    ref
+    localRef
   );
   const { hoverProps, isHovered } = useHover({});
   const { focusProps, isFocusVisible } = useFocusRing({});
 
+  const mergedRefs = useCallback(mergeRefs<HTMLElement | null>(ref, localRef), [ref]);
+
   return (
     <LinkStyled
-      ref={ref}
+      ref={mergedRefs}
       as={elementType}
       isFocused={isFocusVisible}
       isHovered={isHovered}
@@ -63,3 +66,6 @@ export const Link = ({ slot, ...linkProps }: LinkProps) => {
     </LinkStyled>
   );
 };
+
+const LinkWithRef = React.forwardRef(Link);
+export { LinkWithRef as Link };
