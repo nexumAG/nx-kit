@@ -146,3 +146,22 @@ export const PopoverPlacement = () => (
     </Popover>
   </PopoverTrigger>
 );
+
+export const PopoverRenderProp = () => (
+  <PopoverTrigger>
+    {({ close, isOpen }) => (
+      <>
+        <Button skin="primary">{isOpen ? 'Close' : 'Open'} Popover</Button>
+
+        <Popover skin="popover">
+          <Heading skin="400" elementType="h3">
+            Test Popover
+          </Heading>
+          <Button skin="secondary" onPress={close}>
+            Close
+          </Button>
+        </Popover>
+      </>
+    )}
+  </PopoverTrigger>
+);

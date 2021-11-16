@@ -81,7 +81,7 @@ export const Popover = React.forwardRef(
 );
 
 export const PopoverTrigger = ({
-  children,
+  children: triggerChildren,
   isOpen: isOpenDefault = false,
   placement = 'top',
   offset = 5,
@@ -111,6 +111,11 @@ export const PopoverTrigger = ({
       ...overlayProps,
     },
   };
+
+  const children =
+    typeof triggerChildren === 'function'
+      ? triggerChildren({ close: state.close, isOpen: state.isOpen })
+      : triggerChildren;
 
   return <SlotProvider slots={slots}>{children}</SlotProvider>;
 };
