@@ -114,3 +114,5 @@ export const PopoverTrigger = ({
 
   return <SlotProvider slots={slots}>{children}</SlotProvider>;
 };
+
+export { DismissButton };

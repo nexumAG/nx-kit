@@ -6,7 +6,7 @@
 >yarn test
 
 # build @nx-kit/*
-# run 2 times!
+# run 2-3 times until no build errors
 >yarn build
 
 # build @nx/*
