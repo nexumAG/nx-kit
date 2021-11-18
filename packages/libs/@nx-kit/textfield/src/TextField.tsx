@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import {
@@ -76,5 +76,5 @@ const TextField = (
   );
 };
 
-const TextFieldWithRef = React.forwardRef(TextField);
+const TextFieldWithRef = forwardRef(TextField);
 export { TextFieldWithRef as TextField };

@@ -4,6 +4,7 @@ import { Tabs } from '../src';
 export default {
   title: '@nx-kit/tabs',
   component: Tabs,
+  subcomponents: { 'Tabs.Item': Tabs.Item },
 };
 
 export const Default = () => (

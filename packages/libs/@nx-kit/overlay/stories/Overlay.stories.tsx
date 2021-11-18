@@ -10,6 +10,7 @@ import { Overlay, OverlayTrigger, Popover, PopoverTrigger } from '../src';
 export default {
   title: '@nx-kit/overlay',
   component: Overlay,
+  subcomponents: { OverlayTrigger, Popover, PopoverTrigger },
 };
 
 export const Default = () => {

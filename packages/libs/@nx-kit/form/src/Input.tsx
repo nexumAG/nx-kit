@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, forwardRef } from 'react';
 import { get } from 'react-hook-form';
 import { mergeRefs } from '@nx-kit/utils';
 import { InputProps } from './Input.types';
@@ -44,5 +44,5 @@ const Input = (
   });
 };
 
-const InputWithRef = React.forwardRef(Input);
+const InputWithRef = forwardRef(Input);
 export { InputWithRef as Input };

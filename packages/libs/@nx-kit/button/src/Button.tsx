@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, forwardRef } from 'react';
 import { useButton } from '@react-aria/button';
 import { useHover } from '@react-aria/interactions';
 import { mergeProps } from '@react-aria/utils';
@@ -54,5 +54,5 @@ const Button = ({ slot, ...buttonProps }: ButtonProps, ref?: React.Ref<HTMLEleme
   );
 };
 
-const ButtonWithRef = React.forwardRef(Button);
+const ButtonWithRef = forwardRef(Button);
 export { ButtonWithRef as Button };

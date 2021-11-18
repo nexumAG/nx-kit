@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback } from 'react';
+import React, { ReactNode, useCallback, forwardRef } from 'react';
 import { mergeRefs } from '@nx-kit/utils';
 import { useCheckbox } from '@react-aria/checkbox';
 import { useFocusRing } from '@react-aria/focus';
@@ -131,5 +131,5 @@ const Checkbox = ({ slot, ...props }: CheckboxProps, ref?: React.Ref<HTMLInputEl
   );
 };
 
-const CheckboxWithRef = React.forwardRef(Checkbox);
+const CheckboxWithRef = forwardRef(Checkbox);
 export { CheckboxWithRef as Checkbox };
