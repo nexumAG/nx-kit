@@ -14,9 +14,12 @@ export type PopoverProps = Omit<
 
 export type PopoverInnerProps = PopoverProps & OverlayTransitionProps;
 
+export type PopoverBehaviour = 'hideOnScroll' | 'alwaysShow' | 'noPortal';
+
 export type PopoverTriggerProps = {
   children: ((props: { isOpen: boolean; close: () => void }) => React.ReactNode) | React.ReactNode;
   isOpen?: boolean;
   placement?: Placement;
   offset?: number;
+  behaviour?: PopoverBehaviour;
 };

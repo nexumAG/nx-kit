@@ -165,3 +165,34 @@ export const PopoverRenderProp = () => (
     )}
   </PopoverTrigger>
 );
+
+export const PopoverAlwaysShow = () => (
+  <PopoverTrigger behaviour="alwaysShow" placement="bottom">
+    <p style={{ marginBottom: '10px' }}>
+      This Popover will not close on scroll but instead will update it&apos;s position on scroll.
+    </p>
+    <Button skin="primary">Open Popover</Button>
+
+    <Popover skin="popover">
+      <Heading skin="400" elementType="h3">
+        Test Popover
+      </Heading>
+    </Popover>
+  </PopoverTrigger>
+);
+
+export const PopoverNoPortal = () => (
+  <PopoverTrigger behaviour="noPortal" placement="bottom">
+    <p style={{ marginBottom: '10px' }}>
+      This Popover will no close on scroll but will not update it&apos;s position and will not get
+      rendered inside a portal.
+    </p>
+    <Button skin="primary">Open Popover</Button>
+
+    <Popover skin="popover">
+      <Heading skin="400" elementType="h3">
+        Test Popover
+      </Heading>
+    </Popover>
+  </PopoverTrigger>
+);
