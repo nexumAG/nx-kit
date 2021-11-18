@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState, forwardRef } from 'react';
 import { mergeProps, useId } from '@react-aria/utils';
 import { usePress, useHover } from '@react-aria/interactions';
 import { useFocusRing } from '@react-aria/focus';
@@ -92,6 +92,6 @@ const AccordionItem = (
   );
 };
 
-const AccordionItemWithRef = React.forwardRef(AccordionItem);
+const AccordionItemWithRef = forwardRef(AccordionItem);
 AccordionItemWithRef.displayName = 'Accordion.Item';
 export { AccordionItemWithRef as AccordionItem };

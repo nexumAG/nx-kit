@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, forwardRef } from 'react';
 import { useLink } from '@react-aria/link';
 import { useHover } from '@react-aria/interactions';
 import { mergeProps } from '@react-aria/utils';
@@ -67,5 +67,5 @@ const Link = ({ slot, ...linkProps }: LinkProps, ref?: React.Ref<HTMLElement | n
   );
 };
 
-const LinkWithRef = React.forwardRef(Link);
+const LinkWithRef = forwardRef(Link);
 export { LinkWithRef as Link };

@@ -10,6 +10,12 @@ import { Form } from '../src';
 export default {
   title: '@nx-kit/form',
   component: Form,
+  subcomponents: {
+    'Form.FieldWrapper': Form.FieldWrapper,
+    'Form.Label': Form.Label,
+    'Form.Input': Form.Input,
+    'Form.Error': Form.Error,
+  },
 };
 
 type FormValues = {

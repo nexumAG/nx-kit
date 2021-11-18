@@ -4,6 +4,7 @@ import { Accordion } from '../src';
 export default {
   title: '@nx-kit/accordion',
   component: Accordion,
+  subcomponents: { 'Accordion.Item': Accordion.Item },
 };
 
 export const Default = () => (
