@@ -10,11 +10,15 @@ export type PopoverProps = Omit<
   | 'shouldCloseOnBlur'
   | 'isKeyboardDismissDisabled'
   | 'shouldCloseOnInteractOutside'
->;
+> & { renderInPortal?: boolean };
 
-export type PopoverInnerProps = PopoverProps & OverlayTransitionProps;
+export type PopoverInnerProps = Omit<PopoverProps, 'renderInPortal'> & OverlayTransitionProps;
 
-export type PopoverBehaviour = 'hideOnScroll' | 'alwaysShow' | 'noPortal';
+export type PopoverBehaviour =
+  | 'hideOnScroll'
+  | 'updateOnScroll'
+  | 'stayOnScroll'
+  | 'stayOnScrollNoPortal';
 
 export type PopoverTriggerProps = {
   children: ((props: { isOpen: boolean; close: () => void }) => React.ReactNode) | React.ReactNode;

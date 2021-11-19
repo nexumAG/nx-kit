@@ -61,7 +61,7 @@ const PopoverInner = forwardRef(
 
 export const Popover = forwardRef((popoverProps: PopoverProps, ref?: React.Ref<HTMLDivElement>) => {
   const props = useSlotProps<PopoverProps>('popover', popoverProps);
-  const { isOpen, animationDisabled } = props;
+  const { isOpen, animationDisabled, renderInPortal = true } = props;
 
   if (animationDisabled && !isOpen) {
     return null;
@@ -69,11 +69,15 @@ export const Popover = forwardRef((popoverProps: PopoverProps, ref?: React.Ref<H
 
   return (
     <Transition in={isOpen} timeout={{ enter: 0, exit: 350 }} unmountOnExit mountOnEnter>
-      {(state) => (
-        <OverlayContainer>
+      {(state) =>
+        renderInPortal ? (
+          <OverlayContainer>
+            <PopoverInner ref={ref} {...props} state={state as TransitionStates} />
+          </OverlayContainer>
+        ) : (
           <PopoverInner ref={ref} {...props} state={state as TransitionStates} />
-        </OverlayContainer>
-      )}
+        )
+      }
     </Transition>
   );
 });
@@ -105,9 +109,9 @@ export const PopoverTrigger = ({
   // (which invalidates the popover positioning).
   let overlayTriggerState = state;
 
-  if (behaviour === 'noPortal') {
+  if (behaviour === 'stayOnScroll' || behaviour === 'stayOnScrollNoPortal') {
     overlayTriggerState = { ...state, close: () => {} };
-  } else if (behaviour === 'alwaysShow') {
+  } else if (behaviour === 'updateOnScroll') {
     overlayTriggerState = { ...state, close: updatePosition };
   }
 
@@ -123,6 +127,7 @@ export const PopoverTrigger = ({
       isOpen: state.isOpen,
       onClose: state.close,
       ref: overlayRef,
+      renderInPortal: behaviour !== 'stayOnScrollNoPortal',
       ...positionProps,
       ...overlayProps,
     },
