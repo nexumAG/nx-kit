@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/overlay",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,10 +22,10 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/button": "^0.1.22",
+    "@nx-kit/button": "^0.1.23",
     "@nx-kit/dependencies-dev": "^0.1.9",
     "@nx-kit/heading": "^0.1.19",
-    "@nx-kit/link": "^0.1.21",
+    "@nx-kit/link": "^0.1.22",
     "@types/react-transition-group": "^4.4.4"
   },
   "dependencies": {
