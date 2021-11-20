@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Transition } from 'react-transition-group';
 import {
   useOverlay,
@@ -21,6 +21,7 @@ import {
   compose,
 } from '@nx-kit/styling';
 import { SlotProvider, useSlotProps } from '@nx-kit/slot';
+import { useEffectExceptOnMount } from '@nx-kit/utils';
 import {
   OverlayProps,
   OverlayStyledProps,
@@ -106,7 +107,21 @@ const OverlayInner = (props: OverlayInnerProps) => {
 
 export const Overlay = (overlayProps: OverlayProps) => {
   const props = useSlotProps<OverlayProps>('overlay', overlayProps);
-  const { isOpen, animationDisabled } = props;
+  const { isOpen, animationDisabled, onOpened, onClosed } = props;
+
+  useEffect(() => {
+    if (isOpen && onOpened) {
+      onOpened();
+    }
+  }, []);
+
+  useEffectExceptOnMount(() => {
+    if (isOpen && onOpened) {
+      onOpened();
+    } else if (onClosed) {
+      onClosed();
+    }
+  }, [isOpen]);
 
   if (animationDisabled && !isOpen) {
     return null;
@@ -124,7 +139,7 @@ export const Overlay = (overlayProps: OverlayProps) => {
 };
 
 export const OverlayTrigger = ({
-  children,
+  children: triggerChildren,
   isOpen: isOpenDefault = false,
 }: OverlayTriggerProps) => {
   const [isOpen, setIsOpen] = useState(isOpenDefault);
@@ -142,7 +157,16 @@ export const OverlayTrigger = ({
     overlay: { isOpen, onClose: close },
   };
 
-  return <SlotProvider slots={slots}>{children({ isOpen, close })}</SlotProvider>;
+  const children =
+    typeof triggerChildren === 'function'
+      ? triggerChildren({
+          isOpen,
+          close,
+          open,
+        })
+      : triggerChildren;
+
+  return <SlotProvider slots={slots}>{children}</SlotProvider>;
 };
 
 export { OverlayProvider };

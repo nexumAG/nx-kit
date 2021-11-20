@@ -31,6 +31,7 @@
   "dependencies": {
     "@nx-kit/slot": "^0.1.10",
     "@nx-kit/styling": "^0.1.18",
+    "@nx-kit/utils": "^0.1.7",
     "@react-aria/dialog": "^3.1.4",
     "@react-aria/focus": "^3.5.0",
     "@react-aria/overlays": "^3.7.2",

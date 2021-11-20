@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
 import { useDialog } from '@react-aria/dialog';
 import { useOverlayTriggerState } from '@react-stately/overlays';
@@ -13,6 +13,7 @@ import {
 } from '@react-aria/overlays';
 import { mergeProps } from '@react-aria/utils';
 import { SlotProvider, useSlotProps } from '@nx-kit/slot';
+import { useEffectExceptOnMount } from '@nx-kit/utils';
 import { TransitionStates } from './Overlay.types';
 import { PopoverInnerProps, PopoverProps, PopoverTriggerProps } from './Popover.types';
 import { OverlayStyled } from './Overlay';
@@ -61,7 +62,21 @@ const PopoverInner = forwardRef(
 
 export const Popover = forwardRef((popoverProps: PopoverProps, ref?: React.Ref<HTMLDivElement>) => {
   const props = useSlotProps<PopoverProps>('popover', popoverProps);
-  const { isOpen, animationDisabled, renderInPortal = true } = props;
+  const { isOpen, animationDisabled, renderInPortal = true, onOpened, onClosed } = props;
+
+  useEffect(() => {
+    if (isOpen && onOpened) {
+      onOpened();
+    }
+  }, []);
+
+  useEffectExceptOnMount(() => {
+    if (isOpen && onOpened) {
+      onOpened();
+    } else if (onClosed) {
+      onClosed();
+    }
+  }, [isOpen]);
 
   if (animationDisabled && !isOpen) {
     return null;
@@ -135,7 +150,12 @@ export const PopoverTrigger = ({
 
   const children =
     typeof triggerChildren === 'function'
-      ? triggerChildren({ close: state.close, isOpen: state.isOpen })
+      ? triggerChildren({
+          isOpen: state.isOpen,
+          close: state.close,
+          open: state.open,
+          toggle: state.toggle,
+        })
       : triggerChildren;
 
   return <SlotProvider slots={slots}>{children}</SlotProvider>;
