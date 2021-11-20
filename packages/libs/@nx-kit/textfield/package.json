@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/textfield",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -24,13 +24,13 @@
   "devDependencies": {
     "@nx-kit/dependencies-dev": "^0.1.9",
     "@nx-kit/flex": "^0.1.20",
-    "@nx-kit/form": "^0.1.17"
+    "@nx-kit/form": "^0.1.18"
   },
   "dependencies": {
     "@nx-kit/slot": "^0.1.10",
     "@nx-kit/styling": "^0.1.18",
     "@nx-kit/types": "^0.1.7",
-    "@nx-kit/utils": "^0.1.7",
+    "@nx-kit/utils": "^0.1.8",
     "@react-aria/focus": "^3.5.0",
     "@react-aria/textfield": "^3.4.0",
     "@react-aria/utils": "^3.9.0"
