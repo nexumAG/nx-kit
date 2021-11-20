@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/accordion",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@nx-kit/styling": "^0.1.18",
-    "@nx-kit/utils": "^0.1.7",
+    "@nx-kit/utils": "^0.1.8",
     "@react-aria/focus": "^3.5.0",
     "@react-aria/interactions": "^3.6.0",
     "@react-aria/utils": "^3.9.0"

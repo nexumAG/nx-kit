@@ -33,9 +33,10 @@ export const useEffectExceptOnMount = (effect: EffectCallback, deps?: Dependency
   }, deps);
 
   // Reset on unmount for the next mount.
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       mounted.current = false;
-    };
-  }, []);
+    },
+    []
+  );
 };
