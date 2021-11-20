@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, EffectCallback, DependencyList } from 'react';
 
 // https://github.com/gregberge/react-merge-refs/blob/master/src/index.tsx
 // changed argument spreading
@@ -19,3 +19,23 @@ export function mergeRefs<T = any>(
     });
   };
 }
+
+export const useEffectExceptOnMount = (effect: EffectCallback, deps?: DependencyList) => {
+  const mounted = useRef(false);
+  // @ts-ignore
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (mounted.current) {
+      const unmount = effect();
+      return () => unmount && unmount();
+    }
+    mounted.current = true;
+  }, deps);
+
+  // Reset on unmount for the next mount.
+  useEffect(() => {
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+};

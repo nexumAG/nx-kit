@@ -21,7 +21,14 @@ export type PopoverBehaviour =
   | 'stayOnScrollNoPortal';
 
 export type PopoverTriggerProps = {
-  children: ((props: { isOpen: boolean; close: () => void }) => React.ReactNode) | React.ReactNode;
+  children:
+    | ((props: {
+        isOpen: boolean;
+        close: () => void;
+        open: () => void;
+        toggle: () => void;
+      }) => React.ReactNode)
+    | React.ReactNode;
   isOpen?: boolean;
   placement?: Placement;
   offset?: number;

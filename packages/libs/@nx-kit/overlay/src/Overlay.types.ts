@@ -33,6 +33,8 @@ export type OverlayProps = {
   horizontalAlignment?: 'left' | 'center' | 'right';
   animationDisabled?: boolean;
   styles?: Styles;
+  onOpened?: () => void;
+  onClosed?: () => void;
 } & AriaOverlayProps &
   AriaDialogProps;
 
@@ -46,7 +48,9 @@ export type OverlayStyledProps = {
 };
 
 export type OverlayTriggerProps = {
-  children: (props: { isOpen: boolean; close: () => void }) => React.ReactNode;
+  children:
+    | ((props: { isOpen: boolean; close: () => void; open: () => void }) => React.ReactNode)
+    | React.ReactNode;
   isOpen?: boolean;
 };
 

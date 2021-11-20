@@ -41,6 +41,18 @@ export const Default = () => {
   );
 };
 
+export const OverlayTriggerMinimal = () => (
+  <OverlayTrigger>
+    <Button skin="primary">Open Overlay</Button>
+
+    <Overlay skin="default" isDismissable>
+      <Heading skin="400" elementType="h3">
+        Test Overlay
+      </Heading>
+    </Overlay>
+  </OverlayTrigger>
+);
+
 export const OverlayTriggerNotDismissable = () => (
   <OverlayTrigger>
     {({ close }) => (
@@ -48,6 +60,41 @@ export const OverlayTriggerNotDismissable = () => (
         <Button skin="primary">Open Overlay</Button>
 
         <Overlay skin="default">
+          <Heading skin="400" elementType="h3">
+            Test Overlay
+          </Heading>
+          <Button onPress={close} skin="secondary">
+            Close Overlay
+          </Button>
+        </Overlay>
+      </>
+    )}
+  </OverlayTrigger>
+);
+
+export const OverlayTriggerAllRenderProps = () => (
+  <OverlayTrigger>
+    {({ close, open, isOpen }) => (
+      <>
+        <Button
+          skin="primary"
+          onPress={() => {
+            // call open manually
+            open();
+          }}
+        >
+          {isOpen ? 'Is open' : 'Open Overlay'}
+        </Button>
+        <Overlay
+          skin="default"
+          isDismissable
+          onOpened={() => {
+            // do something on opened
+          }}
+          onClosed={() => {
+            // do something on closed
+          }}
+        >
           <Heading skin="400" elementType="h3">
             Test Overlay
           </Heading>
@@ -150,11 +197,27 @@ export const PopoverPlacement = () => (
 
 export const PopoverRenderProp = () => (
   <PopoverTrigger>
-    {({ close, isOpen }) => (
+    {({ close, isOpen, toggle }) => (
       <>
-        <Button skin="primary">{isOpen ? 'Close' : 'Open'} Popover</Button>
+        <Button
+          skin="primary"
+          onPress={() => {
+            // call toggle manually
+            toggle();
+          }}
+        >
+          {isOpen ? 'Close' : 'Open'} Popover
+        </Button>
 
-        <Popover skin="popover">
+        <Popover
+          skin="popover"
+          onOpened={() => {
+            // do something on opened
+          }}
+          onClosed={() => {
+            // do something on closed
+          }}
+        >
           <Heading skin="400" elementType="h3">
             Test Popover
           </Heading>
