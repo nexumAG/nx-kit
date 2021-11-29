@@ -38,7 +38,8 @@ export type OverlayProps = {
 } & AriaOverlayProps &
   AriaDialogProps;
 
-export type OverlayInnerProps = OverlayProps & OverlayTransitionProps;
+export type OverlayInnerProps = Omit<OverlayProps, 'onOpened' | 'onClosed'> &
+  OverlayTransitionProps;
 
 export type OverlayStyledProps = {
   isFocused: boolean;

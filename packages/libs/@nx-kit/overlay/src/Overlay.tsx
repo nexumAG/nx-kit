@@ -106,8 +106,8 @@ const OverlayInner = (props: OverlayInnerProps) => {
 };
 
 export const Overlay = (overlayProps: OverlayProps) => {
-  const props = useSlotProps<OverlayProps>('overlay', overlayProps);
-  const { isOpen, animationDisabled, onOpened, onClosed } = props;
+  const { onOpened, onClosed, ...props } = useSlotProps<OverlayProps>('overlay', overlayProps);
+  const { isOpen, animationDisabled } = props;
 
   useEffect(() => {
     if (isOpen && onOpened) {

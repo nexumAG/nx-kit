@@ -12,7 +12,8 @@ export type PopoverProps = Omit<
   | 'shouldCloseOnInteractOutside'
 > & { renderInPortal?: boolean };
 
-export type PopoverInnerProps = Omit<PopoverProps, 'renderInPortal'> & OverlayTransitionProps;
+export type PopoverInnerProps = Omit<PopoverProps, 'renderInPortal' | 'onOpened' | 'onClosed'> &
+  OverlayTransitionProps;
 
 export type PopoverBehaviour =
   | 'hideOnScroll'

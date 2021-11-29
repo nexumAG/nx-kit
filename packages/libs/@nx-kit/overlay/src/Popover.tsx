@@ -61,8 +61,8 @@ const PopoverInner = forwardRef(
 );
 
 export const Popover = forwardRef((popoverProps: PopoverProps, ref?: React.Ref<HTMLDivElement>) => {
-  const props = useSlotProps<PopoverProps>('popover', popoverProps);
-  const { isOpen, animationDisabled, renderInPortal = true, onOpened, onClosed } = props;
+  const { onOpened, onClosed, ...props } = useSlotProps<PopoverProps>('popover', popoverProps);
+  const { isOpen, animationDisabled, renderInPortal = true } = props;
 
   useEffect(() => {
     if (isOpen && onOpened) {
