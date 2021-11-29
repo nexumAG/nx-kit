@@ -10,17 +10,30 @@ import {
   DismissButton,
   useOverlayTrigger,
   useOverlayPosition,
+  usePreventScroll,
 } from '@react-aria/overlays';
 import { mergeProps } from '@react-aria/utils';
 import { SlotProvider, useSlotProps } from '@nx-kit/slot';
 import { useEffectExceptOnMount } from '@nx-kit/utils';
 import { TransitionStates } from './Overlay.types';
 import { PopoverInnerProps, PopoverProps, PopoverTriggerProps } from './Popover.types';
-import { OverlayStyled } from './Overlay';
+import { OverlayStyled, Underlay } from './Overlay';
 
 const PopoverInner = forwardRef(
   (
-    { onClose, isOpen, children, state, ...props }: PopoverInnerProps,
+    {
+      onClose,
+      isOpen,
+      children,
+      state,
+      focusContain = false,
+      focusAuto = false,
+      focusRestore = true,
+      underlayShow = false,
+      underlay,
+      preventScroll = false,
+      ...props
+    }: PopoverInnerProps,
     ref: React.Ref<HTMLDivElement>
   ) => {
     const { overlayProps } = useOverlay(
@@ -28,6 +41,7 @@ const PopoverInner = forwardRef(
         onClose,
         isOpen,
         isDismissable: true,
+        ...props,
       },
       // @ts-ignore
       ref
@@ -37,25 +51,28 @@ const PopoverInner = forwardRef(
 
     // @ts-ignore
     const { dialogProps, titleProps } = useDialog({}, ref);
-
     const { isFocusVisible, focusProps } = useFocusRing();
+    usePreventScroll({ isDisabled: !preventScroll });
 
     const slots = {
       heading: titleProps,
     };
 
     return (
-      <FocusScope restoreFocus>
-        <OverlayStyled
-          isFocused={isFocusVisible}
-          ref={ref}
-          state={state as TransitionStates}
-          {...mergeProps(overlayProps, dialogProps, props, modalProps, focusProps)}
-        >
-          <SlotProvider slots={slots}>{children}</SlotProvider>
-          <DismissButton onDismiss={onClose} />
-        </OverlayStyled>
-      </FocusScope>
+      <>
+        {underlayShow && (underlay ?? <Underlay state={state as TransitionStates} />)}
+        <FocusScope contain={focusContain} restoreFocus={focusRestore} autoFocus={focusAuto}>
+          <OverlayStyled
+            isFocused={isFocusVisible}
+            ref={ref}
+            state={state as TransitionStates}
+            {...mergeProps(overlayProps, dialogProps, props, modalProps, focusProps)}
+          >
+            <SlotProvider slots={slots}>{children}</SlotProvider>
+            <DismissButton onDismiss={onClose} />
+          </OverlayStyled>
+        </FocusScope>
+      </>
     );
   }
 );
@@ -103,14 +120,17 @@ export const PopoverTrigger = ({
   placement = 'top',
   offset = 5,
   behaviour = 'hideOnScroll',
+  positionElement,
 }: PopoverTriggerProps) => {
   const state = useOverlayTriggerState({ defaultOpen: isOpenDefault });
 
   const triggerRef = React.useRef(null);
   const overlayRef = React.useRef(null);
+  const positionRef = React.useRef<HTMLElement | null>(positionElement ?? null);
+  positionRef.current = positionElement ?? null;
 
   const { overlayProps: positionProps, updatePosition } = useOverlayPosition({
-    targetRef: triggerRef,
+    targetRef: positionRef.current ? positionRef : triggerRef,
     overlayRef,
     placement,
     offset,

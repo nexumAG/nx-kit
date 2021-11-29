@@ -54,6 +54,12 @@ const OverlayInner = (props: OverlayInnerProps) => {
     verticalAlignment = 'center',
     horizontalAlignment = 'center',
     state,
+    focusContain = true,
+    focusAuto = true,
+    focusRestore = true,
+    underlayShow = true,
+    underlay,
+    preventScroll = true,
     ...rest
   } = props;
 
@@ -62,7 +68,7 @@ const OverlayInner = (props: OverlayInnerProps) => {
   const { modalProps } = useModal();
   const { dialogProps, titleProps } = useDialog(props, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
-  usePreventScroll();
+  usePreventScroll({ isDisabled: !preventScroll });
 
   const slots = {
     heading: titleProps,
@@ -87,9 +93,9 @@ const OverlayInner = (props: OverlayInnerProps) => {
 
   return (
     <>
-      <Underlay state={state as TransitionStates} />
+      {underlayShow && (underlay ?? <Underlay state={state as TransitionStates} />)}
       <OverlayWrapper {...alignment}>
-        <FocusScope contain restoreFocus autoFocus>
+        <FocusScope contain={focusContain} restoreFocus={focusRestore} autoFocus={focusAuto}>
           <OverlayStyled
             className={className}
             isFocused={isFocusVisible}

@@ -2,15 +2,9 @@ import React from 'react';
 import { Placement } from '@react-types/overlays';
 import { OverlayProps, OverlayTransitionProps } from './Overlay.types';
 
-export type PopoverProps = Omit<
-  OverlayProps,
-  | 'verticalAlignment'
-  | 'horizontalAlignment'
-  | 'isDismissable'
-  | 'shouldCloseOnBlur'
-  | 'isKeyboardDismissDisabled'
-  | 'shouldCloseOnInteractOutside'
-> & { renderInPortal?: boolean };
+export type PopoverProps = Omit<OverlayProps, 'verticalAlignment' | 'horizontalAlignment'> & {
+  renderInPortal?: boolean;
+};
 
 export type PopoverInnerProps = Omit<PopoverProps, 'renderInPortal' | 'onOpened' | 'onClosed'> &
   OverlayTransitionProps;
@@ -34,4 +28,5 @@ export type PopoverTriggerProps = {
   placement?: Placement;
   offset?: number;
   behaviour?: PopoverBehaviour;
+  positionElement?: HTMLElement;
 };

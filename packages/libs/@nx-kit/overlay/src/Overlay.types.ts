@@ -26,7 +26,6 @@ export type OverlayTransitionProps = {
 export type OverlayProps = {
   id?: string;
   className?: string;
-  // title?: string;
   children?: React.ReactNode;
   skin?: OverlaySkin;
   verticalAlignment?: 'top' | 'center' | 'bottom';
@@ -35,6 +34,12 @@ export type OverlayProps = {
   styles?: Styles;
   onOpened?: () => void;
   onClosed?: () => void;
+  focusRestore?: boolean;
+  focusContain?: boolean;
+  focusAuto?: boolean;
+  underlayShow?: boolean;
+  underlay?: React.ReactNode;
+  preventScroll?: boolean;
 } & AriaOverlayProps &
   AriaDialogProps;
 
