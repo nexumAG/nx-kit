@@ -1,101 +1,23 @@
-import React, { forwardRef, useEffect } from 'react';
-import { Transition } from 'react-transition-group';
-import { useDialog } from '@react-aria/dialog';
+import React, { forwardRef } from 'react';
 import { useOverlayTriggerState } from '@react-stately/overlays';
-import { FocusScope, useFocusRing } from '@react-aria/focus';
-import {
-  OverlayContainer,
-  useModal,
-  useOverlay,
-  DismissButton,
-  useOverlayTrigger,
-  useOverlayPosition,
-} from '@react-aria/overlays';
-import { mergeProps } from '@react-aria/utils';
-import { SlotProvider, useSlotProps } from '@nx-kit/slot';
-import { useEffectExceptOnMount } from '@nx-kit/utils';
-import { TransitionStates } from './Overlay.types';
-import { PopoverInnerProps, PopoverProps, PopoverTriggerProps } from './Popover.types';
-import { OverlayStyled } from './Overlay';
+import { DismissButton, useOverlayTrigger, useOverlayPosition } from '@react-aria/overlays';
+import { SlotProvider } from '@nx-kit/slot';
+import { PopoverProps, PopoverTriggerProps } from './Popover.types';
+import { Overlay } from './Overlay';
 
-const PopoverInner = forwardRef(
-  (
-    { onClose, isOpen, children, state, ...props }: PopoverInnerProps,
-    ref: React.Ref<HTMLDivElement>
-  ) => {
-    const { overlayProps } = useOverlay(
-      {
-        onClose,
-        isOpen,
-        isDismissable: true,
-      },
-      // @ts-ignore
-      ref
-    );
-
-    const { modalProps } = useModal();
-
-    // @ts-ignore
-    const { dialogProps, titleProps } = useDialog({}, ref);
-
-    const { isFocusVisible, focusProps } = useFocusRing();
-
-    const slots = {
-      heading: titleProps,
-    };
-
-    return (
-      <FocusScope restoreFocus>
-        <OverlayStyled
-          isFocused={isFocusVisible}
-          ref={ref}
-          state={state as TransitionStates}
-          {...mergeProps(overlayProps, dialogProps, props, modalProps, focusProps)}
-        >
-          <SlotProvider slots={slots}>{children}</SlotProvider>
-          <DismissButton onDismiss={onClose} />
-        </OverlayStyled>
-      </FocusScope>
-    );
-  }
-);
-
-export const Popover = forwardRef((popoverProps: PopoverProps, ref?: React.Ref<HTMLDivElement>) => {
-  const props = useSlotProps<PopoverProps>('popover', popoverProps);
-  const { isOpen, animationDisabled, renderInPortal = true, onOpened, onClosed } = props;
-
-  useEffect(() => {
-    if (isOpen && onOpened) {
-      onOpened();
-    }
-  }, []);
-
-  useEffectExceptOnMount(() => {
-    if (isOpen && onOpened) {
-      onOpened();
-    } else if (onClosed) {
-      onClosed();
-    }
-  }, [isOpen]);
-
-  if (animationDisabled && !isOpen) {
-    return null;
-  }
-
-  return (
-    <Transition in={isOpen} timeout={{ enter: 0, exit: 350 }} unmountOnExit mountOnEnter>
-      {(state) =>
-        renderInPortal ? (
-          <OverlayContainer>
-            <PopoverInner ref={ref} {...props} state={state as TransitionStates} />
-          </OverlayContainer>
-        ) : (
-          <PopoverInner ref={ref} {...props} state={state as TransitionStates} />
-        )
-      }
-    </Transition>
-  );
-});
+export const Popover = forwardRef((popoverProps: PopoverProps, ref?: React.Ref<HTMLDivElement>) => (
+  <Overlay
+    ref={ref}
+    alignmentDisabled
+    preventScroll={false}
+    focusContain={false}
+    focusAuto={false}
+    focusRestore
+    underlayShow={false}
+    isDismissable
+    {...popoverProps}
+  />
+));
 
 export const PopoverTrigger = ({
   children: triggerChildren,
@@ -103,14 +25,17 @@ export const PopoverTrigger = ({
   placement = 'top',
   offset = 5,
   behaviour = 'hideOnScroll',
+  positionElement,
 }: PopoverTriggerProps) => {
   const state = useOverlayTriggerState({ defaultOpen: isOpenDefault });
 
   const triggerRef = React.useRef(null);
   const overlayRef = React.useRef(null);
+  const positionRef = React.useRef<HTMLElement | null>(positionElement ?? null);
+  positionRef.current = positionElement ?? null;
 
   const { overlayProps: positionProps, updatePosition } = useOverlayPosition({
-    targetRef: triggerRef,
+    targetRef: positionRef.current ? positionRef : triggerRef,
     overlayRef,
     placement,
     offset,
@@ -138,7 +63,7 @@ export const PopoverTrigger = ({
 
   const slots = {
     button: { onPress: () => state.toggle(), ref: triggerRef, ...triggerProps },
-    popover: {
+    overlay: {
       isOpen: state.isOpen,
       onClose: state.close,
       ref: overlayRef,

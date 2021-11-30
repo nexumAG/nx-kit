@@ -1,4 +1,4 @@
-import React from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { OverlayProps as AriaOverlayProps } from '@react-aria/overlays';
 import { AriaDialogProps } from '@react-types/dialog';
 import {
@@ -26,19 +26,39 @@ export type OverlayTransitionProps = {
 export type OverlayProps = {
   id?: string;
   className?: string;
-  // title?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   skin?: OverlaySkin;
   verticalAlignment?: 'top' | 'center' | 'bottom';
   horizontalAlignment?: 'left' | 'center' | 'right';
+  /**
+   * If disabled the Overlay wrapper will not be rendered.
+   * @default false
+   */
+  alignmentDisabled?: boolean;
+  /**
+   * If disabled the Overlay will not get rendered if closed.
+   * @default false
+   */
   animationDisabled?: boolean;
   styles?: Styles;
+  style?: CSSProperties;
   onOpened?: () => void;
   onClosed?: () => void;
+  focusRestore?: boolean;
+  focusContain?: boolean;
+  focusAuto?: boolean;
+  underlayShow?: boolean;
+  underlay?: ReactNode;
+  preventScroll?: boolean;
+  renderInPortal?: boolean;
 } & AriaOverlayProps &
   AriaDialogProps;
 
-export type OverlayInnerProps = OverlayProps & OverlayTransitionProps;
+export type OverlayInnerProps = Omit<
+  OverlayProps,
+  'onOpened' | 'onClosed' | 'renderInPortal' | 'animationDisabled'
+> &
+  OverlayTransitionProps;
 
 export type OverlayStyledProps = {
   isFocused: boolean;
@@ -49,8 +69,8 @@ export type OverlayStyledProps = {
 
 export type OverlayTriggerProps = {
   children:
-    | ((props: { isOpen: boolean; close: () => void; open: () => void }) => React.ReactNode)
-    | React.ReactNode;
+    | ((props: { isOpen: boolean; close: () => void; open: () => void }) => ReactNode)
+    | ReactNode;
   isOpen?: boolean;
 };
 

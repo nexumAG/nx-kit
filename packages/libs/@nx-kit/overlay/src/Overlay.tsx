@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 import { Transition } from 'react-transition-group';
 import {
   useOverlay,
@@ -21,7 +21,7 @@ import {
   compose,
 } from '@nx-kit/styling';
 import { SlotProvider, useSlotProps } from '@nx-kit/slot';
-import { useEffectExceptOnMount } from '@nx-kit/utils';
+import { mergeRefs, useEffectExceptOnMount } from '@nx-kit/utils';
 import {
   OverlayProps,
   OverlayStyledProps,
@@ -47,22 +47,29 @@ export const OverlayWrapper = styled.div<OverlayWrapperStyledProps>`
   ${({ theme }) => theme?.global?.overlayWrapper};
 `;
 
-const OverlayInner = (props: OverlayInnerProps) => {
+const OverlayInner = forwardRef((props: OverlayInnerProps, ref?: React.Ref<HTMLDivElement>) => {
   const {
     children,
     className,
     verticalAlignment = 'center',
     horizontalAlignment = 'center',
+    alignmentDisabled = false,
     state,
+    focusContain = true,
+    focusAuto = true,
+    focusRestore = true,
+    underlayShow = true,
+    underlay,
+    preventScroll = true,
     ...rest
   } = props;
 
-  const ref = React.useRef(null);
-  const { overlayProps: useOverlayProps } = useOverlay(props, ref);
+  const localRef = React.useRef(null);
+  const { overlayProps: useOverlayProps } = useOverlay(props, localRef);
   const { modalProps } = useModal();
-  const { dialogProps, titleProps } = useDialog(props, ref);
+  const { dialogProps, titleProps } = useDialog(props, localRef);
   const { isFocusVisible, focusProps } = useFocusRing();
-  usePreventScroll();
+  usePreventScroll({ isDisabled: !preventScroll });
 
   const slots = {
     heading: titleProps,
@@ -85,29 +92,39 @@ const OverlayInner = (props: OverlayInnerProps) => {
     alignItems: alignItems[verticalAlignment],
   };
 
+  const mergedRefs = useCallback(mergeRefs<HTMLElement | null>(ref, localRef), [ref]);
+
+  const overlay = (
+    <FocusScope contain={focusContain} restoreFocus={focusRestore} autoFocus={focusAuto}>
+      <OverlayStyled
+        className={className}
+        isFocused={isFocusVisible}
+        ref={mergedRefs}
+        state={state as TransitionStates}
+        {...mergeProps(useOverlayProps, dialogProps, modalProps, focusProps, rest)}
+      >
+        <SlotProvider slots={slots}>{children}</SlotProvider>
+      </OverlayStyled>
+    </FocusScope>
+  );
+
   return (
     <>
-      <Underlay state={state as TransitionStates} />
-      <OverlayWrapper {...alignment}>
-        <FocusScope contain restoreFocus autoFocus>
-          <OverlayStyled
-            className={className}
-            isFocused={isFocusVisible}
-            ref={ref}
-            state={state as TransitionStates}
-            {...mergeProps(useOverlayProps, dialogProps, modalProps, focusProps, rest)}
-          >
-            <SlotProvider slots={slots}>{children}</SlotProvider>
-          </OverlayStyled>
-        </FocusScope>
-      </OverlayWrapper>
+      {underlayShow && (underlay ?? <Underlay state={state as TransitionStates} />)}
+      {alignmentDisabled ? overlay : <OverlayWrapper {...alignment}>{overlay}</OverlayWrapper>}
     </>
   );
-};
+});
 
-export const Overlay = (overlayProps: OverlayProps) => {
-  const props = useSlotProps<OverlayProps>('overlay', overlayProps);
-  const { isOpen, animationDisabled, onOpened, onClosed } = props;
+export const Overlay = forwardRef((overlayProps: OverlayProps, ref?: React.Ref<HTMLDivElement>) => {
+  const {
+    onOpened,
+    onClosed,
+    animationDisabled = false,
+    renderInPortal = true,
+    ...props
+  } = useSlotProps<OverlayProps>('overlay', overlayProps);
+  const { isOpen } = props;
 
   useEffect(() => {
     if (isOpen && onOpened) {
@@ -129,14 +146,18 @@ export const Overlay = (overlayProps: OverlayProps) => {
 
   return (
     <Transition in={isOpen} timeout={{ enter: 0, exit: 350 }} unmountOnExit mountOnEnter>
-      {(state) => (
-        <OverlayContainer>
-          <OverlayInner {...props} state={state as TransitionStates} />
-        </OverlayContainer>
-      )}
+      {(state) =>
+        renderInPortal ? (
+          <OverlayContainer>
+            <OverlayInner ref={ref} {...props} state={state as TransitionStates} />
+          </OverlayContainer>
+        ) : (
+          <OverlayInner ref={ref} {...props} state={state as TransitionStates} />
+        )
+      }
     </Transition>
   );
-};
+});
 
 export const OverlayTrigger = ({
   children: triggerChildren,

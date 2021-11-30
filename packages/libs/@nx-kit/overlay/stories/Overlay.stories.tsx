@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Heading } from '@nx-kit/heading';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -90,9 +90,11 @@ export const OverlayTriggerAllRenderProps = () => (
           isDismissable
           onOpened={() => {
             // do something on opened
+            console.log('onOpened');
           }}
           onClosed={() => {
             // do something on closed
+            console.log('onClosed');
           }}
         >
           <Heading skin="400" elementType="h3">
@@ -183,6 +185,31 @@ export const PopoverDefault = () => (
   </PopoverTrigger>
 );
 
+export const PopoverPositionRef = () => {
+  const [element, setElement] = useState<HTMLElement | undefined>(undefined);
+
+  useEffect(() => {
+    setElement(
+      (document.querySelector('#anchor--nx-kit-overlay--popover-position-ref') as HTMLElement) ??
+        undefined
+    );
+  }, []);
+
+  return (
+    <>
+      <PopoverTrigger positionElement={element} placement="top left">
+        <Button skin="primary">Open Popover</Button>
+
+        <Popover skin="popover" underlayShow preventScroll>
+          <Heading skin="400" elementType="h3">
+            Test Popover
+          </Heading>
+        </Popover>
+      </PopoverTrigger>
+    </>
+  );
+};
+
 export const PopoverPlacement = () => (
   <PopoverTrigger placement="bottom left" offset={10}>
     <Button skin="primary">Open Popover</Button>
@@ -213,9 +240,11 @@ export const PopoverRenderProp = () => (
           skin="popover"
           onOpened={() => {
             // do something on opened
+            console.log('onOpened');
           }}
           onClosed={() => {
             // do something on closed
+            console.log('onClosed');
           }}
         >
           <Heading skin="400" elementType="h3">
