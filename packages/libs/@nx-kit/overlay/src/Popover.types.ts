@@ -2,11 +2,12 @@ import React from 'react';
 import { Placement } from '@react-types/overlays';
 import { OverlayProps, OverlayTransitionProps } from './Overlay.types';
 
-export type PopoverProps = Omit<OverlayProps, 'verticalAlignment' | 'horizontalAlignment'> & {
-  renderInPortal?: boolean;
-};
+export type PopoverProps = Omit<OverlayProps, 'verticalAlignment' | 'horizontalAlignment'>;
 
-export type PopoverInnerProps = Omit<PopoverProps, 'renderInPortal' | 'onOpened' | 'onClosed'> &
+export type PopoverInnerProps = Omit<
+  PopoverProps,
+  'renderInPortal' | 'onOpened' | 'onClosed' | 'animationDisabled'
+> &
   OverlayTransitionProps;
 
 export type PopoverBehaviour =

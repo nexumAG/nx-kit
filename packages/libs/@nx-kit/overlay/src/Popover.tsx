@@ -66,7 +66,7 @@ const PopoverInner = forwardRef(
             isFocused={isFocusVisible}
             ref={ref}
             state={state as TransitionStates}
-            {...mergeProps(overlayProps, dialogProps, props, modalProps, focusProps)}
+            {...mergeProps(overlayProps, dialogProps, modalProps, focusProps, props)}
           >
             <SlotProvider slots={slots}>{children}</SlotProvider>
             <DismissButton onDismiss={onClose} />
@@ -78,8 +78,14 @@ const PopoverInner = forwardRef(
 );
 
 export const Popover = forwardRef((popoverProps: PopoverProps, ref?: React.Ref<HTMLDivElement>) => {
-  const { onOpened, onClosed, ...props } = useSlotProps<PopoverProps>('popover', popoverProps);
-  const { isOpen, animationDisabled, renderInPortal = true } = props;
+  const {
+    onOpened,
+    onClosed,
+    animationDisabled,
+    renderInPortal = true,
+    ...props
+  } = useSlotProps<PopoverProps>('popover', popoverProps);
+  const { isOpen } = props;
 
   useEffect(() => {
     if (isOpen && onOpened) {

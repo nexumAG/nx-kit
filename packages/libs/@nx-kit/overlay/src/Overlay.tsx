@@ -53,6 +53,7 @@ const OverlayInner = (props: OverlayInnerProps) => {
     className,
     verticalAlignment = 'center',
     horizontalAlignment = 'center',
+    alignmentDisabled = false,
     state,
     focusContain = true,
     focusAuto = true,
@@ -91,29 +92,37 @@ const OverlayInner = (props: OverlayInnerProps) => {
     alignItems: alignItems[verticalAlignment],
   };
 
+  const overlay = (
+    <FocusScope contain={focusContain} restoreFocus={focusRestore} autoFocus={focusAuto}>
+      <OverlayStyled
+        className={className}
+        isFocused={isFocusVisible}
+        ref={ref}
+        state={state as TransitionStates}
+        {...mergeProps(useOverlayProps, dialogProps, modalProps, focusProps, rest)}
+      >
+        <SlotProvider slots={slots}>{children}</SlotProvider>
+      </OverlayStyled>
+    </FocusScope>
+  );
+
   return (
     <>
       {underlayShow && (underlay ?? <Underlay state={state as TransitionStates} />)}
-      <OverlayWrapper {...alignment}>
-        <FocusScope contain={focusContain} restoreFocus={focusRestore} autoFocus={focusAuto}>
-          <OverlayStyled
-            className={className}
-            isFocused={isFocusVisible}
-            ref={ref}
-            state={state as TransitionStates}
-            {...mergeProps(useOverlayProps, dialogProps, modalProps, focusProps, rest)}
-          >
-            <SlotProvider slots={slots}>{children}</SlotProvider>
-          </OverlayStyled>
-        </FocusScope>
-      </OverlayWrapper>
+      {alignmentDisabled ? overlay : <OverlayWrapper {...alignment}>{overlay}</OverlayWrapper>}
     </>
   );
 };
 
 export const Overlay = (overlayProps: OverlayProps) => {
-  const { onOpened, onClosed, ...props } = useSlotProps<OverlayProps>('overlay', overlayProps);
-  const { isOpen, animationDisabled } = props;
+  const {
+    onOpened,
+    onClosed,
+    animationDisabled = false,
+    renderInPortal = true,
+    ...props
+  } = useSlotProps<OverlayProps>('overlay', overlayProps);
+  const { isOpen } = props;
 
   useEffect(() => {
     if (isOpen && onOpened) {
@@ -135,11 +144,15 @@ export const Overlay = (overlayProps: OverlayProps) => {
 
   return (
     <Transition in={isOpen} timeout={{ enter: 0, exit: 350 }} unmountOnExit mountOnEnter>
-      {(state) => (
-        <OverlayContainer>
+      {(state) =>
+        renderInPortal ? (
+          <OverlayContainer>
+            <OverlayInner {...props} state={state as TransitionStates} />
+          </OverlayContainer>
+        ) : (
           <OverlayInner {...props} state={state as TransitionStates} />
-        </OverlayContainer>
-      )}
+        )
+      }
     </Transition>
   );
 };
