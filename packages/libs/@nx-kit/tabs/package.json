@@ -27,8 +27,8 @@
   "dependencies": {
     "@nx-kit/styling": "^0.1.18",
     "@react-aria/focus": "^3.5.0",
-    "@react-aria/tabs": "^3.0.2",
-    "@react-aria/utils": "^3.9.0",
+    "@react-aria/tabs": "^3.1.0",
+    "@react-aria/utils": "^3.10.0",
     "@react-stately/collections": "^3.3.4",
     "@react-stately/tabs": "^3.0.1",
     "@react-types/tabs": "^3.0.1"
