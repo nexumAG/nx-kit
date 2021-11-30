@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 import { Transition } from 'react-transition-group';
 import {
   useOverlay,
@@ -21,7 +21,7 @@ import {
   compose,
 } from '@nx-kit/styling';
 import { SlotProvider, useSlotProps } from '@nx-kit/slot';
-import { useEffectExceptOnMount } from '@nx-kit/utils';
+import { mergeRefs, useEffectExceptOnMount } from '@nx-kit/utils';
 import {
   OverlayProps,
   OverlayStyledProps,
@@ -47,7 +47,7 @@ export const OverlayWrapper = styled.div<OverlayWrapperStyledProps>`
   ${({ theme }) => theme?.global?.overlayWrapper};
 `;
 
-const OverlayInner = (props: OverlayInnerProps) => {
+const OverlayInner = forwardRef((props: OverlayInnerProps, ref?: React.Ref<HTMLDivElement>) => {
   const {
     children,
     className,
@@ -64,10 +64,10 @@ const OverlayInner = (props: OverlayInnerProps) => {
     ...rest
   } = props;
 
-  const ref = React.useRef(null);
-  const { overlayProps: useOverlayProps } = useOverlay(props, ref);
+  const localRef = React.useRef(null);
+  const { overlayProps: useOverlayProps } = useOverlay(props, localRef);
   const { modalProps } = useModal();
-  const { dialogProps, titleProps } = useDialog(props, ref);
+  const { dialogProps, titleProps } = useDialog(props, localRef);
   const { isFocusVisible, focusProps } = useFocusRing();
   usePreventScroll({ isDisabled: !preventScroll });
 
@@ -92,12 +92,14 @@ const OverlayInner = (props: OverlayInnerProps) => {
     alignItems: alignItems[verticalAlignment],
   };
 
+  const mergedRefs = useCallback(mergeRefs<HTMLElement | null>(ref, localRef), [ref]);
+
   const overlay = (
     <FocusScope contain={focusContain} restoreFocus={focusRestore} autoFocus={focusAuto}>
       <OverlayStyled
         className={className}
         isFocused={isFocusVisible}
-        ref={ref}
+        ref={mergedRefs}
         state={state as TransitionStates}
         {...mergeProps(useOverlayProps, dialogProps, modalProps, focusProps, rest)}
       >
@@ -112,9 +114,9 @@ const OverlayInner = (props: OverlayInnerProps) => {
       {alignmentDisabled ? overlay : <OverlayWrapper {...alignment}>{overlay}</OverlayWrapper>}
     </>
   );
-};
+});
 
-export const Overlay = (overlayProps: OverlayProps) => {
+export const Overlay = forwardRef((overlayProps: OverlayProps, ref?: React.Ref<HTMLDivElement>) => {
   const {
     onOpened,
     onClosed,
@@ -147,15 +149,15 @@ export const Overlay = (overlayProps: OverlayProps) => {
       {(state) =>
         renderInPortal ? (
           <OverlayContainer>
-            <OverlayInner {...props} state={state as TransitionStates} />
+            <OverlayInner ref={ref} {...props} state={state as TransitionStates} />
           </OverlayContainer>
         ) : (
-          <OverlayInner {...props} state={state as TransitionStates} />
+          <OverlayInner ref={ref} {...props} state={state as TransitionStates} />
         )
       }
     </Transition>
   );
-};
+});
 
 export const OverlayTrigger = ({
   children: triggerChildren,

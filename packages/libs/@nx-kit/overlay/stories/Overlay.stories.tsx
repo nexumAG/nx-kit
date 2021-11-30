@@ -90,9 +90,11 @@ export const OverlayTriggerAllRenderProps = () => (
           isDismissable
           onOpened={() => {
             // do something on opened
+            console.log('onOpened');
           }}
           onClosed={() => {
             // do something on closed
+            console.log('onClosed');
           }}
         >
           <Heading skin="400" elementType="h3">
@@ -238,9 +240,11 @@ export const PopoverRenderProp = () => (
           skin="popover"
           onOpened={() => {
             // do something on opened
+            console.log('onOpened');
           }}
           onClosed={() => {
             // do something on closed
+            console.log('onClosed');
           }}
         >
           <Heading skin="400" elementType="h3">
