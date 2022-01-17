@@ -2,8 +2,8 @@
 
 module.exports = {
   stories: [
-    './../../../../packages/**/*.stories.mdx',
-    './../../../../packages/**/*.stories.@(js|jsx|ts|tsx)',
+    './../../../../packages/**/stories/*.stories.mdx',
+    './../../../../packages/**/stories/*.stories.@(ts|tsx)',
   ],
   addons: [
     // problem with babel?
