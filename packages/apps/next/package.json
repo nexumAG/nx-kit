@@ -12,8 +12,8 @@
     "@nx-kit/flex": "^0.1.20",
     "@nx-kit/heading": "^0.1.19",
     "@nx-kit/styling": "^0.1.18",
-    "next": "11.1.2",
-    "next-transpile-modules": "^8.0.0",
+    "next": "12.0.8",
+    "next-transpile-modules": "^9.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
