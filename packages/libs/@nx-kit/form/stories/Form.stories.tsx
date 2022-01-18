@@ -225,7 +225,7 @@ export const Default = () => {
                 </Flex>
               </div>
             </Flex>
-            <div>Watch field: {watch ? watch('test') : null}</div>
+            <div>Watch field &quot;Test&quot;: {watch ? watch('test') : null}</div>
             <button type="submit">Submit</button>
             <button type="button" onClick={handleSubmit}>
               Submit with onClick
