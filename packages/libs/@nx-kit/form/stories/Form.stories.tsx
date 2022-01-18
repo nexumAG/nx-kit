@@ -53,7 +53,7 @@ export const Default = () => {
           console.log('errors', errors);
         }}
       >
-        {({ trigger }) => (
+        {({ trigger, handleSubmit, watch }) => (
           <>
             <Flex gap="15px" flexDirection="column">
               <div>
@@ -225,7 +225,11 @@ export const Default = () => {
                 </Flex>
               </div>
             </Flex>
+            <div>Watch field: {watch ? watch('test') : null}</div>
             <button type="submit">Submit</button>
+            <button type="button" onClick={handleSubmit}>
+              Submit with onClick
+            </button>
           </>
         )}
       </Form>

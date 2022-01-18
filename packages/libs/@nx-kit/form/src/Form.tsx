@@ -17,14 +17,11 @@ const FormReactContext = React.createContext<FormContext>({
     name: '',
   }),
   errors: {},
-  // defaultValues: {},
   reset: () => {},
   clearErrors: () => {},
   setError: () => {},
   unregister: () => {},
   trigger: () => new Promise<boolean>((resolve) => resolve(true)),
-  // watch: () => {},
-  // getValues: () => {},
 });
 
 export const useForm = () => useContext(FormReactContext);
@@ -89,12 +86,16 @@ export const Form = <FormValues,>({
     [onError]
   );
 
+  const formHandleSubmit = handleSubmit(onSubmitCallback ?? (() => {}), onErrorCallback);
+
   return (
-    <form onSubmit={handleSubmit(onSubmitCallback ?? (() => {}), onErrorCallback)}>
+    <form onSubmit={formHandleSubmit}>
       {/* @ts-ignore */}
       <FormReactContext.Provider value={values}>
-        {/* @ts-ignore */}
-        {typeof children === 'function' ? children(values) : children}
+        {typeof children === 'function'
+          ? // @ts-ignore
+            children({ ...values, handleSubmit: formHandleSubmit })
+          : children}
       </FormReactContext.Provider>
     </form>
   );

@@ -61,9 +61,9 @@ export type FormContext<
   reset: UseFormReset<FormValues>;
   unregister: UseFormUnregister<FormValues>;
   register: UseFormRegister<FormValues>;
+  handleSubmit?: (e?: React.BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>;
   // formState: FormState<FormValues>;
   // setValue: UseFormSetValue<FormValues>;
-  // handleSubmit: UseFormHandleSubmit<FormValues>;
   // control: Control<FormValues, FormContext>;
   // setFocus: UseFormSetFocus<FormValues>;
 };
