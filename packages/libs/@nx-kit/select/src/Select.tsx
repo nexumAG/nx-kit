@@ -1,44 +1,92 @@
-import React, { useRef } from 'react';
+import React, { forwardRef, useCallback, useRef } from 'react';
 import { HiddenSelect, useSelect } from '@react-aria/select';
 import { Item } from '@react-stately/collections';
 import { useSelectState } from '@react-stately/select';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useButton } from '@react-aria/button';
-import { styled } from '@nx-kit/styling';
+import {
+  styled,
+  getSpacing,
+  getFlexItem,
+  getPosition,
+  getColor,
+  getLayout,
+  getFont,
+  getTypo,
+  compose,
+} from '@nx-kit/styling';
+import { Popover, PopoverTrigger } from '@nx-kit/overlay';
+import { useSlotProps } from '@nx-kit/slot';
+import { mergeRefs } from '@nx-kit/utils';
 import { SelectProps, SelectStyledProps } from './Select.types';
+import { ListBox } from './ListBox';
+
+interface CompoundComponent
+  extends React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<HTMLElement>> {
+  Item: typeof Item;
+}
 
 const SelectStyled = styled.div<SelectStyledProps>`
   ${({ theme }) => theme?.component?.select?.global};
   ${({ theme, skin }) => skin && theme?.component?.select?.skin?.[skin]};
+  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)}
+  ${getFont};
 `;
 
-export const Select = ({ className, skin, ...props }: SelectProps) => {
+const Select = (
+  { className, skin, styles, ...props }: SelectProps,
+  ref?: React.Ref<HTMLElement | null>
+) => {
   const state = useSelectState(props);
 
-  const ref = useRef(null);
-  const { labelProps, triggerProps, valueProps, menuProps } = useSelect(props, state, ref);
+  const localRef = useRef<HTMLElement>(null);
+  const { labelProps, triggerProps, valueProps, menuProps } = useSelect(props, state, localRef);
 
-  const { buttonProps } = useButton(triggerProps, ref);
+  const { buttonProps } = useButton(triggerProps, localRef);
 
   const { focusProps, isFocusVisible } = useFocusRing();
 
+  const buttonSlotProviderProps = useSlotProps<HTMLButtonElement>('button');
+
+  const mergedRefs = useCallback(mergeRefs<HTMLElement | null>(ref, localRef), [ref]);
+
   return (
-    <SelectStyled
-      className={className}
-      skin={skin}
-      isOpen={state.isOpen}
-      isFocusVisible={isFocusVisible}
+    <PopoverTrigger
+      positionElement={localRef.current ?? undefined}
+      behaviour="stayOnScrollNoPortal"
+      placement="bottom"
     >
-      <label {...labelProps}>{props.label}</label>
-      <HiddenSelect state={state} triggerRef={ref} label={props.label} name={props.name} />
-      <button type="button" {...mergeProps(buttonProps, focusProps)} ref={ref}>
-        <span {...valueProps}>
-          {state.selectedItem ? state.selectedItem.rendered : 'Select an option'}
-        </span>
-      </button>
-    </SelectStyled>
+      <SelectStyled
+        className={className}
+        skin={skin}
+        styles={styles}
+        isOpen={state.isOpen}
+        isFocusVisible={isFocusVisible}
+      >
+        <label {...labelProps}>{props.label}</label>
+        <HiddenSelect state={state} triggerRef={localRef} label={props.label} name={props.name} />
+        <button
+          type="button"
+          ref={mergedRefs}
+          {...mergeProps(buttonProps, buttonSlotProviderProps, focusProps)}
+        >
+          <span {...valueProps}>
+            {state.selectedItem
+              ? state.selectedItem.rendered
+              : props.placeholder ?? 'Select an option'}
+          </span>
+        </button>
+        <Popover isOpen={state.isOpen} onClose={state.close} animationDisabled shouldCloseOnBlur>
+          <ListBox {...menuProps} state={state} />
+        </Popover>
+      </SelectStyled>
+    </PopoverTrigger>
   );
 };
 
-Select.Item = Item;
+const SelectWithRef = forwardRef(Select) as CompoundComponent;
+
+SelectWithRef.Item = Item;
+
+export { SelectWithRef as Select };
