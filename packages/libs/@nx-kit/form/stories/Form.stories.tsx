@@ -120,6 +120,43 @@ export const Default = () => {
                   </Form.FieldWrapper>
                 </Flex>
               </div>
+
+              <div>
+                <Flex
+                  gap={{ xs: '0px', sm: '15px' }}
+                  flexDirection={{ xs: 'column', sm: 'row' }}
+                  alignItems={{ xs: 'normal', sm: 'baseline' }}
+                >
+                  <Form.FieldWrapper>
+                    <Form.Label styles={{ width: { xs: '100%', sm: '20%' } }}>
+                      Native select test
+                    </Form.Label>
+
+                    <Flex flexType="none" flex={1}>
+                      {inside && (
+                        <Form.Input
+                          name="test3"
+                          field={
+                            <select>
+                              {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+                              <option />
+                              <option>value 1</option>
+                              <option>value 2</option>
+                            </select>
+                          }
+                          validation={{
+                            required: { value: true, message: 'The field is required' },
+                          }}
+                        />
+                      )}
+                      <div>
+                        <Form.Error name="test3" styles={{ color: 'brandDanger500' }} />
+                      </div>
+                    </Flex>
+                  </Form.FieldWrapper>
+                </Flex>
+              </div>
+
               <div>
                 <Flex
                   gap={{ xs: '0px', sm: '15px' }}
