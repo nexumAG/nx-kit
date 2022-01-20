@@ -11,6 +11,7 @@ import { checkbox } from './components/checkbox';
 import { accordion } from './components/accordion';
 import { tabs } from './components/tabs';
 import { meter } from './components/meter';
+import { select } from './components/select';
 
 export const theme: Theme = {
   global: {
@@ -150,5 +151,6 @@ export const theme: Theme = {
     accordion,
     tabs,
     meter,
+    select,
   },
 };

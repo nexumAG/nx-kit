@@ -8,6 +8,8 @@ import { Error } from './Error';
 import { Label } from './Label';
 import { FieldWrapper } from './FieldWrapper';
 import { FormProps, FormContext, OnSubmitData, BaseEvent, OnErrorErrors } from './Form.types';
+// eslint-disable-next-line import/no-cycle
+import { ControlledInput } from './ControlledInput';
 
 const FormReactContext = React.createContext<FormContext>({
   register: () => ({
@@ -46,6 +48,7 @@ export const Form = <FormValues,>({
     setError,
     unregister,
     trigger,
+    control,
   } = useReactHookForm<FormValues>({
     mode,
     reValidateMode,
@@ -64,6 +67,7 @@ export const Form = <FormValues,>({
     setError,
     unregister,
     trigger,
+    control,
   };
 
   const onSubmitCallback = useCallback(
@@ -102,6 +106,7 @@ export const Form = <FormValues,>({
 };
 
 Form.Input = Input;
+Form.ControlledInput = ControlledInput;
 Form.Error = Error;
 Form.Label = Label;
 Form.FieldWrapper = FieldWrapper;

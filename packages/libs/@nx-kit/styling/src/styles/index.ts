@@ -96,6 +96,9 @@ export type TabsSkins<T extends ThemeSkinsTabs> = keyof T['component']['tabs']['
 type ThemeSkinsMeter = ThemeComponentSkinKey<'meter', Theme['component']['meter']['skin']>;
 export type MeterSkins<T extends ThemeSkinsMeter> = keyof T['component']['meter']['skin'];
 
+type ThemeSkinsSelect = ThemeComponentSkinKey<'select', Theme['component']['select']['skin']>;
+export type SelectSkins<T extends ThemeSkinsSelect> = keyof T['component']['select']['skin'];
+
 export type Spacing = {
   marginTop?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginTop']>;
   marginBottom?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginBottom']>;
