@@ -93,6 +93,9 @@ export type AccordionSkins<T extends ThemeSkinsAccordion> =
 type ThemeSkinsTabs = ThemeComponentSkinKey<'tabs', Theme['component']['tabs']['skin']>;
 export type TabsSkins<T extends ThemeSkinsTabs> = keyof T['component']['tabs']['skin'];
 
+type ThemeSkinsMeter = ThemeComponentSkinKey<'meter', Theme['component']['meter']['skin']>;
+export type MeterSkins<T extends ThemeSkinsMeter> = keyof T['component']['meter']['skin'];
+
 export type Spacing = {
   marginTop?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginTop']>;
   marginBottom?: LiteralOrBreakpoints<SpacingKey | CSSProperties['marginBottom']>;
