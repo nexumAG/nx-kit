@@ -21,17 +21,7 @@ export const ListBox = (props: ListBoxProps) => {
   const { listBoxProps } = useListBox(props, state, listBoxRef);
 
   return (
-    <ul
-      {...listBoxProps}
-      ref={listBoxRef}
-      style={{
-        margin: 0,
-        padding: 0,
-        listStyle: 'none',
-        maxHeight: '150px',
-        overflow: 'auto',
-      }}
-    >
+    <ul {...listBoxProps} ref={listBoxRef}>
       {[...state.collection].map((item) => (
         <Option key={item.key} item={item} state={state} />
       ))}
@@ -47,31 +37,18 @@ const Option = ({ item, state }: OptionProps) => {
     ref
   );
 
-  let backgroundColor;
-  let color = 'black';
+  let className;
 
   if (isSelected) {
-    backgroundColor = 'blueviolet';
-    color = 'white';
+    className = 'isSelected';
   } else if (isFocused) {
-    backgroundColor = 'gray';
+    className = 'isFocused';
   } else if (isDisabled) {
-    backgroundColor = 'transparent';
-    color = 'gray';
+    className = 'isDisabled';
   }
 
   return (
-    <li
-      {...optionProps}
-      ref={ref}
-      style={{
-        background: backgroundColor,
-        color,
-        padding: '2px 5px',
-        outline: 'none',
-        cursor: 'pointer',
-      }}
-    >
+    <li {...optionProps} ref={ref} className={className}>
       {item.rendered}
     </li>
   );

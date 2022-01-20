@@ -19,11 +19,17 @@ export type SelectProps = {
   className?: string;
   skin?: SelectSkin;
   styles?: Styles;
-} & AriaSelectProps<object>;
+  hasError?: boolean;
+  slot?: string;
+} & Omit<AriaSelectProps<object>, 'label'>;
 
 export type SelectStyledProps = {
   skin?: SelectSkin;
   styles?: Styles;
   isOpen: boolean;
-  isFocusVisible: boolean;
+  isFocused: boolean;
+  hasError: boolean;
+  isDisabled: boolean;
+  isHovered: boolean;
+  isActive: boolean;
 };

@@ -5,6 +5,7 @@ import { useSelectState } from '@react-stately/select';
 import { useFocusRing } from '@react-aria/focus';
 import { mergeProps } from '@react-aria/utils';
 import { useButton } from '@react-aria/button';
+import { useHover } from '@react-aria/interactions';
 import {
   styled,
   getSpacing,
@@ -34,22 +35,29 @@ const SelectStyled = styled.div<SelectStyledProps>`
   ${getFont};
 `;
 
-const Select = (
-  { className, skin, styles, ...props }: SelectProps,
-  ref?: React.Ref<HTMLElement | null>
-) => {
+const Select = ({ slot, ...rest }: SelectProps, ref?: React.Ref<HTMLElement | null>) => {
+  const {
+    className,
+    skin,
+    styles,
+    hasError = false,
+    ...props
+  } = useSlotProps<SelectProps>(slot ?? 'field', rest);
+
   const state = useSelectState(props);
 
   const localRef = useRef<HTMLElement>(null);
-  const { labelProps, triggerProps, valueProps, menuProps } = useSelect(props, state, localRef);
+  const { triggerProps, valueProps, menuProps } = useSelect(props, state, localRef);
 
-  const { buttonProps } = useButton(triggerProps, localRef);
+  const { buttonProps, isPressed } = useButton(triggerProps, localRef);
 
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  const buttonSlotProviderProps = useSlotProps<HTMLButtonElement>('button');
-
   const mergedRefs = useCallback(mergeRefs<HTMLElement | null>(ref, localRef), [ref]);
+
+  const { hoverProps, isHovered } = useHover({ isDisabled: props.isDisabled ?? false });
+
+  // TODO: How to get the label text for HiddenSelect?
 
   return (
     <PopoverTrigger
@@ -62,22 +70,27 @@ const Select = (
         skin={skin}
         styles={styles}
         isOpen={state.isOpen}
-        isFocusVisible={isFocusVisible}
+        isFocused={isFocusVisible}
+        hasError={hasError}
+        isDisabled={props.isDisabled ?? false}
+        isHovered={isHovered}
+        isActive={isPressed}
       >
-        <label {...labelProps}>{props.label}</label>
-        <HiddenSelect state={state} triggerRef={localRef} label={props.label} name={props.name} />
-        <button
-          type="button"
-          ref={mergedRefs}
-          {...mergeProps(buttonProps, buttonSlotProviderProps, focusProps)}
-        >
+        <HiddenSelect state={state} triggerRef={localRef} label="" name={props.name} />
+        <button type="button" ref={mergedRefs} {...mergeProps(buttonProps, focusProps, hoverProps)}>
           <span {...valueProps}>
             {state.selectedItem
               ? state.selectedItem.rendered
               : props.placeholder ?? 'Select an option'}
           </span>
         </button>
-        <Popover isOpen={state.isOpen} onClose={state.close} animationDisabled shouldCloseOnBlur>
+        <Popover
+          isOpen={state.isOpen}
+          onClose={state.close}
+          animationDisabled
+          // TODO: https://github.com/adobe/react-spectrum/issues/1379
+          shouldCloseOnBlur={false}
+        >
           <ListBox {...menuProps} state={state} />
         </Popover>
       </SelectStyled>
