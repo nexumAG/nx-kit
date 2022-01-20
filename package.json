@@ -4,7 +4,7 @@
     "packages/**"
   ],
   "resolutions": {
-    "styled-components": "^5"
+    "tslib": "^2.3.1"
   },
   "scripts": {
     "changed": "lerna changed",
@@ -30,13 +30,10 @@
     "gh-pages": "^3.2.3",
     "lerna": "^4.0.0",
     "plop": "^2.7.6",
-    "prettier": "2.4.1",
+    "prettier": "2.5.1",
     "rimraf": "^3.0.2",
     "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.3.1"
   },
-  "dependencies": {},
-  "resolutions": {
-    "tslib": "^2.3.1"
-  }
+  "dependencies": {}
 }

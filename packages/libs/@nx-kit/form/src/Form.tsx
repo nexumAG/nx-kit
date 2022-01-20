@@ -8,6 +8,8 @@ import { Error } from './Error';
 import { Label } from './Label';
 import { FieldWrapper } from './FieldWrapper';
 import { FormProps, FormContext, OnSubmitData, BaseEvent, OnErrorErrors } from './Form.types';
+// eslint-disable-next-line import/no-cycle
+import { ControlledInput } from './ControlledInput';
 
 const FormReactContext = React.createContext<FormContext>({
   register: () => ({
@@ -17,14 +19,11 @@ const FormReactContext = React.createContext<FormContext>({
     name: '',
   }),
   errors: {},
-  // defaultValues: {},
   reset: () => {},
   clearErrors: () => {},
   setError: () => {},
   unregister: () => {},
   trigger: () => new Promise<boolean>((resolve) => resolve(true)),
-  // watch: () => {},
-  // getValues: () => {},
 });
 
 export const useForm = () => useContext(FormReactContext);
@@ -49,6 +48,7 @@ export const Form = <FormValues,>({
     setError,
     unregister,
     trigger,
+    control,
   } = useReactHookForm<FormValues>({
     mode,
     reValidateMode,
@@ -67,6 +67,7 @@ export const Form = <FormValues,>({
     setError,
     unregister,
     trigger,
+    control,
   };
 
   const onSubmitCallback = useCallback(
@@ -89,18 +90,23 @@ export const Form = <FormValues,>({
     [onError]
   );
 
+  const formHandleSubmit = handleSubmit(onSubmitCallback ?? (() => {}), onErrorCallback);
+
   return (
-    <form onSubmit={handleSubmit(onSubmitCallback ?? (() => {}), onErrorCallback)}>
+    <form onSubmit={formHandleSubmit}>
       {/* @ts-ignore */}
       <FormReactContext.Provider value={values}>
-        {/* @ts-ignore */}
-        {typeof children === 'function' ? children(values) : children}
+        {typeof children === 'function'
+          ? // @ts-ignore
+            children({ ...values, handleSubmit: formHandleSubmit })
+          : children}
       </FormReactContext.Provider>
     </form>
   );
 };
 
 Form.Input = Input;
+Form.ControlledInput = ControlledInput;
 Form.Error = Error;
 Form.Label = Label;
 Form.FieldWrapper = FieldWrapper;

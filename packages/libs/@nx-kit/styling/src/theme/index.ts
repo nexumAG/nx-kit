@@ -89,5 +89,17 @@ export type Theme = {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };
     };
+    meter: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      skin: {
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      };
+    };
+    select: {
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      skin: {
+        [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
+      };
+    };
   };
 };
