@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/select",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,13 +22,13 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.1"
+    "@nx-kit/dependencies-dev": "^0.1.10"
   },
   "dependencies": {
-    "@nx-kit/overlay": "^0.1.25",
-    "@nx-kit/slot": "^0.1.10",
-    "@nx-kit/styling": "^0.1.18",
-    "@nx-kit/utils": "^0.1.8",
+    "@nx-kit/overlay": "^0.1.26",
+    "@nx-kit/slot": "^0.1.11",
+    "@nx-kit/styling": "^0.1.19",
+    "@nx-kit/utils": "^0.1.9",
     "@react-aria/button": "^3.3.4",
     "@react-aria/focus": "^3.5.0",
     "@react-aria/interactions": "^3.7.0",

@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/layout",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,9 +22,9 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.1"
+    "@nx-kit/dependencies-dev": "^0.1.10"
   },
   "dependencies": {
-    "@nx-kit/styling": "^0.1.18"
+    "@nx-kit/styling": "^0.1.19"
   }
 }
