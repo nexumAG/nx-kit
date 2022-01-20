@@ -47,7 +47,6 @@ export const Meter = ({
   styles,
   ...props
 }: MeterProps) => {
-
   const clampedValue = Math.max(Math.min(value, props.maxValue), props.minValue);
   const { meterProps, labelProps } = useMeter({
     ...props,
@@ -56,13 +55,7 @@ export const Meter = ({
     'aria-describedby': describedBy,
   });
 
-  const {
-    maxValue,
-    minValue,
-    valueLabel,
-    showValueLabel,
-    label,
-  } = props;
+  const { maxValue, minValue, valueLabel, showValueLabel, label } = props;
 
   const currentProgress = (clampedValue - minValue) / (maxValue - minValue);
 
@@ -72,21 +65,20 @@ export const Meter = ({
 
   return (
     <MeterStyled skin={skin} styles={styles} className={className} {...meterProps}>
-      {
-        label && (
-          <span className="label" {...labelProps}>
-            {label}
-          </span>
-        )
-      }
-      <div className="bar" >
-        <div className="value" style={{ transform: `scaleX(${currentProgress})`, backgroundColor: progressColor }} />
-      </div>
-      {showValueLabel &&
-        <span className="valueLabel">
-          {valueLabel ?? meterProps['aria-valuetext']}
+      {label && (
+        <span className="label" {...labelProps}>
+          {label}
         </span>
-      }
+      )}
+      <div className="bar">
+        <div
+          className="value"
+          style={{ transform: `scaleX(${currentProgress})`, backgroundColor: progressColor }}
+        />
+      </div>
+      {showValueLabel && (
+        <span className="valueLabel">{valueLabel ?? meterProps['aria-valuetext']}</span>
+      )}
     </MeterStyled>
   );
 };

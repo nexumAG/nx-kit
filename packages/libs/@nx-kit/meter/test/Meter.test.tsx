@@ -49,16 +49,26 @@ describe('Meter component', () => {
       ],
     };
     const div = document.createElement('div');
-    ReactDOM.render(<ThemeProvider theme={theme}>
-      <Meter label="Step" minValue={0} maxValue={5} value={2} showValueLabel colors={colors} />
-    </ThemeProvider>, div);
+    ReactDOM.render(
+      <ThemeProvider theme={theme}>
+        <Meter label="Step" minValue={0} maxValue={5} value={2} showValueLabel colors={colors} />
+      </ThemeProvider>,
+      div
+    );
     ReactDOM.unmountComponentAtNode(div);
   });
   it('renders custom value label', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <ThemeProvider theme={theme}>
-        <Meter label="Left to right" minValue={0} maxValue={100} value={66} showValueLabel valueLabel={<strong>Step 4 / 5</strong>} />
+        <Meter
+          label="Left to right"
+          minValue={0}
+          maxValue={100}
+          value={66}
+          showValueLabel
+          valueLabel={<strong>Step 4 / 5</strong>}
+        />
       </ThemeProvider>,
       div
     );

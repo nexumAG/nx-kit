@@ -90,12 +90,7 @@ export type Theme = {
       };
     };
     meter: {
-      global?: {
-        wrapper: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
-        bar: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
-        value: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
-        colors: { color: string; progress: number }[];
-      };
+      global?: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       skin: {
         [key: string]: string | FlattenInterpolation<ThemedStyledProps<any, Theme>>;
       };

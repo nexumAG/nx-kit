@@ -1,4 +1,14 @@
-import { Color, DefaultTheme, FlexItem, Font, Layout, Position, Spacing, MeterSkins, Typo } from '@nx-kit/styling';
+import {
+  Color,
+  DefaultTheme,
+  FlexItem,
+  Font,
+  Layout,
+  Position,
+  Spacing,
+  MeterSkins,
+  Typo,
+} from '@nx-kit/styling';
 import { ReactNode } from 'react';
 
 export type MeterColor = {
@@ -11,7 +21,6 @@ export type MeterColors = {
   stops: MeterColor[];
 };
 
-
 // @ts-ignore
 export type MeterSkin = MeterSkins<DefaultTheme>;
 type Styles = Spacing & FlexItem & Position & Color & Layout & Font & Typo;
@@ -20,7 +29,6 @@ export type MeterStyledProps = {
   skin?: MeterSkin;
   styles?: Styles;
 };
-
 
 export type MeterProps = {
   className?: string;

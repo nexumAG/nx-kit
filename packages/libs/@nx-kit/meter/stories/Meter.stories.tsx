@@ -9,7 +9,9 @@ export default {
 };
 
 export const Default = () => <Meter minValue={0} maxValue={100} value={70} />;
-export const Rectangular  = () => <Meter minValue={0} maxValue={100} value={70} skin="rectangular" />;
+export const Rectangular = () => (
+  <Meter minValue={0} maxValue={100} value={70} skin="rectangular" />
+);
 
 export const Controlled = () => {
   const [value, setValue] = useState(70);
@@ -50,8 +52,19 @@ export const CustomColors = () => {
   };
   return (
     <>
-      <Meter label="Step" minValue={0} maxValue={5} value={value} showValueLabel valueLabel={`${value} of 5`} colors={colors} />
-      <TextField inputMode="numeric" onChange={(e: any) => setValue(Math.floor(Number(e.target.value)))} />
+      <Meter
+        label="Step"
+        minValue={0}
+        maxValue={5}
+        value={value}
+        showValueLabel
+        valueLabel={`${value} of 5`}
+        colors={colors}
+      />
+      <TextField
+        inputMode="numeric"
+        onChange={(e: any) => setValue(Math.floor(Number(e.target.value)))}
+      />
     </>
   );
 };
@@ -63,7 +76,14 @@ export const RightToLeft = () => (
 );
 
 export const CustomValueLabel = () => (
-  <Meter label="Left to right" minValue={0} maxValue={100} value={66} showValueLabel valueLabel={<strong>Step 4 / 5</strong>} />
+  <Meter
+    label="Left to right"
+    minValue={0}
+    maxValue={100}
+    value={66}
+    showValueLabel
+    valueLabel={<strong>Step 4 / 5</strong>}
+  />
 );
 
 export const ExternalLabel = () => (
@@ -71,4 +91,4 @@ export const ExternalLabel = () => (
     <div id="meterLabel">Label for meter</div>
     <Meter labeledBy="meterLabel" minValue={0} maxValue={100} value={66} showValueLabel />
   </>
-)
+);
