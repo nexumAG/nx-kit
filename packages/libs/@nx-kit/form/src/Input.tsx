@@ -6,7 +6,7 @@ import { InputProps } from './Input.types';
 import { useForm } from './Form';
 
 const Input = (
-  { name, field: Field, validation }: InputProps,
+  { name, field: Field, validation, passHasError = true }: InputProps,
   ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement | null>
 ) => {
   const { register, unregister, errors, defaultValues, getValues } = useForm();
@@ -40,7 +40,7 @@ const Input = (
     defaultValue,
     name: registerName,
     ref: refs,
-    hasError: name && errors?.[name],
+    hasError: passHasError ? name && errors?.[name] : undefined,
   });
 };
 

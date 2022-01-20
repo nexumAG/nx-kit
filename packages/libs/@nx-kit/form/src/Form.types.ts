@@ -1,5 +1,5 @@
 import React from 'react';
-import { DefaultValues, Resolver, UseFormRegister } from 'react-hook-form';
+import { Control, DefaultValues, Resolver, UseFormRegister } from 'react-hook-form';
 import { FieldErrors } from 'react-hook-form/dist/types/errors';
 import {
   UnpackNestedValue,
@@ -62,6 +62,7 @@ export type FormContext<
   unregister: UseFormUnregister<FormValues>;
   register: UseFormRegister<FormValues>;
   handleSubmit?: (e?: React.BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>;
+  control?: Control<FormValues, object>;
   // formState: FormState<FormValues>;
   // setValue: UseFormSetValue<FormValues>;
   // control: Control<FormValues, FormContext>;

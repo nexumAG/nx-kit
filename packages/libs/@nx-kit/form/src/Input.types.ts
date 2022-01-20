@@ -5,4 +5,5 @@ export type InputProps = {
   name: string;
   field: React.ReactElement<InputInterface>;
   validation?: any;
+  passHasError?: boolean;
 };
