@@ -61,7 +61,9 @@ export const Meter = ({
 
   const colorReference = colors.absolute ? clampedValue : currentProgress;
   const sortedColors = colors.stops.sort((a, b) => b.value - a.value);
-  const progressColor = sortedColors.find(({ value }) => colorReference >= value)?.color;
+  const progressColor = sortedColors.find(
+    ({ value: colorValue }) => colorReference >= colorValue
+  )?.color;
 
   return (
     <MeterStyled skin={skin} styles={styles} className={className} {...meterProps}>

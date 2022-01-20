@@ -1,4 +1,3 @@
-import { Theme, ThemeProvider } from '@nx-kit/styling';
 import React, { useState } from 'react';
 import { TextField } from '../../textfield/src';
 import { Meter } from '../src';
