@@ -23,10 +23,9 @@ import { mergeRefs } from '@nx-kit/utils';
 import { SelectProps, SelectStyledProps } from './Select.types';
 import { ListBox } from './ListBox';
 
-interface CompoundComponent
-  extends React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<HTMLElement>> {
+type CompoundComponent = {
   Item: typeof Item;
-}
+} & React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<HTMLElement>>;
 
 const SelectStyled = styled.div<SelectStyledProps>`
   ${({ theme }) => theme?.component?.select?.global};

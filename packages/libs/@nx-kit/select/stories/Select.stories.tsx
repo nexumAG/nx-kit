@@ -4,6 +4,9 @@ import { Select } from '../src';
 export default {
   title: '@nx-kit/select',
   component: Select,
+  subcomponents: {
+    'Select.Item': Select.Item,
+  },
 };
 
 export const Default = () => (

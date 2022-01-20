@@ -16,6 +16,7 @@ export default {
     'Form.FieldWrapper': Form.FieldWrapper,
     'Form.Label': Form.Label,
     'Form.Input': Form.Input,
+    'Form.ControlledInput': Form.ControlledInput,
     'Form.Error': Form.Error,
   },
 };
