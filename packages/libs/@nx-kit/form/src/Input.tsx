@@ -32,16 +32,18 @@ const Input = (
 
   const defaultValue = get(defaultValues, name);
 
-  // console.log(name, getValues());
-
-  return React.cloneElement(Field, {
+  const props = {
     onChange,
     onBlur,
     defaultValue,
     name: registerName,
     ref: refs,
-    hasError: passHasError ? name && errors?.[name] : undefined,
-  });
+  };
+
+  return React.cloneElement(
+    Field,
+    passHasError ? { ...props, hasError: name && errors?.[name] } : props
+  );
 };
 
 const InputWithRef = forwardRef(Input);

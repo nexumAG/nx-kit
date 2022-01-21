@@ -99,7 +99,16 @@ export const select = {
           `};
       }
 
-      & div[role='dialog'] {
+      button::before {
+        position: absolute;
+        right: 14px;
+        content: '▼';
+        color: ${({ theme }) => theme.global.color.gray300};
+      }
+
+      .popover {
+        position: absolute;
+        z-index: 10000;
         padding: 16px;
         margin-top: 8px;
         box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.08), 0px 4px 48px rgba(0, 0, 0, 0.08);
@@ -122,6 +131,7 @@ export const select = {
       }
 
       li {
+        position: relative;
         padding: 16px;
         outline: none;
         cursor: pointer;
@@ -134,6 +144,13 @@ export const select = {
 
       li.isSelected {
         background-color: ${({ theme }) => theme.global.color.primary600};
+        color: ${({ theme }) => theme.global.color.white};
+      }
+
+      li.isSelected::after {
+        position: absolute;
+        right: 14px;
+        content: '✓';
         color: ${({ theme }) => theme.global.color.white};
       }
     `,

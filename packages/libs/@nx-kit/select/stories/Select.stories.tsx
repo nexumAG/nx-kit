@@ -23,6 +23,7 @@ export const Default = () => (
         placeholder="Select an option"
         styles={{ marginBottom: 50 }}
         name="test"
+        aria-label="test"
       >
         <Select.Item key="item1" textValue="item1">
           Item 1
