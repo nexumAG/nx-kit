@@ -17,13 +17,13 @@ import {
   getTypo,
   compose,
 } from '@nx-kit/styling';
-import { Popover, PopoverTrigger } from '@nx-kit/overlay';
 import { useSlotProps } from '@nx-kit/slot';
 import { mergeRefs } from '@nx-kit/utils';
 import { SelectProps, SelectStyledProps } from './Select.types';
 import { ListBox } from './ListBox';
+import { Popover } from './Popover';
 
-type CompoundComponent = {
+export type CompoundComponent = {
   Item: typeof Item;
 } & React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<HTMLElement>>;
 
@@ -59,41 +59,31 @@ const Select = ({ slot, ...rest }: SelectProps, ref?: React.Ref<HTMLElement | nu
   // TODO: How to get the label text for HiddenSelect?
 
   return (
-    <PopoverTrigger
-      positionElement={localRef.current ?? undefined}
-      behaviour="stayOnScrollNoPortal"
-      placement="bottom"
+    <SelectStyled
+      className={className}
+      skin={skin}
+      styles={styles}
+      isOpen={state.isOpen}
+      isFocused={isFocusVisible}
+      hasError={hasError}
+      isDisabled={props.isDisabled ?? false}
+      isHovered={isHovered}
+      isActive={isPressed}
     >
-      <SelectStyled
-        className={className}
-        skin={skin}
-        styles={styles}
-        isOpen={state.isOpen}
-        isFocused={isFocusVisible}
-        hasError={hasError}
-        isDisabled={props.isDisabled ?? false}
-        isHovered={isHovered}
-        isActive={isPressed}
-      >
-        <HiddenSelect state={state} triggerRef={localRef} label="" name={props.name} />
-        <button type="button" ref={mergedRefs} {...mergeProps(buttonProps, focusProps, hoverProps)}>
-          <span {...valueProps}>
-            {state.selectedItem
-              ? state.selectedItem.rendered
-              : props.placeholder ?? 'Select an option'}
-          </span>
-        </button>
-        <Popover
-          isOpen={state.isOpen}
-          onClose={state.close}
-          animationDisabled
-          // TODO: https://github.com/adobe/react-spectrum/issues/1379
-          shouldCloseOnBlur={false}
-        >
+      <HiddenSelect state={state} triggerRef={localRef} label="" name={props.name} />
+      <button type="button" ref={mergedRefs} {...mergeProps(buttonProps, focusProps, hoverProps)}>
+        <span {...valueProps}>
+          {state.selectedItem
+            ? state.selectedItem.rendered
+            : props.placeholder ?? 'Select an option'}
+        </span>
+      </button>
+      {state.isOpen && (
+        <Popover isOpen={state.isOpen} onClose={state.close}>
           <ListBox {...menuProps} state={state} />
         </Popover>
-      </SelectStyled>
-    </PopoverTrigger>
+      )}
+    </SelectStyled>
   );
 };
 

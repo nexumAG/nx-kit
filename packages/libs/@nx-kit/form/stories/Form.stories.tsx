@@ -191,12 +191,8 @@ export const Default = () => {
                             onSelectionChange={onChange}
                             hasError={hasError}
                           >
-                            <Select.Item key="item1" textValue="item1">
-                              Item 1
-                            </Select.Item>
-                            <Select.Item key="item2" textValue="item2">
-                              Item 2
-                            </Select.Item>
+                            <Select.Item key="item1">Item 1</Select.Item>
+                            <Select.Item key="item2">Item 2</Select.Item>
                           </Select>
                         )}
                         validation={{

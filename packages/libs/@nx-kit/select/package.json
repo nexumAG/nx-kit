@@ -25,7 +25,6 @@
     "@nx-kit/dependencies-dev": "^0.1.10"
   },
   "dependencies": {
-    "@nx-kit/overlay": "^0.1.26",
     "@nx-kit/slot": "^0.1.11",
     "@nx-kit/styling": "^0.1.19",
     "@nx-kit/utils": "^0.1.9",
@@ -33,6 +32,7 @@
     "@react-aria/focus": "^3.5.0",
     "@react-aria/interactions": "^3.7.0",
     "@react-aria/listbox": "^3.4.0",
+    "@react-aria/overlays": "^3.7.3",
     "@react-aria/select": "^3.6.0",
     "@react-aria/utils": "^3.11.0",
     "@react-stately/collections": "^3.3.4",
