@@ -13,11 +13,7 @@ export const TableCell = ({ cell, state }: TableCellProps) => {
   return (
     <td
       {...mergeProps(gridCellProps, focusProps)}
-      style={{
-        padding: '5px 10px',
-        outline: isFocusVisible ? '2px solid orange' : 'none',
-        cursor: 'default',
-      }}
+      className={isFocusVisible ? 'isFocused' : undefined}
       ref={ref}
     >
       {cell.rendered}

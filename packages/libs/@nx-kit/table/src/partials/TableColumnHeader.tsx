@@ -8,32 +8,27 @@ export const TableColumnHeader = ({ column, state }: TableColumnHeaderProps) => 
   const ref = useRef(null);
   const { columnHeaderProps } = useTableColumnHeader({ node: column }, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
-  const arrowIcon = state.sortDescriptor?.direction === 'ascending' ? '▲' : '▼';
+
+  const classes = [];
+  const classesSpan = [];
+
+  if (column.colspan > 1) classes.push('colspan');
+  if (isFocusVisible) classes.push('isFocused');
+
+  if (column.props?.allowsSorting && state.sortDescriptor?.direction) {
+    classesSpan.push(state.sortDescriptor?.direction);
+    classesSpan.push(state.sortDescriptor?.column === column.key ? 'visible' : 'hidden');
+  }
 
   return (
     <th
       {...mergeProps(columnHeaderProps, focusProps)}
       colSpan={column.colspan}
-      style={{
-        textAlign: column.colspan > 1 ? 'center' : 'left',
-        padding: '5px 10px',
-        outline: isFocusVisible ? '2px solid orange' : 'none',
-        cursor: 'default',
-      }}
+      className={classes.join(' ')}
       ref={ref}
     >
       {column.rendered}
-      {column.props.allowsSorting && (
-        <span
-          aria-hidden="true"
-          style={{
-            padding: '0 2px',
-            visibility: state.sortDescriptor?.column === column.key ? 'visible' : 'hidden',
-          }}
-        >
-          {arrowIcon}
-        </span>
-      )}
+      {column.props?.allowsSorting && <span aria-hidden="true" className={classesSpan.join(' ')} />}
     </th>
   );
 };

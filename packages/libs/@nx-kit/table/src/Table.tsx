@@ -1,7 +1,18 @@
 import React, { useRef } from 'react';
 import { useTable } from '@react-aria/table';
 import { Cell, Column, Row, TableBody, TableHeader, useTableState } from '@react-stately/table';
-import { TableProps } from './Table.types';
+import {
+  compose,
+  getColor,
+  getFlexItem,
+  getFont,
+  getLayout,
+  getPosition,
+  getSpacing,
+  getTypo,
+  styled,
+} from '@nx-kit/styling';
+import { TableProps, TableStyledProps } from './Table.types';
 import { TableRowGroup } from './partials/TableRowGroup';
 import { TableHeaderRow } from './partials/TableHeaderRow';
 import { TableSelectAllCell } from './partials/TableSelectAllCell';
@@ -10,7 +21,14 @@ import { TableRow } from './partials/TableRow';
 import { TableCheckboxCell } from './partials/TableCheckboxCell';
 import { TableCell } from './partials/TableCell';
 
-export const Table = <T extends object>({ className, ...props }: TableProps<T>) => {
+const TableStyled = styled.table<TableStyledProps>`
+  ${({ theme }) => theme?.component?.table?.global}
+  ${({ theme, skin }) => skin && theme?.component?.table?.skin?.[skin]};
+  ${compose(getSpacing, getFlexItem, getPosition, getColor, getLayout, getTypo)}
+  ${getFont};
+`;
+
+export const Table = <T extends object>({ className, skin, styles, ...props }: TableProps<T>) => {
   const { selectionMode, selectionBehavior } = props;
   const state = useTableState({
     ...props,
@@ -22,17 +40,12 @@ export const Table = <T extends object>({ className, ...props }: TableProps<T>) 
   const { gridProps } = useTable(props, state, ref);
 
   return (
-    <table className={className} {...gridProps} ref={ref} style={{ borderCollapse: 'collapse' }}>
-      <TableRowGroup
-        type="thead"
-        style={{
-          borderBottom: '2px solid var(--spectrum-global-color-gray-800)',
-        }}
-      >
+    <TableStyled className={className} skin={skin} styles={styles} {...gridProps} ref={ref}>
+      <TableRowGroup type="thead">
         {collection.headerRows.map((headerRow) => (
           <TableHeaderRow key={headerRow.key} item={headerRow} state={state}>
             {[...headerRow.childNodes].map((column) =>
-              column.props.isSelectionCell ? (
+              column.props?.isSelectionCell ? (
                 <TableSelectAllCell key={column.key} column={column} state={state} />
               ) : (
                 <TableColumnHeader key={column.key} column={column} state={state} />
@@ -54,7 +67,7 @@ export const Table = <T extends object>({ className, ...props }: TableProps<T>) 
           </TableRow>
         ))}
       </TableRowGroup>
-    </table>
+    </TableStyled>
   );
 };
 

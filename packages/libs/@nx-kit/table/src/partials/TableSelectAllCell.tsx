@@ -17,7 +17,7 @@ export const TableSelectAllCell = ({ column, state }: TableSelectAllCellProps) =
 
   return (
     <th {...columnHeaderProps} ref={ref}>
-      {state.selectionManager.selectionMode === 'single' ? (
+      {isSingleSelectionMode ? (
         <VisuallyHidden>{inputProps['aria-label']}</VisuallyHidden>
       ) : (
         <input {...inputProps} ref={inputRef} />

@@ -17,22 +17,15 @@ export const TableRow = ({ item, children, state }: TableRowProps) => {
   );
   const { isFocusVisible, focusProps } = useFocusRing();
 
+  const classes = [];
+
+  if (isSelected) classes.push('isSelected');
+  if (isPressed) classes.push('isPressed');
+  if (item.index % 2) classes.push('odd');
+  if (isFocusVisible) classes.push('isFocused');
+
   return (
-    <tr
-      style={{
-        background: isSelected
-          ? 'blueviolet'
-          : isPressed
-          ? 'var(--spectrum-global-color-gray-400)'
-          : item.index % 2
-          ? 'var(--spectrum-alias-highlight-hover)'
-          : 'none',
-        color: isSelected ? 'white' : undefined,
-        outline: isFocusVisible ? '2px solid orange' : 'none',
-      }}
-      {...mergeProps(rowProps, focusProps)}
-      ref={ref}
-    >
+    <tr className={classes.join(' ')} {...mergeProps(rowProps, focusProps)} ref={ref}>
       {children}
     </tr>
   );
