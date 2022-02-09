@@ -1,0 +1,41 @@
+{
+  "name": "@nx-kit/table",
+  "repository": "github:nexumAG/nx-kit",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/es/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint . --ext .ts,.tsx",
+    "build": "rollup -c rollup.config.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0-0 || ^17.0.0-0",
+    "react-dom": "^16.8.0-0 || ^17.0.0-0"
+  },
+  "devDependencies": {
+    "@nx-kit/dependencies-dev": "^0.1.1"
+  },
+  "dependencies": {
+    "@nx-kit/styling": "^0.1.19",
+    "@react-aria/checkbox": "^3.2.3",
+    "@react-aria/focus": "^3.5.0",
+    "@react-aria/grid": "^3.2.0",
+    "@react-aria/table": "^3.2.0",
+    "@react-aria/utils": "^3.11.0",
+    "@react-aria/visually-hidden": "^3.2.3",
+    "@react-stately/data": "^3.4.3",
+    "@react-stately/table": "^3.1.0",
+    "@react-stately/toggle": "^3.2.3",
+    "@react-stately/virtualizer": "^3.1.6",
+    "@react-types/shared": "^3.10.1"
+  }
+}
