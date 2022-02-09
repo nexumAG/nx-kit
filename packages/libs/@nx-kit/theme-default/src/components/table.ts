@@ -87,6 +87,10 @@ export const table = {
           border-radius: 16px;
           position: relative;
 
+          //&.odd {
+          //  background-color: #f0f0f0;
+          //}
+
           &:focus {
             outline: none;
           }
