@@ -14,6 +14,7 @@ export const TableColumnHeader = ({ column, state }: TableColumnHeaderProps) => 
 
   if (column.colspan > 1) classes.push('colspan');
   if (isFocusVisible) classes.push('isFocused');
+  if (column?.props?.allowsSorting) classes.push('isSortable');
 
   if (column?.props?.allowsSorting && state.sortDescriptor?.direction) {
     classesSpan.push(state.sortDescriptor?.direction);

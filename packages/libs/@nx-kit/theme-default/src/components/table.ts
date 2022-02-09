@@ -13,8 +13,6 @@ export const table = {
       }
 
       thead {
-        margin-bottom: 15px;
-
         tr {
           th {
             background: #f9f9f9;
@@ -28,6 +26,20 @@ export const table = {
             color: #77757f;
             margin: 0;
             flex: none;
+
+            position: relative;
+
+            &:focus {
+              outline: none;
+            }
+
+            &.isFocused {
+              ${({ theme }) => theme.global.focusRing};
+            }
+
+            &.isSortable {
+              cursor: pointer;
+            }
 
             &:first-of-type {
               padding-left: 16px;
@@ -73,32 +85,34 @@ export const table = {
         tr {
           height: 56px;
           border-radius: 16px;
+          position: relative;
+
+          &:focus {
+            outline: none;
+          }
 
           &.isFocused {
-            outline: none;
-            box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.08), 0px 4px 48px rgba(0, 0, 0, 0.08);
+            ${({ theme }) => theme.global.focusRing};
           }
 
           &.isSelected {
-            color: white;
-            background: blueviolet;
-
+            box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.08), 0px 4px 48px rgba(0, 0, 0, 0.08);
             &.isPressed {
-              background: mediumpurple;
-
-              &.odd {
-                background: navajowhite;
-              }
+              box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08), 0px 4px 48px rgba(0, 0, 0, 0.08);
             }
           }
 
           td {
             font-weight: normal;
             font-size: 14px;
+            position: relative;
+
+            &:focus {
+              outline: none;
+            }
 
             &.isFocused {
-              outline: none;
-              box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.08), 0px 4px 48px rgba(0, 0, 0, 0.08);
+              ${({ theme }) => theme.global.focusRing};
             }
 
             &:first-of-type {

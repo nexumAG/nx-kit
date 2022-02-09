@@ -20,7 +20,39 @@ export default {
   },
 };
 
-export const Default = () => {
+export const Default = () => (
+  <Table aria-label="Basic data" skin="default">
+    <Table.Header>
+      <Table.Column>Name</Table.Column>
+      <Table.Column>Type</Table.Column>
+      <Table.Column>Level</Table.Column>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row key="1">
+        <Table.Cell>Charizard</Table.Cell>
+        <Table.Cell>Fire, Flying</Table.Cell>
+        <Table.Cell>67</Table.Cell>
+      </Table.Row>
+      <Table.Row key="2">
+        <Table.Cell>Blastoise</Table.Cell>
+        <Table.Cell>Water</Table.Cell>
+        <Table.Cell>56</Table.Cell>
+      </Table.Row>
+      <Table.Row key="3">
+        <Table.Cell>Venusaur</Table.Cell>
+        <Table.Cell>Grass, Poison</Table.Cell>
+        <Table.Cell>83</Table.Cell>
+      </Table.Row>
+      <Table.Row key="4">
+        <Table.Cell>Pikachu</Table.Cell>
+        <Table.Cell>Electric</Table.Cell>
+        <Table.Cell>100</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
+);
+
+export const DynamicData = () => {
   const rows = [
     { id: 1, first: 'Sam', last: 'Smith', age: 36, birthday: 'May 3' },
     { id: 2, first: 'Julia', last: 'Jones', age: 24, birthday: 'February 10' },
@@ -35,12 +67,12 @@ export const Default = () => {
   ];
 
   return (
-    <Table aria-label="Table with selection">
+    <Table skin="default" aria-label="Table with dynamic data" selectionMode="single">
       <Table.Header columns={columns}>
         {(column) => <Table.Column>{column.name}</Table.Column>}
       </Table.Header>
       <Table.Body items={rows}>
-        {(item) => (
+        {(item: any) => (
           <Table.Row>{(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}</Table.Row>
         )}
       </Table.Body>
@@ -75,16 +107,16 @@ export const NestedColumn = () => {
   ];
 
   return (
-    <Table skin="default" aria-label="Table with selection">
+    <Table skin="default" aria-label="Table with nested columns">
       <Table.Header columns={columns}>
-        {(column) => (
+        {(column: any) => (
           <Table.Column isRowHeader={column.isRowHeader} childColumns={column.children}>
             {column.name}
           </Table.Column>
         )}
       </Table.Header>
       <Table.Body items={rows}>
-        {(item) => (
+        {(item: any) => (
           <Table.Row>{(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}</Table.Row>
         )}
       </Table.Body>
@@ -106,10 +138,10 @@ export const AsyncSortTable = () => {
 
     async sort({ items, sortDescriptor }) {
       return {
-        items: items.sort((a, b) => {
-          const first = a[sortDescriptor.column];
-          const second = b[sortDescriptor.column];
-          let cmp = (parseInt(first) || first) < (parseInt(second) || second) ? -1 : 1;
+        items: items.sort((a: any, b: any) => {
+          const first = a[sortDescriptor.column as any];
+          const second = b[sortDescriptor.column as any];
+          let cmp = (parseInt(first, 10) || first) < (parseInt(second, 10) || second) ? -1 : 1;
           if (sortDescriptor.direction === 'descending') {
             cmp *= -1;
           }
@@ -121,7 +153,7 @@ export const AsyncSortTable = () => {
 
   return (
     <Table
-      aria-label="Example table with client side sorting"
+      aria-label="Table with sorting"
       sortDescriptor={list.sortDescriptor}
       onSortChange={list.sort}
       skin="default"
@@ -136,12 +168,10 @@ export const AsyncSortTable = () => {
         <Table.Column key="mass" allowsSorting>
           Mass
         </Table.Column>
-        <Table.Column key="birth_year" allowsSorting>
-          Birth Year
-        </Table.Column>
+        <Table.Column key="birth_year">Birth Year</Table.Column>
       </Table.Header>
       <Table.Body items={list.items}>
-        {(item) => (
+        {(item: any) => (
           <Table.Row key={item.name}>
             {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
           </Table.Row>
