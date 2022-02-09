@@ -13,14 +13,42 @@ export default {
     'Table.Header': Table.Header,
   },
   argTypes: {
-    variant: {
-      options: ['primary', 'secondary'],
+    selectionMode: {
+      options: ['multiple', 'single'],
       control: { type: 'radio' },
     },
   },
 };
 
 export const Default = () => {
+  const rows = [
+    { id: 1, first: 'Sam', last: 'Smith', age: 36, birthday: 'May 3' },
+    { id: 2, first: 'Julia', last: 'Jones', age: 24, birthday: 'February 10' },
+    { id: 3, first: 'Peter', last: 'Parker', age: 28, birthday: 'September 7' },
+    { id: 4, first: 'Bruce', last: 'Wayne', age: 32, birthday: 'December 18' },
+  ];
+  const columns = [
+    { name: 'First Name', key: 'first' },
+    { name: 'Last Name', key: 'last' },
+    { name: 'Age', key: 'age' },
+    { name: 'Birthday', key: 'birthday' },
+  ];
+
+  return (
+    <Table aria-label="Table with selection">
+      <Table.Header columns={columns}>
+        {(column) => <Table.Column>{column.name}</Table.Column>}
+      </Table.Header>
+      <Table.Body items={rows}>
+        {(item) => (
+          <Table.Row>{(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}</Table.Row>
+        )}
+      </Table.Body>
+    </Table>
+  );
+};
+
+export const NestedColumn = () => {
   const rows = [
     { id: 1, first: 'Sam', last: 'Smith', age: 36, birthday: 'May 3' },
     { id: 2, first: 'Julia', last: 'Jones', age: 24, birthday: 'February 10' },
