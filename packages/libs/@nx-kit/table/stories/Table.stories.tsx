@@ -1,6 +1,5 @@
 import React from 'react';
-import { useAsyncList } from '@react-stately/data';
-import { Table } from '../src';
+import { Table, useAsyncList } from '../src';
 
 export default {
   title: '@nx-kit/table',
