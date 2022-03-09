@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@nx-kit/dependencies-dev": "^0.1.10",
-    "babel-plugin-styled-components": "^1.13.3"
+    "babel-plugin-styled-components": "^2.0.6"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.24",
