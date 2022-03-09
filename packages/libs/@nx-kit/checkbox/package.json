@@ -30,10 +30,10 @@
     "@nx-kit/styling": "^0.1.20",
     "@nx-kit/types": "^0.1.8",
     "@nx-kit/utils": "^0.1.9",
-    "@react-aria/checkbox": "^3.2.3",
-    "@react-aria/focus": "^3.5.0",
-    "@react-aria/utils": "^3.11.0",
-    "@react-aria/visually-hidden": "^3.2.3",
-    "@react-stately/toggle": "^3.2.3"
+    "@react-aria/checkbox": "^3.3.2",
+    "@react-aria/focus": "^3.5.3",
+    "@react-aria/utils": "^3.11.3",
+    "@react-aria/visually-hidden": "^3.2.6",
+    "@react-stately/toggle": "^3.2.6"
   }
 }
