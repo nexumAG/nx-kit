@@ -24,6 +24,6 @@
     "@nx-kit/dependencies-dev": "^0.1.10"
   },
   "dependencies": {
-    "@react-aria/ssr": "^3.1.0"
+    "@react-aria/ssr": "^3.1.2"
   }
 }

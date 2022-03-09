@@ -8,12 +8,12 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@storybook/addon-actions": "6.4.13",
-    "@storybook/addon-essentials": "6.4.13",
-    "@storybook/addon-links": "6.4.13",
+    "@babel/core": "^7.17.5",
+    "@storybook/addon-actions": "6.4.19",
+    "@storybook/addon-essentials": "6.4.19",
+    "@storybook/addon-links": "6.4.19",
     "@storybook/preset-typescript": "^3.0.0",
-    "@storybook/react": "6.4.13",
+    "@storybook/react": "6.4.19",
     "babel-loader": "^8.2.3",
     "fork-ts-checker-webpack-plugin": "^6.5.0",
     "http-server": "^14.1.0",
