@@ -27,7 +27,7 @@ const Input = (
   // register field and merge refs
   const refs = useCallback(
     mergeRefs<HTMLInputElement | HTMLTextAreaElement | null>(ref, registerRef),
-    [ref]
+    [ref, registerRef]
   );
 
   const defaultValue = get(defaultValues, name);
