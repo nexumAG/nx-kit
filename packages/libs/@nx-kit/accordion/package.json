@@ -27,8 +27,8 @@
   "dependencies": {
     "@nx-kit/styling": "^0.1.20",
     "@nx-kit/utils": "^0.1.9",
-    "@react-aria/focus": "^3.5.0",
-    "@react-aria/interactions": "^3.7.0",
-    "@react-aria/utils": "^3.11.0"
+    "@react-aria/focus": "^3.5.3",
+    "@react-aria/interactions": "^3.8.2",
+    "@react-aria/utils": "^3.11.3"
   }
 }

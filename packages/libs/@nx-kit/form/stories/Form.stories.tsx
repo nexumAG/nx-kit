@@ -23,14 +23,26 @@ export default {
 
 type FormValues = {
   test: string;
+  test2: string;
   test3: string;
   test4: string;
   checked: boolean;
-  checked3: [boolean, boolean, boolean];
+  checked2: boolean;
+  checked3: boolean[];
 };
 
 export const Default = () => {
   const [inside, setInside] = useState(true);
+
+  const defaultValues = {
+    test: 'test',
+    test2: '',
+    test3: '',
+    test4: 'item1',
+    checked: true,
+    checked2: false,
+    checked3: [true, false, true],
+  };
 
   return (
     <>
@@ -41,13 +53,7 @@ export const Default = () => {
         onChange={(event) => setInside(event.currentTarget.checked)}
       />
       <Form<FormValues>
-        defaultValues={{
-          test: 'test',
-          test3: '',
-          test4: '',
-          checked: true,
-          checked3: [true, false, true],
-        }}
+        defaultValues={defaultValues}
         mode="all"
         reValidateMode="onChange"
         onSubmit={async (values, _, context) => {
@@ -64,7 +70,7 @@ export const Default = () => {
           console.log('errors', errors);
         }}
       >
-        {({ trigger, handleSubmit, watch }) => (
+        {({ trigger, handleSubmit, watch, reset }) => (
           <>
             <Flex gap="15px" flexDirection="column">
               <div>
@@ -317,6 +323,9 @@ export const Default = () => {
             <button type="submit">Submit</button>
             <button type="button" onClick={handleSubmit}>
               Submit with onClick
+            </button>
+            <button type="button" onClick={() => reset(defaultValues)}>
+              reset
             </button>
           </>
         )}
