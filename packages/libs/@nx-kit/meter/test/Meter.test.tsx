@@ -10,12 +10,12 @@ describe('Meter component', () => {
     ReactDOM.render(
       <ThemeProvider theme={theme}>
         <>
-          <Meter minValue={0} maxValue={100} value={0} />
-          <Meter minValue={0} maxValue={100} value={10} />
-          <Meter minValue={0} maxValue={100} value={49} />
-          <Meter minValue={0} maxValue={100} value={56} />
-          <Meter minValue={0} maxValue={100} value={70} />
-          <Meter minValue={0} maxValue={100} value={100} />
+          <Meter label="meter" minValue={0} maxValue={100} value={0} />
+          <Meter label="meter" minValue={0} maxValue={100} value={10} />
+          <Meter label="meter" minValue={0} maxValue={100} value={49} />
+          <Meter label="meter" minValue={0} maxValue={100} value={56} />
+          <Meter label="meter" minValue={0} maxValue={100} value={70} />
+          <Meter label="meter" minValue={0} maxValue={100} value={100} />
         </>
       </ThemeProvider>,
       div

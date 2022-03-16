@@ -9,7 +9,7 @@ describe('Checkbox component', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <ThemeProvider theme={theme}>
-        <Checkbox ariaLabel="checkbox" />
+        <Checkbox aria-label="checkbox" />
       </ThemeProvider>,
       div
     );
