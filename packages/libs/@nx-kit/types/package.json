@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/types",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -21,6 +21,6 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.10"
+    "@nx-kit/dependencies-dev": "^0.1.11"
   }
 }
