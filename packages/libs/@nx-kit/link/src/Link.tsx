@@ -54,12 +54,20 @@ const Link = ({ slot, ...linkProps }: LinkProps, ref?: React.Ref<HTMLElement | n
 
   const mergedRefs = useCallback(mergeRefs<HTMLElement | null>(ref, localRef), [ref]);
 
+  const classes = props.className ? props.className.split(' ') : [];
+  if (isFocusVisible) {
+    classes.push('isFocused');
+  }
+  if (isHovered) {
+    classes.push('isHovered');
+  }
   return (
     <LinkStyled
       ref={mergedRefs}
       as={elementType}
       isFocused={isFocusVisible}
       isHovered={isHovered}
+      className={classes.join(' ')}
       {...mergeProps(useLinkProps, hoverProps, focusProps, childProps, rest)}
     >
       {linkText}

@@ -39,6 +39,14 @@ const Button = ({ slot, ...buttonProps }: ButtonProps, ref?: React.Ref<HTMLEleme
 
   const mergedRefs = useCallback(mergeRefs<HTMLElement | null>(ref, localRef), [ref]);
 
+  const classes = props.className ? props.className.split(' ') : [];
+  if (isFocusVisible) {
+    classes.push('isFocused');
+  }
+  if (isHovered) {
+    classes.push('isHovered');
+  }
+
   return (
     <ButtonStyled
       ref={mergedRefs}
@@ -47,6 +55,7 @@ const Button = ({ slot, ...buttonProps }: ButtonProps, ref?: React.Ref<HTMLEleme
       isFocused={isFocusVisible}
       isHovered={isHovered}
       isDisabled={isDisabled === true}
+      className={classes.join(' ')}
       {...mergeProps(useButtonProps, hoverProps, focusProps, rest)}
     >
       {children}
