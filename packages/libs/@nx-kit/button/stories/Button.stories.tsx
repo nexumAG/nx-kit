@@ -83,3 +83,20 @@ const ButtonStyled = styled(Button)<ButtonStyledProps>`
 export const ButtonStyledExtended = () => {
   return <ButtonStyled forwardedAs={ButtonStyled}>Press me</ButtonStyled>;
 };
+
+const ButtonWrapper = (props: any) => {
+  // console.log({ props });
+
+  return <Button {...props}>Press me</Button>;
+};
+
+const ButtonWrapperStyled = styled(ButtonWrapper)<ButtonStyledProps>`
+  border: 1px solid black;
+  padding: 20px;
+
+  ${({ isHovered }) => isHovered && `background: red;`}
+`;
+
+export const ButtonWrapperExtended = () => (
+  <ButtonWrapperStyled forwardedAs={ButtonWrapperStyled} />
+);
