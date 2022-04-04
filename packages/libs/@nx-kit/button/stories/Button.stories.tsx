@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from '../src';
+import { styled } from '@nx-kit/styling';
+import { Button, ButtonStyledProps } from '../src';
 
 export default {
   title: '@nx-kit/button',
@@ -71,3 +72,14 @@ export const SecondaryDisabled = () => (
     Press me
   </Button>
 );
+
+const ButtonStyled = styled(Button)<ButtonStyledProps>`
+  border: 1px solid black;
+  padding: 20px;
+
+  ${({ isHovered }) => isHovered && `background: red;`}
+`;
+
+export const ButtonStyledExtended = () => {
+  return <ButtonStyled forwardedAs={ButtonStyled}>Press me</ButtonStyled>;
+};
