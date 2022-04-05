@@ -343,3 +343,78 @@ export const Default = () => {
     </>
   );
 };
+
+type FieldArrayValues = {
+  test: any;
+};
+
+export const FieldArrayTest = () => {
+  return (
+    <Form<FieldArrayValues>
+      mode="onBlur"
+      reValidateMode="onChange"
+      onSubmit={async (values) => {
+        console.log('submit', values);
+      }}
+      onError={async (errors) => {
+        console.log('errors', errors);
+      }}
+    >
+      <Form.FieldArray name="test">
+        {({ fields, append, remove }) => (
+          <>
+            <div>
+              {fields.map((item, index) => (
+                <div key={item.id} style={{ display: 'flex', gap: '10px' }}>
+                  <Form.FieldWrapper>
+                    <div style={{ flex: 1 }}>
+                      <Form.Input
+                        name={`test.${index}.firstName`}
+                        field={<TextField isRequired styles={{ width: '100%' }} />}
+                        validation={{
+                          required: { value: true, message: 'The field is required' },
+                        }}
+                      />
+                      <div>
+                        <Form.Error
+                          name={`test.${index}.firstName`}
+                          styles={{ color: 'brandDanger500' }}
+                        />
+                      </div>
+                    </div>
+                  </Form.FieldWrapper>
+                  <Form.FieldWrapper>
+                    <div style={{ flex: 1 }}>
+                      <Form.Input
+                        name={`test.${index}.lastName`}
+                        field={<TextField isRequired styles={{ width: '100%' }} />}
+                        validation={{
+                          required: { value: true, message: 'The field is required' },
+                        }}
+                      />
+                      <div>
+                        <Form.Error
+                          name={`test.${index}.lastName`}
+                          styles={{ color: 'brandDanger500' }}
+                        />
+                      </div>
+                    </div>
+                  </Form.FieldWrapper>
+                  <button type="button" onClick={() => remove(index)}>
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div>
+              <button type="button" onClick={() => append({})}>
+                Add
+              </button>
+            </div>
+          </>
+        )}
+      </Form.FieldArray>
+      <button type="submit">Submit</button>
+    </Form>
+  );
+};

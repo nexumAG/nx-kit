@@ -16,6 +16,7 @@ import { FieldWrapper } from './FieldWrapper';
 import { FormProps, FormContext, OnSubmitData, BaseEvent, OnErrorErrors } from './Form.types';
 // eslint-disable-next-line import/no-cycle
 import { ControlledInput } from './ControlledInput';
+import { FieldArray } from './FieldArray';
 
 const FormReactContext = React.createContext<FormContext>({
   register: () => ({
@@ -60,6 +61,7 @@ export type CompoundComponent = {
   Error: typeof Error;
   Label: typeof Label;
   FieldWrapper: typeof FieldWrapper;
+  FieldArray: typeof FieldArray;
 } & (<FormValues>(
   props: FormProps<FormValues> & { ref?: React.Ref<FormContext<FormValues>> }
 ) => ReactElement);
@@ -162,3 +164,4 @@ Form.ControlledInput = ControlledInput;
 Form.Error = Error;
 Form.Label = Label;
 Form.FieldWrapper = FieldWrapper;
+Form.FieldArray = FieldArray;

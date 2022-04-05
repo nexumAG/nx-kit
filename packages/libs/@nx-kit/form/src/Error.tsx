@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'react-hook-form';
 import { Text, TextProps } from '@nx-kit/text';
 // eslint-disable-next-line import/no-cycle
 import { useForm } from './Form';
@@ -12,7 +13,7 @@ export type ErrorProps = {
 
 export const Error = ({ className, name, styles, elementType }: ErrorProps) => {
   const { errors } = useForm();
-  const error = errors?.[name];
+  const error = get(errors, name);
 
   // TODO: add role="alert"?
 
