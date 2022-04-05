@@ -1,4 +1,10 @@
-import React, { useCallback, useContext } from 'react';
+import React, {
+  forwardRef,
+  useCallback,
+  useContext,
+  ReactElement,
+  useImperativeHandle,
+} from 'react';
 import { useForm as useReactHookForm } from 'react-hook-form';
 // eslint-disable-next-line import/no-cycle
 import { Input } from './Input';
@@ -28,82 +34,99 @@ const FormReactContext = React.createContext<FormContext>({
 
 export const useForm = () => useContext(FormReactContext);
 
-export const Form = <FormValues,>({
-  children,
-  mode = 'onSubmit',
-  reValidateMode = 'onChange',
-  defaultValues,
-  onSubmit,
-  onError,
-  ...rest
-}: FormProps<FormValues>) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    getValues,
-    reset,
-    clearErrors,
-    setError,
-    unregister,
-    trigger,
-    control,
-  } = useReactHookForm<FormValues>({
-    mode,
-    reValidateMode,
-    defaultValues,
-    ...rest,
-  });
+export type CompoundComponent = {
+  Input: typeof Input;
+  ControlledInput: typeof ControlledInput;
+  Error: typeof Error;
+  Label: typeof Label;
+  FieldWrapper: typeof FieldWrapper;
+} & (<FormValues>(
+  props: FormProps<FormValues> & { ref?: React.Ref<FormContext<FormValues>> }
+) => ReactElement);
 
-  const values: FormContext<FormValues> = {
-    register,
-    errors,
-    defaultValues,
-    reset,
-    watch,
-    getValues,
-    clearErrors,
-    setError,
-    unregister,
-    trigger,
-    control,
-  };
+export const Form = forwardRef(
+  <FormValues,>(
+    {
+      children,
+      mode = 'onSubmit',
+      reValidateMode = 'onChange',
+      defaultValues,
+      onSubmit,
+      onError,
+      ...rest
+    }: FormProps<FormValues>,
+    ref?: React.Ref<FormContext<FormValues>>
+  ) => {
+    const {
+      register,
+      handleSubmit,
+      watch,
+      formState: { errors },
+      getValues,
+      reset,
+      clearErrors,
+      setError,
+      unregister,
+      trigger,
+      control,
+    } = useReactHookForm<FormValues>({
+      mode,
+      reValidateMode,
+      defaultValues,
+      ...rest,
+    });
 
-  const onSubmitCallback = useCallback(
-    (data: OnSubmitData<FormValues>, event?: BaseEvent) => {
-      if (onSubmit) {
-        // @ts-ignore
-        onSubmit(data, event, values);
-      }
-    },
-    [onSubmit]
-  );
+    const values: FormContext<FormValues> = {
+      register,
+      errors,
+      defaultValues,
+      reset,
+      watch,
+      getValues,
+      clearErrors,
+      setError,
+      unregister,
+      trigger,
+      control,
+    };
 
-  const onErrorCallback = useCallback(
-    (_errors: OnErrorErrors<FormValues>, event?: BaseEvent) => {
-      if (onError) {
-        // @ts-ignore
-        onError(_errors, event, values);
-      }
-    },
-    [onError]
-  );
+    useImperativeHandle(ref, () => values, [values]);
 
-  const formHandleSubmit = handleSubmit(onSubmitCallback ?? (() => {}), onErrorCallback);
+    const onSubmitCallback = useCallback(
+      (data: OnSubmitData<FormValues>, event?: BaseEvent) => {
+        if (onSubmit) {
+          // @ts-ignore
+          onSubmit(data, event, values);
+        }
+      },
+      [onSubmit]
+    );
 
-  return (
-    <form onSubmit={formHandleSubmit}>
-      {/* @ts-ignore */}
-      <FormReactContext.Provider value={values}>
-        {typeof children === 'function'
-          ? // @ts-ignore
-            children({ ...values, handleSubmit: formHandleSubmit })
-          : children}
-      </FormReactContext.Provider>
-    </form>
-  );
-};
+    const onErrorCallback = useCallback(
+      (_errors: OnErrorErrors<FormValues>, event?: BaseEvent) => {
+        if (onError) {
+          // @ts-ignore
+          onError(_errors, event, values);
+        }
+      },
+      [onError]
+    );
+
+    const formHandleSubmit = handleSubmit(onSubmitCallback ?? (() => {}), onErrorCallback);
+
+    return (
+      <form onSubmit={formHandleSubmit}>
+        {/* @ts-ignore */}
+        <FormReactContext.Provider value={values}>
+          {typeof children === 'function'
+            ? // @ts-ignore
+              children({ ...values, handleSubmit: formHandleSubmit })
+            : children}
+        </FormReactContext.Provider>
+      </form>
+    );
+  }
+) as unknown as CompoundComponent;
 
 Form.Input = Input;
 Form.ControlledInput = ControlledInput;

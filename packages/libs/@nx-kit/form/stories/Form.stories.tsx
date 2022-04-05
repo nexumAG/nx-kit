@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, useRef } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { TextField } from '@nx-kit/textfield';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -7,7 +7,7 @@ import { Checkbox, CheckboxGroup } from '@nx-kit/checkbox';
 import { Flex } from '@nx-kit/flex';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Select } from '@nx-kit/select';
-import { Form } from '../src';
+import { Form, FormContext } from '../src';
 
 export default {
   title: '@nx-kit/form',
@@ -33,6 +33,7 @@ type FormValues = {
 
 export const Default = () => {
   const [inside, setInside] = useState(true);
+  const formValues = useRef<FormContext<FormValues> | null>(null);
 
   const defaultValues = {
     test: 'test',
@@ -52,10 +53,19 @@ export const Default = () => {
         checked={inside}
         onChange={(event) => setInside(event.currentTarget.checked)}
       />
+      <br />
+      <button
+        type="button"
+        onClick={() => formValues?.current?.reset && formValues?.current?.reset(defaultValues)}
+      >
+        Reset Outside Form
+      </button>
+      <br />
       <Form<FormValues>
         defaultValues={defaultValues}
         mode="all"
         reValidateMode="onChange"
+        ref={formValues}
         onSubmit={async (values, _, context) => {
           console.log('submit', values);
 
