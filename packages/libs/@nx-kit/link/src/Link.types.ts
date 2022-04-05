@@ -34,4 +34,5 @@ export type LinkStyledProps = {
   styles?: Styles;
   isHovered: boolean;
   isFocused: boolean;
+  isPressed: boolean;
 };
