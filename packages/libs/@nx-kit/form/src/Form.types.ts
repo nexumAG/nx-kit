@@ -1,5 +1,12 @@
 import React from 'react';
-import { Control, DefaultValues, Resolver, UseFormRegister } from 'react-hook-form';
+import {
+  Control,
+  DefaultValues,
+  Resolver,
+  UseFormGetFieldState,
+  UseFormRegister,
+  UseFormResetField,
+} from 'react-hook-form';
 import { FieldErrors } from 'react-hook-form/dist/types/errors';
 import {
   UnpackNestedValue,
@@ -10,6 +17,9 @@ import {
   UseFormTrigger,
   UseFormUnregister,
   UseFormWatch,
+  UseFormSetFocus,
+  UseFormSetValue,
+  FormState,
 } from 'react-hook-form/dist/types/form';
 import { FieldValues } from 'react-hook-form/dist/types/fields';
 
@@ -63,8 +73,9 @@ export type FormContext<
   register: UseFormRegister<FormValues>;
   handleSubmit?: (e?: React.BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>;
   control?: Control<FormValues, object>;
-  // formState: FormState<FormValues>;
-  // setValue: UseFormSetValue<FormValues>;
-  // control: Control<FormValues, FormContext>;
-  // setFocus: UseFormSetFocus<FormValues>;
+  setFocus: UseFormSetFocus<FormValues>;
+  setValue: UseFormSetValue<FormValues>;
+  formState: FormState<FormValues>;
+  resetField: UseFormResetField<FormValues>;
+  getFieldState: UseFormGetFieldState<FormValues>;
 };

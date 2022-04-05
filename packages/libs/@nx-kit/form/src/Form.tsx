@@ -30,6 +30,26 @@ const FormReactContext = React.createContext<FormContext>({
   setError: () => {},
   unregister: () => {},
   trigger: () => new Promise<boolean>((resolve) => resolve(true)),
+  setFocus: () => {},
+  setValue: () => {},
+  formState: {
+    isValidating: false,
+    isDirty: false,
+    isSubmitSuccessful: false,
+    isSubmitted: false,
+    isSubmitting: false,
+    isValid: false,
+    errors: {},
+    submitCount: 0,
+    dirtyFields: {},
+    touchedFields: {},
+  },
+  resetField: () => {},
+  getFieldState: () => ({
+    invalid: false,
+    isDirty: false,
+    isTouched: false,
+  }),
 });
 
 export const useForm = () => useContext(FormReactContext);
@@ -61,7 +81,7 @@ export const Form = forwardRef(
       register,
       handleSubmit,
       watch,
-      formState: { errors },
+      formState,
       getValues,
       reset,
       clearErrors,
@@ -69,6 +89,10 @@ export const Form = forwardRef(
       unregister,
       trigger,
       control,
+      setFocus,
+      setValue,
+      resetField,
+      getFieldState,
     } = useReactHookForm<FormValues>({
       mode,
       reValidateMode,
@@ -78,7 +102,7 @@ export const Form = forwardRef(
 
     const values: FormContext<FormValues> = {
       register,
-      errors,
+      errors: formState.errors,
       defaultValues,
       reset,
       watch,
@@ -88,6 +112,11 @@ export const Form = forwardRef(
       unregister,
       trigger,
       control,
+      setFocus,
+      setValue,
+      formState,
+      resetField,
+      getFieldState,
     };
 
     useImperativeHandle(ref, () => values, [values]);
