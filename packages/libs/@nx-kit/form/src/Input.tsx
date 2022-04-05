@@ -42,7 +42,7 @@ const Input = (
 
   return React.cloneElement(
     Field,
-    passHasError ? { ...props, hasError: name && errors?.[name] } : props
+    passHasError ? { ...props, hasError: name && get(errors, name) } : props
   );
 };
 
