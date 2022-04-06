@@ -27,6 +27,6 @@
   },
   "dependencies": {
     "@nx-kit/styling": "^0.1.21",
-    "@react-aria/meter": "^3.1.6"
+    "@react-aria/meter": "^3.1.7"
   }
 }
