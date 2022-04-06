@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   useImperativeHandle,
 } from 'react';
-import { useForm as useReactHookForm } from 'react-hook-form';
+import { useForm as useReactHookForm, get } from 'react-hook-form';
 // eslint-disable-next-line import/no-cycle
 import { Input } from './Input';
 // eslint-disable-next-line import/no-cycle
@@ -16,6 +16,7 @@ import { FieldWrapper } from './FieldWrapper';
 import { FormProps, FormContext, OnSubmitData, BaseEvent, OnErrorErrors } from './Form.types';
 // eslint-disable-next-line import/no-cycle
 import { ControlledInput } from './ControlledInput';
+// eslint-disable-next-line import/no-cycle
 import { FieldArray } from './FieldArray';
 
 const FormReactContext = React.createContext<FormContext>({
@@ -29,6 +30,7 @@ const FormReactContext = React.createContext<FormContext>({
   reset: () => {},
   clearErrors: () => {},
   setError: () => {},
+  hasError: () => false,
   unregister: () => {},
   trigger: () => new Promise<boolean>((resolve) => resolve(true)),
   setFocus: () => {},
@@ -102,6 +104,11 @@ export const Form = forwardRef(
       ...rest,
     });
 
+    const hasError = useCallback(
+      (name: string) => !!get(formState.errors, name),
+      [formState.errors]
+    );
+
     const values: FormContext<FormValues> = {
       register,
       errors: formState.errors,
@@ -111,6 +118,7 @@ export const Form = forwardRef(
       getValues,
       clearErrors,
       setError,
+      hasError,
       unregister,
       trigger,
       control,

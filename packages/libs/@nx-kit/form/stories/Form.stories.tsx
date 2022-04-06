@@ -335,7 +335,7 @@ export const Default = () => {
               Submit with onClick
             </button>
             <button type="button" onClick={() => reset(defaultValues)}>
-              reset
+              Reset
             </button>
           </>
         )}
@@ -345,14 +345,21 @@ export const Default = () => {
 };
 
 type FieldArrayValues = {
+  name: string;
   test: any;
 };
 
 export const FieldArrayTest = () => {
+  const defaultValues = {
+    name: 'Test',
+    test: [{ firstName: 'Stefan', lastName: 'Tester' }],
+  };
+
   return (
     <Form<FieldArrayValues>
       mode="onBlur"
       reValidateMode="onChange"
+      defaultValues={defaultValues}
       onSubmit={async (values) => {
         console.log('submit', values);
       }}
@@ -360,61 +367,95 @@ export const FieldArrayTest = () => {
         console.log('errors', errors);
       }}
     >
-      <Form.FieldArray name="test">
-        {({ fields, append, remove }) => (
-          <>
-            <div>
-              {fields.map((item, index) => (
-                <div key={item.id} style={{ display: 'flex', gap: '10px' }}>
-                  <Form.FieldWrapper>
-                    <div style={{ flex: 1 }}>
-                      <Form.Input
-                        name={`test.${index}.firstName`}
-                        field={<TextField isRequired styles={{ width: '100%' }} />}
-                        validation={{
-                          required: { value: true, message: 'The field is required' },
-                        }}
-                      />
-                      <div>
-                        <Form.Error
-                          name={`test.${index}.firstName`}
-                          styles={{ color: 'brandDanger500' }}
-                        />
-                      </div>
+      {({ reset, hasError }) => (
+        <>
+          <Form.FieldWrapper>
+            <div style={{ flex: 1 }}>
+              <Form.Input
+                name="name"
+                field={<TextField isRequired placeholder="Name" styles={{ width: '100%' }} />}
+                validation={{
+                  required: { value: true, message: 'The field is required' },
+                }}
+              />
+              <div>
+                <Form.Error name="name" styles={{ color: 'brandDanger500' }} />
+              </div>
+            </div>
+          </Form.FieldWrapper>
+          <Form.FieldArray name="test">
+            {({ fields, append, remove }) => (
+              <>
+                <div>
+                  {fields.map((item, index) => (
+                    <div key={item.id} style={{ display: 'flex', gap: '10px' }}>
+                      <Form.FieldWrapper>
+                        <div style={{ flex: 1 }}>
+                          <Form.Input
+                            name={`test.${index}.firstName`}
+                            field={
+                              <TextField
+                                isRequired
+                                placeholder="Firstname"
+                                styles={{ width: '100%' }}
+                              />
+                            }
+                            validation={{
+                              required: { value: true, message: 'The field is required' },
+                            }}
+                          />
+                          <div>
+                            <Form.Error
+                              name={`test.${index}.firstName`}
+                              styles={{ color: 'brandDanger500' }}
+                            />
+                            {hasError(`test.${index}.firstName`) && ' !'}
+                          </div>
+                        </div>
+                      </Form.FieldWrapper>
+                      <Form.FieldWrapper>
+                        <div style={{ flex: 1 }}>
+                          <Form.Input
+                            name={`test.${index}.lastName`}
+                            field={
+                              <TextField
+                                isRequired
+                                placeholder="Lastname"
+                                styles={{ width: '100%' }}
+                              />
+                            }
+                            validation={{
+                              required: { value: true, message: 'The field is required' },
+                            }}
+                          />
+                          <div>
+                            <Form.Error
+                              name={`test.${index}.lastName`}
+                              styles={{ color: 'brandDanger500' }}
+                            />
+                          </div>
+                        </div>
+                      </Form.FieldWrapper>
+                      <button type="button" onClick={() => remove(index)}>
+                        Delete
+                      </button>
                     </div>
-                  </Form.FieldWrapper>
-                  <Form.FieldWrapper>
-                    <div style={{ flex: 1 }}>
-                      <Form.Input
-                        name={`test.${index}.lastName`}
-                        field={<TextField isRequired styles={{ width: '100%' }} />}
-                        validation={{
-                          required: { value: true, message: 'The field is required' },
-                        }}
-                      />
-                      <div>
-                        <Form.Error
-                          name={`test.${index}.lastName`}
-                          styles={{ color: 'brandDanger500' }}
-                        />
-                      </div>
-                    </div>
-                  </Form.FieldWrapper>
-                  <button type="button" onClick={() => remove(index)}>
-                    Delete
+                  ))}
+                </div>
+                <div>
+                  <button type="button" onClick={() => append({})}>
+                    Add
                   </button>
                 </div>
-              ))}
-            </div>
-            <div>
-              <button type="button" onClick={() => append({})}>
-                Add
-              </button>
-            </div>
-          </>
-        )}
-      </Form.FieldArray>
-      <button type="submit">Submit</button>
+              </>
+            )}
+          </Form.FieldArray>
+          <button type="submit">Submit</button>
+          <button type="button" onClick={() => reset(defaultValues)}>
+            Reset
+          </button>
+        </>
+      )}
     </Form>
   );
 };

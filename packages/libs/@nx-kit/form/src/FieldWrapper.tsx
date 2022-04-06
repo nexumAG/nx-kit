@@ -11,8 +11,6 @@ export const FieldWrapper = ({ children }: FieldWrapperProps) => {
   const { labelProps, fieldProps } = useLabel({ label: ' ' });
   const errorId = useId();
 
-  // TODO: how to add aria-describedby only in case of an error?
-
   const slots = {
     label: labelProps,
     field: { ...fieldProps, 'aria-describedby': errorId },

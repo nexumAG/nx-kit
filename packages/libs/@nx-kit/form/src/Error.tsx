@@ -17,9 +17,14 @@ export const Error = ({ className, name, styles, elementType }: ErrorProps) => {
 
   // TODO: add role="alert"?
 
-  return error ? (
-    <Text slot="error" className={className} elementType={elementType} styles={styles}>
-      {error.message}
+  return (
+    <Text
+      slot="error"
+      className={className}
+      elementType={elementType}
+      styles={error ? styles : { ...styles, display: 'none' }}
+    >
+      {error && error.message}
     </Text>
-  ) : null;
+  );
 };

@@ -66,6 +66,7 @@ export type FormContext<
   watch?: UseFormWatch<FormValues>;
   getValues?: UseFormGetValues<FormValues>;
   setError: UseFormSetError<FormValues>;
+  hasError: (name: string) => boolean;
   clearErrors: UseFormClearErrors<FormValues>;
   trigger: UseFormTrigger<FormValues>;
   reset: UseFormReset<FormValues>;
