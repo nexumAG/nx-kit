@@ -20,7 +20,8 @@ export const link = {
         cursor: pointer;
       }
 
-      ${({ isHovered }) => isHovered && 'color: #999'};
+      ${({ isHovered, theme }) => isHovered && `color: ${theme.global.color.gray300}`};
+      ${({ isPressed, theme }) => isPressed && `color: ${theme.global.color.gray500}`};
       ${({ isFocused, theme }) => isFocused && theme.global.focusRing};
     `,
   },

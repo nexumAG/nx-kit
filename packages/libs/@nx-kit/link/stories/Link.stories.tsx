@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from '../src';
+import { styled } from '@nx-kit/styling';
+import { Link, LinkStyledProps } from '../src';
 
 export default {
   title: '@nx-kit/link',
@@ -52,4 +53,37 @@ export const NestedComponent = () => (
       <Comp1 />
     </div>
   </Link>
+);
+
+const LinkStyled = styled(Link)<LinkStyledProps>`
+  ${({ isHovered }) => isHovered && `background: red;`}
+`;
+
+export const LinkStyledExtended = () => (
+  <LinkStyled forwardedAs={LinkStyled}>
+    <a href="http://www.google.de/" target="_blank" rel="noreferrer">
+      Press me
+    </a>
+  </LinkStyled>
+);
+
+const LinkWrapper = (props: any) => {
+  // console.log({ props });
+
+  return (
+    <Link {...props}>
+      <a href="http://www.google.de/" target="_blank" rel="noreferrer">
+        Press me
+      </a>
+    </Link>
+  );
+};
+
+const LinkWrapperStyled = styled(LinkWrapper)<LinkStyledProps>`
+  ${({ isHovered }) => isHovered && `background: red;`}
+  color: red;
+`;
+
+export const LinkWrapperStyledExtended = () => (
+  <LinkWrapperStyled forwardedAs={LinkWrapperStyled} />
 );

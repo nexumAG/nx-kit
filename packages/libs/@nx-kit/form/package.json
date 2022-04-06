@@ -18,8 +18,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.8.0-0 || ^17.0.0-0",
-    "react-dom": "^16.8.0-0 || ^17.0.0-0"
+    "react": "^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0",
+    "react-dom": "^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0"
   },
   "devDependencies": {
     "@nx-kit/checkbox": "^0.1.20",
@@ -35,6 +35,6 @@
     "@nx-kit/utils": "^0.1.10",
     "@react-aria/label": "^3.2.4",
     "@react-aria/utils": "^3.11.3",
-    "react-hook-form": "^7.27.1"
+    "react-hook-form": "^7.29.0"
   }
 }

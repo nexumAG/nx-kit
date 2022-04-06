@@ -42,7 +42,7 @@ const Link = ({ slot, ...linkProps }: LinkProps, ref?: React.Ref<HTMLElement | n
   const { children: linkText, ...childProps } =
     childrenType === 'string' ? { children } : React.Children.only<any>(children).props;
 
-  const { linkProps: useLinkProps } = useLink(
+  const { linkProps: useLinkProps, isPressed } = useLink(
     {
       ...props,
       elementType,
@@ -60,6 +60,7 @@ const Link = ({ slot, ...linkProps }: LinkProps, ref?: React.Ref<HTMLElement | n
       as={elementType}
       isFocused={isFocusVisible}
       isHovered={isHovered}
+      isPressed={isPressed}
       {...mergeProps(useLinkProps, hoverProps, focusProps, childProps, rest)}
     >
       {linkText}
