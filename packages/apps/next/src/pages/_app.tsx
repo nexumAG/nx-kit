@@ -2,7 +2,7 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/react';
-import { resetCSS, createGlobalStyle, ThemeProvider } from '@nx-kit/styling';
+import { resetCSS, createGlobalStyle, ThemeProvider, media } from '@nx-kit/styling';
 import { theme } from '@nx-kit/theme-default';
 import { SSRProvider } from '@nx-kit/ssr';
 import { BreakpointProvider } from '@nx-kit/breakpoint';
@@ -24,11 +24,23 @@ export const BasicCSS = createGlobalStyle`
       grid-area: header;
       border-bottom: 1px solid #d8d8d8;
       padding: 15px;
+
+      ${media('md')} {
+        padding: 30px 60px;
+      }
     }
 
     & > nav {
       grid-area: nav;
       padding: 15px;
+      border-right: none;
+      border-bottom: 1px solid #d8d8d8;
+
+      ${media('md')} {
+        padding: 60px;
+        border-right: 1px solid #d8d8d8;
+        border-bottom: none;
+      }
 
       ul {
         list-style-type: none;
@@ -43,23 +55,56 @@ export const BasicCSS = createGlobalStyle`
     & > main {
       grid-area: main;
       padding: 15px;
+
+      ${media('md')} {
+        padding: 60px;
+      }
     }
 
     & > footer {
       grid-area: footer;
       border-top: 1px solid #d8d8d8;
       padding: 15px;
+
+      ${media('md')} {
+        padding: 15px 60px;
+      }
     }
 
-    display: grid;
-    gap: 30px 60px;
-    grid-template-columns: max-content auto;
-    grid-template-rows: min-content auto min-content;
-    grid-template-areas:
-    "header header"
-    "nav main"
-    "footer footer";
+    display: block;
+
+    ${media('md')} {
+      display: grid;
+      grid-template-columns: max-content auto;
+      grid-template-rows: min-content auto min-content;
+      grid-template-areas:
+      "header header"
+      "nav main"
+      "footer footer";
+    }
+
   }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table, th, td {
+    border: 1px solid #d8d8d8;
+    text-align: left;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+
+
+
 `;
 
 const components = {
