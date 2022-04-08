@@ -26,14 +26,11 @@ const withTM = require('next-transpile-modules')([
   '@nx-kit/view',
 ]);
 
-module.exports = withTM({
-  reactStrictMode: true,
-});
-
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
+    // eslint-disable-next-line global-require
+    remarkPlugins: [require('remark-prism')],
     rehypePlugins: [],
     providerImportSource: '@mdx-js/react',
   },
@@ -41,6 +38,10 @@ const withMDX = require('@next/mdx')({
 
 module.exports = withTM(
   withMDX({
+    reactStrictMode: true,
+    compiler: {
+      styledComponents: true,
+    },
     // Append the default value with md extensions
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   })
