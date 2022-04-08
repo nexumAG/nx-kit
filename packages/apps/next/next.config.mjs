@@ -1,5 +1,10 @@
+import remarkGfm from 'remark-gfm';
+import remarkPrism from 'remark-prism';
+import nextMdx from '@next/mdx';
+import nextTranspileModules from 'next-transpile-modules';
+
 // https://github.com/martpie/next-transpile-modules/issues/143#issuecomment-817467144
-const withTM = require('next-transpile-modules')([
+const withTM = nextTranspileModules([
   '@nx-kit/accordion',
   '@nx-kit/breakpoint',
   '@nx-kit/button',
@@ -24,19 +29,20 @@ const withTM = require('next-transpile-modules')([
   '@nx-kit/types',
   '@nx-kit/utils',
   '@nx-kit/view',
+  'remark-gfm'
 ]);
 
-const withMDX = require('@next/mdx')({
+const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
     // eslint-disable-next-line global-require
-    remarkPlugins: [require('remark-prism')],
+    remarkPlugins: [remarkPrism, remarkGfm],
     rehypePlugins: [],
     providerImportSource: '@mdx-js/react',
   },
 });
 
-module.exports = withTM(
+const nextConfig = withTM(
   withMDX({
     reactStrictMode: true,
     compiler: {
@@ -46,3 +52,5 @@ module.exports = withTM(
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   })
 );
+
+export default nextConfig;
