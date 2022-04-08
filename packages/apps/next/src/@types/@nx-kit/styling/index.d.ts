@@ -1,11 +1,9 @@
-import { theme } from '../../../theme';
+// import { Theme } from '@nx-kit/theme-default';
 
-declare module '@nx-kit/styling' {
-  type ThemeType = typeof theme;
-  export interface DefaultTheme extends ThemeType {}
-}
-
-// declare module '@nx-kit/flex' {
-//   type ThemeType = typeof theme;
-//   export interface DefaultTheme extends ThemeType {}
+// declare module '@nx-kit/styling' {
+//   export interface DefaultTheme extends Theme {}
+// }
+//
+// declare module 'styled-components' {
+//   export interface DefaultTheme extends Theme {}
 // }

@@ -1,6 +1,7 @@
 import { css } from '@nx-kit/styling';
 
 export const accordion = {
+  global: ``,
   skin: {
     default: css<any>`
       margin-bottom: 16px;

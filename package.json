@@ -4,7 +4,9 @@
     "packages/**"
   ],
   "resolutions": {
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0"
   },
   "scripts": {
     "changed": "lerna changed",
@@ -17,6 +19,8 @@
     "storybook:publish": "gh-pages -d packages/apps/storybook/dist",
     "storybook:start": "yarn workspace storybook run storybook:start",
     "next": "yarn workspace next run next:dev",
+    "next:build": "yarn workspace next run next:build",
+    "next:start": "yarn workspace next run next:start",
     "bootstrap": "lerna bootstrap",
     "diff": "lerna diff",
     "new-version": "lerna version --conventional-commits",

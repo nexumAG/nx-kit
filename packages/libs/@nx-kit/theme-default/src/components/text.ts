@@ -1,6 +1,7 @@
 import { css, media } from '@nx-kit/styling';
 
 export const text = {
+  global: ``,
   skin: {
     300: css`
       font-size: ${({ theme }) => theme.global.fontSize['14']};

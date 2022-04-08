@@ -9,18 +9,40 @@
     "next:lint": "next lint"
   },
   "dependencies": {
+    "@mdx-js/loader": "^2.1.1",
+    "@mdx-js/react": "^2.1.1",
+    "@next/mdx": "^12.1.4",
+    "@nx-kit/accordion": "^0.1.19",
+    "@nx-kit/breakpoint": "^0.1.10",
+    "@nx-kit/button": "^0.1.28",
+    "@nx-kit/checkbox": "^0.1.21",
+    "@nx-kit/divider": "^0.1.20",
     "@nx-kit/flex": "^0.1.24",
+    "@nx-kit/form": "^0.1.23",
     "@nx-kit/heading": "^0.1.23",
+    "@nx-kit/layout": "^0.1.8",
+    "@nx-kit/link": "^0.1.27",
+    "@nx-kit/meter": "^0.1.5",
+    "@nx-kit/overlay": "^0.1.29",
+    "@nx-kit/select": "^0.1.5",
+    "@nx-kit/slot": "^0.1.13",
+    "@nx-kit/ssr": "^0.1.11",
     "@nx-kit/styling": "^0.1.22",
-    "next": "12.1.4",
+    "@nx-kit/table": "^0.1.3",
+    "@nx-kit/tabs": "^0.1.6",
+    "@nx-kit/text": "^0.1.21",
+    "@nx-kit/textfield": "^0.1.24",
+    "@nx-kit/theme-default": "^0.1.28",
+    "@nx-kit/view": "^0.1.24",
+    "next": "^12.1.4",
     "next-transpile-modules": "^9.0.0",
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   },
   "devDependencies": {
-    "@types/react": "17.0.43",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
-    "typescript": "4.6.3"
+    "@types/react": "^17.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^11.1.2",
+    "typescript": "^4.6.3"
   }
 }

@@ -1,6 +1,7 @@
 import { css } from '@nx-kit/styling';
 
 export const tabs = {
+  global: ``,
   skin: {
     default: css<any>`
       display: flex;
