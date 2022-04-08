@@ -1,6 +1,7 @@
 import { css, media } from '@nx-kit/styling';
 
 export const heading = {
+  global: ``,
   skin: {
     400: css<any>`
       ${({ theme }) => theme.global.font.trebuchetBold};
