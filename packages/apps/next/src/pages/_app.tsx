@@ -2,7 +2,7 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/react';
-import { resetCSS, createGlobalStyle, ThemeProvider, media } from '@nx-kit/styling';
+import { resetCSS, createGlobalStyle, ThemeProvider, media, styled } from '@nx-kit/styling';
 import { theme } from '@nx-kit/theme-default';
 import { SSRProvider } from '@nx-kit/ssr';
 import { BreakpointProvider } from '@nx-kit/breakpoint';
@@ -11,8 +11,9 @@ import { Heading } from '@nx-kit/heading';
 import { Text } from '@nx-kit/text';
 import { Divider } from '@nx-kit/divider';
 import { Link } from 'components/Link';
+import { Navigation } from 'components/Navigation';
 
-export const BasicCSS = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   ${resetCSS}
   ${({ theme }) => theme?.global?.styles};
 
@@ -32,32 +33,17 @@ export const BasicCSS = createGlobalStyle`
 
     & > nav {
       grid-area: nav;
-      padding: 15px;
-      border-right: none;
-      border-bottom: 1px solid #d8d8d8;
-
-      ${media('md')} {
-        padding: 60px;
-        border-right: 1px solid #d8d8d8;
-        border-bottom: none;
-      }
-
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
     }
 
     & > main {
       grid-area: main;
       padding: 15px;
+      border-left: none;
+      min-width: 0;
 
       ${media('md')} {
         padding: 60px;
+        border-left: 1px solid #d8d8d8;
       }
     }
 
@@ -103,15 +89,46 @@ export const BasicCSS = createGlobalStyle`
     padding: 10px;
   }
 
+  pre[class*="language-"] {
+    margin-bottom: 30px;
+  }
 
+`;
 
+const getAnchor = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, '')
+    .replace(/[ ]/g, '-');
+};
+
+const AnchorHeading = styled(Heading)`
+  & > a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const components = {
   h1: (props: any) => <Heading elementType="h1" styles={{ marginBottom: '30px' }} {...props} />,
-  h2: (props: any) => (
-    <Heading elementType="h2" styles={{ marginBottom: '0', marginTop: '60px' }} {...props} />
-  ),
+  h2: ({ children, ...props }: any) => {
+    const id = getAnchor(children);
+    const href = `#${id}`;
+    return (
+      <AnchorHeading
+        elementType="h2"
+        styles={{ marginBottom: '0', marginTop: '60px' }}
+        {...props}
+        id={id}
+      >
+        <a href={href}>{children}</a>
+      </AnchorHeading>
+    );
+  },
   h3: (props: any) => <Heading elementType="h3" styles={{ marginBottom: '30px' }} {...props} />,
   h4: (props: any) => <Heading elementType="h4" styles={{ marginBottom: '30px' }} {...props} />,
   h5: (props: any) => <Heading elementType="h5" styles={{ marginBottom: '30px' }} {...props} />,
@@ -133,27 +150,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <SSRProvider>
         <ThemeProvider theme={theme}>
           <BreakpointProvider>
-            <BasicCSS />
+            <GlobalStyles />
             <header>@nx-kit Documentation</header>
-            <nav>
-              <ul>
-                <li>
-                  <Link skin="primary" href="/">
-                    Getting started
-                  </Link>
-                </li>
-                <li>
-                  <Link skin="primary" href="/styling">
-                    Styling
-                  </Link>
-                </li>
-                <li>
-                  <Link skin="primary" href="/components">
-                    Components
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+            <Navigation />
             <main>
               <OverlayProvider>
                 <MDXProvider components={components}>

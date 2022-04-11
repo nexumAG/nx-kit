@@ -1,16 +1,16 @@
-# @nx-kit/styling
+# Styling
 
-The @nx-kit/styling package contains the design system and a few utility functions.
+The `@nx-kit/styling` package contains the design system and a few utility functions.
 It is based on **styled-components** and reexports all of its functions.
 
-**babel-plugin-styled-components** is also already included.
+**babel-plugin-styled-components** is also already included if you need it.
 
 ## Installation
 ---
 
-`npm install @nx-kit/styling`
-
-`yarn add @nx-kit/styling`
+```text
+npm install @nx-kit/styling
+```
 
 ## Theme
 ---
@@ -192,3 +192,50 @@ const Example = () => {
 ```javascript
 import { resetCSS } from '@nx-kit/styling';
 ```
+
+Together with the global styles from the theme, it should be added as global styles.
+
+**Example:**
+
+```javascript
+import { resetCSS, createGlobalStyle, ThemeProvider } from '@nx-kit/styling';
+
+export const GlobalStyles = createGlobalStyle`
+  ${resetCSS}
+  ${({ theme }) => theme?.global?.styles};
+`;
+
+const App = ({ children, theme }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      {children}
+    </ThemeProvider>
+  );
+};
+```
+
+## TypeScript
+---
+
+To make the theme fully typed you need to do [Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html).
+
+**Example:**
+
+```typescript
+import '@nx-kit/styling';
+
+type Theme = {
+  // ...
+};
+
+export const theme: Theme = {
+  // ...
+}
+
+declare module '@nx-kit/styling' {
+  export interface DefaultTheme extends Theme {}
+}
+```
+
+An example of a fully typed theme is the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/index.tsx.
