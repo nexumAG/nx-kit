@@ -4,6 +4,7 @@ import { Link as NxLink, LinkProps as NxLinkProps } from '@nx-kit/link';
 export type LinkProps = NxLinkProps & {
   href?: string;
   isActive?: boolean;
+  role?: string;
 };
 
 export const Link = ({ href, children: childrenProp, ...props }: LinkProps) => {

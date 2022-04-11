@@ -140,6 +140,23 @@ const components = {
   hr: (props: any) => <Divider skin={100} styles={{ marginBottom: '30px' }} {...props} />,
 };
 
+const navigation = [
+  { href: '/', title: 'Getting started' },
+  {
+    href: '/styling',
+    title: 'Styling',
+    children: [
+      { href: '/styling#installation', title: 'Installation' },
+      { href: '/styling#theme', title: 'Theme' },
+      { href: '/styling#design-system', title: 'Design System' },
+      { href: '/styling#media-helper', title: 'Media helper' },
+      { href: '/styling#sorted-breakpoints', title: 'Sorted breakpoints' },
+      { href: '/styling#reset-css', title: 'Reset CSS' },
+      { href: '/styling#typescript', title: 'TypeScript' },
+    ],
+  },
+];
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -152,7 +169,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <BreakpointProvider>
             <GlobalStyles />
             <header>@nx-kit Documentation</header>
-            <Navigation />
+            <Navigation links={navigation} />
             <main>
               <OverlayProvider>
                 <MDXProvider components={components}>
