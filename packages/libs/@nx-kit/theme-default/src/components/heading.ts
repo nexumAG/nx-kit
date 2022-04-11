@@ -3,6 +3,15 @@ import { css, media } from '@nx-kit/styling';
 export const heading = {
   global: ``,
   skin: {
+    300: css<any>`
+      ${({ theme }) => theme.global.font.trebuchetBold};
+      font-size: ${({ theme }) => theme.global.fontSize['16']};
+      line-height: ${({ theme }) => theme.global.lineHeight['1.5']};
+      margin: 0;
+      ${media('xl')} {
+        font-size: ${({ theme }) => theme.global.fontSize['8']};
+      }
+    `,
     400: css<any>`
       ${({ theme }) => theme.global.font.trebuchetBold};
       font-size: ${({ theme }) => theme.global.fontSize['18']};

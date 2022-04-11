@@ -21,7 +21,7 @@ You are free to choose the keys and values, but for the design system to work, t
 **Example theme:**
 
 ```javascript
-const theme = {
+export const theme = {
   global: {
     styles: css`
       body {
@@ -90,6 +90,8 @@ const theme = {
 
 As you see the theme consists of global and component values/styles.
 You can use the global values in the styled components but they are also used for the design system.
+
+For the theme to work you have to wrap your application with the `ThemeProvider`. See example [here](/styling#reset-css):
 
 ## Design System
 ---
@@ -200,12 +202,12 @@ Together with the global styles from the theme, it should be added as global sty
 ```javascript
 import { resetCSS, createGlobalStyle, ThemeProvider } from '@nx-kit/styling';
 
-export const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   ${resetCSS}
   ${({ theme }) => theme?.global?.styles};
 `;
 
-const App = ({ children, theme }) => {
+export const App = ({ children, theme }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

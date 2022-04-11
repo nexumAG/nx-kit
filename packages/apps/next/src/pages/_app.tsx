@@ -11,7 +11,7 @@ import { Heading } from '@nx-kit/heading';
 import { Text } from '@nx-kit/text';
 import { Divider } from '@nx-kit/divider';
 import { Link } from 'components/Link';
-import { Navigation } from 'components/Navigation';
+import { Navigation, NavigationProps } from 'components/Navigation';
 
 export const GlobalStyles = createGlobalStyle`
   ${resetCSS}
@@ -20,16 +20,6 @@ export const GlobalStyles = createGlobalStyle`
   #__next {
 
     min-height: 100vh;
-
-    & > header {
-      grid-area: header;
-      border-bottom: 1px solid #d8d8d8;
-      padding: 15px;
-
-      ${media('md')} {
-        padding: 30px 60px;
-      }
-    }
 
     & > nav {
       grid-area: nav;
@@ -47,26 +37,14 @@ export const GlobalStyles = createGlobalStyle`
       }
     }
 
-    & > footer {
-      grid-area: footer;
-      border-top: 1px solid #d8d8d8;
-      padding: 15px;
-
-      ${media('md')} {
-        padding: 15px 60px;
-      }
-    }
-
     display: block;
 
     ${media('md')} {
       display: grid;
       grid-template-columns: max-content auto;
-      grid-template-rows: min-content auto min-content;
+      grid-template-rows: auto;
       grid-template-areas:
-      "header header"
       "nav main"
-      "footer footer";
     }
 
   }
@@ -140,11 +118,12 @@ const components = {
   hr: (props: any) => <Divider skin={100} styles={{ marginBottom: '30px' }} {...props} />,
 };
 
-const navigation = [
+const navigation: NavigationProps['links'] = [
   { href: '/', title: 'Getting started' },
   {
     href: '/styling',
     title: 'Styling',
+    collapse: true,
     children: [
       { href: '/styling#installation', title: 'Installation' },
       { href: '/styling#theme', title: 'Theme' },
@@ -155,6 +134,46 @@ const navigation = [
       { href: '/styling#typescript', title: 'TypeScript' },
     ],
   },
+  // {
+  //   title: 'Basic',
+  //   children: [
+  //     { href: '/accordion', title: 'Accordion' },
+  //     { href: '/button', title: 'Button' },
+  //     { href: '/divider', title: 'Divider' },
+  //     { href: '/heading', title: 'Heading' },
+  //     { href: '/link', title: 'Link' },
+  //     { href: '/meter', title: 'Meter' },
+  //     { href: '/overlay', title: 'Overlay' },
+  //     { href: '/table', title: 'Table' },
+  //     { href: '/tabs', title: 'Tabs' },
+  //     { href: '/text', title: 'Text' },
+  //     { href: '/view', title: 'View' },
+  //   ],
+  // },
+  // {
+  //   title: 'Forms',
+  //   children: [
+  //     { href: '/checkbox', title: 'Checkbox' },
+  //     { href: '/form', title: 'Form' },
+  //     { href: '/select', title: 'Select' },
+  //     { href: '/textfield', title: 'Textfield' },
+  //   ],
+  // },
+  // {
+  //   title: 'Layout',
+  //   children: [
+  //     { href: '/flex', title: 'Flex' },
+  //     { href: '/layout', title: 'Layout' },
+  //   ],
+  // },
+  // {
+  //   title: 'Utilities',
+  //   children: [
+  //     { href: '/breakpoint', title: 'Breakpoint' },
+  //     { href: '/slot', title: 'Slot' },
+  //     { href: '/ssr', title: 'SSR' },
+  //   ],
+  // },
 ];
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -168,16 +187,29 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={theme}>
           <BreakpointProvider>
             <GlobalStyles />
-            <header>@nx-kit Documentation</header>
             <Navigation links={navigation} />
             <main>
               <OverlayProvider>
                 <MDXProvider components={components}>
                   <Component {...pageProps} />
+                  <footer>
+                    <Divider skin={100} styles={{ marginTop: '30px' }} />
+                    <Text>
+                      Made by{' '}
+                      <Link skin="primary" href="https://www.nexum.com">
+                        nexum
+                      </Link>
+                    </Text>{' '}
+                    |{' '}
+                    <Text>
+                      <Link skin="primary" href="https://www.nexum.de/en/impressum">
+                        Imprint
+                      </Link>
+                    </Text>
+                  </footer>
                 </MDXProvider>
               </OverlayProvider>
             </main>
-            <footer>Made by nexum</footer>
           </BreakpointProvider>
         </ThemeProvider>
       </SSRProvider>

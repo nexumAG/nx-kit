@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { styled, media } from '@nx-kit/styling';
+import { Heading } from '@nx-kit/heading';
 import { Link } from 'components/Link';
 
 const Nav = styled.nav`
@@ -13,6 +14,10 @@ const Nav = styled.nav`
     padding: 60px;
     border-bottom: none;
     position: sticky;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    height: 100vh;
   }
 
   ul {
@@ -36,15 +41,16 @@ const Nav = styled.nav`
       }
     }
 
-    li a[aria-expanded='false'] ~ ul {
+    li.can-collapse a[aria-expanded='false'] ~ ul {
       display: none;
     }
   }
 `;
 
 export type Link = {
-  href: string;
+  href?: string;
   title: string;
+  collapse?: boolean;
   children?: Link[];
 };
 
@@ -59,20 +65,36 @@ export const Navigation = ({ links }: NavigationProps) => {
 
   return (
     <Nav>
+      <header>
+        <Heading elementType="h3" skin={400}>
+          @nx-kit Documentation
+        </Heading>
+      </header>
       <ul role="menubar">
         {links.map((link) => (
-          <li role="none" key={link.href}>
-            <Link
-              role="menuitem"
-              skin="primary"
-              href={link.href}
-              aria-expanded={
-                (link.children?.length ?? 0) > 0 ? asPathBase === link.href : undefined
-              }
-              styles={{ font: asPath === link.href ? 'trebuchetBold' : 'trebuchetNormal' }}
-            >
-              {link.title}
-            </Link>
+          <li
+            role="none"
+            key={link.href ?? link.title}
+            className={link.collapse ? 'can-collapse' : ''}
+          >
+            {link.href && (
+              <Link
+                role="menuitem"
+                skin="primary"
+                href={link.href}
+                aria-expanded={
+                  (link.children?.length ?? 0) > 0 ? asPathBase === link.href : undefined
+                }
+                styles={{ font: asPath === link.href ? 'trebuchetBold' : 'trebuchetNormal' }}
+              >
+                {link.title}
+              </Link>
+            )}
+            {!link.href && (
+              <Heading elementType="h3" skin={300}>
+                {link.title}
+              </Heading>
+            )}
             {(link.children?.length ?? 0) > 0 && (
               <ul role="menu">
                 {link.children?.map((link) => (
