@@ -21,6 +21,8 @@ You are free to choose the keys and values, but for the design system to work, t
 **Example theme:**
 
 ```javascript
+import { css } from '@nx-kit/styling';
+
 export const theme = {
   global: {
     styles: css`
@@ -93,12 +95,53 @@ You can use the global values in the styled components but they are also used fo
 
 For the theme to work you have to wrap your application with the `ThemeProvider`. See example [here](/styling#reset-css):
 
+## Skinning
+---
+
+The theme for a component consists of a `global` and a `skin` property.
+
+```javascript
+import { css } from '@nx-kit/styling';
+
+export const theme = {
+  global: {
+    // ... global values
+  },
+  component: {
+    button: {
+      global: css`
+        position: relative;
+        display: inline-flex;
+      `,
+      skin: {
+        primary: css`
+          color: ${({ theme }) => theme.global.color.black};
+        `
+      },
+    },
+    // ... more components
+  },
+};
+```
+
+The global styles are always added to the component styles and the skin styles only if you pass the key name to the skin prop:
+
+```javascript
+<Button skin="primary">
+  Press me
+</Button>
+```
+
+You are free to choose the skin keys, they also can be numbers and not strings.
+See [TypeScript](#typescript) on how to enable autocomplete and type errors for the skin names.
+
 ## Design System
 ---
 
 Most of the nx-kit components have a special `styles` prop.
 With this prop you are able to set some styles directly on the component.
-These are not inline styles like the `style` prop and you can also use the global values from the theme.
+These are not inline styles like the `style` prop but the styles will be added to the already existing styles from the theme.
+You can also use the global values from the theme directly.
 
 **Example:**
 
@@ -112,8 +155,9 @@ These are not inline styles like the `style` prop and you can also use the globa
 </Button>
 ```
 
-As you can see, you are also able to use the breakpoints, but only "up" media queries.
-Because the keys for spacing (20, 40) exists in the theme, the corresponding values are used. Else it would use the value directly for the css.
+As you can see, you are also able to use the breakpoints from the theme.
+
+And because the keys for spacing (20, 40) exists in the theme, the corresponding values are used. Else it would use the value directly for the css.
 
 For consistency it is recommend to also use the global values in the styled components where possible.
 

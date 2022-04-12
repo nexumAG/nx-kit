@@ -85,8 +85,14 @@ const AnchorHeading = styled(Heading)`
     color: inherit;
     text-decoration: none;
 
+    span {
+      display: none;
+    }
+
     &:hover {
-      text-decoration: underline;
+      span {
+        display: inline;
+      }
     }
   }
 `;
@@ -103,7 +109,9 @@ const components = {
         {...props}
         id={id}
       >
-        <a href={href}>{children}</a>
+        <a href={href}>
+          {children} <span>#</span>
+        </a>
       </AnchorHeading>
     );
   },
@@ -127,6 +135,7 @@ const navigation: NavigationProps['links'] = [
     children: [
       { href: '/styling#installation', title: 'Installation' },
       { href: '/styling#theme', title: 'Theme' },
+      { href: '/styling#skinning', title: 'Skinning' },
       { href: '/styling#design-system', title: 'Design System' },
       { href: '/styling#media-helper', title: 'Media helper' },
       { href: '/styling#sorted-breakpoints', title: 'Sorted breakpoints' },
@@ -134,22 +143,22 @@ const navigation: NavigationProps['links'] = [
       { href: '/styling#typescript', title: 'TypeScript' },
     ],
   },
-  // {
-  //   title: 'Basic',
-  //   children: [
-  //     { href: '/accordion', title: 'Accordion' },
-  //     { href: '/button', title: 'Button' },
-  //     { href: '/divider', title: 'Divider' },
-  //     { href: '/heading', title: 'Heading' },
-  //     { href: '/link', title: 'Link' },
-  //     { href: '/meter', title: 'Meter' },
-  //     { href: '/overlay', title: 'Overlay' },
-  //     { href: '/table', title: 'Table' },
-  //     { href: '/tabs', title: 'Tabs' },
-  //     { href: '/text', title: 'Text' },
-  //     { href: '/view', title: 'View' },
-  //   ],
-  // },
+  {
+    title: 'Basic',
+    children: [
+      { href: '/accordion', title: 'Accordion' },
+      { href: '/button', title: 'Button' },
+      { href: '/divider', title: 'Divider' },
+      { href: '/heading', title: 'Heading' },
+      { href: '/link', title: 'Link' },
+      { href: '/meter', title: 'Meter' },
+      // { href: '/overlay', title: 'Overlay' },
+      // { href: '/table', title: 'Table' },
+      // { href: '/tabs', title: 'Tabs' },
+      // { href: '/text', title: 'Text' },
+      // { href: '/view', title: 'View' },
+    ],
+  },
   // {
   //   title: 'Forms',
   //   children: [

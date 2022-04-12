@@ -1,0 +1,78 @@
+import { Link } from '@nx-kit/link';
+
+# Link
+
+The `@nx-kit/link` package contains a Link component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/link
+```
+
+## Usage
+---
+
+<Link skin="primary">
+  <a href="https://www.nexum.com/" target="_blank" rel="noreferrer">Press me</a>
+</Link>
+
+```javascript
+import { Link } from '@nx-kit/link';
+
+<Link skin="primary">
+  <a href="https://www.nexum.com/" target="_blank" rel="noreferrer">
+    Press me
+  </a>
+</Link>
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-link--default).
+
+## Usage with Next.js
+---
+
+To use the Link with Next.js you can create a wrapper component like this:
+
+```typescript
+import NextLink from 'next/link';
+import { Link as NxLink, LinkProps as NxLinkProps } from '@nx-kit/link';
+
+export type LinkProps = NxLinkProps & {
+  href?: string;
+};
+
+export const Link = ({ href, children, ...props }: LinkProps) => {
+  const isLink = !!href;
+  const isExternalLink = href?.startsWith('http');
+  if (isLink) {
+    if (isExternalLink) {
+      return (
+        <NxLink {...props}>
+          <a href={href} target="_blank" rel="noreferrer">
+            {children}
+          </a>
+        </NxLink>
+      );
+    }
+
+    return (
+      <NextLink href={href} passHref>
+        <NxLink {...props}>
+          <a>{children}</a>
+        </NxLink>
+      </NextLink>
+    );
+  }
+
+  return <NxLink {...props}>{children}</NxLink>;
+};
+```
+
+## Theming
+---
+
+The Link can be styled by its styled properties `isPressed`, `isFocused` and `isHovered`.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/link.ts

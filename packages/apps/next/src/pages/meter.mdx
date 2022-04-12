@@ -1,0 +1,32 @@
+import { Meter } from '@nx-kit/meter';
+
+# Meter
+
+The `@nx-kit/meter` package contains an accessible Meter component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/meter
+```
+
+## Usage
+---
+
+<Meter skin="rectangular" minValue={0} maxValue={100} value={70} />
+
+```javascript
+import { Meter } from '@nx-kit/meter';
+
+<Meter skin="rectangular" minValue={0} maxValue={100} value={70} />
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-meter--default).
+
+## Theming
+---
+
+The Meter can be styled by its class names `bar`, `value`, `label` and `valueLabel`.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/meter.ts
