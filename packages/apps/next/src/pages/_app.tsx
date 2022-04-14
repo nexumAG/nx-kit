@@ -49,22 +49,24 @@ export const GlobalStyles = createGlobalStyle`
 
   }
 
-  table {
+  table:not([role="grid"]) {
     border-collapse: collapse;
     width: 100%;
-  }
-
-  table, th, td {
     border: 1px solid #d8d8d8;
     text-align: left;
-  }
 
-  th {
-    font-weight: bold;
-  }
+    & th, td {
+      border: 1px solid #d8d8d8;
+      text-align: left;
+    }
 
-  th, td {
-    padding: 10px;
+    & th {
+      font-weight: bold;
+    }
+
+    & th, td {
+      padding: 10px;
+    }
   }
 
   pre[class*="language-"] {
@@ -152,8 +154,8 @@ const navigation: NavigationProps['links'] = [
       { href: '/heading', title: 'Heading' },
       { href: '/link', title: 'Link' },
       { href: '/meter', title: 'Meter' },
-      // { href: '/overlay', title: 'Overlay' },
-      // { href: '/table', title: 'Table' },
+      { href: '/overlay', title: 'Overlay' },
+      { href: '/table', title: 'Table' },
       // { href: '/tabs', title: 'Tabs' },
       // { href: '/text', title: 'Text' },
       // { href: '/view', title: 'View' },

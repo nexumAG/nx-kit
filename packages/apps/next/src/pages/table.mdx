@@ -1,0 +1,64 @@
+import { Table } from '@nx-kit/table';
+
+# Table
+
+The `@nx-kit/table` package contains an accessible Table component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/table
+```
+
+## Usage
+---
+
+<Table aria-label="Basic data" skin="default">
+  <Table.Header>
+    <Table.Column>Name</Table.Column>
+    <Table.Column>Type</Table.Column>
+    <Table.Column>Level</Table.Column>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row key="1">
+      <Table.Cell>Charizard</Table.Cell><Table.Cell>Fire, Flying</Table.Cell><Table.Cell>67</Table.Cell>
+    </Table.Row>
+    <Table.Row key="2">
+      <Table.Cell>Blastoise</Table.Cell><Table.Cell>Water</Table.Cell><Table.Cell>56</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+```javascript
+import { Table } from '@nx-kit/table';
+
+<Table aria-label="Basic data" skin="default">
+  <Table.Header>
+    <Table.Column>Name</Table.Column>
+    <Table.Column>Type</Table.Column>
+    <Table.Column>Level</Table.Column>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row key="1">
+      <Table.Cell>Charizard</Table.Cell>
+      <Table.Cell>Fire, Flying</Table.Cell>
+      <Table.Cell>67</Table.Cell>
+    </Table.Row>
+    <Table.Row key="2">
+      <Table.Cell>Blastoise</Table.Cell>
+      <Table.Cell>Water</Table.Cell>
+      <Table.Cell>56</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-table--default).
+
+## Theming
+---
+
+The Table can be styled by its HTML tags and class names like `isFocused`, `isSortable`, `isSelected`, `colspan`, `visible`, `ascending` and `descending`.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/table.ts
