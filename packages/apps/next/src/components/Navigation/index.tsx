@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { styled, media } from '@nx-kit/styling';
 import { Heading } from '@nx-kit/heading';
+import { Text } from '@nx-kit/text';
 import { Link } from 'components/Link';
 
 const Nav = styled.nav`
@@ -99,14 +100,19 @@ export const Navigation = ({ links }: NavigationProps) => {
               <ul role="menu">
                 {link.children?.map((link) => (
                   <li role="none" key={link.href}>
-                    <Link
-                      role="menuitem"
-                      skin="primary"
-                      href={link.href}
-                      styles={{ font: asPath === link.href ? 'trebuchetBold' : 'trebuchetNormal' }}
-                    >
-                      {link.title}
-                    </Link>
+                    {link.href && (
+                      <Link
+                        role="menuitem"
+                        skin="primary"
+                        href={link.href}
+                        styles={{
+                          font: asPath === link.href ? 'trebuchetBold' : 'trebuchetNormal',
+                        }}
+                      >
+                        {link.title}
+                      </Link>
+                    )}
+                    {!link.href && <Text skin={400}>{link.title}</Text>}
                   </li>
                 ))}
               </ul>

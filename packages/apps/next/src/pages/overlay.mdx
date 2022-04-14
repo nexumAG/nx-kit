@@ -96,12 +96,38 @@ import { Button } from '@nx-kit/button';
 }
 ```
 
+<PopoverTrigger>
+  <Button skin="primary">Open Popover</Button>
+
+  <Popover skin="popover" animationDisabled>
+    <Heading skin="400" elementType="h3">
+      Test Popover
+    </Heading>
+  </Popover>
+</PopoverTrigger>
+
+```javascript
+import { Popover, PopoverTrigger } from '@nx-kit/overlay';
+import { Heading } from '@nx-kit/heading';
+import { Button } from '@nx-kit/button';
+
+<PopoverTrigger>
+  <Button skin="primary">Open Popover</Button>
+
+  <Popover skin="popover" animationDisabled>
+    <Heading skin="400" elementType="h3">
+      Test Popover
+    </Heading>
+  </Popover>
+</PopoverTrigger>
+```
+
 More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-overlay--default).
 
 ## Theming
 ---
 
-The Overlay can be styled by the `global.underlay` and `global.overlayWrapper` CSS and `isFocused` and `state` styled properties.
+The Overlay and Popover can be styled by the `global.underlay` and `global.overlayWrapper` CSS and `isFocused` and `state` styled properties.
 
 Have a look at the default theme:
 

@@ -1,0 +1,52 @@
+import { Tabs } from '@nx-kit/tabs';
+
+# Tabs
+
+The `@nx-kit/tabs` package contains an accessible Tabs component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/tabs
+```
+
+## Usage
+---
+
+<Tabs skin="default" disabledKeys={['tab3']}>
+  <Tabs.Item key="tab1" title="Tab1">
+    This is the first tab
+  </Tabs.Item>
+  <Tabs.Item key="tab2" title="Tab2">
+    This is the second tab
+  </Tabs.Item>
+  <Tabs.Item key="tab3" title="Tab3">
+    This is the third tab
+  </Tabs.Item>
+</Tabs>
+
+```javascript
+import { Tabs } from '@nx-kit/tabs';
+
+<Tabs skin="default" disabledKeys={['tab3']}>
+  <Tabs.Item key="tab1" title="Tab1">
+    This is the first tab
+  </Tabs.Item>
+  <Tabs.Item key="tab2" title="Tab2">
+    This is the second tab
+  </Tabs.Item>
+  <Tabs.Item key="tab3" title="Tab3">
+    This is the third tab
+  </Tabs.Item>
+</Tabs>
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-tabs--default).
+
+## Theming
+---
+
+The Tabs can be styled by its HTML attributes like `role`, `aria-*` and `data-is-focused` and the styled properties `orientation`.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/tabs.ts

@@ -1,0 +1,76 @@
+import { View } from '@nx-kit/view';
+
+# View
+
+The `@nx-kit/view` package contains the View component. It's a generic component that you can use for layout purposes.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/view
+```
+
+## Usage
+---
+
+<View
+  elementType="main"
+  height="200px"
+  backgroundColor={{
+    xs: 'primary500',
+    sm: 'primary600',
+    md: 'primary700',
+    xl: 'primary800',
+    xxl: 'secondary700',
+    xxxl: 'secondary800',
+  }}
+  padding="16px"
+  marginBottom="30px"
+  font={{ xs: 'trebuchetNormal', sm: 'trebuchetBold', md: 'georgiaNormal' }}
+>
+  Demo Text
+</View>
+
+```javascript
+import { View } from '@nx-kit/view';
+
+<View
+  elementType="main"
+  height="200px"
+  backgroundColor={{
+    xs: 'primary500',
+    sm: 'primary600',
+    md: 'primary700',
+    xl: 'primary800',
+    xxl: 'secondary700',
+    xxxl: 'secondary800',
+  }}
+  padding="16px"
+  marginBottom="30px"
+  font={{ xs: 'trebuchetNormal', sm: 'trebuchetBold', md: 'georgiaNormal' }}
+>
+  Demo Text
+</View>
+```
+
+The View component renders as a `div` element by default. You can change that with the `elementType` prop.
+
+Beside the `elementType` prop it has all design system props directly available.
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-view--default).
+
+## Theming
+---
+
+The View component does not have a skin or global CSS available in the theme. You can style it with the props or by extending it with `styled`:
+
+```javascript
+import { View } from '@nx-kit/view';
+import { styled } from '@nx-kit/styling';
+
+const ViewStyled = styled(View)`
+  // your special CSS
+`;
+
+```

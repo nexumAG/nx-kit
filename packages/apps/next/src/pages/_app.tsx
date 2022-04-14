@@ -156,11 +156,24 @@ const navigation: NavigationProps['links'] = [
       { href: '/meter', title: 'Meter' },
       { href: '/overlay', title: 'Overlay' },
       { href: '/table', title: 'Table' },
-      // { href: '/tabs', title: 'Tabs' },
-      // { href: '/text', title: 'Text' },
-      // { href: '/view', title: 'View' },
+      { href: '/tabs', title: 'Tabs' },
+      { href: '/text', title: 'Text' },
+      { href: '/view', title: 'View' },
     ],
   },
+  {
+    title: 'Forms',
+    children: [{ title: 'TBD' }],
+  },
+  {
+    title: 'Layout',
+    children: [{ title: 'TBD' }],
+  },
+  {
+    title: 'Utilities',
+    children: [{ title: 'TBD' }],
+  },
+
   // {
   //   title: 'Forms',
   //   children: [
