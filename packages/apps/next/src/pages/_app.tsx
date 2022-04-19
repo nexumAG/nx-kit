@@ -158,46 +158,35 @@ const navigation: NavigationProps['links'] = [
       { href: '/table', title: 'Table' },
       { href: '/tabs', title: 'Tabs' },
       { href: '/text', title: 'Text' },
+    ],
+  },
+  {
+    title: 'Layout',
+    children: [
       { href: '/view', title: 'View' },
+      { href: '/flex', title: 'Flex' },
+      { href: '/layout', title: 'Layout' },
     ],
   },
   {
     title: 'Forms',
-    children: [{ title: 'TBD' }],
-  },
-  {
-    title: 'Layout',
-    children: [{ title: 'TBD' }],
+    children: [
+      { title: 'TBD' },
+      // { href: '/checkbox', title: 'Checkbox' },
+      // { href: '/form', title: 'Form' },
+      // { href: '/select', title: 'Select' },
+      // { href: '/textfield', title: 'Textfield' },
+    ],
   },
   {
     title: 'Utilities',
-    children: [{ title: 'TBD' }],
+    children: [
+      { title: 'TBD' },
+      // { href: '/breakpoint', title: 'Breakpoint' },
+      // { href: '/slot', title: 'Slot' },
+      // { href: '/ssr', title: 'SSR' },
+    ],
   },
-
-  // {
-  //   title: 'Forms',
-  //   children: [
-  //     { href: '/checkbox', title: 'Checkbox' },
-  //     { href: '/form', title: 'Form' },
-  //     { href: '/select', title: 'Select' },
-  //     { href: '/textfield', title: 'Textfield' },
-  //   ],
-  // },
-  // {
-  //   title: 'Layout',
-  //   children: [
-  //     { href: '/flex', title: 'Flex' },
-  //     { href: '/layout', title: 'Layout' },
-  //   ],
-  // },
-  // {
-  //   title: 'Utilities',
-  //   children: [
-  //     { href: '/breakpoint', title: 'Breakpoint' },
-  //     { href: '/slot', title: 'Slot' },
-  //     { href: '/ssr', title: 'SSR' },
-  //   ],
-  // },
 ];
 
 function MyApp({ Component, pageProps }: AppProps) {

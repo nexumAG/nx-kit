@@ -1,0 +1,62 @@
+import { HStack, VStack, ZStack, Spacer } from '@nx-kit/layout';
+
+# Layout
+
+The `@nx-kit/layout` package contains a HStack, VStack, ZStack and Spacer component which you can use for layout purposes.
+
+It is inspired by the [Stacks of SwiftUI](https://developer.apple.com/documentation/swiftui/building-layouts-with-stack-views) and works very similar.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/layout
+```
+
+## Usage
+---
+
+<HStack
+  alignment="start"
+  spacing={{ xs: 0, sm: 20, md: 40 }}
+  horizontalBreakpoint="sm"
+  styles={{ width: '100%' }}
+>
+  <span>Test</span>
+  <span>Test</span>
+  <Spacer />
+  <span>Test</span>
+</HStack>
+
+```javascript
+import { HStack, Spacer } from '@nx-kit/layout';
+
+<HStack
+  alignment="start"
+  spacing={{ xs: 0, sm: 20, md: 40 }}
+  horizontalBreakpoint="sm"
+  styles={{ width: '100%' }}
+>
+  <span>Test</span>
+  <span>Test</span>
+  <Spacer />
+  <span>Test</span>
+</HStack>
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-layout--h-stack-example).
+
+## Theming
+---
+
+The Layout components do not have a skin or global CSS available in the theme. You can style them with the `styles` props or by extending them with `styled`:
+
+```javascript
+import { HStack } from '@nx-kit/layout';
+import { styled } from '@nx-kit/styling';
+
+const HStackStyled = styled(HStack)`
+  // your special CSS
+`;
+
+```
