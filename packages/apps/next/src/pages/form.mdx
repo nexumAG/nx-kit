@@ -1,0 +1,123 @@
+import { Form } from '@nx-kit/form';
+import { TextField } from '@nx-kit/textfield';
+
+# Form
+
+The `@nx-kit/form` package contains an accessible Form component.
+
+It works with [React Hook Form](https://react-hook-form.com/) under the hood so you don't need to install another form library.
+
+It's a compound component that also contains these components: `Form.Input`, `Form.ControlledInput`, `Form.Error`, `Form.Label`, `Form.FieldWrapper` and `Form.FieldArray`.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/form
+```
+
+## Usage
+---
+
+<Form
+  mode="onBlur"
+  reValidateMode="onChange"
+  defaultValues={{ test: 'Test' }}
+  onSubmit={async (values) => {
+    console.log('submit', values);
+  }}
+  onError={async (errors) => {
+    console.log('errors', errors);
+  }}
+>
+  {({ reset }) => (
+    <>
+      <Form.FieldWrapper>
+        <Form.Label>Test:</Form.Label>
+        <Form.Input
+          name="test"
+          field={<TextField isRequired placeholder="Test" styles={{ width: '100%' }} />}
+          validation={{
+            required: { value: true, message: 'The field is required' },
+            minLength: {
+              value: 5,
+              message: 'The text must be minimum 5 chars long',
+            },
+          }}
+        />
+        <Form.Error elementType="div" name="test" styles={{ color: 'brandDanger500' }} />
+      </Form.FieldWrapper>
+
+      <button type="submit">Submit</button>
+      <button type="button" onClick={() => reset({ test: 'Test' })}>
+        Reset
+      </button>
+    </>
+  )}
+</Form>
+
+```javascript
+import { Form } from '@nx-kit/form';
+import { TextField } from '@nx-kit/textfield';
+
+() => {
+  const defaultValues = {
+    test: 'Test',
+  };
+
+  return (
+    <Form
+      mode="onBlur"
+      reValidateMode="onChange"
+      defaultValues={defaultValues}
+      onSubmit={async (values) => {
+        console.log('submit', values);
+      }}
+      onError={async (errors) => {
+        console.log('errors', errors);
+      }}
+    >
+      {({ reset }) => (
+        <>
+          <Form.FieldWrapper>
+            <Form.Label>Test:</Form.Label>
+            <Form.Input
+              name="test"
+              field={<TextField isRequired placeholder="Test" styles={{ width: '100%' }} />}
+              validation={{
+                required: { value: true, message: 'The field is required' },
+                minLength: {
+                  value: 5,
+                  message: 'The text must be minimum 5 chars long',
+                },
+              }}
+            />
+            <Form.Error elementType="div" name="test" styles={{ color: 'brandDanger500' }} />
+          </Form.FieldWrapper>
+
+          <button type="submit">Submit</button>
+          <button type="button" onClick={() => reset(defaultValues)}>
+            Reset
+          </button>
+        </>
+      )}
+    </Form>
+  );
+}
+```
+
+Look at the other examples and types in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-form--default).
+
+## Theming
+---
+
+The Form components do not have a skin or global CSS available in the theme. You can style the `Form.Error` and `Form.Label` components with the `styles` props or by extending them with `styled`:
+
+```javascript
+import { Form } from '@nx-kit/form';
+import { styled } from '@nx-kit/styling';
+
+const FormLabelStyled = styled(Form.Label)`
+  // your special CSS
+`;
+```

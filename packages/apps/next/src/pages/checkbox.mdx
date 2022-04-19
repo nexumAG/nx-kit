@@ -1,0 +1,71 @@
+import { Checkbox } from '@nx-kit/checkbox';
+
+# Checkbox
+
+The `@nx-kit/checkbox` package contains an accessible Checkbox component.
+
+It can be used as standalone component or controlled or uncontrolled form element.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/checkbox
+```
+
+## Usage
+---
+
+<Checkbox skin="default" onChange={(e) => console.log(e)} aria-label="checkbox" />
+
+```javascript
+import { Checkbox } from '@nx-kit/checkbox';
+
+<Checkbox skin="default" onChange={console.log} aria-label="checkbox" />
+```
+
+Controlled form element:
+
+```javascript
+import { Checkbox } from '@nx-kit/checkbox';
+
+() => {
+  const [checked, setChecked] = useState(true);
+
+  return (
+    <Checkbox
+      name="checkbox"
+      aria-label="checkbox"
+      isChecked={checked}
+      onChange={(event) => {
+        setChecked(event.currentTarget.checked);
+      }}
+    />
+  );
+}
+```
+
+Uncontrolled form element:
+
+```javascript
+import { Checkbox } from '@nx-kit/checkbox';
+
+<Checkbox
+  name="checkbox"
+  aria-label="checkbox"
+  ref={ref}
+  // defaultValue will also work
+  defaultChecked={defaultChecked}
+/>
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-checkbox--default).
+
+## Theming
+---
+
+The Checkbox can be styled by its `aria-*` attributes or styled properties `isFocused`, `hasError` and `isDisabled`.
+
+There is a special `render` prop that you can use to override the native checkbox with your own markup. See example: https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-checkbox--custom-render.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/checkbox.ts

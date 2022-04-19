@@ -171,11 +171,11 @@ const navigation: NavigationProps['links'] = [
   {
     title: 'Forms',
     children: [
-      { title: 'TBD' },
-      // { href: '/checkbox', title: 'Checkbox' },
-      // { href: '/form', title: 'Form' },
+      { href: '/checkbox', title: 'Checkbox' },
+      { href: '/form', title: 'Form' },
       // { href: '/select', title: 'Select' },
       // { href: '/textfield', title: 'Textfield' },
+      { title: 'TBD' },
     ],
   },
   {
