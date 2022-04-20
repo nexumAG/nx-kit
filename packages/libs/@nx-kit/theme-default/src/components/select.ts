@@ -57,7 +57,6 @@ export const select = {
         padding: 8px 16px;
         background-color: ${({ theme }) => theme.global.color.white};
         color: ${({ theme }) => theme.global.color.gray100};
-        width: 210px;
         justify-content: space-between;
 
         &:focus {

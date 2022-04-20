@@ -1,5 +1,7 @@
 import { Form } from '@nx-kit/form';
 import { TextField } from '@nx-kit/textfield';
+import { Select } from '@nx-kit/select';
+import { FormValues, defaultValues } from 'data';
 
 # Form
 
@@ -22,7 +24,7 @@ npm install @nx-kit/form
 <Form
   mode="onBlur"
   reValidateMode="onChange"
-  defaultValues={{ test: 'Test' }}
+  defaultValues={defaultValues}
   onSubmit={async (values) => {
     console.log('submit', values);
   }}
@@ -48,25 +50,59 @@ npm install @nx-kit/form
         <Form.Error elementType="div" name="test" styles={{ color: 'brandDanger500' }} />
       </Form.FieldWrapper>
 
-      <button type="submit">Submit</button>
-      <button type="button" onClick={() => reset({ test: 'Test' })}>
-        Reset
-      </button>
+      <Form.FieldWrapper>
+        <Form.Label>Test2:</Form.Label>
+        <Form.ControlledInput
+          name="test2"
+          render={({ value, onChange, onBlur, hasError }) => (
+            <Select
+              skin="default"
+              placeholder="Please select"
+              selectedKey={value}
+              onBlur={onBlur}
+              onSelectionChange={onChange}
+              hasError={hasError}
+              styles={{ width: '100%' }}
+            >
+              <Select.Item key="value1">Value 1</Select.Item>
+              <Select.Item key="value2">Value 2</Select.Item>
+            </Select>
+          )}
+          validation={{
+            required: { value: true, message: 'The field is required' },
+          }}
+        />
+        <Form.Error elementType="div" name="test2" styles={{ color: 'brandDanger500' }} />
+      </Form.FieldWrapper>
+
+      <div style={{ margin: '30px 0' }}>
+        <button type="submit">Submit</button>
+        <button type="button" onClick={() => reset(defaultValues)}>
+          Reset
+        </button>
+      </div>
     </>
   )}
 </Form>
 
-```javascript
+```typescript jsx
 import { Form } from '@nx-kit/form';
 import { TextField } from '@nx-kit/textfield';
+import { Select } from '@nx-kit/select';
 
 () => {
+  type FormValues = {
+    test: string;
+    test2: string;
+  };
+
   const defaultValues = {
     test: 'Test',
+    test2: '',
   };
 
   return (
-    <Form
+    <Form<FormValues>
       mode="onBlur"
       reValidateMode="onChange"
       defaultValues={defaultValues}
@@ -95,15 +131,113 @@ import { TextField } from '@nx-kit/textfield';
             <Form.Error elementType="div" name="test" styles={{ color: 'brandDanger500' }} />
           </Form.FieldWrapper>
 
-          <button type="submit">Submit</button>
-          <button type="button" onClick={() => reset(defaultValues)}>
-            Reset
-          </button>
+          <Form.FieldWrapper>
+            <Form.Label>Test2:</Form.Label>
+            <Form.ControlledInput
+              name="test2"
+              render={({ value, onChange, onBlur, hasError }) => (
+                <Select
+                  skin="default"
+                  placeholder="Please select"
+                  selectedKey={value}
+                  onBlur={onBlur}
+                  onSelectionChange={onChange}
+                  hasError={hasError}
+                  styles={{ width: '100%' }}
+                >
+                  <Select.Item key="value1">Value 1</Select.Item>
+                  <Select.Item key="value2">Value 2</Select.Item>
+                </Select>
+              )}
+              validation={{
+                required: { value: true, message: 'The field is required' },
+              }}
+            />
+            <Form.Error elementType="div" name="test2" styles={{ color: 'brandDanger500' }} />
+          </Form.FieldWrapper>
+
+          <div>
+            <button type="submit">Submit</button>
+            <button type="button" onClick={() => reset(defaultValues)}>
+              Reset
+            </button>
+          </div>
         </>
       )}
     </Form>
   );
 }
+```
+
+There is happening a lot here. Let's **break it down**:
+
+The Form component is generic so that you can pass the type of the values. In this way the form (render) props are correctly typed.
+
+```typescript jsx
+<Form<FormValues>
+  mode="onBlur"
+  reValidateMode="onChange"
+  defaultValues={defaultValues}
+  onSubmit={async (values) => {
+    console.log('submit', values);
+  }}
+  onError={async (errors) => {
+    console.log('errors', errors);
+  }}
+>
+```
+
+The Form can optionally be used with a function as child (render prop). There you can access e.g. the reset function or the errors. See full list [here](https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/form/src/Form.types.ts#L64).
+
+```typescript jsx
+{({ reset }) => (
+```
+
+The `Form.FieldWrapper` component is a slot provider and connects the label and error message with the field for accessibility.
+
+`Form.Input` registers the field as an uncontrolled form component. Look [here](https://react-hook-form.com/api/useform/register) for what you can use on the validation prop.
+
+```typescript jsx
+<Form.FieldWrapper>
+  <Form.Label>Test:</Form.Label>
+  <Form.Input
+    name="test"
+    field={<TextField isRequired placeholder="Test" styles={{ width: '100%' }} />}
+    validation={{
+      required: { value: true, message: 'The field is required' },
+      minLength: {
+        value: 5,
+        message: 'The text must be minimum 5 chars long',
+      },
+    }}
+  />
+  <Form.Error elementType="div" name="test" styles={{ color: 'brandDanger500' }} />
+</Form.FieldWrapper>
+```
+
+With the `Form.ControlledInput` you can use every kind of input as a controlled form component.
+
+```typescript jsx
+<Form.ControlledInput
+  name="test2"
+  render={({ value, onChange, onBlur, hasError }) => (
+    <Select
+      skin="default"
+      placeholder="Please select"
+      selectedKey={value}
+      onBlur={onBlur}
+      onSelectionChange={onChange}
+      hasError={hasError}
+      styles={{ width: '100%' }}
+    >
+      <Select.Item key="value1">Value 1</Select.Item>
+      <Select.Item key="value2">Value 2</Select.Item>
+    </Select>
+  )}
+  validation={{
+    required: { value: true, message: 'The field is required' },
+  }}
+/>
 ```
 
 Look at the other examples and types in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-form--default).
