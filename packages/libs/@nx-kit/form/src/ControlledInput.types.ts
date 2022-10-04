@@ -1,15 +1,15 @@
 import React from 'react';
 
-export type RenderProps = {
+export type RenderProps<T extends HTMLElement = HTMLElement> = {
   onBlur: () => void;
   onChange: (value: any) => void;
   value: React.Key;
   hasError: boolean;
-  ref: React.Ref<HTMLElement>;
+  ref: React.Ref<T>;
 };
 
-export type ControlledInputProps = {
+export type ControlledInputProps<T extends HTMLElement = HTMLElement> = {
   name: string;
-  render: (props: RenderProps) => React.ReactElement;
+  render: (props: RenderProps<T>) => React.ReactElement;
   validation?: any;
 };

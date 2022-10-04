@@ -21,7 +21,7 @@ export const Default = () => (
       <Select
         skin="default"
         placeholder="Select an option"
-        styles={{ marginBottom: 50 }}
+        styles={{ marginBottom: 50, width: '210px' }}
         name="test"
         aria-label="test"
       >

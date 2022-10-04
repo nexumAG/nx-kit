@@ -4,7 +4,11 @@ import { ControlledInputProps } from './ControlledInput.types';
 // eslint-disable-next-line import/no-cycle
 import { useForm } from './Form';
 
-export const ControlledInput = ({ name, render, validation }: ControlledInputProps) => {
+export const ControlledInput = <T extends HTMLElement = HTMLElement>({
+  name,
+  render,
+  validation,
+}: ControlledInputProps<T>) => {
   const { control } = useForm();
 
   return (
