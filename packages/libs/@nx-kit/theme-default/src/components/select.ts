@@ -54,7 +54,7 @@ export const select = {
       button {
         border: 1px solid ${({ theme }) => theme.global.color.gray500};
         border-radius: 16px;
-        padding: 8px 16px;
+        padding: 8px 32px 8px 16px;
         background-color: ${({ theme }) => theme.global.color.white};
         color: ${({ theme }) => theme.global.color.gray100};
         justify-content: space-between;

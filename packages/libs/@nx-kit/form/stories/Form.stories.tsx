@@ -206,6 +206,7 @@ export const Default = () => {
                             onBlur={onBlur}
                             onSelectionChange={onChange}
                             hasError={hasError}
+                            styles={{ width: '210px' }}
                           >
                             <Select.Item key="item1">Item 1</Select.Item>
                             <Select.Item key="item2">Item 2</Select.Item>
