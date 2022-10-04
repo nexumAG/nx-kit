@@ -1,0 +1,34 @@
+import { Button } from '@nx-kit/button';
+
+# Button
+
+The `@nx-kit/button` package contains an accessible Button component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/button
+```
+
+## Usage
+---
+
+<Button skin="primary" onPress={(e) => console.log(e)}>Press me</Button>
+
+```javascript
+import { Button } from '@nx-kit/button';
+
+<Button skin="primary" onPress={(e) => console.log(e)}>
+  Press me
+</Button>
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/story/nx-kit-button--primary).
+
+## Theming
+---
+
+The Button can be styled by its styled properties `isActive`, `isFocused`, `isHovered` and `isDisabled`.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/button.ts

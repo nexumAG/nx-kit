@@ -1,16 +1,16 @@
-# @nx-kit/styling
+# Styling
 
-The @nx-kit/styling package contains the design system and a few utility functions.
+The `@nx-kit/styling` package contains the design system and a few utility functions.
 It is based on **styled-components** and reexports all of its functions.
 
-**babel-plugin-styled-components** is also already included.
+**babel-plugin-styled-components** is also already included if you need it.
 
 ## Installation
 ---
 
-`npm install @nx-kit/styling`
-
-`yarn add @nx-kit/styling`
+```text
+npm install @nx-kit/styling
+```
 
 ## Theme
 ---
@@ -21,7 +21,9 @@ You are free to choose the keys and values, but for the design system to work, t
 **Example theme:**
 
 ```javascript
-const theme = {
+import { css } from '@nx-kit/styling';
+
+export const theme = {
   global: {
     styles: css`
       body {
@@ -91,12 +93,57 @@ const theme = {
 As you see the theme consists of global and component values/styles.
 You can use the global values in the styled components but they are also used for the design system.
 
+For the theme to work you have to wrap your application with the `ThemeProvider`. See example [here](/styling#reset-css).
+
+There is a default theme that you can use. You have to install it with `npm install @nx-kit/theme-default`.
+
+## Skinning
+---
+
+The theme for a component consists of a `global` and a `skin` property.
+
+```javascript
+import { css } from '@nx-kit/styling';
+
+export const theme = {
+  global: {
+    // ... global values
+  },
+  component: {
+    button: {
+      global: css`
+        position: relative;
+        display: inline-flex;
+      `,
+      skin: {
+        primary: css`
+          color: ${({ theme }) => theme.global.color.black};
+        `
+      },
+    },
+    // ... more components
+  },
+};
+```
+
+The global styles are always added to the component styles and the skin styles only if you pass the key name to the skin prop:
+
+```javascript
+<Button skin="primary">
+  Press me
+</Button>
+```
+
+You are free to choose the skin keys, they also can be numbers and not strings.
+See [TypeScript](#typescript) on how to enable autocomplete and type errors for the skin names.
+
 ## Design System
 ---
 
 Most of the nx-kit components have a special `styles` prop.
 With this prop you are able to set some styles directly on the component.
-These are not inline styles like the `style` prop and you can also use the global values from the theme.
+These are not inline styles like the `style` prop but the styles will be added to the already existing styles from the theme.
+You can also use the global values from the theme directly.
 
 **Example:**
 
@@ -110,8 +157,9 @@ These are not inline styles like the `style` prop and you can also use the globa
 </Button>
 ```
 
-As you can see, you are also able to use the breakpoints, but only "up" media queries.
-Because the keys for spacing (20, 40) exists in the theme, the corresponding values are used. Else it would use the value directly for the css.
+As you can see, you are also able to use the breakpoints from the theme.
+
+And because the keys for spacing (20, 40) exists in the theme, the corresponding values are used. Else it would use the value directly for the css.
 
 For consistency it is recommend to also use the global values in the styled components where possible.
 
@@ -145,7 +193,7 @@ The following table shows what is possible and which global values are used.
 | width, height, minWidth, maxWidth, minHeight, maxHeight, display, verticalAlign, overflow, overflowX, overflowY                                                    | -                 |
 | letterSpacing, textAlign, fontStyle, textTransform, textDecoration, textOverflow                                                                                   | -                 |
 
-## media Helper
+## Media helper
 ---
 
 @nx-kit/styling exports a `media` function that can be used for media queries.
@@ -184,7 +232,7 @@ const Example = () => {
 };
 ```
 
-## reset CSS
+## Reset CSS
 ---
 
 @nx-kit/styling also exports a lightweight reset CSS string:
@@ -192,3 +240,50 @@ const Example = () => {
 ```javascript
 import { resetCSS } from '@nx-kit/styling';
 ```
+
+Together with the global styles from the theme, it should be added as global styles.
+
+**Example:**
+
+```javascript
+import { resetCSS, createGlobalStyle, ThemeProvider } from '@nx-kit/styling';
+
+const GlobalStyles = createGlobalStyle`
+  ${resetCSS}
+  ${({ theme }) => theme?.global?.styles};
+`;
+
+export const App = ({ children, theme }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      {children}
+    </ThemeProvider>
+  );
+};
+```
+
+## TypeScript
+---
+
+To make the theme fully typed you need to do [Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html).
+
+**Example:**
+
+```typescript
+import '@nx-kit/styling';
+
+type Theme = {
+  // ...
+};
+
+export const theme: Theme = {
+  // ...
+}
+
+declare module '@nx-kit/styling' {
+  export interface DefaultTheme extends Theme {}
+}
+```
+
+An example of a fully typed theme is the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/index.tsx.

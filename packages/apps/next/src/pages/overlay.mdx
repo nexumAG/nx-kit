@@ -1,0 +1,138 @@
+import { Overlay, OverlayTrigger, Popover, PopoverTrigger } from '@nx-kit/overlay';
+import { Heading } from '@nx-kit/heading';
+import { Button } from '@nx-kit/button';
+
+# Overlay
+
+The `@nx-kit/overlay` package contains an accessible Overlay and Popover component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/overlay
+```
+
+## Usage
+---
+
+<OverlayTrigger>
+  {({ close }) => (
+    <>
+      <Button skin="primary">Open Overlay</Button>
+
+      <Overlay skin="default" isDismissable>
+        <Heading skin="400" elementType="h3">
+          Test Overlay
+        </Heading>
+        <Button onPress={close} skin="secondary">
+          Close Overlay
+        </Button>
+      </Overlay>
+    </>
+  )}
+</OverlayTrigger>
+
+```javascript
+import { Overlay, OverlayTrigger } from '@nx-kit/overlay';
+import { Heading } from '@nx-kit/heading';
+import { Button } from '@nx-kit/button';
+
+<OverlayTrigger>
+  {({ close }) => (
+    <>
+      <Button skin="primary">Open Overlay</Button>
+
+      <Overlay skin="default" isDismissable>
+        <Heading skin="400" elementType="h3">
+          Test Overlay
+        </Heading>
+        <Button onPress={close} skin="secondary">
+          Close Overlay
+        </Button>
+      </Overlay>
+    </>
+  )}
+</OverlayTrigger>
+```
+
+The OverlayTrigger component contains the state for the Overlay and sets the `onPress` prop on the Button
+and `isOpen` and `onClose` prop on the Overlay.
+
+Without the `OverlayTrigger` you can do it like this:
+
+```javascript
+import { useState } from 'react';
+import { Overlay } from '@nx-kit/overlay';
+import { Heading } from '@nx-kit/heading';
+import { Button } from '@nx-kit/button';
+
+() => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const open = () => {
+    setIsOpen(true);
+  };
+
+  const close = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <Button onPress={open} skin="primary">
+        Open Overlay
+      </Button>
+      <Overlay skin="default" isOpen={isOpen} onClose={close} isDismissable>
+        <Heading skin="400" elementType="h3">
+          Test Overlay
+        </Heading>
+        <Button onPress={close} skin="secondary">
+          Close Overlay
+        </Button>
+      </Overlay>
+    </>
+  );
+}
+```
+
+<PopoverTrigger>
+  <Button skin="primary">Open Popover</Button>
+
+  <Popover skin="popover" animationDisabled>
+    <Heading skin="400" elementType="h3">
+      Test Popover
+    </Heading>
+  </Popover>
+</PopoverTrigger>
+
+```javascript
+import { Popover, PopoverTrigger } from '@nx-kit/overlay';
+import { Heading } from '@nx-kit/heading';
+import { Button } from '@nx-kit/button';
+
+<PopoverTrigger>
+  <Button skin="primary">Open Popover</Button>
+
+  <Popover skin="popover" animationDisabled>
+    <Heading skin="400" elementType="h3">
+      Test Popover
+    </Heading>
+  </Popover>
+</PopoverTrigger>
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-overlay--default).
+
+## Theming
+---
+
+The Overlay and Popover can be styled by the `global.underlay` and `global.overlayWrapper` CSS and `isFocused` and `state` styled properties.
+
+Have a look at the default theme:
+
+https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/index.tsx#L126
+
+https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/index.tsx#L139
+
+https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/overlay.ts

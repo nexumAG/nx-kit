@@ -1,0 +1,36 @@
+import { Text } from '@nx-kit/text';
+
+# Text
+
+The `@nx-kit/text` package contains a Text component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/text
+```
+
+## Usage
+---
+
+<Text skin="600" elementType="p">Adaptogen <strong>waistcoat</strong> fam, actually <em>leggings</em> dreamcatcher slow-carb yr.</Text>
+
+```javascript
+import { Text } from '@nx-kit/text';
+
+<Text skin="600" elementType="p">
+  Adaptogen <strong>waistcoat</strong> fam, actually <em>leggings</em> dreamcatcher slow-carb yr.
+</Text>
+```
+
+The Text component renders as a `span` element by default. You can change that with the `elementType` prop.
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-text--skin-700).
+
+## Theming
+---
+
+The Text can be styled just with normal CSS.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/text.ts

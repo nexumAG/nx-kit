@@ -2,7 +2,7 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MDXProvider } from '@mdx-js/react';
-import { resetCSS, createGlobalStyle, ThemeProvider, media } from '@nx-kit/styling';
+import { resetCSS, createGlobalStyle, ThemeProvider, media, styled } from '@nx-kit/styling';
 import { theme } from '@nx-kit/theme-default';
 import { SSRProvider } from '@nx-kit/ssr';
 import { BreakpointProvider } from '@nx-kit/breakpoint';
@@ -11,8 +11,9 @@ import { Heading } from '@nx-kit/heading';
 import { Text } from '@nx-kit/text';
 import { Divider } from '@nx-kit/divider';
 import { Link } from 'components/Link';
+import { Navigation, NavigationProps } from 'components/Navigation';
 
-export const BasicCSS = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   ${resetCSS}
   ${({ theme }) => theme?.global?.styles};
 
@@ -20,54 +21,19 @@ export const BasicCSS = createGlobalStyle`
 
     min-height: 100vh;
 
-    & > header {
-      grid-area: header;
-      border-bottom: 1px solid #d8d8d8;
-      padding: 15px;
-
-      ${media('md')} {
-        padding: 30px 60px;
-      }
-    }
-
     & > nav {
       grid-area: nav;
-      padding: 15px;
-      border-right: none;
-      border-bottom: 1px solid #d8d8d8;
-
-      ${media('md')} {
-        padding: 60px;
-        border-right: 1px solid #d8d8d8;
-        border-bottom: none;
-      }
-
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
     }
 
     & > main {
       grid-area: main;
       padding: 15px;
+      border-left: none;
+      min-width: 0;
 
       ${media('md')} {
         padding: 60px;
-      }
-    }
-
-    & > footer {
-      grid-area: footer;
-      border-top: 1px solid #d8d8d8;
-      padding: 15px;
-
-      ${media('md')} {
-        padding: 15px 60px;
+        border-left: 1px solid #d8d8d8;
       }
     }
 
@@ -76,42 +42,81 @@ export const BasicCSS = createGlobalStyle`
     ${media('md')} {
       display: grid;
       grid-template-columns: max-content auto;
-      grid-template-rows: min-content auto min-content;
+      grid-template-rows: auto;
       grid-template-areas:
-      "header header"
       "nav main"
-      "footer footer";
     }
 
   }
 
-  table {
+  table:not([role="grid"]) {
     border-collapse: collapse;
     width: 100%;
-  }
-
-  table, th, td {
     border: 1px solid #d8d8d8;
     text-align: left;
+
+    & th, td {
+      border: 1px solid #d8d8d8;
+      text-align: left;
+    }
+
+    & th {
+      font-weight: bold;
+    }
+
+    & th, td {
+      padding: 10px;
+    }
   }
 
-  th {
-    font-weight: bold;
+  pre[class*="language-"] {
+    margin-bottom: 30px;
   }
 
-  th, td {
-    padding: 10px;
+`;
+
+const getAnchor = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, '')
+    .replace(/[ ]/g, '-');
+};
+
+const AnchorHeading = styled(Heading)`
+  & > a {
+    color: inherit;
+    text-decoration: none;
+
+    span {
+      display: none;
+    }
+
+    &:hover {
+      span {
+        display: inline;
+      }
+    }
   }
-
-
-
 `;
 
 const components = {
   h1: (props: any) => <Heading elementType="h1" styles={{ marginBottom: '30px' }} {...props} />,
-  h2: (props: any) => (
-    <Heading elementType="h2" styles={{ marginBottom: '0', marginTop: '60px' }} {...props} />
-  ),
+  h2: ({ children, ...props }: any) => {
+    const id = getAnchor(children);
+    const href = `#${id}`;
+    return (
+      <AnchorHeading
+        elementType="h2"
+        styles={{ marginBottom: '0', marginTop: '60px' }}
+        {...props}
+        id={id}
+      >
+        <a href={href}>
+          {children} <span>#</span>
+        </a>
+      </AnchorHeading>
+    );
+  },
   h3: (props: any) => <Heading elementType="h3" styles={{ marginBottom: '30px' }} {...props} />,
   h4: (props: any) => <Heading elementType="h4" styles={{ marginBottom: '30px' }} {...props} />,
   h5: (props: any) => <Heading elementType="h5" styles={{ marginBottom: '30px' }} {...props} />,
@@ -123,6 +128,67 @@ const components = {
   hr: (props: any) => <Divider skin={100} styles={{ marginBottom: '30px' }} {...props} />,
 };
 
+const navigation: NavigationProps['links'] = [
+  { href: '/', title: 'Getting started' },
+  {
+    href: '/styling',
+    title: 'Styling',
+    collapse: true,
+    children: [
+      { href: '/styling#installation', title: 'Installation' },
+      { href: '/styling#theme', title: 'Theme' },
+      { href: '/styling#skinning', title: 'Skinning' },
+      { href: '/styling#design-system', title: 'Design System' },
+      { href: '/styling#media-helper', title: 'Media helper' },
+      { href: '/styling#sorted-breakpoints', title: 'Sorted breakpoints' },
+      { href: '/styling#reset-css', title: 'Reset CSS' },
+      { href: '/styling#typescript', title: 'TypeScript' },
+    ],
+  },
+  {
+    title: 'Basic',
+    children: [
+      { href: '/accordion', title: 'Accordion' },
+      { href: '/button', title: 'Button' },
+      { href: '/divider', title: 'Divider' },
+      { href: '/heading', title: 'Heading' },
+      { href: '/link', title: 'Link' },
+      { href: '/meter', title: 'Meter' },
+      { href: '/overlay', title: 'Overlay' },
+      { href: '/table', title: 'Table' },
+      { href: '/tabs', title: 'Tabs' },
+      { href: '/text', title: 'Text' },
+    ],
+  },
+  {
+    title: 'Layout',
+    children: [
+      { href: '/view', title: 'View' },
+      { href: '/flex', title: 'Flex' },
+      { href: '/layout', title: 'Layout' },
+    ],
+  },
+  {
+    title: 'Forms',
+    children: [
+      { href: '/checkbox', title: 'Checkbox' },
+      { href: '/form', title: 'Form' },
+      // { href: '/select', title: 'Select' },
+      // { href: '/textfield', title: 'Textfield' },
+      { title: 'TBD' },
+    ],
+  },
+  {
+    title: 'Utilities',
+    children: [
+      { title: 'TBD' },
+      // { href: '/breakpoint', title: 'Breakpoint' },
+      // { href: '/slot', title: 'Slot' },
+      // { href: '/ssr', title: 'SSR' },
+    ],
+  },
+];
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -133,35 +199,30 @@ function MyApp({ Component, pageProps }: AppProps) {
       <SSRProvider>
         <ThemeProvider theme={theme}>
           <BreakpointProvider>
-            <BasicCSS />
-            <header>@nx-kit Documentation</header>
-            <nav>
-              <ul>
-                <li>
-                  <Link skin="primary" href="/">
-                    Getting started
-                  </Link>
-                </li>
-                <li>
-                  <Link skin="primary" href="/styling">
-                    Styling
-                  </Link>
-                </li>
-                <li>
-                  <Link skin="primary" href="/components">
-                    Components
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+            <GlobalStyles />
+            <Navigation links={navigation} />
             <main>
               <OverlayProvider>
                 <MDXProvider components={components}>
                   <Component {...pageProps} />
+                  <footer>
+                    <Divider skin={100} styles={{ marginTop: '30px' }} />
+                    <Text>
+                      Made by{' '}
+                      <Link skin="primary" href="https://www.nexum.com">
+                        nexum
+                      </Link>
+                    </Text>{' '}
+                    |{' '}
+                    <Text>
+                      <Link skin="primary" href="https://www.nexum.de/en/impressum">
+                        Imprint
+                      </Link>
+                    </Text>
+                  </footer>
                 </MDXProvider>
               </OverlayProvider>
             </main>
-            <footer>Made by nexum</footer>
           </BreakpointProvider>
         </ThemeProvider>
       </SSRProvider>

@@ -4,9 +4,10 @@ import { Link as NxLink, LinkProps as NxLinkProps } from '@nx-kit/link';
 export type LinkProps = NxLinkProps & {
   href?: string;
   isActive?: boolean;
+  role?: string;
 };
 
-export const Link = ({ href, children: childrenProp, ...props }: LinkProps) => {
+export const Link = ({ href, children, ...props }: LinkProps) => {
   const isLink = !!href;
   const isExternalLink = href?.startsWith('http');
   if (isLink) {
@@ -14,7 +15,7 @@ export const Link = ({ href, children: childrenProp, ...props }: LinkProps) => {
       return (
         <NxLink {...props}>
           <a href={href} target="_blank" rel="noreferrer">
-            {childrenProp}
+            {children}
           </a>
         </NxLink>
       );
@@ -23,11 +24,11 @@ export const Link = ({ href, children: childrenProp, ...props }: LinkProps) => {
     return (
       <NextLink href={href} passHref>
         <NxLink {...props}>
-          <a>{childrenProp}</a>
+          <a>{children}</a>
         </NxLink>
       </NextLink>
     );
   }
 
-  return <NxLink {...props}>{childrenProp}</NxLink>;
+  return <NxLink {...props}>{children}</NxLink>;
 };

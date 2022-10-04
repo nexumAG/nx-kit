@@ -2,4 +2,6 @@
 
 React component library and design system
 
-Showcase: https://nexumag.github.io/nx-kit
+**Storybook**: https://nexumag.github.io/nx-kit
+
+The documentation is available here: https://nx-kit.vercel.app/

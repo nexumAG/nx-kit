@@ -1,0 +1,36 @@
+import { Heading } from '@nx-kit/heading';
+
+# Heading
+
+The `@nx-kit/heading` package contains a Heading component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/heading
+```
+
+## Usage
+---
+
+<Heading skin="700" elementType="h3">Heading Test</Heading>
+
+```javascript
+import { Heading } from '@nx-kit/heading';
+
+<Heading skin="700" elementType="h3">
+  Heading Test
+</Heading>
+```
+
+The Heading component renders as a `h2` element by default. You can change that with the `elementType` prop.
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/docs/nx-kit-heading--skin-700).
+
+## Theming
+---
+
+The Heading can be styled just with normal CSS.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/heading.ts

@@ -1,0 +1,46 @@
+import { Accordion } from '@nx-kit/accordion';
+
+# Accordion
+
+The `@nx-kit/accordion` package contains an accessible Accordion component.
+
+## Installation
+---
+
+```text
+npm install @nx-kit/accordion
+```
+
+## Usage
+---
+
+<Accordion skin="default" allowZeroExpanded>
+  <Accordion.Item title="Item 1">
+    <p>Item 1 content</p>
+  </Accordion.Item>
+  <Accordion.Item title="Item 2">
+    <p>Item 2 content</p>
+  </Accordion.Item>
+</Accordion>
+
+```javascript
+import { Accordion } from '@nx-kit/accordion';
+
+<Accordion skin="default" allowZeroExpanded>
+  <Accordion.Item title="Item 1">
+    <p>Item 1 content</p>
+  </Accordion.Item>
+  <Accordion.Item title="Item 2">
+    <p>Item 2 content</p>
+  </Accordion.Item>
+</Accordion>
+```
+
+More examples in [Storybook](https://nexumag.github.io/nx-kit/?path=/story/nx-kit-accordion--default).
+
+## Theming
+---
+
+The Accordion can be styled by its HTML attributes like `role`, `aria-*` and `hidden`.
+
+Have a look at the default theme: https://github.com/nexumAG/nx-kit/blob/master/packages/libs/%40nx-kit/theme-default/src/components/accordion.ts
