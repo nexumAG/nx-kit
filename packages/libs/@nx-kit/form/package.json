@@ -35,6 +35,6 @@
     "@nx-kit/utils": "^0.1.11",
     "@react-aria/label": "^3.2.4",
     "@react-aria/utils": "^3.11.3",
-    "react-hook-form": "^7.29.0"
+    "react-hook-form": "7.29.0"
   }
 }

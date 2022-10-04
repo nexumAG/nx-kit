@@ -24,22 +24,22 @@ import {
 import { FieldValues } from 'react-hook-form/dist/types/fields';
 
 export type OnSubmitData<FormValues> = UnpackNestedValue<FormValues>;
-export type OnErrorErrors<FormValues> = FieldErrors<FormValues>;
+export type OnErrorErrors<FormValues extends FieldValues = FieldValues> = FieldErrors<FormValues>;
 export type BaseEvent = React.BaseSyntheticEvent;
 
-export type FormSubmitHandler<FormValues> = (
+export type FormSubmitHandler<FormValues extends FieldValues = FieldValues> = (
   data: OnSubmitData<FormValues>,
   event?: BaseEvent,
   context?: FormContext<FormValues>
 ) => any | Promise<any>;
 
-export type FormErrorHandler<FormValues> = (
+export type FormErrorHandler<FormValues extends FieldValues = FieldValues> = (
   errors: OnErrorErrors<FormValues>,
   event?: BaseEvent,
   context?: FormContext<FormValues>
 ) => any | Promise<any>;
 
-export type FormProps<FormValues> = {
+export type FormProps<FormValues extends FieldValues = FieldValues> = {
   children: React.ReactNode | ((context: FormContext) => React.ReactNode);
   mode?: 'onChange' | 'onBlur' | 'onSubmit' | 'onTouched' | 'all';
   reValidateMode?: 'onChange' | 'onBlur' | 'onSubmit';
