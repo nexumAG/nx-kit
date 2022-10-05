@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/checkbox",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,14 +22,14 @@
     "react-dom": "^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0"
   },
   "devDependencies": {
-    "@nx-kit/dependencies-dev": "^0.1.12",
-    "@nx-kit/form": "^0.1.23"
+    "@nx-kit/dependencies-dev": "^0.1.13",
+    "@nx-kit/form": "^0.1.24"
   },
   "dependencies": {
-    "@nx-kit/slot": "^0.1.13",
-    "@nx-kit/styling": "^0.1.22",
-    "@nx-kit/types": "^0.1.10",
-    "@nx-kit/utils": "^0.1.11",
+    "@nx-kit/slot": "^0.1.14",
+    "@nx-kit/styling": "^0.1.23",
+    "@nx-kit/types": "^0.1.11",
+    "@nx-kit/utils": "^0.1.12",
     "@react-aria/checkbox": "^3.3.3",
     "@react-aria/focus": "^3.5.4",
     "@react-aria/utils": "^3.11.3",
