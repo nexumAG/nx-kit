@@ -7,7 +7,7 @@ export type CheckboxGroupProps = {
 };
 
 const CheckboxGroup = ({ children }: CheckboxGroupProps) => {
-  const props = useSlotProps('field', {});
+  const props = useSlotProps<any>('field', {});
 
   // console.log('props', props);
 
