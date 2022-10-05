@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/breakpoint",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -25,7 +25,7 @@
     "@nx-kit/dependencies-dev": "^0.1.13"
   },
   "dependencies": {
-    "@nx-kit/styling": "^0.1.23"
+    "@nx-kit/styling": "^0.1.24"
   },
   "gitHead": "c723837db72740eaaabfc0e5e18b57b8bcb2c532"
 }
