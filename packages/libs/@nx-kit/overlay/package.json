@@ -40,6 +40,5 @@
     "@react-types/dialog": "^3.3.4",
     "@react-types/overlays": "^3.5.4",
     "react-transition-group": "^4.4.2"
-  },
-  "gitHead": "c723837db72740eaaabfc0e5e18b57b8bcb2c532"
+  }
 }

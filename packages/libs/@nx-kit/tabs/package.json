@@ -32,6 +32,5 @@
     "@react-stately/collections": "^3.3.7",
     "@react-stately/tabs": "^3.0.4",
     "@react-types/tabs": "^3.0.4"
-  },
-  "gitHead": "c723837db72740eaaabfc0e5e18b57b8bcb2c532"
+  }
 }

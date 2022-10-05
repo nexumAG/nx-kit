@@ -35,6 +35,5 @@
     "@react-aria/utils": "^3.11.3",
     "@react-aria/visually-hidden": "^3.2.7",
     "@react-stately/toggle": "^3.2.6"
-  },
-  "gitHead": "c723837db72740eaaabfc0e5e18b57b8bcb2c532"
+  }
 }

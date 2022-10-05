@@ -27,6 +27,5 @@
   "dependencies": {
     "@nx-kit/slot": "^0.1.15",
     "@nx-kit/styling": "^0.1.24"
-  },
-  "gitHead": "c723837db72740eaaabfc0e5e18b57b8bcb2c532"
+  }
 }

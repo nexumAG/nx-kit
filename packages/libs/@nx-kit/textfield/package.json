@@ -34,6 +34,5 @@
     "@react-aria/focus": "^3.5.4",
     "@react-aria/textfield": "^3.5.4",
     "@react-aria/utils": "^3.11.3"
-  },
-  "gitHead": "c723837db72740eaaabfc0e5e18b57b8bcb2c532"
+  }
 }

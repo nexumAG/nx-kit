@@ -28,6 +28,5 @@
   "dependencies": {
     "@nx-kit/styling": "^0.1.24",
     "@react-aria/meter": "^3.1.7"
-  },
-  "gitHead": "c723837db72740eaaabfc0e5e18b57b8bcb2c532"
+  }
 }

@@ -33,6 +33,5 @@
     "@react-aria/interactions": "^3.8.3",
     "@react-aria/utils": "^3.11.3",
     "@react-types/button": "^3.4.4"
-  },
-  "gitHead": "c723837db72740eaaabfc0e5e18b57b8bcb2c532"
+  }
 }
