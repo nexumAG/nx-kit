@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import { useOverlayTriggerState } from '@react-stately/overlays';
 import { DismissButton, useOverlayTrigger, useOverlayPosition } from '@react-aria/overlays';
 import { SlotProvider } from '@nx-kit/slot';
@@ -30,7 +30,7 @@ export const PopoverTrigger = ({
   const state = useOverlayTriggerState({ defaultOpen: isOpenDefault });
 
   const triggerRef = React.useRef(null);
-  const overlayRef = React.useRef(null);
+  const overlayRef = React.useRef<HTMLDivElement | null>(null);
   const positionRef = React.useRef<HTMLElement | null>(positionElement ?? null);
   positionRef.current = positionElement ?? null;
 
@@ -61,12 +61,21 @@ export const PopoverTrigger = ({
     triggerRef
   );
 
+  // Hack, see: https://github.com/adobe/react-spectrum/issues/3490
+  const overlayRefCallback = useCallback(
+    (ref: HTMLDivElement) => {
+      overlayRef.current = ref;
+      updatePosition();
+    },
+    [overlayRef, updatePosition]
+  );
+
   const slots = {
     button: { onPress: () => state.toggle(), ref: triggerRef, ...triggerProps },
     overlay: {
       isOpen: state.isOpen,
       onClose: state.close,
-      ref: overlayRef,
+      ref: overlayRefCallback,
       renderInPortal: behaviour !== 'stayOnScrollNoPortal',
       ...positionProps,
       ...overlayProps,

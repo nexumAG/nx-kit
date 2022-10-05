@@ -99,7 +99,7 @@ export const Navigation = ({ links }: NavigationProps) => {
             {(link.children?.length ?? 0) > 0 && (
               <ul role="menu">
                 {link.children?.map((link) => (
-                  <li role="none" key={link.href}>
+                  <li role="none" key={link.href ?? link.title}>
                     {link.href && (
                       <Link
                         role="menuitem"
