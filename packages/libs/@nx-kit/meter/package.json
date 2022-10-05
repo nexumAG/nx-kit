@@ -1,7 +1,7 @@
 {
   "name": "@nx-kit/meter",
   "repository": "github:nexumAG/nx-kit",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -23,10 +23,10 @@
   },
   "devDependencies": {
     "@nx-kit/dependencies-dev": "^0.1.13",
-    "@nx-kit/textfield": "^0.1.26"
+    "@nx-kit/textfield": "^0.1.27"
   },
   "dependencies": {
-    "@nx-kit/styling": "^0.1.24",
+    "@nx-kit/styling": "^0.1.25",
     "@react-aria/meter": "^3.1.7"
   }
 }
