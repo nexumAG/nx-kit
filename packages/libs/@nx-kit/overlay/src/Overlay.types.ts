@@ -1,5 +1,8 @@
 import { CSSProperties, ReactNode } from 'react';
-import { OverlayProps as AriaOverlayProps } from '@react-aria/overlays';
+import {
+  OverlayProps as AriaOverlayProps,
+  AriaOverlayProps as AriaAriaOverlayProps,
+} from '@react-aria/overlays';
 import { AriaDialogProps } from '@react-types/dialog';
 import {
   Spacing,
@@ -52,6 +55,7 @@ export type OverlayProps = {
   preventScroll?: boolean;
   renderInPortal?: boolean;
 } & AriaOverlayProps &
+  AriaAriaOverlayProps &
   AriaDialogProps;
 
 export type OverlayInnerProps = Omit<

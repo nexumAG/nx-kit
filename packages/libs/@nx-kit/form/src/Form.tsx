@@ -6,6 +6,7 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import { useForm as useReactHookForm, get } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form/dist/types/fields';
 // eslint-disable-next-line import/no-cycle
 import { Input } from './Input';
 // eslint-disable-next-line import/no-cycle
@@ -64,12 +65,12 @@ export type CompoundComponent = {
   Label: typeof Label;
   FieldWrapper: typeof FieldWrapper;
   FieldArray: typeof FieldArray;
-} & (<FormValues>(
+} & (<FormValues extends FieldValues = FieldValues>(
   props: FormProps<FormValues> & { ref?: React.Ref<FormContext<FormValues>> }
 ) => ReactElement);
 
 export const Form = forwardRef(
-  <FormValues,>(
+  <FormValues extends FieldValues = FieldValues>(
     {
       children,
       mode = 'onSubmit',
